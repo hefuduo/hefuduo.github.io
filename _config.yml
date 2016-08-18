@@ -6,7 +6,7 @@ email: huxpro@gmail.com
 description: ""
 keyword: ""
 url: "http://github.com"              # your host, for absolute URL
-baseurl: "/hefuduo/github/io"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/hefuduo.github.io"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
