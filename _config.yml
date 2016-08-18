@@ -5,8 +5,8 @@ header-img: img/home-bg.jpg
 email: huxpro@gmail.com
 description: ""
 keyword: ""
-url: "http://hefuduo.github.io"              # your host, for absolute URL
-baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+url: "http://github.com"              # your host, for absolute URL
+baseurl: "/hefuduo/github/io"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
