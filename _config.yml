@@ -52,7 +52,7 @@ kramdown:
 # Duoshuo settings
 duoshuo_username: hefuduo
 # Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+duoshuo_share: false                     # set to false if you want to use Comment without Sharing
 
 
 
@@ -84,17 +84,5 @@ friends: [
     {
         title: "HFD BLOG",
         href: "http://hefuduo.github.io"
-    },{
-        title: "Foo",
-        href: "#"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Friends",
-        href: "#"
-    },{
-        title: "SEO",
-        href: "#"
     }
 ]
