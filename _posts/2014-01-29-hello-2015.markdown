@@ -9,9 +9,9 @@ tags:
     - 生活
 ---
 
+##Life is Life
 
-#Life is Life
-
+![mxx]{/img/about-bg.jpg}
 
 ```java
 public class Main｛
