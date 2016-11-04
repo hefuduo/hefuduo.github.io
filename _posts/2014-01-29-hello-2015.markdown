@@ -13,31 +13,31 @@ tags:
 #Life is Life
 
 
-```
+```java
 public class Main｛
-	public static void main(String[] argsv){
-    	System.out.println("hello world");
+    public static void main(String[] argsv){
+        System.out.println("hello world");
     }
 ｝
 ```
 
 
-```
+```cpp
 #include "stdio.h"
 void main()
 {
-	printf("hello world");
+    printf("hello world");
 }
 
 ```
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
 int main
 {
-	cout<<"hello world"<<endl;
+    cout<<"hello world"<<endl;
     return 0;
 }
 ```
