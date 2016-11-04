@@ -9,9 +9,10 @@ tags:
     - 生活
 ---
 
-##Life is Life
 
-![mxx]{/img/about-bg.jpg}
+# Lifie is Life
+![MXX](/img/about-bg.jpg)
+
 
 ```java
 public class Main｛
@@ -41,4 +42,3 @@ int main
     return 0;
 }
 ```
-
