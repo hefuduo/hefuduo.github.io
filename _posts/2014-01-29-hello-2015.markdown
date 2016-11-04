@@ -10,8 +10,14 @@ tags:
 ---
 
 
-# Lifie is Life
+# Life is Life
 ![MXX](/img/about-bg.jpg)
+![MXX1](/img/home-bg.jpg)
+![MXX2](/img/tag-bg.jpg)
+
+
+
+​:a:​
 
 
 ```java
@@ -29,7 +35,6 @@ void main()
 {
     printf("hello world");
 }
-
 ```
 
 ```cpp
