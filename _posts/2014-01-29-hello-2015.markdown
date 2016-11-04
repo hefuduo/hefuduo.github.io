@@ -13,8 +13,7 @@ tags:
 #Life is Life
 
 
-**JAVA**
-```scala
+```
 public class Main｛
 	public static void main(String[] argsv){
     	System.out.println("hello world");
@@ -23,8 +22,7 @@ public class Main｛
 ```
 
 
-**C**
-```cpp
+```
 #include "stdio.h"
 void main()
 {
@@ -32,8 +30,8 @@ void main()
 }
 
 ```
-**C++**
-```cpp
+
+```
 #include <iostream>
 using namespace std;
 
