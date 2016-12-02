@@ -8,6 +8,7 @@ header-img: "img/post-bg-2015.jpg"
 tags:
     - Java
 ---
+
 [第一章](#c0)
 1. [抽象过程](#c1)
 2. [对象接口](#c2)
@@ -24,15 +25,14 @@ tags:
 13. [Java Web](#c13)
 14. [总结](#c14)
 
-- - - -
-[TOC]
 
-<span id="c0"></span>
+
+<div id="c0"></div>
 #第一章 对象导论
 概括为一句话：Java一切皆对象，不过随着Java的发展，函数式编程等新的特性也逐步加入进来。
 
 
-<span id="c1"></span>
+<div id="c1"></div>
 ##抽象过程
 概括为以下几点
 + 万物皆对象
@@ -43,7 +43,7 @@ tags:
 + 某一特定类型的所有对象都可以接受同样的消息。
 > 动态类型
 
-<span id="c2"></span>
+<div id="c2"></div>
 ##对象接口
 对外暴露的具有功能性操作的工具
  **如下图所示**
@@ -52,13 +52,13 @@ tags:
 
 接口确定了对莫伊特定对象所能发出的请求
 
-<span id="c3"></span>
+<div id="c3"></div>
 ##对象服务
 对象对外暴露一组接口，提供本身定义的服务。
 
 
 
-<span id="c4"></span>
+<div id="c4"></div>
 ##隐藏实现
 控制访问权限
 Java用三个关键字再类的内部设定边界:public private protected
@@ -69,18 +69,18 @@ Java用三个关键字再类的内部设定边界:public private protected
 
 此外，一些特定的情况，例如接口中的方法都是公共的，域都是静态的常量
 
-<span id="c5"></span>
+<div id="c5"></div>
 ##复用实现
 组合conposition，聚合aggregation,联合:associaiton;
 
 组合：has-a
 聚合：强列关联
 
-<span id="c6"></span>
+<div id="c6"></div>
 ##继承
 父类，子类，继承。
 Java是单继承的，但是可以实现多个接口，这点与C++的多继承不太相同，单继承可以使得类的关系更简单，减少多继承带来的歧义。
-<span id="c7"></span>
+<div id="c7"></div>
 ##多态
 动态绑定
 用一段代码表示：
@@ -112,7 +112,7 @@ class Penguin implements Bird{
 }
 ```
 
-<span id="c8"></span>
+<div id="c8"></div>
 ##单根继承
 <blockquote>
 自C++面试以来一个非常瞩目的问题是，是否所有的类最终都集成自单一的基类。
@@ -123,7 +123,7 @@ class Penguin implements Bird{
 </blockquote>
 
 
-<span id="c9"></span>
+<div id="c9"></div>
 ##容器
 Java 集合
 List Map Set Queue Tree Stack
@@ -131,25 +131,25 @@ List Map Set Queue Tree Stack
 
 
 
-<span id="c10"></span>
+<div id="c10"></div>
 ##对象的创建和生命周期
 Java也存在内存泄露的情况，GC不是万能的，一定要注意，长生命周期的对象引用短生命周期的对象，会导致后者无法被释放。
 
-<span id="c11"></span>
+<div id="c11"></div>
 ##异常处理
 try catch语句，自定义异常类型。函数抛出异常，异常处理。
 
-<span id="c12"></span>
+<div id="c12"></div>
 ##并发编程
 Java从语言层面支持并发编程。此外，还有相应的并发编程框架。线程池。
 
 
-<span id="c13"></span>
+<div id="c13"></div>
 ##Java Web
 客户端，服务端程序。支持脚本鱼眼
 
 
-<span id="c14"></span>
+<div id="c14"></div>
 ##
 总结
 面向对象的语言通常比面向过程的鱼眼易于编写里哪个好的程序，但是面向对象的语言也不是万能的。究竟是面向过程编程还是面向对象编程，是一个仁者见仁智者见智的事情。
