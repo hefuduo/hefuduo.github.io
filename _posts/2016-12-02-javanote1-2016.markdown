@@ -10,7 +10,8 @@ tags:
 ---
 
 
-[TOC]
+[第一章](#c1)
+
 
 
 # 第一章 对象导论
@@ -32,7 +33,12 @@ tags:
 对外暴露的具有功能性操作的工具
  **如下图所示**
 
-![light.png](img/Java/light.png)
+![light.png](/img/light.png)
+![light.png](/img/java/light.png)
+
+![light.png](img/light.png)
+![light.png](img/java/light.png)
+
 
 *图1 (图来源于Java编程思想)*
 
@@ -115,6 +121,7 @@ List Map Set Queue Tree Stack
 参数化类型(泛型) 防止向下转型的不安全
 
 
+<div id="c1"></div>
 
 ## 对象的创建和生命周期
 Java也存在内存泄露的情况，GC不是万能的，一定要注意，长生命周期的对象引用短生命周期的对象，会导致后者无法被释放。
