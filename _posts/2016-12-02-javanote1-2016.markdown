@@ -33,11 +33,7 @@ tags:
 对外暴露的具有功能性操作的工具
  **如下图所示**
 
-![light.png](/img/light.png)
 ![light.png](/img/java/light.png)
-
-![light.png](img/light.png)
-![light.png](img/java/light.png)
 
 
 *图1 (图来源于Java编程思想)*
