@@ -109,6 +109,10 @@ public class LoadingView extends View{
     public void onDraw(Canvas canvas){
         //局部变量
         Path path = new Path();
+        //如果局部变量和参数名重复，可以加上下划线
+        Canvas _canvs = new Canvas();
+        //或者，可以使用其他的名称代替。
+        Canvas sCanvas = new Canvas();
     }
 }
 
@@ -118,5 +122,47 @@ public class LoadingView extends View{
 
 ### Android中 XML 的命名规范
 
+- - -
+
+Android 中的XML即标签的ID也存在一定的命名规范，好的命名规范是非常方便找到并使用Layout中的控件的，而且，不会使得和代码中的其他名字混淆（尤其是在)
 
 
+- - -
+
+
+<table border="2" color="green">
+ <tr>
+     <th>Buttton</th>
+ 	 <td>btn\_[button\_name];</td>
+     <th>TextView</th>
+     <td>tv\_[text\_view\_name]</td>
+ </tr>
+ <tr>
+    <th>ImageView</th>
+    <td>iv\_[image\_view\_name]</td>
+    <th>CheckBox</th>
+    <td>cb\_[check\_box\_name]</td>
+ </tr>
+ <tr>
+    <th>ProgressBar</th>
+    <td>pb\_[progress\_bar\_name]</td>
+    <th>SeekBar</th>
+    <td>sk\_[seek\_bar\_name]</td>
+ </tr>
+ <tr>
+    <th>Switch</th>
+    <td>switch\_[switch\_name]</td>
+    <th>EditText</th>
+    <td>et\_[edit\_text\_name]</td>
+ </tr>
+ <tr>
+    <th>XXXLayout</th>
+    <td>layout\_[layout\_name]</td>
+    <th>SearchView</th>
+    <td>sv\_[search\_view\_name]</td>
+ </tr>
+ <tr>
+    <th>OTHERS</th>
+    <td>define by the situation</td>
+</tr>
+</table>
