@@ -1,0 +1,263 @@
+---
+layout:     post
+title:      "java学习笔记3"
+subtitle:   "java学习笔记3"
+date:       2016-12-6 11:13:20
+author:     "LeoHe"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Java
+---
+
+[TOC]
+
+# 第三章 操作符
+
+在最底层，Java数据是通过操作符操作的。
+
+
+## 3.1 赋值与算数逻辑运算
+
+### 赋值
+
+`a = 4`是一个赋值操作，但是，当赋值对象时候，情况却发生了变化。对一个对象进行赋值操作时，真正操作的是对
+对象的引用。
+
+```java
+ public class Test{
+     public static void main(String[] args){
+         Object a = new Object();
+         Object b = a;
+         //将a对象赋值给b;
+         //实际上是，a和b引用堆中的一个对象（new Object()）
+     }
+ }
+```
+
+### 算数运算
+
+加法\+ 减法\- 乘法\*  除法 / 取余%
+注意除法的被除数不能为0，整数除法问题，如果想得到单精度/双精度结果，应将除数或被除数转换为单/双精度数。
+
+加等+= 减等-= 乘等*= 除等/=
+
+自增自减运算符。
+++i和i++的区别是：前者是先执行运算，在使用运算后得到的结果，后者是先使用变量结果，然后再执行运算。
+
+```java
+import java.io.*;
+class test
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    int i = 1;
+	    int j = 1;
+	    System.out.println(i++);
+	    System.out.println(++j);
+	}
+}
+
+输出结果： [1,2]
+```
+
+
+### 关系运算符
+ 大等于 >=，小等于 <=, 恒等于 == , 不等于 !=, 大于 > ， 小于 < ;
+
+
+### 逻辑运算符
+
+ 与 && 或 || 非 ！
+
+### 直接常量
+10(byte) 二进制;binary
+10 十进制；decimal
+010 八进制；Octal
+0x10 十六进制；hex
+10L 长整形；
+10f 单精度；
+10d 双精度；
+
+指数表示：
+
+14e3 = 14 * 10^3;
+
+
+
+
+## 3.2 位运算
+
+```cpp
+
+& 按位与操作： 1 & 1 = 1； 1 & 0 = 0；
+
+| 按位或操作： 1 | 1 = 1； 1 | 0 = 1； 0 | 0 = 0；
+
+^ 按位异或操作： 0 ^ 0 = 0; 1 ^ 1 = 0; 1 ^ 0 = 1; 0 ^ 1 = 1; (同为0，异为1)
+~ 取反运算 ： ~0 = 1; ~1 = 0;
+&= |= ^=都是合法的，由于取反是一元操作符号，因此不能和=号连用。
+
+
+<< 左移操作 1 << 1 = 10 binary = 2 decimal;
+\>> （有符号）右移操作 1000 \>> 2 = 0010 binary = 2 decimal;
+\>>> 无符号右移操作
+
+
+```
+
+```java
+import java.io.*;
+class test
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    System.out.println(3 << 2);
+	    System.out.println(-3 << 2);
+	    System.out.println(6 >> 2);
+	    System.out.println(-6 >> 2);
+        System.out.println(6 >>> 2);
+	    System.out.println(-6 >>> 2);
+	}
+}
+
+结果 12
+     -12
+     1
+     -2
+     1
+     1073741822
+```
+
+```python
+
+00000000 00000000 00000000 00000011 +3在计算机中表示
+11111111 11111111 11111111 11111100 反码
+11111111 11111111 11111111 11111101 -3在计算机中表示 补码 （反码+1）
+11111111 11111111 11111111 1111110100 左移2位，补0，结果为负数，就是补码了，求原码
+10000000 00000000 00000000 00001011 反码
+10000000 00000000 00000000 00001100 结果-12 补码 （反码+1）
+
+00000000 00000000 00000000 00000110 +6在计算机中表示方法
+11111111 11111111 11111111 11111001
+11111111 11111111 11111111 11111010 -6在计算机中的表示
+1111111111 11111111 11111111 11111010 右移两位，结果为负数
+1000000000 00000000 00000000 000001
+1000000000 00000000 00000000 000010 结果为-2
+
+
+注意有符号的位移运算，符号位始终没有改变
+
+对于无符号位移操作：
+11111111 11111111 11111111 11111010 -6在计算机中的表示
+无符号右移两位
+
+
+00111111 11111111 11111111 11111110 结果为 1073741822
+
+```
+
+
+
+
+== 对于char byte short 类型的数值进行移位操作的时候，那么在移位操作之前，它们先被转换成int类型，并且得到的结果也是一个int类型，只有值右端的低5位才有用，这样可以防止我们位移超过int型值所具有的位数。如果队一个long类型进行处理，最后的到的结果也是long类型，此时只会用到数值的右端低6位，以防止超过long型数值具有的位数。 ==
+
+== 位移操作可以结合等于号组合使用，但是注意，如果对于byte,short,char,值进行这样的运算，当将右边移位操作的数值赋予左边时，会发生截断，可能得不到最终想要的值。 ==
+
+
+## 3.3 三元操作符
+
+> if-else 操作符
+
+`boolean expression ? (true) value1 : (false) value2 ;`
+
+
+## 3.4 字符串操作
+
+字符串连接操作： +
+
+```language
+String s = ”hello“;
+String c = s + "world";
+println(c);
+
+结果：hello world;
+
+注意（Java中没有操作符重载机制。）
+```
+
+## 3.5 强制转换
+Java允许我们将任何类型转换成其他类型（布尔型除外）；在类型转换过程中，如果执行窄化转换，即会产生截断时，需要显示声明转化类型。
+
+** 截断和舍入**
+
+*在执行窄化转化时，必须注意截断和舍入问题，例如将一个浮点数转换为整型*
+
+```java
+/**
+ *what will happens when cast a float 
+ * or double to an integral value.
+ */
+import java.io.*;
+class test
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    double above = 0.7,below = 0.4;
+	    float fabove = 0.7f, fbelow = 0.4f;
+	    System.out.println("(int)above = " + (int)above);
+	    System.out.println("(int)below = " + (int)below);
+	    System.out.println("(int)fabove = " + (int)fabove);
+	    System.out.println("(int)fbelow = " + (int)fbelow);
+	}
+}
+
+
+结果:
+(int)above = 0
+(int)below = 0
+(int)fabove = 0
+(int)fbelow = 0
+```
+
+*因此答案就是将float或double转换为整型值时候，总是对该数字执行截尾。如果想要得到舍入的结果，就需要使用java.lang,Math中的round方法*
+
+```java
+/**
+ *what will happens when cast a float 
+ * or double to an integral value.
+ */
+import java.io.*;
+class test  
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    double above = 0.7,below = 0.4;
+	    float fabove = 0.7f, fbelow = 0.4f;
+	    System.out.println("(int)above = " + Math.round(above));
+	    System.out.println("(int)below = " + Math.round(below));
+	    System.out.println("(int)fabove = " + Math.round(fabove));
+	    System.out.println("(int)fbelow = " + Math.round(fbelow));
+	}
+}
+
+结果 ：
+(int)above = 1
+(int)below = 0
+(int)fabove = 1
+(int)fbelow = 0
+```
+
+**提升**：
+如果对基本数据类型执行算数运算或按位运算，只要类型比int小（即 char,byte,short），那么再运算之前，这些类型会自动转换成int。这样最终生成的结果就是int类型。如果想把结果赋值给较小的类型，就必须使用类型转换，出现了这种情况，就有可能会出现信息丢失。通常一个表达式的最大的数据类型决定了表达式最终结果的数据类型。
+
+> java中没有sizeof运算，在c中，数据类型的长度是与平台有关的，为了移植方便。Java的数据类型的长度是固定的。因此不需要sizeof运算。
+
+
+
+
+
+
+
+
+
+
