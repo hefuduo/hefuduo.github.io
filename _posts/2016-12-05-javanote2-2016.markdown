@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "java学习笔记2"
-subtitle:   "java学习笔记2"
+subtitle:   "一切都使对象"
 date:       2016-12-5 17:09:00
 author:     "LeoHe"
 header-img: "img/post-bg-2015.jpg"
