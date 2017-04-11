@@ -2,11 +2,10 @@
 layout:     post
 title:      "Template"
 subtitle:   "template"
-date:       2016-11-4 11:16:00
+date:       2017-3-31 10:38:00
 author:     "LeoHe"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活
+    - tag
 ---
 
-![MXX](/img/about-bg.jpg)
