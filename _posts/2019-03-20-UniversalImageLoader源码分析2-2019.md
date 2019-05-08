@@ -45,7 +45,7 @@ universalimageloader|
 
 
 
-![UIL](../../../Documents/UIL.png)
+![UIL](/img/uil/UIL.png)
 
 ### 各模块的说明
 
@@ -75,9 +75,9 @@ universalimageloader|
 
 ### 加载流程图
 
-![](../../../Documents/UIL流程图1.png)
 
 
+![UIL流程图1](/img/uil/UIL流程图1.png)
 
 ### 详细执行流程
 
@@ -87,7 +87,7 @@ universalimageloader|
 
 `ImageLoader.getInstance().displayImage(uri, imageview, options, listener);`
 
-![](../../../Documents/UIL时序图.png)
+![UIL时序图](/img/uil/UIL时序图.png)
 
 有缓存的时候, 先去检查缓存.参考流程图
 
@@ -97,7 +97,7 @@ universalimageloader|
 
 
 
-![](../../../Documents/LoadAndDisplayImageTask.png)
+![LoadAndDisplayImageTask](/img/uil/LoadAndDisplayImageTask.png)
 
 
 
@@ -136,15 +136,13 @@ universalimageloader|
 
 
 
-
-
-![](../../../Documents/Main.png)
+![memocache](/img/uil/memocache.png)
 
 
 
 #### 磁盘缓存
 
-![](../../../Documents/disc.png)
+
 
 
 
