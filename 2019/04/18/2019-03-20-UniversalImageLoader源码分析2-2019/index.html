@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Android-Universal-ImageLoader源代码分析2 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android-Universal-ImageLoader源代码分析2"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Android-Universal-ImageLoader源代码分析2</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h2 id="包结构与架构"><a href="#包结构与架构" class="headerlink" title="包结构与架构"></a>包结构与架构</h2><p>包的结构与说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">universalimageloader| </span><br><span class="line"></span><br><span class="line">	|-cache</span><br><span class="line">		|-disc</span><br><span class="line">		|-memory</span><br><span class="line">	|-core</span><br><span class="line">		|-assist</span><br><span class="line">		|-decode</span><br><span class="line">		|-display</span><br><span class="line">		|-download</span><br><span class="line">		|-imageaware</span><br><span class="line">		|-listener</span><br><span class="line">		|-process</span><br><span class="line">	|-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="整体设计架构与说明"><a href="#整体设计架构与说明" class="headerlink" title="整体设计架构与说明"></a>整体设计架构与说明</h2><h3 id="结构图表示"><a href="#结构图表示" class="headerlink" title="结构图表示"></a>结构图表示</h3><p><img src="/img/uil/UIL.png" alt="UIL"></p>
+<h3 id="各模块的说明"><a href="#各模块的说明" class="headerlink" title="各模块的说明"></a>各模块的说明</h3><p>整个库一级划分为<code>cache</code>, <code>core</code> , <code>util</code> 三个大模块.</p>
+<ol>
+<li><p><code>core</code>: 核心模块分为<code>decode(解码)</code>, <code>display(展示)</code>,<code>download(下载)</code>, <code>imageAware(显示图片的包装)</code>,<code>process(处理图片)</code> 五个重要的模块.此外,尤其要注意</p>
+<p><code>ImageLoaderEngine</code>, <code>ImageDecorder</code>, <code>BitmapDisplayer</code>, <code>BitmapProcessor</code>,  <code>ImageDownloader</code>, <code>ImageAware</code> 这几个重要的类.</p>
+</li>
+<li><p><code>cache</code>: 缓存模块分为<code>disc</code>缓存和<code>memory</code>缓存两个模块</p>
+</li>
+<li><p><code>utils</code>:工具类模块, 如缓存工具类|Log|图像处理等. </p>
+</li>
+</ol>
+<h2 id="加载图片流程"><a href="#加载图片流程" class="headerlink" title="加载图片流程"></a>加载图片流程</h2><h3 id="用一张图简单的标识图片加载流程"><a href="#用一张图简单的标识图片加载流程" class="headerlink" title="用一张图简单的标识图片加载流程"></a>用一张图简单的标识图片加载流程</h3><p><img src="https://raw.githubusercontent.com/nostra13/Android-Universal-Image-Loader/master/wiki/UIL_Flow.png"></p>
+<h3 id="加载流程图"><a href="#加载流程图" class="headerlink" title="加载流程图"></a>加载流程图</h3><p><img src="/img/uil/UIL%E6%B5%81%E7%A8%8B%E5%9B%BE1.png" alt="UIL流程图1"></p>
+<h3 id="详细执行流程"><a href="#详细执行流程" class="headerlink" title="详细执行流程"></a>详细执行流程</h3><h4 id="加载的时序图"><a href="#加载的时序图" class="headerlink" title="加载的时序图"></a>加载的时序图</h4><p><code>loadImage</code>本质也是调用<code>displayImage</code>因此直接看<code>displayImage</code>的执行流程即可.</p>
+<p><code>ImageLoader.getInstance().displayImage(uri, imageview, options, listener);</code></p>
+<p><img src="/img/uil/UIL%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="UIL时序图"></p>
+<p>有缓存的时候, 先去检查缓存.参考流程图</p>
+<h4 id="DisplayTask-的详细执行流程图"><a href="#DisplayTask-的详细执行流程图" class="headerlink" title="DisplayTask 的详细执行流程图"></a>DisplayTask 的详细执行流程图</h4><blockquote>
+<p>参考<code>LoadAndDisplayimageTask</code>中的<code>run</code>方法</p>
+</blockquote>
+<p><img src="/img/uil/LoadAndDisplayImageTask.png" alt="LoadAndDisplayImageTask"></p>
+<h3 id="TODO-UML"><a href="#TODO-UML" class="headerlink" title="//TODO UML"></a>//TODO UML</h3><h2 id="缓存算法详解"><a href="#缓存算法详解" class="headerlink" title="缓存算法详解"></a>缓存算法详解</h2><h3 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h3><p>缓存算法从缓存位置上划分为两种, <code>memory</code>和<code>disc</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">|-cache</span><br><span class="line">	|-disc</span><br><span class="line">		|-impl(具体实现)</span><br><span class="line">		|-naming(文件命名工具)</span><br><span class="line">		|-DiskCache:interface(对外接口)</span><br><span class="line">	|-memory</span><br><span class="line">		|-impl(具体实现)</span><br><span class="line">		|-BaseMemoryCache</span><br><span class="line">		|-LimitedMemoryCache</span><br><span class="line">		|-MemoryCache:interface(对外接口)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><h4 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h4><p><img src="/img/uil/memocache.png" alt="memocache"></p>
+<h4 id="磁盘缓存"><a href="#磁盘缓存" class="headerlink" title="磁盘缓存"></a>磁盘缓存</h4><h2 id="解码器与下载器"><a href="#解码器与下载器" class="headerlink" title="解码器与下载器"></a>解码器与下载器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//BaseImageDownloader</span></span><br><span class="line"><span class="comment">//根据URI的类型, 获取不同的InputStream</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> InputStream <span class="title">getStream</span><span class="params">(String imageUri, Object extra)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">switch</span> (Scheme.ofUri(imageUri)) &#123;</span><br><span class="line">			<span class="keyword">case</span> HTTP:</span><br><span class="line">			<span class="keyword">case</span> HTTPS:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromNetwork(imageUri, extra);</span><br><span class="line">			<span class="keyword">case</span> FILE:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromFile(imageUri, extra);</span><br><span class="line">			<span class="keyword">case</span> CONTENT:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromContent(imageUri, extra);</span><br><span class="line">			<span class="keyword">case</span> ASSETS:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromAssets(imageUri, extra);</span><br><span class="line">			<span class="keyword">case</span> DRAWABLE:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromDrawable(imageUri, extra);</span><br><span class="line">			<span class="keyword">case</span> UNKNOWN:</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="keyword">return</span> getStreamFromOtherSource(imageUri, extra);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//BaseImageDecoders</span></span><br><span class="line"><span class="comment">//将inputStream解码为Bitmap类型</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Bitmap <span class="title">decode</span><span class="params">(ImageDecodingInfo decodingInfo)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		Bitmap decodedBitmap;</span><br><span class="line">		ImageFileInfo imageInfo;</span><br><span class="line"></span><br><span class="line">		InputStream imageStream = getImageStream(decodingInfo);</span><br><span class="line">		<span class="keyword">if</span> (imageStream == <span class="keyword">null</span>) &#123;</span><br><span class="line">			L.e(ERROR_NO_IMAGE_STREAM, decodingInfo.getImageKey());</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			imageInfo = defineImageSizeAndRotation(imageStream, decodingInfo);</span><br><span class="line">			imageStream = resetStream(imageStream, decodingInfo);</span><br><span class="line">			Options decodingOptions = prepareDecodingOptions(imageInfo.imageSize, decodingInfo);</span><br><span class="line">			decodedBitmap = BitmapFactory.decodeStream(imageStream, <span class="keyword">null</span>, decodingOptions);</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			IoUtils.closeSilently(imageStream);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (decodedBitmap == <span class="keyword">null</span>) &#123;</span><br><span class="line">			L.e(ERROR_CANT_DECODE_IMAGE, decodingInfo.getImageKey());</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			decodedBitmap = considerExactScaleAndOrientatiton(decodedBitmap, decodingInfo, imageInfo.exif.rotation,</span><br><span class="line">					imageInfo.exif.flipHorizontal);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> decodedBitmap;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/05/08/2019-05-08-Picasso源码分析1-2019/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/04/03/2018-04-04-emmet-教程2-2018/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-04-18 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li> <li><a href="/tags/Android/">Android<span>26</span></a></li> <li><a href="/tags/open-source-library/">open source library<span>3</span></a></li> <li><a href="/tags/源码分析/">源码分析<span>3</span></a></li> <li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

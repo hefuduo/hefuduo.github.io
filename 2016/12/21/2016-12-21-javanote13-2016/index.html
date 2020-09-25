@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Java学习笔记13 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java学习笔记13"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Java学习笔记13</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="第13章-字符串"><a href="#第13章-字符串" class="headerlink" title="第13章 字符串"></a>第13章 字符串</h1><blockquote>
+<p>字符串操作是计算机程序设计中最常见的行为🌹。</p>
+</blockquote>
+<h3 id="13-1-不可变字符串"><a href="#13-1-不可变字符串" class="headerlink" title="13.1 不可变字符串"></a>13.1 不可变字符串</h3><p>String对象是不可变的，String类中的每一个看起来会修改String值得方法们实际上都是创建了一个全新的String对象，以包含修改后的字符串内容，而最初的String对象没有改变。</p>
+<p>String对象作为函数参数，实际上都会复制一份引用，而该引用所指的对象一直待在单一的物理位置上（内存），不会改变。</p>
+<h3 id="13-2-重载-号和StringBuilder"><a href="#13-2-重载-号和StringBuilder" class="headerlink" title="13.2 重载 + 号和StringBuilder"></a>13.2 重载 + 号和StringBuilder</h3><p>String对象是不可变的，你可以给一个String对象加各种别名（指的是引用），因为String对象的只读特性，所以指向它的任何引用都不可能改变它的值。因此，也就不会对其他的引用有什么影响。</p>
+<p>不可变性也会带来一定的效率问题。为String对象重载的“+”操作符。其可以用来连接String</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Concatenatuion</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    String mango = <span class="string">&quot;mango&quot;</span>;</span><br><span class="line">    String s = <span class="string">&quot;abc&quot;</span> + mango + <span class="string">&quot;def&quot;</span> + <span class="number">47</span>;</span><br><span class="line">    sout(s);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码可能是这样工作的：String可能有一个append（）<u>事实上是有的</u>它会重新生成一个String对象，来包含“abc”和mango连接后的字符串。然后依次类推知道最终的字符串。</p>
+<p>这种工作方式是可以的，但是为了生成最终的字符串，这种方式会产生一大丢需要垃圾回收的中间对象。</p>
+<p>如果想看看上面的代码是如何工作的，可以用JDK自带的工具javap来反编译以上的代码</p>
+<p>​    <code>javap -c Concatenation</code></p>
+<p>这里的-c标志标识将生成JVM字节码。</p>
+<p>最终的实现原理是创建了一个StringBuilder类型的对象，用以构造最终的字符串。并且为每个字符串调用一次StringBuilder的append（），总计4次并最终调用toString（）方法生成结果。</p>
+<p>综上所述：</p>
+<p>==当你为一个类编写toString()方法时，如果字符串操作比较简单，那么可以依赖编译器的优化，它最终会为你合理的构造字符串结果，但是如果你要在toString的方法中使用循环，那么最好的是自己创建一个StringBuilder对象，用它来构造最终的结果，这样性能会更好一些。==</p>
+<h3 id="13-3-格式化说明符"><a href="#13-3-格式化说明符" class="headerlink" title="13.3 格式化说明符"></a>13.3 格式化说明符</h3><blockquote>
+<p>在插入数据的时候，如果想咬扣工资空格与对齐，你需要更精细复杂的格式修饰符。</p>
+</blockquote>
+<p>抽象语法：</p>
+<p><code>%[argument_index\$][flags][width][.precision]conversion</code></p>
+<table>
+<thead>
+<tr>
+<th>类型转换字符</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>d</td>
+<td>整形</td>
+</tr>
+<tr>
+<td>c</td>
+<td>unicode</td>
+</tr>
+<tr>
+<td>b</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>s</td>
+<td>String</td>
+</tr>
+<tr>
+<td>f</td>
+<td>float</td>
+</tr>
+<tr>
+<td>e</td>
+<td>科学计算</td>
+</tr>
+<tr>
+<td>x</td>
+<td>整数（16进制）</td>
+</tr>
+<tr>
+<td>h</td>
+<td>哈希码（16进制）</td>
+</tr>
+<tr>
+<td>%</td>
+<td>字符%</td>
+</tr>
+</tbody></table>
+<h3 id="13-4-正则表达式"><a href="#13-4-正则表达式" class="headerlink" title="13.4 正则表达式"></a>13.4 正则表达式</h3><p>//TODO 详见Java正则表达式</p>
+<p><a href="https://hefuduo.github.io/hefuduo.github.io/2017/03/31/JavaRegulation-2017/">Java正则表达式</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2016/12/21/2016-12-21-javanote20-2016/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016/12/21/2016-12-21-javanote12-2016/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-12-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

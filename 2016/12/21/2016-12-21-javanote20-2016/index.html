@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Java学习笔记20 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java学习笔记20"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Java学习笔记20</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="第20章-注解"><a href="#第20章-注解" class="headerlink" title="第20章 注解"></a>第20章 注解</h1><blockquote>
+<p>注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，是我们可以在稍后某个时刻非常方便地使用这些数据。</p>
+</blockquote>
+<h2 id="20-1-基本语法"><a href="#20-1-基本语法" class="headerlink" title="20.1 基本语法"></a>20.1 基本语法</h2><h3 id="20-1-1-定义注解"><a href="#20-1-1-定义注解" class="headerlink" title="20.1.1 定义注解"></a>20.1.1 定义注解</h3><p>样例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Test &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解的定义看起来很像接口的定义。事实上，与其他任何Java接口一样，注解也会编译成class文件</p>
+<p>除了一个<code>@</code>符号以外，<code>@Test</code>的定义很像一个空的接口。定义注解时，会需要一些<strong>元注解</strong>。例如<code>@Target</code>用来定义你的注解将应用在什么地方比如，一个方法或者是一个域和<code>@Retention</code>用来定义该注解在哪一个级别可用，在源代码中<code>SOURCE</code>,类文件中<code>CLASS</code>或者是运行时<code>RUNTIME</code>。</p>
+<p>在注解中，一般都会包含一些元素以表示某些值。当分析处理注解时，程序或工具可以利用这些值。注解的元素看起来就像接口方法，唯一的区别是你可以为其指定默认的值。</p>
+<p>没有元素的注解称为<strong>标记注解</strong>，例如上诉例子中的<code>@Test</code></p>
+<p>下面一个例子是一个简单注解，用来跟踪项目中的用例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> UserCase &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> &quot;no description&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，id和description类似方法定义，由于编译器会对id进行类型检查，因此将用力文档的追踪数据库与源代码关联是可靠的。<code>description</code>有一个default值，如果在注解某个方法时，没有给出<code>description</code>的值，则该注解的处理器就会使用此元素的默认值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnoactionTest</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@UseCase(id = 47,description = &quot;password must contain at least one numeric&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validatePassword</span><span class="params">(String password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password.matches(<span class="string">&quot;\\w*\\d\\w*&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@UseCase(id = 48, description = &quot;new password can&#x27;t equal previousy used ones&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">encryptPassword</span><span class="params">(String password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> StringBuilder(password).reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@UseCase(id = 49, description = &quot;new password can&#x27;t equal previousy used ones&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkForNewPassword</span><span class="params">(List&lt;String&gt; prevPassword,String password)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !prevPassword.contains(password);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注解的元素在使用时表现为名-值对的形式，并需要置于<code>@UseCase</code>声明之后的括号内。在<code>encryptPassword()</code>方法的注解中，并没有给出description元素的值，因此，在UseCase的注解处理器分析处理这个类时，会使用该元素的默认值。</p>
+<h3 id="20-1-2-元注解"><a href="#20-1-2-元注解" class="headerlink" title="20.1.2 元注解"></a>20.1.2 元注解</h3><p>Java目前只内置了三种标准注解，以及这四种元注解。元注解专门负责注解其他的注解：</p>
+<ul>
+<li><p><code>@Target</code> 标识该注解可以用于什么地方，可能的ElementType参数包括：</p>
+<table>
+<thead>
+<tr>
+<th>CONSTRUCTOR</th>
+<th>构造器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FIELD</td>
+<td>域声明包括enum实例</td>
+</tr>
+<tr>
+<td>LOCAL_VARIABLE</td>
+<td>局部变量声明</td>
+</tr>
+<tr>
+<td>METHOD</td>
+<td>方法声明</td>
+</tr>
+<tr>
+<td>PACKAGE</td>
+<td>包声明</td>
+</tr>
+<tr>
+<td>TYPE</td>
+<td>类接口声明或enum声明</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>@Retention</code> 表示需要在什么级别保存该注解信息，可选的RetentionPolicy参数包括：</p>
+<table>
+<thead>
+<tr>
+<th>SOURCE</th>
+<th>注解将被编译器丢弃</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLASS</td>
+<td>注解在class文件中可用，但是会被VM丢弃</td>
+</tr>
+<tr>
+<td>RUNTIME</td>
+<td>VM将在运行期也保留该注解，因此可以通过反射机制获取注解的信息</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>@Documented</code> 此注解将包含在JavaDoc中</p>
+</li>
+<li><p><code>@Inherited</code>  允许子类继承父类中的注解</p>
+</li>
+</ul>
+<p>大多数时候，程序员主要的工作是定义自己的注解，并且编写自己的处理器来处理它们。</p>
+<h2 id="20-2-编写注解处理器"><a href="#20-2-编写注解处理器" class="headerlink" title="20.2 编写注解处理器"></a>20.2 编写注解处理器</h2><p>如下，是编写注解解析器的工具类，用来检测是否有标注的类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseCaseTracker</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trachUseCases</span><span class="params">(List&lt;Integer&gt; useCases, Class&lt;?&gt; cl)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Method m : cl.getDeclaredMethods())&#123;</span><br><span class="line">            UseCase useCase = m.getAnnotation(UseCase.class);</span><br><span class="line">            <span class="keyword">if</span> (useCase!= <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Found use Case &quot;</span> + useCase.id()</span><br><span class="line">                + <span class="string">&quot; &quot;</span> + useCase.description());</span><br><span class="line">                useCases.remove(<span class="keyword">new</span> Integer(useCase.id()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : useCases)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;warning : missing use case &quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        List&lt;Integer&gt; usecases = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        Collections.addAll(usecases,<span class="number">47</span>,<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>);</span><br><span class="line">        trachUseCases(usecases,AnnoactionTest.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="20-2-1-注解元素"><a href="#20-2-1-注解元素" class="headerlink" title="20.2.1 注解元素"></a>20.2.1 注解元素</h3><p><code>@UseCase</code>由<code>UseCase.java</code>定义，其中包含int元素id，以及一个String元素description，注解元素可以用的类型如下所示：</p>
+<ul>
+<li>所有基本类型（int，float，boolean等）</li>
+<li>String</li>
+<li>Class</li>
+<li>enum</li>
+<li>Annotation</li>
+<li>以上类型的数组</li>
+</ul>
+<h3 id="20-2-2-默认值限制"><a href="#20-2-2-默认值限制" class="headerlink" title="20.2.2 默认值限制"></a>20.2.2 默认值限制</h3><p>编译器对元素的默认值有些过分的挑剔，首先元素不能有不缺性的默认值，也就是元素必须要么具有默认值，要么在使用注解时，提供元素的值。</p>
+<p>其次，对于非基本类型的元素，无论是在源代码中声明时，或者是在注解接口中定义默认值时，都不能以null作为其值。这个约束使得处理器很难表现一个元素的存在或缺失的状态，因为在每个注解的声明中，所有的元素都存在，并且都具有相应的值。为了绕开这个约束，只能自己定义一些特殊的值，例如空字符串或者是负数，以表示某个元素不存在。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementTyoe.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SimulatingNull&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>@Target</code>注解中指定的每一个ElementType就是一个约束，它告诉编译器，这个自定义的注解只能应用于该类型，程序员可以指定enum ElementType中的一个值，或者是以逗号分隔的形式指定多个值。如果想要将注解应用于所有的ElementType，那么可以省去<code>@Target</code>元注解，不过这并不常见。</p>
+<h3 id="20-2-4-注解不支持继承"><a href="#20-2-4-注解不支持继承" class="headerlink" title="20.2.4 注解不支持继承"></a>20.2.4 注解不支持继承</h3><p>不能使用关键字<code>extends</code>来继承某个<code>@interface</code>。</p>
+<h3 id="20-2-5-实现处理器"><a href="#20-2-5-实现处理器" class="headerlink" title="20.2.5 实现处理器"></a>20.2.5 实现处理器</h3><p>例子：读取一个类文件，检查骑上的数据库注解，并生成用来创建数据库的SQL命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.TYPE)</span> <span class="comment">//applies to calsses only</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.Runtime)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> DBTable&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//TO</p>
+<h2 id="20-3-使用apt处理注解"><a href="#20-3-使用apt处理注解" class="headerlink" title="20.3 使用apt处理注解"></a>20.3 使用apt处理注解</h2><p><strong>注解处理工具</strong></p>
+<p>通过使用AnnotationProcessorFactory，apt能够为每一个它发现的注解生成一个正确的注解处理器。当你使用apt的时候，必须指明一个工厂类，或者指明能找到apt所需要的工厂类的路径。</p>
+<p>使用apt生成注解处理器时，我们无法利用Java的反射机制，因为我们操作的是源代码，而不是编译后的类。使用mirror API就能够解决这个问题，它使我们能够在未经编译的源代码中查看方法，域以及类型。</p>
+<p>下面是一个自定义的注解，使用它可以把一个类中的public方法提取出来，构造成一个新的接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ExtractInterface&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2016/12/21/2016-12-21-javanote19-2016/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016/12/21/2016-12-21-javanote13-2016/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-12-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

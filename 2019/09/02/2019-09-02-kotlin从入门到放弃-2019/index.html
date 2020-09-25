@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Kotlin学习笔记5 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Kotlin学习笔记5"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Kotlin学习笔记5</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h1><h2 id="Higer-oder-Functions-and-Lambdas"><a href="#Higer-oder-Functions-and-Lambdas" class="headerlink" title="Higer-oder Functions and Lambdas"></a>Higer-oder Functions and Lambdas</h2><p>Kotlin functions are <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/First-class_function"><em>first-class</em></a>, which means that they can be stored in variables and data structures, passed as arguments to and returned from other <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/lambdas.html#higher-order-functions">higher-order functions</a>. You can operate with functions in any way that is possible for other non-function values.</p>
+<p>To facilitate this, Kotlin, as a statically typed programming language, uses a family of <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/lambdas.html#function-types">function types</a> to represent functions and provides a set of specialized language constructs, such as <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/lambdas.html#lambda-expressions-and-anonymous-functions">lambda expressions</a>.</p>
+<h3 id="Higher-Order-Functions"><a href="#Higher-Order-Functions" class="headerlink" title="Higher-Order Functions"></a>Higher-Order Functions</h3><p>A high-order function is a function that takes functions as parameters, or returns a function</p>
+<p>函数式编程</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span><span class="type">&lt;T, R&gt;</span> Collection<span class="type">&lt;T&gt;</span>.<span class="title">fold</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">initial: <span class="type">R</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">combine: (<span class="type">acc</span>: <span class="type">R</span>, <span class="type">nextElemen</span>: <span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">  <span class="keyword">var</span> accumulator: R = initial</span><br><span class="line">  <span class="keyword">for</span>(element: T <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">    accumulator = combine(accumulator, element)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> accumulator</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>combine</code> has a <code>function type</code></p>
+<p>call it </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> items = listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">items.fold(<span class="number">0</span>, &#123;</span><br><span class="line">  <span class="comment">//when a lambda has paramters, they go first, followed by &#x27;-&gt;&#x27;</span></span><br><span class="line">acc: <span class="built_in">Int</span>, i: <span class="built_in">Int</span> -&gt; </span><br><span class="line">	print(<span class="string">&quot;acc = <span class="variable">$acc</span>, i = <span class="variable">$i</span>&quot;</span>)</span><br><span class="line">  <span class="keyword">val</span> result = acc + i</span><br><span class="line">  println(<span class="string">&quot;result = <span class="variable">$result</span>&quot;</span>)</span><br><span class="line">  result <span class="comment">// the last expression in a lambda is considered the return value: </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> joinedString = items.fold(<span class="string">&quot;Elements:&quot;</span>, &#123;acc, i -&gt; acc + <span class="string">&quot; &quot;</span> + i&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> product = items.fold(<span class="number">1</span>, <span class="built_in">Int</span>::times)</span><br></pre></td></tr></table></figure>
+
+<p>The following sections explain in more detail the concepts mentioned so far.</p>
+<h3 id="Function-Types"><a href="#Function-Types" class="headerlink" title="Function Types"></a>Function Types</h3><p>Kotlin uses a family of function types likle <code>(Int) -&gt; String</code> for declarations that deal with functions: <code>val onClick: ()-&gt; Unit = ...</code></p>
+<p>hese types have a special notation that corresponds to the signatures of the functions, i.e. their parameters and return values:</p>
+<ul>
+<li>All function types have a parenthesized parameter types list and a return type: <code>(A, B) -&gt; C</code>denotes a type that represents functions taking two arguments of types <code>A</code> and <code>B</code> and returning a value of type <code>C</code>. The parameter types list may be empty, as in <code>() -&gt; A</code>. The <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/functions.html#unit-returning-functions"><code>Unit</code> return type</a>cannot be omitted.</li>
+<li>Function types can optionally have an additional <em>receiver</em> type, which is specified before a dot in the notation: the type <code>A.(B) -&gt; C</code> represents functions that can be called on a receiver object of <code>A</code>with a parameter of <code>B</code> and return a value of <code>C</code>. <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/lambdas.html#function-literals-with-receiver">Function literals with receiver</a> are often used along with these types.</li>
+<li><a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/coroutines.html#suspending-functions">Suspending functions</a> belong to function types of a special kind, which have a <em>suspend</em> modifier in the notation, such as <code>suspend () -&gt; Unit</code> or <code>suspend A.(B) -&gt; C</code>.</li>
+</ul>
+<p>The function type notation can optionally include names for the function parameters: <code>(x: Int, y: Int) -&gt; Point</code>. These names can be used for documenting the meaning of the parameters.</p>
+<p>To specify that a function type is <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/null-safety.html#nullable-types-and-non-null-types">nullable</a>, use parentheses: <code>((Int, Int) -&gt; Int)?</code>.</p>
+<p>Function types can be combined using parentheses: <code>(Int) -&gt; ((Int) -&gt; Unit)</code></p>
+<p>The arrow notation is right-associative, <code>(Int) -&gt; (Int) -&gt; Unit</code> is equivalent to the previous example, but not to <code>((Int) -&gt; (Int)) -&gt; Unit</code>.</p>
+<p>推荐使用这种方式给函数类型命名一个别名, 更方便确认.</p>
+<p>You can also give a function type an alternative name by using <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/type-aliases.html">a type alias</a>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> ClickHandler = (Button, ClickEvent) -&gt; <span class="built_in">Unit</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="函数类型实例化"><a href="#函数类型实例化" class="headerlink" title="函数类型实例化"></a>函数类型实例化</h3><ol>
+<li><p>使用函数字面值的代码块</p>
+<ol>
+<li><p>lambda表达式 <code>&#123;a,b -&gt; a +b &#125;</code></p>
+</li>
+<li><p>匿名函数: <code>fun(s: String): Int&#123;return s.toIntOrNull() ?: 0&#125;</code></p>
+<p>带有接受者参数的函数字面值.</p>
+</li>
+</ol>
+</li>
+<li><p>使用已有声明的可调用引用:</p>
+<ol>
+<li>顶部局部成员扩展函数: ::isOdd, String::toInt</li>
+<li>顶层成员扩展属性 <code>List&lt;Int&gt;::size</code></li>
+<li>构造函数: <code>::Regex</code></li>
+<li>这包括指向特定实例成员的绑定的可调用引用: <code>foo::toString</code></li>
+</ol>
+</li>
+<li><p>使用实现函数类型接口的自定义类的实例:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个类实现了函数类型的接口(默认有一个方法invoke操作符重载)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IntTransformer</span>: <span class="type"></span></span>(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">invoke</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = TODO()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> intFunction: (<span class="built_in">Int</span>)-&gt; <span class="built_in">Int</span> = InitTransformer(); <span class="comment">//实例化</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个自己写的例子</span></span><br><span class="line"><span class="keyword">typealias</span> AddInterface = (<span class="built_in">Int</span>, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddImpl</span> : <span class="type">AddInterface&#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">invoke</span><span class="params">(p1: <span class="type">Int</span>, p2: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> p1 + p2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span> <span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> add = AddImpl()</span><br><span class="line">    <span class="keyword">val</span> result = add(<span class="number">10</span>, <span class="number">200</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器能够自行推断函数类型如果有足够多的信息</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a =&#123; i: <span class="built_in">Int</span> -&gt; i + <span class="number">1</span>&#125; <span class="comment">//The inferred type is (Int) -&gt; Int</span></span><br></pre></td></tr></table></figure>
+
+<p><em>Non-literal</em> values of function types with and without receiver are interchangeable, so that the receiver can stand in for the first parameter, and vice versa. For instance, a value of type <code>(A, B) -&gt; C</code> can be passed or assigned where a <code>A.(B) -&gt; C</code> is expected and the other way around:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> repeatFun: String.(<span class="built_in">Int</span>)  -&gt; String = &#123;times -&gt; <span class="keyword">this</span>.repeat(times)&#125;</span><br><span class="line"><span class="keyword">val</span> twoParamters: (String, <span class="built_in">Int</span>) -&gt; String = repeatFun <span class="comment">//OK</span></span><br><span class="line"><span class="comment">//接受者就是第一个参数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runTransformation</span><span class="params">(f: (<span class="type">String</span>, <span class="type">Int</span>) -&gt; <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">  <span class="keyword">return</span> f(<span class="string">&quot;hello&quot;</span>, <span class="number">3</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> result = runTransformation(repeatFun)</span><br><span class="line"></span><br><span class="line"><span class="comment">//类似的 (A,B) -&gt;C 类型的值也可以直接赋值给A.(B)-&gt;C的地方,反之亦然</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ol>
+<h3 id="Involking-a-function-type-instance"><a href="#Involking-a-function-type-instance" class="headerlink" title="Involking a function type instance"></a>Involking a function type instance</h3><p>   A value of a function type can be invoked by using its <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/operator-overloading.html#invoke"><code>invoke(...)</code> operator</a>: <code>f.invoke(x)</code> or just <code>f(x)</code>.</p>
+<p>   If the value has a receiver type, the receiver object should be passed as the first argument. Another way to invoke a value of a function type with receiver is to prepend it with the receiver object, as if the value were an <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/extensions.html">extension function</a>: <code>1.foo(2)</code>, </p>
+<p>如果有接受者 那么接受者对象必须被作为第一个参数, 另外一种方式是扩展函数类型</p>
+<p> 例如</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> stringPlus: (String, String) -&gt; String = String::plus</span><br><span class="line"><span class="keyword">val</span> intPlus: <span class="built_in">Int</span>.(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = <span class="built_in">Int</span>::plus</span><br><span class="line"></span><br><span class="line">println(stringPlus.invoke(<span class="string">&quot;&lt;-&quot;</span>, <span class="string">&quot;-&gt;&quot;</span>))</span><br><span class="line">println(stringPlus(<span class="string">&quot;Hello, &quot;</span>, <span class="string">&quot;world!&quot;</span>))</span><br><span class="line"></span><br><span class="line">println(intPlus.invoke(<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">println(intPlus(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">println(<span class="number">2</span>.intPlus(<span class="number">3</span>)) <span class="comment">//extention-like call</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="inline-functions"><a href="#inline-functions" class="headerlink" title="inline functions"></a>inline functions</h3><p>内联函数</p>
+<h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><p>完整的表达式如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum: (<span class="built_in">Int</span>, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123;x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt; x + y&#125;</span><br></pre></td></tr></table></figure>
+
+<p>lambda表达式被<code>&#123;&#125;</code>包裹.如果省略类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = &#123;x, y -&gt; x + y&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="传递lambda作为最后一个参数"><a href="#传递lambda作为最后一个参数" class="headerlink" title="传递lambda作为最后一个参数"></a>传递lambda作为最后一个参数</h3><p>如果lambda作为函数最后一个参数,那么可以放在括号外面,设置可以省略括号</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> product = items.fold(<span class="number">1</span>) &#123;acc, e -&gt; acc * e&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Such syntax is also known as <em>trailing lambda</em>.<br>如果lambda是唯一的参, 那么圆括号可以完全的省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run &#123;</span><br><span class="line">  println(<span class="string">&quot;...&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这种情况就不能省略括号了, 要不残生了歧义.    </span></span><br><span class="line">println(&#123; x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt;</span><br><span class="line">        x + y</span><br><span class="line">    &#125;(<span class="number">10</span>, <span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> r = run &#123;</span><br><span class="line">    &#123; x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt;</span><br><span class="line">        x + y</span><br><span class="line">    &#125;(<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">&#125;</span><br><span class="line">println(r)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="it-单个参数的隐式名称"><a href="#it-单个参数的隐式名称" class="headerlink" title="it : 单个参数的隐式名称"></a>it : 单个参数的隐式名称</h3><p>如果<code>lambda</code>只有一个参数, 那么 <code>it</code>可以隐式的指向这个参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ints.filter&#123;</span><br><span class="line">  it &gt; <span class="number">0</span> <span class="comment">//this literal is of type &#x27;(it: Int) -&gt; Boolean&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以直接省略it: Int -&gt; 这些编译器可以自行理解推断的参数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Returning-a-value-from-a-lambda-expression"><a href="#Returning-a-value-from-a-lambda-expression" class="headerlink" title="Returning a value from a lambda expression"></a>Returning a value from a lambda expression</h3><p>我们可以使用限定的返回从lambda显式的返回一个值, 否则将返回最后一个表达式的值</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//implicit the last expression as the value of the lambda</span></span><br><span class="line">ints.filter &#123;</span><br><span class="line">  <span class="keyword">val</span> shouldFilter = it &gt; <span class="number">0</span></span><br><span class="line">  shouldFilter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//explicit return the qualified return value same as above</span></span><br><span class="line">ints.filter &#123;</span><br><span class="line">  <span class="keyword">val</span> shouldFilter = it &gt; <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span><span class="symbol">@filter</span> shouldFilter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一约定连同在圆括号外传递lambda表达式一起支持<code>LINQ-风格</code>的代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strings.filter&#123;it.length == <span class="number">5</span>&#125;.sortedby&#123;it&#125;.map&#123;it.toUpperCase()&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用下划线站位不使用的变量-since-1-1"><a href="#使用下划线站位不使用的变量-since-1-1" class="headerlink" title="使用下划线站位不使用的变量(since 1.1)"></a>使用下划线站位不使用的变量(since 1.1)</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.forEach &#123;</span><br><span class="line">  -, value -&gt; println(<span class="string">&quot;<span class="variable">$value</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lambda表达式中的解构"><a href="#lambda表达式中的解构" class="headerlink" title="lambda表达式中的解构"></a>lambda表达式中的解构</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">map.mapValues&#123;</span><br><span class="line">  entry -&gt; <span class="string">&quot;<span class="subst">$&#123;entry.value!&#125;</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">map.mapValues&#123;</span><br><span class="line">  (key, value) -&gt; <span class="string">&quot;<span class="variable">$value</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123; a -&gt; ... &#125; <span class="comment">// one parameter</span></span><br><span class="line">&#123; a, b -&gt; ... &#125; <span class="comment">// two parameters</span></span><br><span class="line">&#123; (a, b) -&gt; ... &#125; <span class="comment">// a destructured pair</span></span><br><span class="line">&#123; (a, b), c -&gt; ... &#125; <span class="comment">// a destructured pair and another parameter</span></span><br></pre></td></tr></table></figure>
+
+<p>If a component of the destructured parameter is unused, you can replace it with the underscore to avoid inventing its name:</p>
+<p>可以使用占位符</p>
+<p>You can specify the type for the whole destructured parameter or for a specific component separately:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.mapValues &#123; (_, value): Map.Entry&lt;<span class="built_in">Int</span>, String&gt; -&gt; <span class="string">&quot;<span class="variable">$value</span>!&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">map.mapValues &#123; (_, value: String) -&gt; <span class="string">&quot;<span class="variable">$value</span>!&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>One thing missing from the lambda expression syntax presented above is the ability to specify the return type of the function. In most cases, this is unnecessary because the return type can be inferred automatically. However, if you do need to specify it explicitly, you can use an alternative syntax: an <em>anonymous function</em>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">fun</span><span class="params">(x: <span class="type">Int</span>, y: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = x + y</span><br></pre></td></tr></table></figure>
+
+<p>The parameters and the return type are specified in the same way as for regular functions, except that the parameter types can be omitted if they can be inferred from context:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ints.filter(<span class="function"><span class="title">fun</span><span class="params">(item)</span></span> = item &gt; <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Closures-闭包"><a href="#Closures-闭包" class="headerlink" title="Closures 闭包"></a>Closures 闭包</h3><p>lambda表达式或者是匿名函数可以访问其闭包. 即在外部作用域中声明的变量, 与Java不同的是可以修改闭包中捕获的变量</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">ints.filter&#123;it &gt; <span class="number">0</span>&#125;.forEach&#123;</span><br><span class="line">  sum+=it</span><br><span class="line">&#125;</span><br><span class="line">println(sum)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="带有接受者的函数字面值"><a href="#带有接受者的函数字面值" class="headerlink" title="带有接受者的函数字面值"></a>带有接受者的函数字面值</h3><p>匿名函数语法允许你直接指定函数字面值的接受者类型.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum: <span class="built_in">Int</span>.(<span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123;other -&gt; plus(other)&#125;<span class="comment">//在接受者对象上调用了plus</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="params">(other: <span class="type">Int</span>)</span></span> = <span class="keyword">this</span> + other</span><br></pre></td></tr></table></figure>
+
+<p>当接收者类型可以从上下文推断时, lambda 表达式可以用作带接收者的函数字面值</p>
+<p>一个非正常重要的例子是类型安全的builder</p>
+<p>PS: 类型安全的构建器可以参考Other章节</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTML</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">body</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">(<span class="keyword">init</span>: <span class="type">HTML</span>.() -&gt; <span class="type">Unit</span>)</span></span> : HTML &#123;  <span class="comment">//参数是一个带接受类型的匿名函数</span></span><br><span class="line">  <span class="keyword">val</span> html = HTML()</span><br><span class="line">  html.<span class="keyword">init</span>()</span><br><span class="line">  <span class="keyword">return</span> html</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dsl</span></span><br><span class="line">html &#123;  <span class="comment">//带有接收者的lambda由此开始</span></span><br><span class="line">  body()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>使用高阶函数会带来一些运行时的效率损失: 每个函数都是一个对象, 并且会捕获一个闭包. 即那些在函数体内会访问到的变量不会别释放. 内存分配.</p>
+<p>在大多数情况下, 可以内联化lambda表达式可以消除这种开销</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lock(l) &#123;</span><br><span class="line">  foo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器没有为参数创建一个函数对象并生成一个调用, 编译器经过优化会生成下面的代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">l.lock()</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  foo()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">  l.unlock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了显式的告诉编译器将函数内联, 可以使用inline修饰符修饰标记<code>lock()</code>函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lock</span><span class="params">(lock: <span class="type">Lock</span>, body: ()  -&gt; <span class="type">T</span>)</span></span>: T &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>inline</code> modifier affects both the function itself and the lambdas passed to it: all of those will be inlined into the call site <code>inline</code>可以修饰函数以及传递给函数的参数(lambda)</p>
+<p>注意, 内联函数会增加编译后的代码</p>
+<h3 id="noinline"><a href="#noinline" class="headerlink" title="noinline"></a>noinline</h3><p>禁用内联</p>
+<p>如果你只想一些传递给内联函数的lambda是inline的, 那么可以手动禁用inline</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">(inlined: ()-&gt; <span class="type">Unit</span>, <span class="keyword">noinline</span> notInlined: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意</p>
+<p>可以内联的lambda表达式只能在内联函数内部调用或者作为可内联的参数传递, 但是<code>noinline</code> 的可以以热河我们喜欢的方式操作: 存储在字段中,传送它等.</p>
+<p>慎用 内联</p>
+<h3 id="非局部返回"><a href="#非局部返回" class="headerlink" title="非局部返回"></a>非局部返回</h3><p>在Kotlin中, 我们必须使用一个标签退出lambda表达式. lambda表达式不能包含函数的返回</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">  ordinaryFunciton&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">//ERROR, forbidden return here</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是如果lambda表达式传给的函数时内联的, 该return也可以内联, 所以它是允许的</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">inlined</span><span class="params">(block: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">  println(<span class="string">&quot;hi&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun foo()&#123;</span><br><span class="line">	inlined&#123;</span><br><span class="line">		return &#x2F;&#x2F;ok 该lambda表达式是内联的</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种返回称为非局部返回 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">hasZero</span><span class="params">(ints: <span class="type">List</span>&lt;<span class="type">Int</span>&gt;)</span></span> : <span class="built_in">Boolean</span> &#123;</span><br><span class="line">	ints.forEach &#123;</span><br><span class="line">    <span class="keyword">if</span>(it == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="具体化的参数类型-reified"><a href="#具体化的参数类型-reified" class="headerlink" title="具体化的参数类型(reified)"></a>具体化的参数类型(reified)</h3><h3 id="内联属性"><a href="#内联属性" class="headerlink" title="内联属性"></a>内联属性</h3>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/09/04/2019-09-05-kotlin从入门到放弃-2019/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/09/01/2019-09-01-kotlin从入门到放弃-2019/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-09-02 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

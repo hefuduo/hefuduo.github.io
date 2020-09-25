@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>加密技术 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="加密技术"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 加密技术</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<blockquote>
+<p>写在前面</p>
+<ol>
+<li>对称加密与非对称加密结合使用实现了秘钥交换，之后通信双方使用该秘钥进行对称加密通信。</li>
+<li>消息摘要与非对称加密实现了数字签名，根证书机构对目标证书进行签名，在校验的时候，根证书用公钥对其进行校验。若校验成功，则说明该证书是受信任的。</li>
+<li>Keytool 工具可以创建证书，之后交给根证书机构认证后直接使用自签名证书，还可以输出证书的RFC格式信息等。</li>
+<li>数字签名技术实现了身份认证与数据完整性保证。</li>
+<li>加密技术保证了数据的保密性，消息摘要算法保证了数据的完整性，对称加密的高效保证了数据处理的可靠性，数字签名技术保证了操作的不可否认性。</li>
+</ol>
+</blockquote>
+<h1 id="第一章-对称加密"><a href="#第一章-对称加密" class="headerlink" title="第一章 对称加密"></a>第一章 对称加密</h1><h2 id="1-1-对称加密"><a href="#1-1-对称加密" class="headerlink" title="1.1 对称加密"></a>1.1 对称加密</h2><h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>古罗马时期，《高卢战纪》描述凯撒曾经使用密码来传递信息，所以称之为“凯撒密码”。</p>
+</blockquote>
+<p>凯撒密码是一种替代密码，即通过字母按顺序后退n位起到加密作用。例如当偏移量是3的时候，所有的字母A都将被替换成D，B将变成E，由此可见，位数就是凯撒密码加密和解密的密钥。</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691392456135.jpg?201681392511" alt="凯撒加密"></p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CaeserEncryption</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String src,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">		<span class="keyword">char</span>[] array = src.toCharArray();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length ; i++ ) &#123;</span><br><span class="line">			array[i] = (<span class="keyword">char</span>)(array[i] + key);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(array);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String src,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">		<span class="keyword">char</span>[] array = src.toCharArray();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length ; i++ ) &#123;</span><br><span class="line">			array[i] = (<span class="keyword">char</span>)(array[i] + key);			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(array);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h4><blockquote>
+<p>凯撒密码的加密强度很低，使用频度分析法就可以破解。</p>
+</blockquote>
+<p>在任何一种书面语言中，不同的字母或字母组合出现的频率各不相同。而且，对于以这种语言书写的任意一段文本，都具有大致相同的特征字母分布。比如，在英语中，字母E出现的频率很高，而X则出现得较少。类似地，ST、NG、TH，以及QU等双字母组合出现的频率非常高，NZ、QJ组合则极少。英语中出现频率最高的12个字母可以简记为“ETAOIN SHRDLU”。</p>
+<p>破解过程</p>
+<ol>
+<li>统计密文里出现次数最多的字符，例如出现次数最多的字符是是’h’。</li>
+<li>计算字符’h’到’e’的偏移量，值为3，则表示原文偏移了3 个位置。</li>
+<li>将密文所有字符恢复偏移3 个位置</li>
+</ol>
+<p>详细代码不再赘述</p>
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
+<p>加密和解密都是会用一把秘钥，这种加密的方法称为对称加密，也成为单密钥加密。简单理解就是加密解密用的都是同一把钥匙.</p>
+</blockquote>
+<p>凯撒密码就属于对称加密，秘钥为字符的偏移量。</p>
+<h4 id="对称加密常用算法"><a href="#对称加密常用算法" class="headerlink" title="对称加密常用算法"></a>对称加密常用算法</h4><p>AES、DES、3DES、TDEA、Blowfish、RC2、RC4、IDEA。SKIPJACK等</p>
+<p><strong>AES</strong>：高级加密标准（Advanced Encryption Standard），在密码学中又称为Rijndael 加密。是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院（NIST）于2001 年11 月26 日发布于FIPS PUB 197，并在2002 年5 月26 日成为有效的标准。2006 年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</p>
+<p><strong>DES</strong>：全称为Data Encryption Standard，即数据加密标准，是一种使用密钥加密的块算法，1976 年被美国联邦政府的国家标准局确定为联邦资料处理标准（FIPS），随后在国际上广泛流传开来。</p>
+<p><strong>3DES</strong>：也叫Triple DES，是三重数据加密算法（TDEA，Triple Data Encryption Algorithm）块密码的通称。它相当于是对每个数据块应用三次DES 加密算法。由于计算机运算能力的增强，原版DES 密码的密钥长度变得容易被暴力破解；3DES 即是设计用来提供一种相对简单的方法，即通过增加DES 的密钥长度来避免类似的攻击，而不是设计一种全新的块密码算法<strong>。</strong></p>
+<p><strong>原理</strong></p>
+<p>DES 加密原理（对比特位进行操作，交换位置，异或等等，无需详细了解）</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691393457780.jpg?201681393512" alt="DES"></p>
+<h4 id="对称加密应用场景"><a href="#对称加密应用场景" class="headerlink" title="对称加密应用场景"></a>对称加密应用场景</h4><ol>
+<li>本地数据加密，例如SharedPreferences中的敏感数据</li>
+<li>网络传输：post请求参数加密</li>
+<li>序列化对象到本地磁盘</li>
+<li>网页交互数据加密（https）</li>
+</ol>
+<h4 id="Android中的算法实现"><a href="#Android中的算法实现" class="headerlink" title="Android中的算法实现"></a>Android中的算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Array;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.crypto.Cipher;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.KeyGenerator;</span><br><span class="line"><span class="keyword">import</span> javax.crypto.SecretKey;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by hefuduo on 2017/5/4.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1. get cipher obj</span></span><br><span class="line">            Cipher cipher = Cipher.getInstance(<span class="string">&quot;DES&quot;</span>);</span><br><span class="line">            <span class="comment">//2. get a secret key</span></span><br><span class="line">            SecretKey key = KeyGenerator.getInstance(<span class="string">&quot;DES&quot;</span>).generateKey();</span><br><span class="line">            <span class="comment">//3. set the operation mode (encrypt or decrypt)</span></span><br><span class="line">            cipher.init(Cipher.ENCRYPT_MODE, key);</span><br><span class="line">            <span class="comment">//4. do the operation</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//the fllowing test</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">byte</span>[] src = <span class="string">&quot;hello world&quot;</span>.getBytes();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">byte</span>[] result = cipher.doFinal(src);</span><br><span class="line">            </span><br><span class="line">            cipher.init(Cipher.DECRYPT_MODE,key);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">byte</span>[] result2 = cipher.doFinal(result);</span><br><span class="line"></span><br><span class="line">            System.out.println(Arrays.toString(src));</span><br><span class="line">            </span><br><span class="line">            System.out.println(Arrays.toString(result));</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(result2));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>AES 算法代码实现同上，只需要把DES参数换成AES参数即可。</p>
+<p>BASE64算法：可以参考这篇文章 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004533485?_ea=657625">让你完全理解BASE64</a></p>
+<p>加密后的结果是字节数组，这些被加密后的字节在码表（例如UTF-8 码表）上找不到对应字符，会出现乱码，当乱码字符串再次转换为字节数组时，长度会变化，导致解密失败，所以转换后的数据是不安全的<strong>。</strong></p>
+<p>使用Base64 对字节数组进行编码，任何字节都能映射成对应的Base64 字符，之后能恢复到字节数组，利于加密后数据的保存于传输，所以转换是安全的<strong>。</strong>同样，字节数组转换成16 进制字符串也是安全的。</p>
+<p>密文转换成Base64 编码后的输出结果：</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691393712753.jpg?201681393727" alt="img"></p>
+<p>密文转换成16 进制编码后的输出结果：</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691393744142.jpg?20168139381" alt="img"></p>
+<p>Java 里没有直接提供Base64 以及字节数组转16 进制的Api，开发中一般是自己手写或直接使用第三方提供的成熟稳定的工具类（例如apache 的commons-codec）<strong>。</strong></p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691393833735.jpg?201681393849" alt="Base64码表"></p>
+<p>使用自定义秘钥的方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建密钥写法1</span></span><br><span class="line">KeySpec keySpec = <span class="keyword">new</span> DESKeySpec(key.getBytes());</span><br><span class="line">SecretKey secretKey = SecretKeyFactory.getInstance(ALGORITHM).</span><br><span class="line">generateSecret(keySpec);</span><br><span class="line"><span class="comment">//创建密钥写法2</span></span><br><span class="line"><span class="comment">//SecretKey secretKey = new SecretKeySpec(key.getBytes(), KEY_ALGORITHM);</span></span><br><span class="line">Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line">cipher.init(Cipher.DECRYPT_MODE, secretKey);</span><br><span class="line"><span class="comment">//得到key 后，后续代码就是Cipher 的写法，此处省略...</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>==注意==：</p>
+<p>把秘钥写入代码中是有一定的风险的，当别人反编译代码的时候，可能会看到秘钥。</p>
+<p>因此，Android 开发里建议用JNI 把秘钥值写到C 代码里，甚至拆分成几份，最后再组合成真正的秘钥。</p>
+<p>算法/工作模式/填充模式</p>
+<p>初始化cipher 对象时，参数可以直接传算法名：例如：</p>
+<p>Cipher c = Cipher.getInstance(“DES”);</p>
+<p>也可以指定更详细的参数，格式：”algorithm/mode/padding” ，即”算法/工作模式/填充模式”</p>
+<p>Cipher c = Cipher.getInstance(“DES/CBC/PKCS5Padding”);</p>
+<h4 id="密码块工作模式"><a href="#密码块工作模式" class="headerlink" title="密码块工作模式"></a>密码块工作模式</h4><p>块密码工作模式(Block cipher mode of operation)，是对于按块处理密码的加密方式的一种扩充，不仅仅适用于AES，包括DES, RSA 等加密方法同样适用。</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691393958309.jpg?201681394014" alt="填充模式"></p>
+<h4 id="填充模式"><a href="#填充模式" class="headerlink" title="填充模式"></a>填充模式</h4><p>填充(Padding)，是对需要按块处理的数据，当数据长度不符合块处理需求时，按照一定方法填充满块长的一种规则。</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691394044499.jpg?20168139413" alt="填充模式"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line"><span class="comment">//秘钥算法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY_ALGORITHM = <span class="string">&quot;DES&quot;</span>;</span><br><span class="line"><span class="comment">//加密算法：algorithm/mode/padding 算法/工作模式/填充模式</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CIPHER_ALGORITHM = <span class="string">&quot;DES/ECB/PKCS5Padding&quot;</span>;</span><br><span class="line"><span class="comment">//秘钥</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String KEY = <span class="string">&quot;12345678&quot;</span>;<span class="comment">//DES 秘钥长度必须是8 位或以上</span></span><br><span class="line"><span class="comment">//private static final String KEY = &quot;1234567890123456&quot;;//AES 秘钥长度必须是16 位</span></span><br><span class="line"><span class="comment">//初始化秘钥</span></span><br><span class="line">SecretKey secretKey = <span class="keyword">new</span> SecretKeySpec(KEY.getBytes(), KEY_ALGORITHM);</span><br><span class="line">Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);</span><br><span class="line"><span class="comment">//加密</span></span><br><span class="line">cipher.init(Cipher.ENCRYPT_MODE, secretKey);</span><br><span class="line"><span class="keyword">byte</span>[] result = cipher.doFinal(input.getBytes());</span><br><span class="line"><span class="comment">//注意：AES、DES 在CBC 操作模式下需要iv 参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//AES、DES 在CBC 操作模式下需要iv 参数</span></span><br><span class="line">IvParameterSpec iv = <span class="keyword">new</span> IvParameterSpec(key.getBytes());</span><br><span class="line"><span class="comment">//加密</span></span><br><span class="line">cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>DES 安全度在现代已经不够高，后来又出现的3DES 算法强度提高了很多，但是其执行效率低下，AES算法加密强度大，执行效率高，使用简单，实际开发中建议选择AES 算法<strong>。</strong>实际android 开发中可以用对称加密（例如选择AES 算法）来解决很多问题，例如：</p>
+<ol>
+<li>做一个管理密码的app，我们在不同的网站里使用不同账号密码，很难记住，想做个app 统一管理，但是账号密码保存在手机里，一旦丢失了容易造成安全隐患，所以需要一种加密算法，将账号密码信息加密起来保管，这时候如果使用对称加密算法，将数据进行加密，秘钥我们自己记在心里，只需要记住一个密码<strong>。</strong>需要的时候可以还原信息。</li>
+<li>android 里需要把一些敏感数据保存到SharedPrefrence 里的时候，也可以使用对称加密，这样可以在需要的时候还原<strong>。</strong></li>
+<li>请求网络接口的时候，我们需要上传一些敏感数据，同样也可以使用对称加密，服务端使用同样的算法就可以解密<strong>。</strong>或者服务端需要给客户端传递数据，同样也可以先加密，然后客户端使用同样算法解密.</li>
+</ol>
+<h2 id="1-2-非对称加密"><a href="#1-2-非对称加密" class="headerlink" title="1.2 非对称加密"></a>1.2 非对称加密</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>因j加密与解密的过程中使用的是两个不同的密钥，因此这种加密算法叫做非对称加密。</p>
+</blockquote>
+<p>非对称加密的算法需要两个密钥，即公钥(public key)与私钥(private key)。公钥与私钥是一对的，用公钥加密的数据只能对应的私钥可以解密，反之亦然。</p>
+<p>加密过程图：</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/201691395826126.jpg?201681395841" alt="非对称加密示意图"></p>
+<h3 id="常见算法"><a href="#常见算法" class="headerlink" title="常见算法"></a>常见算法</h3><h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><blockquote>
+<p>历史：RSA<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%85%AC%E9%92%A5">公钥</a><a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95">加密算法</a>是1977年由<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E7%BD%97%E7%BA%B3%E5%BE%B7%C2%B7%E6%9D%8E%E7%BB%B4%E6%96%AF%E7%89%B9">罗纳德·李维斯特</a>（Ron Rivest）、<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E9%98%BF%E8%BF%AA%C2%B7%E8%90%A8%E8%8E%AB%E5%B0%94">阿迪·萨莫尔</a>（Adi Shamir）和<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E4%BC%A6%E7%BA%B3%E5%BE%B7%C2%B7%E9%98%BF%E5%BE%B7%E6%9B%BC">伦纳德·阿德曼</a>（Leonard Adleman）一起提出的。1987年首次公布，当时他们三人都在麻省理工学院工作。RSA就是他们三人姓氏开头字母拼在一起组成的。</p>
+<p>RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的绝大多数密码攻击，已被ISO推荐为公钥<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">数据加密标准</a>。</p>
+<p>今天只有短的RSA钥匙才可能被强力方式解破。到2008年为止，世界上还没有任何可靠的攻击RSA算法的方式。只要其钥匙的长度足够长，用RSA加密的信息实际上是不能被解破的。但在<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97">分布式计算</a>和<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA">量子计算机</a>理论日趋成熟的今天，RSA加密安全性受到了挑战。</p>
+<p>RSA算法基于一个十分简单的数论事实：将两个大质数相乘十分容易，但是想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。</p>
+<p>​                                                  来自百度百科</p>
+</blockquote>
+<p>质因数、欧拉函数、模反元素</p>
+<p>Java当中的代码示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">asymmetricEncription</span><span class="params">()</span></span>&#123;</span><br><span class="line">       </span><br><span class="line">       String content =  <span class="string">&quot;hello asymmetricEncription&quot;</span>;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           Cipher cipher = Cipher.getInstance(<span class="string">&quot;RSA&quot;</span>);</span><br><span class="line">           KeyPair keyPair = KeyPairGenerator.getInstance(<span class="string">&quot;RSA&quot;</span>).generateKeyPair();</span><br><span class="line"></span><br><span class="line">           PublicKey publicKey = keyPair.getPublic();</span><br><span class="line">           PrivateKey privateKey = keyPair.getPrivate();</span><br><span class="line">           </span><br><span class="line">           cipher.init(Cipher.ENCRYPT_MODE,publicKey);</span><br><span class="line">           <span class="keyword">byte</span>[] result = cipher.doFinal(content.getBytes());</span><br><span class="line"></span><br><span class="line">           System.out.println(<span class="string">&quot;加密结果:&quot;</span> + <span class="keyword">new</span> String(result));</span><br><span class="line">           </span><br><span class="line">           cipher.init(Cipher.DECRYPT_MODE,privateKey);</span><br><span class="line">           result = cipher.doFinal(result);</span><br><span class="line"></span><br><span class="line">           System.out.println(<span class="string">&quot;解密结果:&quot;</span> + <span class="keyword">new</span> String(result));</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>==注意：一次性加密的数据长度不能大于117字节，一次性解密的数据长度不能大于128字节==</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ENCRYPT_BLOCK_MAX = <span class="number">117</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DECRYPT_BLOCK_MAX = <span class="number">128</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>分批操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] doFinnalWithBatch(<span class="keyword">byte</span>[] content,Cipher cipher, <span class="keyword">int</span> blockSize) <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="keyword">int</span> offset = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> length = content.length;</span><br><span class="line">        <span class="keyword">byte</span>[] tmp;</span><br><span class="line">        ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">        <span class="keyword">while</span> (length - offset &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (length - offset &gt;= blockSize)&#123;</span><br><span class="line">                tmp = cipher.doFinal(content,offset,blockSize);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                tmp = cipher.doFinal(content,offset,length - offset);</span><br><span class="line">            &#125;</span><br><span class="line">            baos.write(tmp);</span><br><span class="line">            offset += blockSize;</span><br><span class="line">        &#125;</span><br><span class="line">        baos.close();</span><br><span class="line">        <span class="keyword">return</span> baos.toByteArray();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="非对称加密的用途"><a href="#非对称加密的用途" class="headerlink" title="非对称加密的用途"></a>非对称加密的用途</h4><h5 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h5><blockquote>
+<p>一条加密后的信息如果能以A的公钥解密，那么这条信息一定是以A的私钥加密的，能够确定该用户是A。</p>
+</blockquote>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913100004909.jpg?201681310024" alt="身份认证"></p>
+<h5 id="陌生人的安全通信"><a href="#陌生人的安全通信" class="headerlink" title="陌生人的安全通信"></a>陌生人的安全通信</h5><blockquote>
+<p>A和B两个互不相识，A和B之间相互交换各自的公钥，则双方可以通过对方的公钥加密信息通信。C虽然能够截获到A和B的公钥，但是他解不开密文。</p>
+</blockquote>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913100051922.jpg?20168131013" alt="陌生人安全通信"></p>
+<h5 id="秘钥的交换"><a href="#秘钥的交换" class="headerlink" title="秘钥的交换"></a>秘钥的交换</h5><blockquote>
+<p>通过非对称加密对称加密的秘钥，安全得到对称秘钥后，使用对称加密通信。</p>
+</blockquote>
+<p>如下图：</p>
+<p><img src="/img/encryption/%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86.png" alt="混合加密"></p>
+<p>即使他人获取了二者的公钥，由于没有A和B的私钥，无法解密就无法获取加密后的密钥。</p>
+<h5 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h5><p>非对称加密一般不会单独使用，其目的并不是取代对称加密而出现的，非对称加密速度比对称加密慢很多，极端情况慢1000倍，所以一般不会用来加密大量数据，通常将对称与非对称两种技术混合起来，即上文所述的密钥交换。</p>
+<h2 id="1-3-消息摘要（Message-Digest）"><a href="#1-3-消息摘要（Message-Digest）" class="headerlink" title="1.3 消息摘要（Message Digest）"></a>1.3 消息摘要（Message Digest）</h2><h3 id="常见算法-1"><a href="#常见算法-1" class="headerlink" title="常见算法"></a>常见算法</h3><p>MD5，SHA，CRC等。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>用户密码md5加密后保存到数据库里</li>
+<li>软件下载站，使用消息摘要计算文件指纹，防止被篡改（各种ROM啊之类的以前就是这样）。</li>
+<li>数字签名</li>
+<li>百度云，360云盘的网盘的秒传功能用的是sha1值</li>
+<li>Eclipse和Android Studio开发工具根据sha1值来判断v4，v7包是否冲突</li>
+<li>银行密码MD5加密</li>
+</ol>
+<h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><h4 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h4><blockquote>
+<p>Message Digest Algorithm MD5（中文名为<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%B6%88%E6%81%AF%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95">消息摘要算法</a>第五版）为计算机安全领域广泛使用的一种散列函数，用以提供消息的完整性保护。该算法的文件号为RFC 1321（R.Rivest,MIT Laboratory for Computer Science and RSA Data Security Inc. April 1992）。</p>
+<p><strong>MD5</strong>即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%91%98%E8%A6%81%E7%AE%97%E6%B3%95">摘要算法</a>、<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95">哈希算法</a>），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/MD3">MD3</a>和<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/MD4">MD4</a>。</p>
+<p>MD5算法具有以下特点：</p>
+<p>1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。</p>
+<p>2、容易计算：从原数据计算出MD5值很容易。</p>
+<p>3、抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。</p>
+<p>4、强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。</p>
+<p>MD5的作用是让大容量信息在用<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D">数字签名</a>软件签署私人<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%AF%86%E9%92%A5">密钥</a>前被”<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%8E%8B%E7%BC%A9/13032501">压缩</a>“成一种保密的格式（就是把一个任意长度的字节串变换成一定长的<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6">十六进制</a>数字串）。除了MD5以外，其中比较有名的还有<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/sha-1">sha-1</a>、<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/RIPEMD">RIPEMD</a>以及Haval等。</p>
+</blockquote>
+<p>MD5有很多应用，其典型应用是对一段信息（message）产生信息摘要（message-digest），以防止被篡改。比如在Unix下有很多软件在下载的时候都哟一个文件名相同，扩展文为.md5的文件，其中的文本是该软件压缩包的md5值，防止软件包被篡改。此外还用在数字签名上，也可以广泛用于操作系统的登录认证上。</p>
+<h4 id="SHA"><a href="#SHA" class="headerlink" title="SHA"></a>SHA</h4><blockquote>
+<p>安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准（Digital Signature Standard DSS）里面定义的数字签名算法（Digital Signature Algorithm DSA）。对于长度小于2^64位的消息，SHA1会产生一个160位的消息摘要。该算法经过加密专家多年来的发展和改进已日益完善，并被广泛使用。该算法的思想是接收一段明文，然后以一种不可逆的方式将它转换成一段（通常更小）密文，也可以简单的理解为取一串输入码（称为预映射或信息），并把它们转化为长度较短、位数固定的输出序列即散列值（也称为信息摘要或信息认证代码）的过程。散列函数值可以说是对明文的一种“<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%8C%87%E7%BA%B9">指纹</a>”或是“摘要”所以对散列值的<a target="_blank" rel="noopener" href="http://baike.baidu.com/item/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D">数字签名</a>就可以视为对此明文的数字签名。</p>
+</blockquote>
+<h4 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h4><blockquote>
+<p>循环冗余校验(Cyclic Redundancy Check, CRC)是一种根据网络数据包或电脑文件等数据产生简短固定位数校验码的一种散列函数，主要用来检测或校验数据传输或者保存后可能出现的错误。它是利用除法及余数的原理来作错误侦测的。</p>
+</blockquote>
+<p>在数据传输过程中，无论传输系统的设计再怎么完美，差错总会存在，这种差错可能会导致在链路上传输的一个或者多个帧被破坏(出现比特差错，0变为1，或者1变为0)，从而接受方接收到错误的数据。为尽量提高接受方收到数据的正确率，在接收方接收数据之前需要对数据进行差错检测，当且仅当检测的结果为正确时接收方才真正收下数据。检测的方式有多种，常见的有奇偶校验、因特网校验和循环冗余校验等。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HexCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] src = <span class="string">&quot;hello MD5!&quot;</span>.getBytes();</span><br><span class="line">    String result = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        MessageDigest md5digest = MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">        MessageDigest shadigest = MessageDigest.getInstance(<span class="string">&quot;SHA1&quot;</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] target1 = md5digest.digest(src);</span><br><span class="line">        <span class="keyword">byte</span>[] target2 = shadigest.digest(src);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(target1));</span><br><span class="line">        System.out.println(<span class="string">&quot;===================&quot;</span>);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(target2));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>消息摘要后的结果是固定的长度，无论源数据多大，摘要后的结果都是固定长度的。</p>
+<h4 id="数字摘要原理"><a href="#数字摘要原理" class="headerlink" title="数字摘要原理"></a>数字摘要原理</h4><blockquote>
+<p>数字摘要是将任意长度的消息变成固定长度的短消息，它类似于一个自变量是消息的函数，也就是Hash函数。数字摘要就是采用单向Hash函数将需要加密的明文“摘要”成一串固定长度（128位）的密文这一串密文又称为数字指纹，它有固定的长度，而且不同的明文摘要成密文，其结果总是不同的，而同样的明文其摘要必定一致。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取实例</span></span><br><span class="line">MessageDigest digest = MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">digest.update(key.getBytes());</span><br><span class="line"><span class="keyword">byte</span>[] bytes = digest.digest(key.getBytes());</span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bytes.length; i++) &#123;</span><br><span class="line"> String hex = Integer.toHexString(bytes[i]&amp;<span class="number">0xff</span>);</span><br><span class="line"> <span class="keyword">if</span> (hex.length() == <span class="number">1</span>)&#123;</span><br><span class="line"> sb.append(<span class="string">&quot;0&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> sb.append(hex);</span><br><span class="line">&#125;</span><br><span class="line">String hexstring = sb.toString();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="1-3-数字签名"><a href="#1-3-数字签名" class="headerlink" title="1.3 数字签名"></a>1.3 数字签名</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>数字签名是非对称加密与数字摘要的组合应用</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>校验身份</p>
+<blockquote>
+<p>使用私钥签名，公钥校验，只要用公钥能校验通过，则该信息一定是私钥持有者发布的。</p>
+</blockquote>
+<p>校验数据完整性</p>
+<blockquote>
+<p>用解密后的消息摘要与原文的消息摘要进行对比</p>
+</blockquote>
+<h3 id="签名的过程"><a href="#签名的过程" class="headerlink" title="签名的过程"></a>签名的过程</h3><p>“发送报文时，发送方用一个哈希函数从报文文本中生成报文摘要,然后用自己的私人密钥对这个摘要进行加密，这个加密后的摘要将作为报文的数字签名和报文一起发送给接收方，接收方首先用与发送方一样的哈希函数从接收到的原始报文中计算出报文摘要，接着再用发送方的公用密钥来对报文附加的数字签名进行解密，如果这两个摘要相同、那么接收方就能确认该数字签名是发送方的。</p>
+<p>数字签名有两种功效：一是能确定消息确实是由发送方签名并发出来的，因为别人假冒不了发送方的签名。二是数字签名能确定消息的完整性。因为数字签名的特点是它代表了文件的特征，文件如果发生改变，数字摘要的值也将发生变化。不同的文件将得到不同的数字摘要。一次数字签名涉及到一个哈希函数、发送者的公钥、发送者的私钥。”</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913102609050.png?2016813102649" alt="图解签名过程"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取signature 对象，初始化算法：MD2withRSA, MD5withRSA, or SHA1withRSA</span></span><br><span class="line">Signature signature = Signature.getInstance(<span class="string">&quot;MD5withRSA&quot;</span>);</span><br><span class="line"><span class="comment">//创建私钥（从磁盘上读取）</span></span><br><span class="line">PrivateKey privateKey = (PrivateKey)SerializableUtil.readObject(</span><br><span class="line"><span class="string">&quot;heima.privateKey&quot;</span>);</span><br><span class="line"><span class="comment">//使用私钥进行初始化</span></span><br><span class="line">signature.initSign(privateKey);</span><br><span class="line"><span class="comment">//传入需要签名的数据</span></span><br><span class="line">signature.update(content.getBytes());</span><br><span class="line"><span class="comment">//执行签名</span></span><br><span class="line"><span class="keyword">byte</span>[] sign = signature.sign();</span><br><span class="line"> </span><br><span class="line"><span class="comment">//创建公钥（从磁盘上读取）</span></span><br><span class="line">PublicKey publicKey = (PublicKey) SerializableUtil.readObject(</span><br><span class="line"><span class="string">&quot;heima.publicKey&quot;</span>);</span><br><span class="line"><span class="comment">//使用公钥进行初始化</span></span><br><span class="line">signature.initVerify(publicKey);</span><br><span class="line"><span class="comment">//传入需要校验的数据（即上面的原文）</span></span><br><span class="line">signature.update(content.getBytes());</span><br><span class="line"><span class="comment">//执行校验</span></span><br><span class="line"><span class="keyword">boolean</span> verify = signature.verify(sign);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>数字签名一般不单独使用，基本都是用在数字证书里实现SSL 通信协议。</p>
+<h2 id="1-4-数字证书"><a href="#1-4-数字证书" class="headerlink" title="1.4 数字证书"></a>1.4 数字证书</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>数字证书就是互联网通讯中标志通讯各方身份信息的一串数字，提供了一种在Internet 上验证通信实体身份的方式，数字证书不是数字身份证，而是身份认证机构盖在数字身份证上的一个章或印（或者说加在数字身份证上的一个签名）。它是由权威机构——CA 机构，又称为证书授权（Certificate Authority）中心发行的，人们可以在网上用它来识别对方的身份。</p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p>交易者身份的确定性、不可否认性、不可修改性<br>对应用进行签名认证（例如Android 的apk）</p>
+<h3 id="数字证书格式"><a href="#数字证书格式" class="headerlink" title="数字证书格式"></a>数字证书格式</h3><p><img src="http://files.jb51.net/file_images/article/201609/2016913102801570.png?2016813102815" alt="图解数字证书格式"></p>
+<p>数字证书的格式普遍采用的是X.509V3 国际标准，一个标准的X.509 数字证书包含以下一些内容：</p>
+<ol>
+<li>证书的版本信息；</li>
+<li>证书的序列号，每个证书都有一个唯一的证书序列号；</li>
+<li>证书所使用的签名算法；</li>
+<li>证书的发行机构名称，命名规则一般采用X.500 格式；</li>
+<li>证书的有效期，通用的证书一般采用UTC 时间格式，它的计时范围为1950-2049；</li>
+<li>证书所有人的名称，命名规则一般采用X.500 格式；</li>
+<li>证书所有人的公开密钥；</li>
+<li>证书发行者对证书的签名。</li>
+</ol>
+<h3 id="数字证书原理"><a href="#数字证书原理" class="headerlink" title="数字证书原理"></a>数字证书原理</h3><p><img src="http://files.jb51.net/file_images/article/201609/2016913102838397.png?2016813102852" alt="原理图解"></p>
+<p>数字证书是安全领域里的终极武器，SSL 通信协议里最核心的东西就是数字证书。他涉及到前面提到的所有知识：对称加密、非对称加密、消息摘要、数字签名等。</p>
+<p>数字证书可以通过java 自带的KeyTool 工具生成，生成后的数字证书一般保管在KeyStore 里。KeyStore可以叫做秘钥仓库。</p>
+<p>秘钥仓库可以保管3 种类型的数据：KeyStore.PrivateKeyEntry（非对称机密里的私钥）、KeyStore.SecretKeyEntry （对称加密里的秘钥）、KeyStore.TrustedCertificateEntry（受信任的证书）</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>keytool </p>
+<h3 id="Android中的keystore相关知识"><a href="#Android中的keystore相关知识" class="headerlink" title="Android中的keystore相关知识"></a>Android中的keystore相关知识</h3><p>debug.keystore 的别名（alias）及密码:<br>别名：androiddebugkey，密码：android</p>
+<p>签名命令(jdk1.6)：</p>
+<p>jarsigner -verbose -keystore debug.keystore -signedjar 1signed.apk 1.apk androiddebugkey</p>
+<p>签名命令(jdk1.7)：</p>
+<p>jarsigner -verbose -keystore debug.keystore -signedjar 1signed.apk 1.apk androiddebugkey -digestalg<br>SHA1 -sigalg MD5withRSA</p>
+<p>优化命令：</p>
+<p>zipalign -v 4 1signed.apk 1signedaligned.apk</p>
+<p>验证签名是否成功：</p>
+<p>jarsigner -verify 1signed.apk</p>
+<h3 id="签名证书"><a href="#签名证书" class="headerlink" title="签名证书"></a>签名证书</h3><h4 id="签名证书-1"><a href="#签名证书-1" class="headerlink" title="签名证书"></a>签名证书</h4><p>由权威颁发机构颁发给服务器或者个人用于证明自己身份的东西，默认客户端都是信任的。主要目的是用来加密和保证数据的完整性和不可抵赖性 </p>
+<p>例如根证书机构Symantec 颁发给百度的就是签名证书，是受信任的。</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913103158061.png?2016813103212" alt="img"></p>
+<p><strong>自签名证书：</strong></p>
+<p>由服务器自己颁发给自己，用于证明自己身份的东西，非权威颁发机构发布，默认客户端都是不信任的，主要目的是用来加密和保证数据的完整性和不可抵赖性,与签名证书相同. </p>
+<p>例如中铁集团（SRCA）办法给12306 的证书就是自签名证书，自己给自己颁发的。</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913103238930.png?2016813103254" alt="img"></p>
+<h2 id="1-5-Https"><a href="#1-5-Https" class="headerlink" title="1.5 Https"></a>1.5 Https</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><p>SSL(Secure Sockets Layer 安全套接层)，为网景公司(Netscape)所研发，用以保障在Internet 上数据传输之安全，利用数据加密(Encryption)技术，可确保数据在网络上之传输过程中不会被截取及窃听。一般通用之规格为40 bit 之安全标准，美国则已推出128 bit 之更高安全标准，但限制出境。只要3.0 版本以上之I.E.或Netscape 浏览器即可支持SSL。</p>
+<p>TLS（Transport Layer Security 传输层安全），用于在两个通信应用程序之间提供保密性和数据完整性。TLS 是SSL 的标准化后的产物，有1.0 ，1.1 ，1.2 三个版本，默认使用1.0。TLS1.0 和SSL3.0 几乎没<br>有区别，事实上我们现在用的都是TLS，但因为历史上习惯了SSL 这个称呼。</p>
+<p>SSL通信简单图示：</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913103906880.png?2016813103922" alt="图示"></p>
+<p>SSL 通信详细图示：</p>
+<p><img src="http://files.jb51.net/file_images/article/201609/2016913103944100.png?2016813103959" alt="详细图示"></p>
+<p>当请求使用自签名证书的网站数据时，例如请求12306 的客运服务页面：<a target="_blank" rel="noopener" href="https://kyfw.12306.cn/otn/">https://kyfw.12306.cn/otn/</a>，则会报下面的错误，原因是客户端的根认证机构不能识别该证书错误信息：unable to find valid certification path to requested target</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//协议传输层安全TLS(transport layer secure)</span></span><br><span class="line">SSLContext sslContext = SSLContext.getInstance(<span class="string">&quot;TLS&quot;</span>);</span><br><span class="line"><span class="comment">//创建信任管理器（TrustManager 负责校验证书是否可信）</span></span><br><span class="line">TrustManager[] tm = <span class="keyword">new</span> TrustManager[]&#123;<span class="keyword">new</span> EmptyX509TrustManager()&#125;;</span><br><span class="line"><span class="comment">//使用自定义的信任管理器初始化SSL 上下文对象</span></span><br><span class="line">sslContext.init(<span class="keyword">null</span>, tm, <span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//设置全局的SSLSocketFactory 工厂（对所有ssl 链接都产生影响）</span></span><br><span class="line">HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//URL url = new URL(&quot;https://www.baidu.com&quot;);</span></span><br><span class="line"> URL url = <span class="keyword">new</span> URL(<span class="string">&quot;https://kyfw.12306.cn/otn/&quot;</span>);</span><br><span class="line"> HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();</span><br><span class="line"> InputStream in = conn.getInputStream();</span><br><span class="line"> System.out.println(Util.inputstream2String(in));</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义一个什么都不做的信任管理器，所有证书都不做校验，一律放行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">EmptyX509TrustManager</span> <span class="keyword">implements</span> <span class="title">X509TrustManager</span></span>&#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkClientTrusted</span><span class="params">(X509Certificate[] chain, String authType)</span></span></span><br><span class="line"><span class="function"> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkServerTrusted</span><span class="params">(X509Certificate[] chain, String authType)</span></span></span><br><span class="line"><span class="function"> <span class="keyword">throws</span> CertificateException </span>&#123;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>12306 服务器出示的证书是中铁集团SRCA 给他颁发的，所以SRCA 的证书是能够识别12306 的证书的，所以只需要把SRCA 证书导入系统的KeyStore 里，之后交给TrustManagerFactory 进行初始化，则可把SRCA 添加至根证书认证机构，之后校验的时候，SRCA 对12306 证书校验时就能通过认证。</p>
+<p>这种解决方案有两种使用方式：一是直接使用SRCA.cer 文件，二是使用改文件的RFC 格式数据，将其写在代码里。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//12306 证书的RFC 格式（注意要记得手动添加两个换行符）</span></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CERT_12306_RFC = <span class="string">&quot;-----BEGIN CERTIFICATE-----\n&quot;</span>+</span><br><span class="line"><span class="string">&quot;MIICmjCCAgOgAwIBAgIIbyZr5/jKH6QwDQYJKoZIhvcNAQEFBQAwRzELMAkGA1UEBhMCQ04xKTAn&quot;</span>+</span><br><span class="line"><span class="string">&quot;BgNVBAoTIFNpbm9yYWlsIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MQ0wCwYDVQQDEwRTUkNBMB4X&quot;</span>+</span><br><span class="line"><span class="string">&quot;DTA5MDUyNTA2NTYwMFoXDTI5MDUyMDA2NTYwMFowRzELMAkGA1UEBhMCQ04xKTAnBgNVBAoTIFNp&quot;</span>+</span><br><span class="line"><span class="string">&quot;bm9yYWlsIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MQ0wCwYDVQQDEwRTUkNBMIGfMA0GCSqGSIb3&quot;</span>+</span><br><span class="line"><span class="string">&quot;DQEBAQUAA4GNADCBiQKBgQDMpbNeb34p0GvLkZ6t72/OOba4mX2K/eZRWFfnuk8e5jKDH+9BgCb2&quot;</span>+</span><br><span class="line"><span class="string">&quot;9bSotqPqTbxXWPxIOz8EjyUO3bfR5pQ8ovNTOlks2rS5BdMhoi4sUjCKi5ELiqtyww/XgY5iFqv6&quot;</span>+</span><br><span class="line"><span class="string">&quot;D4Pw9QvOUcdRVSbPWo1DwMmH75It6pk/rARIFHEjWwIDAQABo4GOMIGLMB8GA1UdIwQYMBaAFHle&quot;</span>+</span><br><span class="line"><span class="string">&quot;tne34lKDQ+3HUYhMY4UsAENYMAwGA1UdEwQFMAMBAf8wLgYDVR0fBCcwJTAjoCGgH4YdaHR0cDov&quot;</span>+</span><br><span class="line"><span class="string">&quot;LzE5Mi4xNjguOS4xNDkvY3JsMS5jcmwwCwYDVR0PBAQDAgH+MB0GA1UdDgQWBBR5XrZ3t+JSg0Pt&quot;</span>+</span><br><span class="line"><span class="string">&quot;x1GITGOFLABDWDANBgkqhkiG9w0BAQUFAAOBgQDGrAm2U/of1LbOnG2bnnQtgcVaBXiVJF8LKPaV&quot;</span>+</span><br><span class="line"><span class="string">&quot;23XQ96HU8xfgSZMJS6U00WHAI7zp0q208RSUft9wDq9ee///VOhzR6Tebg9QfyPSohkBrhXQenvQ&quot;</span>+ </span><br><span class="line"><span class="string">&quot;og555S+C3eJAAVeNCTeMS3N/M5hzBRJAoffn3qoYdAO1Q8bTguOi+2849A==&quot;</span>+ </span><br><span class="line"><span class="string">&quot;-----END CERTIFICATE-----\n&quot;</span>;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"> <span class="comment">// 使用传输层安全协议TLS(transport layer secure)</span></span><br><span class="line"> SSLContext sslContext = SSLContext.getInstance(<span class="string">&quot;TLS&quot;</span>);</span><br><span class="line"> <span class="comment">//使用SRCA.cer 文件的形式</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//FileInputStream certInputStream = new FileInputStream(new File(&quot;srca.cer&quot;));</span></span><br><span class="line"><span class="comment">//也可以通过RFC 字符串的形式使用证书</span></span><br><span class="line">ByteArrayInputStream certInputStream = <span class="keyword">new</span></span><br><span class="line">ByteArrayInputStream(CERT_12306_RFC.getBytes());</span><br><span class="line"><span class="comment">// 初始化keyStore，用来导入证书</span></span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line"><span class="comment">//参数null 表示使用系统默认keystore，也可使用其他keystore（需事先将srca.cer 证书导入</span></span><br><span class="line">keystore 里）</span><br><span class="line">keyStore.load(<span class="keyword">null</span>);</span><br><span class="line"><span class="comment">//通过流创建一个证书</span></span><br><span class="line">Certificate certificate = CertificateFactory.getInstance(<span class="string">&quot;X.509&quot;</span>)</span><br><span class="line">.generateCertificate(certInputStream);</span><br><span class="line"><span class="comment">// 把srca.cer 这个证书导入到KeyStore 里，别名叫做srca</span></span><br><span class="line">keyStore.setCertificateEntry(<span class="string">&quot;srca&quot;</span>, certificate);</span><br><span class="line"><span class="comment">// 设置使用keyStore 去进行证书校验</span></span><br><span class="line">TrustManagerFactory trustManagerFactory = TrustManagerFactory</span><br><span class="line">.getInstance(TrustManagerFactory.getDefaultAlgorithm());</span><br><span class="line">trustManagerFactory.init(keyStore);</span><br><span class="line"><span class="comment">//用我们设定好的TrustManager 去做ssl 通信协议校验，即证书校验</span></span><br><span class="line">sslContext.init(<span class="keyword">null</span>, trustManagerFactory.getTrustManagers(), <span class="keyword">null</span>);</span><br><span class="line">HttpsURLConnection.setDefaultSSLSocketFactory(sslContext</span><br><span class="line">.getSocketFactory());</span><br><span class="line">URL url = <span class="keyword">new</span> URL(<span class="string">&quot;https://kyfw.12306.cn/otn/&quot;</span>);</span><br><span class="line">HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();</span><br><span class="line">InputStream in = conn.getInputStream();</span><br><span class="line">System.out.println(Util.inputstream2String(in));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="Android中的Https请求"><a href="#Android中的Https请求" class="headerlink" title="Android中的Https请求"></a>Android中的Https请求</h3><p>把scra.cer 文件考到assets 或raw 目录下，或者直接使用证书的RFC 格式，接下来的做法和java工程代码一样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ByteArrayInputStream in = new ByteArrayInputStream(&quot;rfc&quot;.getBytes());</span></span><br><span class="line">CertificateFactory cf = CertificateFactory.getInstance(<span class="string">&quot;X.509&quot;</span>);</span><br><span class="line">InputStream caInput = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;load-der.crt&quot;</span>));</span><br><span class="line">Certificate ca;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> ca = cf.generateCertificate(caInput);</span><br><span class="line"> System.out.println(<span class="string">&quot;ca=&quot;</span> + ((X509Certificate) ca).getSubjectDN());</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> caInput.close();</span><br><span class="line">&#125;</span><br><span class="line">String keyStoreType = KeyStore.getDefaultType();</span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(keyStoreType);</span><br><span class="line">keyStore.load(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">keyStore.setCertificateEntry(<span class="string">&quot;ca&quot;</span>, ca);</span><br><span class="line"> </span><br><span class="line">String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();</span><br><span class="line">TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);</span><br><span class="line">tmf.init(keyStore);</span><br><span class="line"> </span><br><span class="line">SSLContext context = SSLContext.getInstance(<span class="string">&quot;TLS&quot;</span>);</span><br><span class="line">context.init(<span class="keyword">null</span>, tmf.getTrustManagers(), <span class="keyword">null</span>);</span><br><span class="line"> </span><br><span class="line">URL url = <span class="keyword">new</span> URL(<span class="string">&quot;https://certs.cac.washington.edu/CAtest/&quot;</span>);</span><br><span class="line">HttpsURLConnection urlConnection =</span><br><span class="line"> (HttpsURLConnection)url.openConnection();</span><br><span class="line">urlConnection.setSSLSocketFactory(context.getSocketFactory());</span><br><span class="line">InputStream in = urlConnection.getInputStream();</span><br><span class="line">copyInputStreamToOutputStream(in, System.out);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>双向验证</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CertificateFactory certificateFactory = CertificateFactory.getInstance(<span class="string">&quot;X.509&quot;</span>);</span><br><span class="line">KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">keyStore.load(<span class="keyword">null</span>);</span><br><span class="line"> </span><br><span class="line">SSLContext sslContext = SSLContext.getInstance(<span class="string">&quot;TLS&quot;</span>);</span><br><span class="line">TrustManagerFactory trustManagerFactory = TrustManagerFactory.</span><br><span class="line"> getInstance(TrustManagerFactory.getDefaultAlgorithm());</span><br><span class="line">trustManagerFactory.init(keyStore);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//初始化keystore</span></span><br><span class="line">KeyStore clientKeyStore = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">clientKeyStore.load(getAssets().open(<span class="string">&quot;client.bks&quot;</span>), <span class="string">&quot;123456&quot;</span>.toCharArray());</span><br><span class="line"> </span><br><span class="line">KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());</span><br><span class="line">keyManagerFactory.init(clientKeyStore, <span class="string">&quot;123456&quot;</span>.toCharArray());</span><br><span class="line"> </span><br><span class="line">sslContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), <span class="keyword">new</span> SecureRandom());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="什么是SSH，它和SSL有什么区别和联系？"><a href="#什么是SSH，它和SSL有什么区别和联系？" class="headerlink" title="什么是SSH，它和SSL有什么区别和联系？"></a>什么是SSH，它和SSL有什么区别和联系？</h3><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/ocean1010/article/details/6950924">http://blog.csdn.net/ocean1010/article/details/6950924</a></p>
+<p>SSH = security shell它就是个shell</p>
+<p>github使用ssh就是为了验证你的身份是合法的，SSHKEY就是保证每次传输都是安全的。否则你每次需要输入账户和密码。SSH用的是非对称加密。</p>
+<h2 id="参考文档与其他知识链接"><a href="#参考文档与其他知识链接" class="headerlink" title="参考文档与其他知识链接"></a>参考文档与其他知识链接</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28397034">英格玛与图灵</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.2cto.com/article/201407/315433.html">数字签名</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.youdzone.com/signature.html">What is a Digital Signature</a>(图解数字证书)</p>
+<p><a target="_blank" rel="noopener" href="http://www.2cto.com/article/201203/122095.html">数字证书原理</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/03/31/2017-03-31-Android生命周期-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/03/21/2017-03-21-深入理解Android构建工具Gradle-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-03-24 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li> <li><a href="/tags/密码学/">密码学<span>2</span></a></li> <li><a href="/tags/安全/">安全<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

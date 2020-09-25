@@ -1,0 +1,917 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Page 5 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header logo">
+  <h1>我的小站<span class="blink-fast">∎</span></h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+
+
+		<i class="fa fa-heart blink-slow"></i>
+
+		Keep and carry on.
+
+</div>    
+
+		<div id="top_search"></div>
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2018/01/23/2018-01-23-Retrofit&RxJava的示例/" >Retrofit与RxJava的一个简单示例</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2018-01-23  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<blockquote>
+<p>写在前面,Retrofit 整个框架运用了很多设计模式思想,而且还使用了一个Java上很重要的动态代理的理念,这个其实是Retrofit的一个设计的核心思想.</p>
+</blockquote>
+<blockquote>
+<p>RxJava2 是响应式编程在JVM平台的一个实现,其基本是想是将一切的事件看成是流,然后所有的操作都是针对流的操作.</p>
+</blockquote>
+<p>使用RxJava和Retrofit2 能够写出非常优雅的代码,当然背后的原理也是要了解一下的,否则出现坑了怎么办呢?!</p>
+<p>给个例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.reactivex.Observable;</span><br><span class="line"><span class="keyword">import</span> io.reactivex.Observer;</span><br><span class="line"><span class="keyword">import</span> io.reactivex.disposables.Disposable;</span><br><span class="line"><span class="keyword">import</span> io.reactivex.schedulers.Schedulers;</span><br><span class="line"><span class="keyword">import</span> okhttp3.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> retrofit2.Call;</span><br><span class="line"><span class="keyword">import</span> retrofit2.Retrofit;</span><br><span class="line"><span class="keyword">import</span> retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;</span><br><span class="line"><span class="keyword">import</span> retrofit2.converter.gson.GsonConverterFactory;</span><br><span class="line"><span class="keyword">import</span> retrofit2.http.GET;</span><br><span class="line"><span class="keyword">import</span> retrofit2.http.QueryMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by hefuduo on 2017/5/4.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="comment">//    http://api.tianapi.com/social/?key=APIKEY&amp;num=10</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Gson gson = <span class="keyword">new</span> GsonBuilder()</span><br><span class="line">                .setDateFormat(<span class="string">&quot;yyyy-MM-dd hh:mm:ss&quot;</span>)</span><br><span class="line">                .create();</span><br><span class="line">        Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create(gson))</span><br><span class="line">                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())</span><br><span class="line">                .baseUrl(<span class="string">&quot;http://api.tianapi.com/&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">        Map&lt;String, String&gt; params = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">        params.put(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;be3fbfe5c6a3ffa3c680f604d8db30a9&quot;</span>);</span><br><span class="line">        params.put(<span class="string">&quot;num&quot;</span>, <span class="string">&quot;10&quot;</span>);</span><br><span class="line"><span class="comment">//        Call&lt;ResponseBody&gt; call = retrofit.create(NewsService.class).getNews(params);</span></span><br><span class="line"><span class="comment">//        call.enqueue(new Callback&lt;ResponseBody&gt;() &#123;</span></span><br><span class="line"><span class="comment">//            public void onResponse(Call&lt;ResponseBody&gt; call, Response&lt;ResponseBody&gt; response) &#123;</span></span><br><span class="line"><span class="comment">//                try &#123;</span></span><br><span class="line"><span class="comment">//                    byte[] bytes = response.body().bytes();</span></span><br><span class="line"><span class="comment">//                    String result = new String(bytes);</span></span><br><span class="line"><span class="comment">//                    System.out.println(result);</span></span><br><span class="line"><span class="comment">//                &#125; catch (IOException e) &#123;</span></span><br><span class="line"><span class="comment">//                    e.printStackTrace();</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//            public void onFailure(Call&lt;ResponseBody&gt; call, Throwable t) &#123;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line">        <span class="comment">//=============================================</span></span><br><span class="line"><span class="comment">//        Call&lt;ResponseBean&gt; call = retrofit.create(NewsService2.class).getNews(params);</span></span><br><span class="line"><span class="comment">//        try &#123;</span></span><br><span class="line"><span class="comment">//            Response&lt;ResponseBean&gt; responseBeanResponse = call.execute();</span></span><br><span class="line"><span class="comment">//            System.out.println(responseBeanResponse.body().toString());</span></span><br><span class="line"><span class="comment">//        &#125; catch (IOException e) &#123;</span></span><br><span class="line"><span class="comment">//            e.printStackTrace();</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        <span class="comment">//==============================================</span></span><br><span class="line">        retrofit.create(NewsService3.class).getNews(params)</span><br><span class="line"><span class="comment">//                .subscribeOn(Schedulers.io())</span></span><br><span class="line"><span class="comment">//                .observeOn(Schedulers.newThread())</span></span><br><span class="line">                .subscribe(<span class="keyword">new</span> Observer&lt;ResponseBean&gt;() &#123;</span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable disposable)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(ResponseBean responseBean)</span> </span>&#123;</span><br><span class="line">                        System.out.println(responseBean.toString());</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//简单的方式</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">NewsService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET(&quot;social&quot;)</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">getNews</span><span class="params">(<span class="meta">@QueryMap</span> Map&lt;String, String&gt; params)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Convert Factory</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">NewsService2</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET(&quot;social&quot;)</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBean&gt; <span class="title">getNews</span><span class="params">(<span class="meta">@QueryMap</span> Map&lt;String, String&gt; params)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Convert Factory + CallAdapter</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">NewsService3</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GET(&quot;social&quot;)</span></span><br><span class="line">    <span class="function">Observable&lt;ResponseBean&gt; <span class="title">getNews</span><span class="params">(<span class="meta">@QueryMap</span> Map&lt;String, String&gt; params)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * Created by hefuduo on 2018/1/23.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResponseBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> code;</span><br><span class="line">    <span class="keyword">public</span> String msg;</span><br><span class="line">    List&lt;News&gt; newslist;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;code = &quot;</span> + code + <span class="string">&quot;,msg = &quot;</span> + msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">News</span></span>&#123;</span><br><span class="line">    String ctime;</span><br><span class="line">    String title;</span><br><span class="line">    String description;</span><br><span class="line">    String picUrl;</span><br><span class="line">    String url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态代理的一个简单样子,Retrofit跟这个不太一样的</span></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PACKAGE_NAME</span></span><br><span class="line"><span class="comment"> * Created by hefuduo on 2018/1/23.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonDaoImpl</span> <span class="keyword">implements</span> <span class="title">PersonDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;time to go&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PersonHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object mObject;</span><br><span class="line">    </span><br><span class="line">    PersonHandler(Object o)&#123;</span><br><span class="line">        mObject = o;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;before&quot;</span>);</span><br><span class="line">        Object result = method.invoke(mObject,args);</span><br><span class="line">        System.out.println(<span class="string">&quot;after&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注意动态代理只能针对接口,不能针对类.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>==//TODO== 待补充,Retrofit2,从源码角度剖析Retrofit2框架用到的设计模式.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2018/01/23/2018-01-23-Retrofit&RxJava的示例/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2018/01/02/2018-01-02-AndroidDataBinding-2018/" >Android Data Binding</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2018-01-02  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="Android-数据绑定"><a href="#Android-数据绑定" class="headerlink" title="Android 数据绑定"></a>Android 数据绑定</h1><p>//TODO  数据绑定使用场景</p>
+<p>HOW TO USE databinding to build an reactive app</p>
+<p>数据绑定原理</p>
+<p>MVP + DataBinding</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2018/01/02/2018-01-02-AndroidDataBinding-2018/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/12/27/2017-12-28-AndroidJNI-2017/" >Android JNI 系列</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-12-27  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="Android-JNI-基本知识"><a href="#Android-JNI-基本知识" class="headerlink" title="Android JNI 基本知识"></a>Android JNI 基本知识</h1><h2 id="1-1-什么是JNI"><a href="#1-1-什么是JNI" class="headerlink" title="1.1 什么是JNI"></a>1.1 什么是JNI</h2><p><code>JNI (Java Native Interface)</code>,它提供了若干<code>API</code>使得<code>Java</code>可以和其他语言互通,是<code>JDK</code>的一部分.</p>
+<p>理解这些就可以了!</p>
+<h2 id="1-2-为什么使用JNI"><a href="#1-2-为什么使用JNI" class="headerlink" title="1.2 为什么使用JNI"></a>1.2 为什么使用JNI</h2><p>使用<code>JNI</code>是为了将现有的<code>C或C++</code>库集成到使用<code>Java</code>语言开发的应用中,或者有些性能要求较高的场景下,使用<code>C</code>或<code>C++</code>才能满足的场景.</p>
+<h2 id="1-3-使用JNI带来的问题"><a href="#1-3-使用JNI带来的问题" class="headerlink" title="1.3 使用JNI带来的问题"></a>1.3 使用JNI带来的问题</h2><p>程序不再跨平台,还有JNI带来的内存问题,以及可能引起的<code>Crash</code></p>
+<h1 id="使用Android-Studio-搭建JNI开发环境"><a href="#使用Android-Studio-搭建JNI开发环境" class="headerlink" title="使用Android Studio 搭建JNI开发环境"></a>使用Android Studio 搭建JNI开发环境</h1><p>目前使用<code>Android Studio 3.0</code>可以直接建立一个支持<code>C或C++</code>语言的<code>JNI</code>项目.</p>
+<p>如果需要将现有的应用集成<code>JNI</code>可参照<code>Google Dev</code>的官方文档操作.</p>
+<p>编译<code>JNI</code>程序,可以使用<code>NDK</code>编译,或者使用<code>CMAKE</code>来编译,现在来讲都可行,推荐使用<code>CMAKE</code>来编译.</p>
+<p>在<code>app</code>目录下建立一个<code>JNI目录</code>源文件都放到这里.</p>
+<p><img src="/img/jni/jni1.png" alt="error"></p>
+<p><img src="/img/jni/jni2.png" alt="jni2"></p>
+<p>注意目录名称是<code>JNI</code>,只是在<code>Android Studio</code>中显示为<code>cpp目录</code></p>
+<p>下面写CMAKE文件</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里使用的是bsdiff patch的JNI库例子.</span></span><br><span class="line"><span class="comment"># For more information about using CMake with Android Studio, read the</span></span><br><span class="line"><span class="comment"># documentation: https://d.android.com/studio/projects/add-native-code.html</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets the minimum version of CMake required to build the native library.</span></span><br><span class="line"><span class="comment"># 设置CMake编译器的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creates and names a library, sets it as either STATIC</span></span><br><span class="line"><span class="comment"># or SHARED, and provides the relative paths to its source code.</span></span><br><span class="line"><span class="comment"># You can define multiple libraries, and CMake builds them for you.</span></span><br><span class="line"><span class="comment"># Gradle automatically packages shared libraries with your APK.</span></span><br><span class="line"><span class="comment"># 声明源文件路径</span></span><br><span class="line"><span class="keyword">file</span>(GLOB bzip <span class="string">&quot;src/main/jni/bzip2/*.c&quot;</span>)</span><br><span class="line"><span class="keyword">file</span>(GLOB bs_src <span class="string">&quot;src/main/jni/*.c&quot;</span>)</span><br><span class="line"><span class="comment"># 引入头文件路径 (这里必须要引入)</span></span><br><span class="line"><span class="keyword">include_directories</span>(</span><br><span class="line"><span class="string">&quot;src/main/jni/bzip2/&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 引入源文件</span></span><br><span class="line"><span class="keyword">add_library</span>( <span class="comment"># Sets the name of the library.</span></span><br><span class="line">             <span class="comment"># 设置编译后的库名称</span></span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Sets the library as a shared library.</span></span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Provides a relative path to your source file(s).</span></span><br><span class="line">             <span class="comment"># 设置源文件的位置</span></span><br><span class="line">             <span class="variable">$&#123;bzip&#125;</span></span><br><span class="line">             src/main/jni/native-lib.c )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Searches for a specified prebuilt library and stores the path as a</span></span><br><span class="line"><span class="comment"># variable. Because CMake includes system libraries in the search path by</span></span><br><span class="line"><span class="comment"># default, you only need to specify the name of the public NDK library</span></span><br><span class="line"><span class="comment"># you want to add. CMake verifies that the library exists before</span></span><br><span class="line"><span class="comment"># completing its build.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_library</span>( <span class="comment"># Sets the name of the path variable.</span></span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              <span class="comment"># Specifies the name of the NDK library that</span></span><br><span class="line">              <span class="comment"># you want CMake to locate.</span></span><br><span class="line">              <span class="comment"># 引入依赖库</span></span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specifies libraries CMake should link to your target library. You</span></span><br><span class="line"><span class="comment"># can link multiple libraries, such as libraries you define in this</span></span><br><span class="line"><span class="comment"># build script, prebuilt third-party libraries, or system libraries.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>( <span class="comment"># Specifies the target library.</span></span><br><span class="line">                       native-lib</span><br><span class="line">						</span><br><span class="line">                       <span class="comment"># Links the target library to the log library</span></span><br><span class="line">                       <span class="comment"># included in the NDK.</span></span><br><span class="line">                       <span class="variable">$&#123;log-lib&#125;</span> )</span><br></pre></td></tr></table></figure>
+
+
+
+<p>简单的来一个JNI HelloWorld</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;native-lib&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">helloworld</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line">JNIEXPORT jstring JNICALL</span><br><span class="line">Java_com_sankuai_meituan_testjni_MainActivity_helloworld(JNIEnv *env, jclass type) &#123;</span><br><span class="line">    <span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从<code>C</code>的函数定义中可以发现,函数的签名是有一定规律的一般是下面这种格式</p>
+<p><code>Java_[包名]_[类名]_[方法名](JNIEnv * env,jclass type,[params])</code></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/12/27/2017-12-28-AndroidJNI-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/12/27/2018-01-16-RxJava-Tutorial-2018/" >RxJava系列</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-12-27  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="什么是响应式编程"><a href="#什么是响应式编程" class="headerlink" title="什么是响应式编程"></a>什么是响应式编程</h1><h1 id="什么是函数式编程"><a href="#什么是函数式编程" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h1><h1 id="什么是RxJava-Why-It"><a href="#什么是RxJava-Why-It" class="headerlink" title="什么是RxJava,Why It"></a>什么是RxJava,Why It</h1><h1 id="RxJava-入门"><a href="#RxJava-入门" class="headerlink" title="RxJava 入门"></a>RxJava 入门</h1><ol>
+<li>ObservableSource/Observer</li>
+<li>Publisher/Subscriber</li>
+<li>SingleSource/SIngleObserver</li>
+<li>CompletableSource/CompletableObserver</li>
+<li>MaybeSource/MaybeObserver</li>
+</ol>
+<hr>
+<ol>
+<li>RxJava操作符 依据分类</li>
+<li>RxJava Scheduler任务线程切换</li>
+<li>其他</li>
+</ol>
+<hr>
+<ol>
+<li>RxJava In Action</li>
+</ol>
+<hr>
+<ol>
+<li>RxJava with RxAndroid , RxEventBus, etc.</li>
+</ol>
+<hr>
+<p>use RxKotlin  in Android</p>
+<p>Further More: How it work? Why it design like this? What the core concept it want to express!</p>
+<hr>
+<p>Retrofit2 中的设计模式,从retrofit源码看设计模式</p>
+<p>Java动态代理技术</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/12/27/2018-01-16-RxJava-Tutorial-2018/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/12/13/2017-12-13-androidIPC-2017/" >Android IPC 机制</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-12-13  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="Andorid-IPC"><a href="#Andorid-IPC" class="headerlink" title="Andorid IPC"></a>Andorid IPC</h1><h2 id="Android中的多进程模式"><a href="#Android中的多进程模式" class="headerlink" title="Android中的多进程模式"></a>Android中的多进程模式</h2><h3 id="1-开启多进程模式"><a href="#1-开启多进程模式" class="headerlink" title="1. 开启多进程模式"></a>1. 开启多进程模式</h3><p>在Android中,开启多进程的方式是给四大组件(静态注册),加上process属性,让其运行在其他进程,默认的进程的名称为包名.</p>
+<p>例如:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> </span></span><br><span class="line"><span class="tag">          <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:process</span>=<span class="string">&quot;:remote&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:name</span>=<span class="string">&quot;.SecondActivity&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:process</span>=<span class="string">&quot;[包名].remote&quot;</span></span></span><br><span class="line"><span class="tag">          &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个<code>MainActivity</code>将运行在包名<code>+:remote</code>这个名称的进程中.而<code>SecondActivity</code>将运行在<code>[packageName].remote</code>这个进程中.</p>
+<p>二者区别:</p>
+<p>加冒号<code>&#39;:&#39;</code>这种方式是在当前进程名称前面附加上当前应用的包名,是一种简写方式;对于<code>SecondActivity</code>来说是完整的进程命名.此外,加冒号这种方式运行的进程是当前应用的私有进程,其他应用的组件不可以和它运行在同一个进程中,而采用完整命名的进行是全局进程,其他应用通过<code>ShareUID</code>方式可以和它运行在同一个进程中.</p>
+<p><strong>Android系统会给每个应用分配一个唯一的UID,具有相同UID的应用才能共享数据,两个应用听过<code>ShareUID</code>运行在同一个进程是有要求的,这两个应用必须有相同的<code>ShareUID</code>并且包签名相同才可以.</strong></p>
+<h3 id="2-多进程模式的运行机制"><a href="#2-多进程模式的运行机制" class="headerlink" title="2. 多进程模式的运行机制"></a>2. 多进程模式的运行机制</h3><p>多进程所带来的问题</p>
+<ul>
+<li>静态成员和单例完全失效</li>
+<li>线程同步机制完全失效</li>
+<li>SharePreference的可靠性下降(SP只是做了线程同步喂)</li>
+<li>Application多次创建</li>
+</ul>
+<h2 id="IPC-基础概念"><a href="#IPC-基础概念" class="headerlink" title="IPC 基础概念"></a>IPC 基础概念</h2><h3 id="1-Serializable"><a href="#1-Serializable" class="headerlink" title="1. Serializable"></a>1. Serializable</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">6081784905993904744L</span>;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name,<span class="keyword">int</span> age,<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getSerialVersionUID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> serialVersionUID;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>序列化与反序列化<code>User</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化</span></span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="string">&quot;duo&quot;</span>,<span class="number">20</span>,<span class="number">1001</span>);</span><br><span class="line">ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;test.txt&quot;</span>));</span><br><span class="line">oos.writeObject(user);</span><br><span class="line">oos.close();</span><br><span class="line"></span><br><span class="line"><span class="comment">//反序列化</span></span><br><span class="line"> ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;test.txt&quot;</span>));</span><br><span class="line"> User user2 = (User) ois.readObject();</span><br><span class="line"> ois.close();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-Parcelable"><a href="#2-Parcelable" class="headerlink" title="2. Parcelable"></a>2. Parcelable</h3><p><code>parcelable</code>是Android提供的一种序列化和反序列化方式,它比<code>Serializable</code>效率更高一些.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Parcel;</span><br><span class="line"><span class="keyword">import</span> android.os.Parcelable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by hefuduo on 2017/12/13.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">User</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        name = in.readString();</span><br><span class="line">        age = in.readInt();</span><br><span class="line">        id = in.readInt();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;User&gt; CREATOR = <span class="keyword">new</span> Creator&lt;User&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> User <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> User[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> User[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeString(name);</span><br><span class="line">        dest.writeInt(age);</span><br><span class="line">        dest.writeInt(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Binder"><a href="#3-Binder" class="headerlink" title="3. Binder"></a>3. Binder</h3>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/12/13/2017-12-13-androidIPC-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/12/04/2017-12-04-androidView1-2017/" >Android View系列</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-12-04  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="View的事件体系"><a href="#View的事件体系" class="headerlink" title="View的事件体系"></a>View的事件体系</h1><p>​    </p>
+<h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h2><h3 id="1-1-View简介"><a href="#1-1-View简介" class="headerlink" title="1.1 View简介"></a>1.1 View简介</h3><p>View是所有Android显示控件的基类,View可以嵌套显示,形成一个类似于DOM的树形结构,可以以下面的一张图很明显的说明.</p>
+<p><img src="/img/androidview/view_tree.png" alt="图片渲染失败"></p>
+<h3 id="1-2-View的位置参数"><a href="#1-2-View的位置参数" class="headerlink" title="1.2 View的位置参数"></a>1.2 View的位置参数</h3><p>View是一块矩形的显示区域,由View的四个顶点指定位置.分别由四个边到父布局的距离指定的.</p>
+<p>TOP:上边到父布局的距离</p>
+<p>LEFT:下边到父布局的距离</p>
+<p>BOTTOM:左边到父布局的距离</p>
+<p>RIGHT:右边到父布局的距离</p>
+<p><img src="/img/androidview/screen.png" alt="图片加载出错"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">width &#x3D; right - left;</span><br><span class="line">height &#x3D; bottom - top;</span><br><span class="line"></span><br><span class="line">left &#x3D; view#getLeft();</span><br><span class="line">right &#x3D; view#getRight();</span><br><span class="line">bottom &#x3D; view#getBottom();</span><br><span class="line">top &#x3D; view#getTop();</span><br><span class="line"></span><br><span class="line">width &#x3D; view#getMeasuredWidth();  &#x2F;&#x2F;在view被测量之后</span><br><span class="line">height &#x3D; view#getMeasuredHeight(); &#x2F;&#x2F;在view被测量之后</span><br></pre></td></tr></table></figure>
+
+<p>此外, 还有几个参数可以表示view的位置</p>
+<p>x,y表示view的左上角的坐标,translateX和translateY表示view的左上角相对父view的偏移量.并且translateX和translateY默认值是0;</p>
+<blockquote>
+<p>获取View在全局坐标系中的x,y值.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">view#getLocationOnScreen(int[] location)  &#x2F;&#x2F;计算全局坐标系中的xy的值,包括了状态栏.</span><br><span class="line">view#getLocationInWindow(int[] location)  &#x2F;&#x2F;获取视图所在window 的绝对坐标.</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以上获取在onCreate中获取的时候都是0,需要等待UI控件加载完毕才能获取.</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-View-的touch事件"><a href="#1-3-View-的touch事件" class="headerlink" title="1.3 View 的touch事件"></a>1.3 View 的touch事件</h3><p>View的触摸事件由一个MotionEvent对象记录,该对象会记录touch类型,发生的位置.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void onTouchEvent(MotionEvent e)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">view#getX()</span><br><span class="line">view#getY() 获取的是相对当前view的点击事件发生的x和y坐标.</span><br><span class="line"></span><br><span class="line">而view#getRawX()和view#getRawY()获取的是相对于屏幕左上角的坐标.</span><br></pre></td></tr></table></figure>
+
+<p>此外,当手指在屏幕上滑动时候,会有一个识别最小滑动的触发阈值.这个阈值可以通过<code>ViewConfiguration</code>这个类获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float touchSlop &#x3D; ViewConfiguration.get(Context context).getScaledTouchSlop();</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-手势识别"><a href="#1-4-手势识别" class="headerlink" title="1.4 手势识别"></a>1.4 手势识别</h3><h4 id="VelocityTacker"><a href="#VelocityTacker" class="headerlink" title="VelocityTacker"></a>VelocityTacker</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">VelocityTracker mVelocityTracker = VelocityTracker.obtain();</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View view,MotionEvent motionEvent)</span></span>&#123;</span><br><span class="line">        mVelocityTracker.addMovement(motionEvent);</span><br><span class="line">        <span class="keyword">int</span> action = motionEvent.getActionMasked();</span><br><span class="line">        <span class="keyword">switch</span> (action)&#123;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">                mVelocityTracker.computeCurrentVelocity(<span class="number">1000</span>); <span class="comment">//获取速度之前都要先计算速度.</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                <span class="keyword">float</span> xV = mVelocityTracker.getXVelocity();</span><br><span class="line">                <span class="keyword">float</span> yV = mVelocityTracker.getYVelocity();</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onTouch: &quot;</span> + <span class="string">&quot;x = &quot;</span> + xV + <span class="string">&quot;,y = &quot;</span> + yV);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//回收内存</span></span><br><span class="line">    mVelocityTracker.clear();</span><br><span class="line">  	mVelocityTracker.recycle();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="GestureDetector"><a href="#GestureDetector" class="headerlink" title="GestureDetector"></a>GestureDetector</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">GestureureDetector mGestureDetecotr = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        mView = findViewById(R.id.scroll_view);</span><br><span class="line">        mView.setOnTouchListener(<span class="keyword">this</span>);</span><br><span class="line">        mView.setFocusable(<span class="keyword">true</span>);</span><br><span class="line">        mView.setClickable(<span class="keyword">true</span>);</span><br><span class="line">        mView.setLongClickable(<span class="keyword">true</span>);</span><br><span class="line">        mVelocityTracker = VelocityTracker.obtain();</span><br><span class="line">        mGestureDetector = <span class="keyword">new</span> GestureDetector(<span class="keyword">this</span>,<span class="keyword">new</span> GestureDetector.SimpleOnGestureListener()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapConfirmed</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onSingleTapConfirmed: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTap</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onDoubleTap: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDoubleTapEvent</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onDoubleTapEvent: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onSingleTapUp</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onSingleTapUp: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDown</span><span class="params">(MotionEvent e)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onDown: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onFling</span><span class="params">(MotionEvent e1, MotionEvent e2, <span class="keyword">float</span> velocityX, <span class="keyword">float</span> velocityY)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">&quot;onFling: &quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        mGestureDetector.setIsLongpressEnabled(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View view, MotionEvent motionEvent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mGestureDetector.onTouchEvent(motionEvent);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>日常开发中常用<code>GestureDetector</code>来监听<code>onDoubleTap </code>,<code>onFling</code>,<code>onScroll</code>等.</p>
+<h3 id="Scroller"><a href="#Scroller" class="headerlink" title="Scroller"></a>Scroller</h3><p>弹性滑动对象,用来实现<code>View</code>的弹性滑动.当使用View 的<code>ScrollTo</code>和<code>ScrollBy</code>方法来进行滑动的时候,都是瞬间完成的,没有过渡效果的滑动体验非常不好.这个时候就可以使用Scroller来实现滑动的效果.这个滑动过程不是瞬间完成的,而是在一定时间间隔内完成的.<code>Scroller</code>本身无法让<code>View</code>弹性滑动,它需要和<code>View</code>的<code>computerScroll</code>方法配合使用才能完成这个功能.</p>
+<p>使用:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Scroller mScroller = <span class="keyword">new</span> Scroller(CmContext);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">smoothScrollTo</span><span class="params">(<span class="keyword">int</span> destX,<span class="keyword">int</span> destY)</span></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Return the scrolled left position of this view. This is the left edge of</span></span><br><span class="line"><span class="comment">     * the displayed part of your view. You do not need to draw any pixels</span></span><br><span class="line"><span class="comment">     * farther left, since those are outside of the frame of your view on</span></span><br><span class="line"><span class="comment">     * screen.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> The left edge of the displayed part of your view, in pixels.</span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">  <span class="keyword">int</span> scrollX = getScrollX();</span><br><span class="line">  <span class="keyword">int</span> delta = destX - scrollX;</span><br><span class="line">  <span class="comment">//1000ms 内滑向destX,缓慢滑动</span></span><br><span class="line">  mScroller.startScroll(scrollX,<span class="number">0</span>,delta,<span class="number">0</span>,<span class="number">1000</span>);</span><br><span class="line">  invalidate();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Called by a parent to request that a child update its values for mScrollX</span></span><br><span class="line"><span class="comment">     * and mScrollY if necessary. This will typically be done if the child is</span></span><br><span class="line"><span class="comment">     * animating a scroll using a &#123;<span class="doctag">@link</span> android.widget.Scroller Scroller&#125;</span></span><br><span class="line"><span class="comment">     * object.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(mScroller.computeScrollOffset())&#123;</span><br><span class="line">       scrollTo(mScroller.getCurrentX(),mScroller.getCurrentY);</span><br><span class="line">       postInvalidate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-View的滑动"><a href="#2-View的滑动" class="headerlink" title="2. View的滑动"></a>2. View的滑动</h2><blockquote>
+<p>实现View的滑动可以有三种方式: 1. View本身提供的scrollTo和ScrollBy方法 2. 通过动画使View发生平移变化实现滑动.3. 通过改变View的LayoutParams实现View的滑动.</p>
+</blockquote>
+<h3 id="2-1-ScrollTo-ScrollBy"><a href="#2-1-ScrollTo-ScrollBy" class="headerlink" title="2.1 ScrollTo/ScrollBy"></a>2.1 ScrollTo/ScrollBy</h3><p><code>scrollBy</code>是<code>scrollTo</code> 的相对滑动,二者都是view内容相对view边缘的滑动,view本身在布局中的位置是不会变化的.</p>
+<p>滑动时候,左上偏移为正,右下偏移为负.</p>
+<h3 id="2-2-使用动画"><a href="#2-2-使用动画" class="headerlink" title="2.2 使用动画"></a>2.2 使用动画</h3><p>注意使用view动画并不会改变View的原始位置,可以通过使用属性动画,来改变View的位置.</p>
+<h3 id="2-3-改变布局参数"><a href="#2-3-改变布局参数" class="headerlink" title="2.3 改变布局参数"></a>2.3 改变布局参数</h3><p>通过改变View的margin即可.</p>
+<h2 id="3-弹性滑动"><a href="#3-弹性滑动" class="headerlink" title="3. 弹性滑动"></a>3. 弹性滑动</h2><p>通过动画和Scroller实现View的弹性滑动. 见代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyScrollView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Scroller mScroller;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyScrollView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyScrollView</span><span class="params">(Context context, <span class="meta">@Nullable</span> AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyScrollView</span><span class="params">(Context context, <span class="meta">@Nullable</span> AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyScrollView</span><span class="params">(Context context, <span class="meta">@Nullable</span> AttributeSet attrs, <span class="keyword">int</span> defStyleAttr, <span class="keyword">int</span> defStyleRes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr, defStyleRes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Paint mPaint;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mScroller = <span class="keyword">new</span> Scroller(getContext());</span><br><span class="line">        mPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">        mPaint.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">        mPaint.setColor(<span class="number">0xff00ddcc</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">smoothScrollTo</span><span class="params">(<span class="keyword">int</span> destX, <span class="keyword">int</span> destY)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> scrollX = getScrollX();</span><br><span class="line">        <span class="keyword">int</span> deltaX = destX - scrollX;</span><br><span class="line">        mScroller.startScroll(scrollX, <span class="number">0</span>, deltaX, <span class="number">0</span>,<span class="number">1000</span>);</span><br><span class="line">        invalidate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        canvas.drawRect(getLeft(),getTop(),getRight(),getBottom(),mPaint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">computeScroll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mScroller.computeScrollOffset())&#123;</span><br><span class="line">            scrollTo(mScroller.getCurrX(),mScroller.getCurrY());</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在MainActivity中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">&quot;MainActivity&quot;</span>;</span><br><span class="line"></span><br><span class="line">    MyScrollView mView;</span><br><span class="line">    Button mButton;</span><br><span class="line">    <span class="keyword">boolean</span> isSwitched = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        mView = findViewById(R.id.scroll_view);</span><br><span class="line">        mButton = findViewById(R.id.button);</span><br><span class="line">        mButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (isSwitched)&#123;</span><br><span class="line">                    mView.smoothScrollTo(-<span class="number">1000</span>,<span class="number">0</span>);</span><br><span class="line">                    isSwitched = <span class="keyword">false</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    mView.smoothScrollTo(<span class="number">1000</span>,<span class="number">0</span>);</span><br><span class="line">                    isSwitched = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>效果图:</strong><br>其中蓝色的是<code>View</code>的内容,红色的是背景</p>
+<p><img src="/img/androidview/scroller.gif" alt="scoller"></p>
+<p><strong><code>Scroller</code>原理:</strong></p>
+<p>Scoller本身不能使View完成滑动,要配合View的computeScroll方法才能完成弹性滑动效果,其根本原理,是不断的重绘制View,直到到达指定位置.</p>
+<h2 id="4-View的事件分发机制"><a href="#4-View的事件分发机制" class="headerlink" title="4. View的事件分发机制"></a>4. View的事件分发机制</h2><blockquote>
+<p>点击事件的分发过程主要由三个很重要的方法完成.</p>
+<p><code>dispatchTouchEvent, onInterceptTouchEvent, onTouchEvent</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pass the touch screen motion event down to the target view, or this</span></span><br><span class="line"><span class="comment">     * view if it is the target.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> event The motion event to be dispatched.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> True if the event was handled by the view, false otherwise.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent event)</span></span>;  <span class="comment">//这是view的方法</span></span><br><span class="line"> <span class="comment">//受当前View的onTouchEvent和下级View的dispatchTouchEvent方法影响,标识是否消耗当前的事件.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Implement this method to intercept all touch screen motion events.  This</span></span><br><span class="line"><span class="comment">     * allows you to watch events as they are dispatched to your children, and</span></span><br><span class="line"><span class="comment">     * take ownership of the current gesture at any point.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;Using this function takes some care, as it has a fairly complicated</span></span><br><span class="line"><span class="comment">     * interaction with &#123;<span class="doctag">@link</span> View#onTouchEvent(MotionEvent)</span></span><br><span class="line"><span class="comment">     * View.onTouchEvent(MotionEvent)&#125;, and using it requires implementing</span></span><br><span class="line"><span class="comment">     * that method as well as this one in the correct way.  Events will be</span></span><br><span class="line"><span class="comment">     * received in the following order:</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &lt;ol&gt;</span></span><br><span class="line"><span class="comment">     * &lt;li&gt; You will receive the down event here.</span></span><br><span class="line"><span class="comment">     * &lt;li&gt; The down event will be handled either by a child of this view</span></span><br><span class="line"><span class="comment">     * group, or given to your own onTouchEvent() method to handle; this means</span></span><br><span class="line"><span class="comment">     * you should implement onTouchEvent() to return true, so you will</span></span><br><span class="line"><span class="comment">     * continue to see the rest of the gesture (instead of looking for</span></span><br><span class="line"><span class="comment">     * a parent view to handle it).  Also, by returning true from</span></span><br><span class="line"><span class="comment">     * onTouchEvent(), you will not receive any following</span></span><br><span class="line"><span class="comment">     * events in onInterceptTouchEvent() and all touch processing must</span></span><br><span class="line"><span class="comment">     * happen in onTouchEvent() like normal.</span></span><br><span class="line"><span class="comment">     * &lt;li&gt; For as long as you return false from this function, each following</span></span><br><span class="line"><span class="comment">     * event (up to and including the final up) will be delivered first here</span></span><br><span class="line"><span class="comment">     * and then to the target&#x27;s onTouchEvent().</span></span><br><span class="line"><span class="comment">     * &lt;li&gt; If you return true from here, you will not receive any</span></span><br><span class="line"><span class="comment">     * following events: the target view will receive the same event but</span></span><br><span class="line"><span class="comment">     * with the action &#123;<span class="doctag">@link</span> MotionEvent#ACTION_CANCEL&#125;, and all further</span></span><br><span class="line"><span class="comment">     * events will be delivered to your onTouchEvent() method and no longer</span></span><br><span class="line"><span class="comment">     * appear here.</span></span><br><span class="line"><span class="comment">     * &lt;/ol&gt;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ev The motion event being dispatched down the hierarchy.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Return true to steal motion events from the children and have</span></span><br><span class="line"><span class="comment">     * them dispatched to this ViewGroup through onTouchEvent().</span></span><br><span class="line"><span class="comment">     * The current target will receive an ACTION_CANCEL event, and no further</span></span><br><span class="line"><span class="comment">     * messages will be delivered here.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> <span class="comment">//viewGroup的方法</span></span></span><br><span class="line"><span class="function">      </span></span><br><span class="line"><span class="function">      </span></span><br><span class="line"><span class="function">      </span></span><br><span class="line"><span class="function">    <span class="comment">//判断是否拦截某个事件,如果当前View拦截了事件,那么在一个事件序列中,此方法不会被调用,返回结果表示是否拦截当前事件.</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function">   <span class="comment">/**</span></span></span><br><span class="line"><span class="function"><span class="comment">     * Implement this method to handle touch screen motion events.</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;p&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">     * If this method is used to detect click actions, it is recommended that</span></span></span><br><span class="line"><span class="function"><span class="comment">     * the actions be performed by implementing and calling</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &#123;@link #performClick()&#125;. This will ensure consistent system behavior,</span></span></span><br><span class="line"><span class="function"><span class="comment">     * including:</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;ul&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;li&gt;obeying click sound preferences</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;li&gt;dispatching OnClickListener calls</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;li&gt;handling &#123;@link AccessibilityNodeInfo#ACTION_CLICK ACTION_CLICK&#125; when</span></span></span><br><span class="line"><span class="function"><span class="comment">     * accessibility features are enabled</span></span></span><br><span class="line"><span class="function"><span class="comment">     * &lt;/ul&gt;</span></span></span><br><span class="line"><span class="function"><span class="comment">     *</span></span></span><br><span class="line"><span class="function"><span class="comment">     * @param event The motion event.</span></span></span><br><span class="line"><span class="function"><span class="comment">     * @return True if the event was handled, false otherwise.</span></span></span><br><span class="line"><span class="function"><span class="comment">     */</span></span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span></span></span><br><span class="line"><span class="function">    <span class="comment">//在dispatchTouchEvent方法中调用,用来处理点击事件,返回结果表示是否消耗了当前事件,如果不消耗,则在同一个事件中,当前View无法再次接受到事件.</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面三个方法的关系可以使用下面的伪代码来表示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//this = current view witch has received the event.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">  <span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">if</span>(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">      consume = onTouchEvent(ev)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      consume = child.dispatchTouchEvent(ev);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此外,当一个View被设置了<code>onTouchListener</code>那么<code>onTouchListener</code>中的<code>ouTouch</code>方法就会被调用.如果返回<code>false</code>,那么继续调用<code>onTouchEvent</code>,否则不在调用<code>onTouchEvent</code>.如果设置了<code>onClickListener</code>,它的优先级比<code>onTouchEvent</code>的优先级低.</p>
+<h2 id="5-解决滑动冲突"><a href="#5-解决滑动冲突" class="headerlink" title="5. 解决滑动冲突"></a>5. 解决滑动冲突</h2><blockquote>
+<p>当内外两层嵌套的View都可以滑动的时候,就产生了滑动冲突.</p>
+</blockquote>
+<h3 id="1-滑动冲突的场景"><a href="#1-滑动冲突的场景" class="headerlink" title="1. 滑动冲突的场景"></a>1. 滑动冲突的场景</h3><p>常见的滑动冲突主要由三种场景:</p>
+<ol>
+<li>两层嵌套内外滑动方向不一致</li>
+<li>两层嵌套内外滑动方向一致</li>
+<li>多层嵌套,内外滑动有一致的也有不一致的方向</li>
+</ol>
+<p>对于场景1,ViewPager和Fragment(内不是一个ListView的时候).就会产生滑动冲突,但是ViewPager内部对滑动冲突做了处理.但是每当使用SrollView等控件的时候,就需要手动处理滑动冲突了.否则造成的后果就是内外两层只有一层能够滑动.</p>
+<p>对于场景2,内外两层在一个方向上滑动,存在逻辑上的问题.</p>
+<p>对于场景3,是场景1和2的综合体,因此只要分别处理了以上两种情况就可以了.</p>
+<h3 id="2-滑动冲突的处理规则"><a href="#2-滑动冲突的处理规则" class="headerlink" title="2. 滑动冲突的处理规则"></a>2. 滑动冲突的处理规则</h3><ol>
+<li>外部拦截方法</li>
+</ol>
+<p>点击事件都先经过父容器,如果父容器需要相应这个事件,那么就拦截掉,如果不需要,那么就传递给子视图.</p>
+<p>伪代码;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent event)</span></span>&#123;</span><br><span class="line">  <span class="keyword">boolean</span> intercepted = <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">int</span> x = event.getX();</span><br><span class="line">  <span class="keyword">int</span> y = event.getY();</span><br><span class="line">  swtich(event.getAction())&#123;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">    intercepted = <span class="keyword">false</span>; <span class="comment">//如果拦截了down事件,那么后续的move和up事件,子视图就无法接收了.</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">    <span class="keyword">if</span>(parentNeed)&#123;</span><br><span class="line">        intercepted = <span class="keyword">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        intercepted = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">    intercepted = <span class="keyword">false</span>;  <span class="comment">//一旦拦截了,子视图就无法响应click事件了</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">default</span>:</span><br><span class="line">    intercepted = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">  mLastXIntercepted = x;</span><br><span class="line">  mLastYIntercepted = y;</span><br><span class="line">  <span class="keyword">return</span> intercepted;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>注意啊,划重点了</em></p>
+<p><strong>考虑一种情况,假设事件交由子元素处理,如果父容器在 ACTION_UP时返回了true,就会导致子元素无法接收到ACTION_UP事件,这个时候子元素中的onClick事件就无法触发,但是父容器比较特殊,一旦他开始拦截任何一个事件,那么后续的事件都会交给它来处理,而ACTION_UP作为最后一个事件也必定传给父容器,即使父容器的onInterceptOnTouchEvent方法在ACTION_DOWN的时候返回了false</strong></p>
+<ol start="2">
+<li>内部拦截法</li>
+</ol>
+<p>内部拦截法是指父容器不拦截任何事件,所有事件都传递给子元素,如果子元素需要此事件就消耗掉,否则交给父容器来处理.</p>
+<p>这种方式不做推荐.</p>
+<p>伪代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//重写子View的dispatchTouchEvent(MotionEvent event)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent event)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> x = event.getX();</span><br><span class="line">  <span class="keyword">int</span> y = event.getY();</span><br><span class="line">  <span class="keyword">switch</span>(event.getMaskedAction())&#123;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">      parent.requestDisallowInterceptTouchEvent(<span class="keyword">true</span>);   </span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</span><br><span class="line">      <span class="keyword">int</span> deltaX = x - mLastX;</span><br><span class="line">      <span class="keyword">int</span> deltaY = y - mLastY;</span><br><span class="line">      <span class="keyword">if</span>(parentNeed)&#123;</span><br><span class="line">          parent.requestDisallowInterceptTouchEvent(<span class="keyword">false</span>);<span class="comment">//当调用此方法时候,父视图开始拦截事件</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span> :</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  mLastX = x;</span><br><span class="line">  mLastY = y;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(event);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此外,父元素也需要拦截除了ACTION_DOWN意外的其他事件</span></span><br><span class="line"><span class="comment">//父视图</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent event)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(event.getMaskedAciton == MotionEvent.ACTION_DOWN)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  <span class="comment">//父视图不能拦截ACTION_DOWN事件,否则接下来的事件无法传递到子视图.`</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/12/04/2017-12-04-androidView1-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/10/28/2017-10-28-Android性能优化-2017/" >SparseMap HashMap ArrayMap</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-10-28  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/7b9a1b386265">可参考文档</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/10/28/2017-10-28-Android性能优化-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/10/11/2017-10-11-AndroidCrash-2017/" >关于获取PackageInfo引发的异常崩溃</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-10-11  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="关于获取PackageInfo引发的异常崩溃"><a href="#关于获取PackageInfo引发的异常崩溃" class="headerlink" title="关于获取PackageInfo引发的异常崩溃"></a>关于获取PackageInfo引发的异常崩溃</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>常见于大型APP,当通过获取PackageManager,利用它来获取ApplicationInfo的时候,出现崩溃.</p>
+<p>原因可以参考这边文章整理一下</p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/ddf194530bb6">有坑！Android新版QQ获取packageInfo引发异常崩溃</a></p>
+<p>官方文档</p>
+<p>关于PackageManager</p>
+<p><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/content/pm/PackageManager.html#getPackageInfo(java.lang.String,int)">https://developer.android.com/reference/android/content/pm/PackageManager.html#getPackageInfo(java.lang.String,int)</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/10/11/2017-10-11-AndroidCrash-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/08/31/2017-08-31-Android之View体系-2017/" >Android系列2</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-08-31  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/08/31/2017-08-31-Android之View体系-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/08/31/2017-08-31-Android之控件详解-2017/" >Android系列1</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-08-31  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="控件详解"><a href="#控件详解" class="headerlink" title="控件详解"></a>控件详解</h1><h2 id="Widgets"><a href="#Widgets" class="headerlink" title="Widgets"></a>Widgets</h2><h3 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h3><h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><h3 id="ToggleButton"><a href="#ToggleButton" class="headerlink" title="ToggleButton"></a>ToggleButton</h3><h3 id="CheckBox"><a href="#CheckBox" class="headerlink" title="CheckBox"></a>CheckBox</h3><h3 id="RadioButton"><a href="#RadioButton" class="headerlink" title="RadioButton"></a>RadioButton</h3><h3 id="CheckedTextView"><a href="#CheckedTextView" class="headerlink" title="CheckedTextView"></a>CheckedTextView</h3><h3 id="Spinner"><a href="#Spinner" class="headerlink" title="Spinner"></a>Spinner</h3><h3 id="ProgressBar"><a href="#ProgressBar" class="headerlink" title="ProgressBar"></a>ProgressBar</h3><h3 id="SeekBar"><a href="#SeekBar" class="headerlink" title="SeekBar"></a>SeekBar</h3><h3 id="QuickContactBadge"><a href="#QuickContactBadge" class="headerlink" title="QuickContactBadge"></a>QuickContactBadge</h3><h3 id="RatingBar"><a href="#RatingBar" class="headerlink" title="RatingBar"></a>RatingBar</h3><h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><p>用于两个状态之间的相互切换,是在Android 4.0 后推出的一个控件,低版本可以使用support v7下的switch compact.</p>
+<p>使用方法类似于ToggleButton.</p>
+<p>监听接口<code>onCheckChanged</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">android:typeface=&quot;normal&quot;:设置字体类型</span><br><span class="line">android:track=&quot;&quot;:设置开关的轨迹图片</span><br><span class="line">android:textOff=&quot;开&quot;：设置开关checked的文字</span><br><span class="line">android:textOn=&quot;关&quot;：设置开关关闭时的文字</span><br><span class="line">android:thumb=&quot;&quot;:设置开关的图片</span><br><span class="line">android:switchMinWidth=&quot;&quot;：开关最小宽度</span><br><span class="line">android:switchPadding=&quot;&quot;:设置开关 与文字的空白距离</span><br><span class="line">android:switchTextAppearance=&quot;&quot;:设置文本的风格</span><br><span class="line">android:checked=&quot;&quot;:设置初始选中状态</span><br><span class="line">android:splitTrack=&quot;true&quot;:是否设置一个间隙，让滑块与底部图片分隔（API 21及以上）</span><br><span class="line">android:showText=&quot;true&quot;：设置是否显示开关上的文字（API 21及以上）</span><br></pre></td></tr></table></figure>
+<h3 id="Space"><a href="#Space" class="headerlink" title="Space"></a>Space</h3><p>Andorid 4.0 新加入的一个控件,表示占据一定的空间,但是不显示任何东西的控件.主要和GridLayout搭配使用,或者其他情况.引自Android源码的一段话:</p>
+<blockquote>
+<p>Space is a lightweight View subclass that may be used to create gaps between components in general purpose layouts.</p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/08/31/2017-08-31-Android之控件详解-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+
+   
+    
+     <a href="/page/4/" type="button" class="btn btn-default"><i class="fa fa-arrow-circle-o-left"></i> Prev</a>
+      
+
+        <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+ 
+       <a href="/page/6/" type="button" class="btn btn-default ">Next<i class="fa fa-arrow-circle-o-right"></i></a>     
+        
+
+  
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
+
+		
+			
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/生活/">生活<span>2</span></a></li>
+		
+			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
+		
+			<li><a href="/tags/编程思想/">编程思想<span>1</span></a></li>
+		
+			<li><a href="/tags/问题/">问题<span>1</span></a></li>
+		
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+		
+			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
+		
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+		
+			<li><a href="/tags/Android/">Android<span>26</span></a></li>
+		
+			<li><a href="/tags/View/">View<span>1</span></a></li>
+		
+			<li><a href="/tags/XML/">XML<span>1</span></a></li>
+		
+			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
+		
+			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
+		
+			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
+		
+			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
+		
+			<li><a href="/tags/软件工程/">软件工程<span>4</span></a></li>
+		
+			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+		
+			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
+		
+			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
+		
+			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
+		
+			<li><a href="/tags/安全/">安全<span>1</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span>49</span></a></li>
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2020/05/25/2020-05-18-Android开源项目收集-2020/" ><i class="fa fa-file-o"></i>开源项目收集-Android</a>
+      </li>
+    
+      <li>
+        <a href="/2020/05/13/2020-05-11-算法第四版读书笔记1-2020/" ><i class="fa fa-file-o"></i>第一章基础</a>
+      </li>
+    
+      <li>
+        <a href="/2020/03/31/2020-03-31-Android资源文件精讲-2020/" ><i class="fa fa-file-o"></i>Android 资源文件精讲</a>
+      </li>
+    
+      <li>
+        <a href="/2020/03/31/2020-03-31-Kotlin奇淫巧技精讲-2020/" ><i class="fa fa-file-o"></i>Koltin奇淫巧技精讲</a>
+      </li>
+    
+      <li>
+        <a href="/2020/02/26/2020-02-26-证书转换工具记录-2020/" ><i class="fa fa-file-o"></i>证书转换工具</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/hefuduo" title="Leo's Github repository." target="_blank"]);">Leo</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

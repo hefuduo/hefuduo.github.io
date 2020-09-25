@@ -1,0 +1,546 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>IOS系列教程1 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="IOS系列教程1"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> IOS系列教程1</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h1><p> <code>Swift</code>是类<code>C</code>与<code>OC</code>语言,提供了自己的一些类型,包括基本类型,例如<code>Int,String,Double</code>,此外,还提供了强大的三种原生集合类型<code>Array,Set</code>与<code>Dictionary</code>.</p>
+<p> <code>Swift</code>是类型安全的语言,这就意味着语言本身会帮助你写出更加安全的代码.在编译阶段就能够提前指出错误.</p>
+<h2 id="Constants-and-Variables"><a href="#Constants-and-Variables" class="headerlink" title="Constants and Variables"></a>Constants and Variables</h2><h3 id="Declaring-Constants-and-Variables"><a href="#Declaring-Constants-and-Variables" class="headerlink" title="Declaring Constants and Variables"></a>Declaring Constants and Variables</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> maximumNumberOfLoginAttempts = <span class="number">10</span> <span class="comment">//声明一个常量,类型推断为Int,注意书写格式,可以省略分号</span></span><br><span class="line"><span class="keyword">var</span> currentLoginTemp = <span class="number">0</span>    <span class="comment">//声明一个变量</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">1.0</span>, y = <span class="number">0.0</span>, z = <span class="number">0.0</span> <span class="comment">//同时声明多个变量</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>NOTE</p>
+<p>如果声明一个常量,尽量使用<code>let</code>声明一个常量.注意这个常量是存储一个值,而不是一个引用</p>
+</blockquote>
+<h3 id="Type-Annotations"><a href="#Type-Annotations" class="headerlink" title="Type Annotations"></a>Type Annotations</h3><p>显示的指定一个变量的类型,可以使用类型限定,或者叫做类型标注.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> welcomeMessage: <span class="type">String</span>   <span class="comment">//类型限定,与Kotlin是一样的.</span></span><br><span class="line">welcomeMessage = <span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="keyword">var</span> red, green, blue: <span class="type">Double</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>NOTE</p>
+<p>实际编码中,很少会用到显示指定类型,当你为一个变量或常量初始化一个值的时候.<code>Swfit</code>可以推断出变量的类型.</p>
+</blockquote>
+<h3 id="Naming-Constants-and-Variables"><a href="#Naming-Constants-and-Variables" class="headerlink" title="Naming Constants and Variables"></a>Naming Constants and Variables</h3><p>变量和常量可以包含几乎任意的字符,包括<code>Unicode</code>字符:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> π = <span class="number">3.14159</span> <span class="comment">// 声明了三个常量,对应Kotlin中的val</span></span><br><span class="line"><span class="keyword">let</span> 你好 = <span class="string">&quot;你好世界&quot;</span></span><br><span class="line"><span class="keyword">let</span> 🐶🐮 = <span class="string">&quot;dogcow&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>变量和常量的名称不能包含空格,数学符号,箭头或无效的<code>Unicode</code>字符等,变量和常量只能被声明一次,并且无法变更其可变性.</p>
+<blockquote>
+<p>NOTE</p>
+<p>可以使用”``”将关键字或者同名的变量或常量区分开来,但是尽量不要这么做.</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> `<span class="class"><span class="keyword">class</span>` = 100</span></span><br><span class="line"><span class="class"><span class="title">print</span>(`<span class="title">class</span>`)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Printing-Constants-and-Variables"><a href="#Printing-Constants-and-Variables" class="headerlink" title="Printing Constants and Variables"></a>Printing Constants and Variables</h3><p><code>print</code>函数是一个全局函数能够打印一个或多个value到合适的输出. 使用占位符来打印变量</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">String</span> = <span class="string">&quot;LeoHe&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(name)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World \(name)&quot;</span>)   <span class="comment">// 使用 \(varName) 这种形式在字符串中站位,打印变量值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World \(1 + 2)&quot;</span>)  <span class="comment">// 或者求一个表达式的值都可以;</span></span><br><span class="line"><span class="comment">//类似Kotlin中的&quot;&#123; expression &#125;&quot;这种形式的站位.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h2><p>注释</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a comment</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* This is also a comment</span></span><br><span class="line"><span class="comment">  but is written over multiple lines */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* This is the start of the first multiline comment.</span></span><br><span class="line"><span class="comment"> <span class="comment">/* This is the second, nested multiline comment. */</span></span></span><br><span class="line"><span class="comment"> This is the end of the first multiline comment. */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Semicolons"><a href="#Semicolons" class="headerlink" title="Semicolons"></a>Semicolons</h2><p>Swift 不强制要求写分号,但是当两个表达式需要写在一行的时候,还是需要写分号.跟Kotlin一样.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cat = <span class="string">&quot;🐱&quot;</span>; <span class="built_in">print</span>(cat)</span><br><span class="line"><span class="comment">// Prints &quot;🐱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Integers"><a href="#Integers" class="headerlink" title="Integers"></a>Integers</h2><p>Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms. These integers follow a naming convention similar to C, in that an 8-bit unsigned integer is of type <code>UInt8</code>, and a 32-bit signed integer is of type <code>Int32</code>. Like all types in Swift, these integer types have capitalized names.</p>
+<p>注意整数的平台相关性,以及有符号和无符号整数的区别</p>
+<h3 id="Integer-Bounds"><a href="#Integer-Bounds" class="headerlink" title="Integer Bounds"></a>Integer Bounds</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> minValue = <span class="type">UInt8</span>.<span class="built_in">min</span>  <span class="comment">// minValue is equal to 0, and is of type UInt8</span></span><br><span class="line"><span class="keyword">let</span> maxValue = <span class="type">UInt8</span>.<span class="built_in">max</span>  <span class="comment">// maxValue is equal to 255, and is of type UInt8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Int"><a href="#Int" class="headerlink" title="Int"></a>Int</h3><p>In most cases, you don’t need to pick a specific size of integer to use in your code. Swift provides an additional integer type, <code>Int</code>, which has the same size as the current platform’s native word size:</p>
+<ul>
+<li>On a 32-bit platform, <code>Int</code> is the same size as <code>Int32</code>.</li>
+<li>On a 64-bit platform, <code>Int</code> is the same size as <code>Int64</code>.</li>
+</ul>
+<h3 id="UInt"><a href="#UInt" class="headerlink" title="UInt"></a>UInt</h3><p>Swift also provides an unsigned integer type, <code>UInt</code>, which has the same size as the current platform’s native word size:</p>
+<ul>
+<li>On a 32-bit platform, <code>UInt</code> is the same size as <code>UInt32</code>.</li>
+<li>On a 64-bit platform, <code>UInt</code> is the same size as <code>UInt64</code>.</li>
+</ul>
+<blockquote>
+<p>NOTE</p>
+<p>Use <code>UInt</code> only when you specifically need an unsigned integer type with the same size as the platform’s native word size. If this isn’t the case, <code>Int</code> is preferred, even when the values to be stored are known to be nonnegative. A consistent use of <code>Int</code> for integer values aids code interoperability, avoids the need to convert between different number types, and matches integer type inference, as described in <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID322">Type Safety and Type Inference</a>.</p>
+</blockquote>
+<h2 id="Floating-Point-Numbers"><a href="#Floating-Point-Numbers" class="headerlink" title="Floating-Point Numbers"></a>Floating-Point Numbers</h2><p>注意浮点数的小数点后有几位,如果需求精度不高,可以使用float</p>
+<p>Floating-point types can represent a much wider range of values than integer types, and can store numbers that are much larger or smaller than can be stored in an <code>Int</code>. Swift provides two signed floating-point number types:</p>
+<ul>
+<li><code>Double</code> represents a 64-bit floating-point number.</li>
+<li><code>Float</code> represents a 32-bit floating-point number.</li>
+</ul>
+<blockquote>
+<p>NOTE</p>
+<p><code>Double</code> has a precision of at least 15 decimal digits, whereas the precision of <code>Float</code> can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code. In situations where either type would be appropriate, <code>Double</code> is preferred.</p>
+</blockquote>
+<h2 id="Type-Safety-and-Type-Inference"><a href="#Type-Safety-and-Type-Inference" class="headerlink" title="Type Safety and Type Inference"></a>Type Safety and Type Inference</h2><p><code>Swfit</code>使用类型推断来在编译阶段推出变量或常量的类型信息.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pi = <span class="number">3.14159</span></span><br><span class="line"><span class="comment">// pi is inferred to be of type Double</span></span><br><span class="line"><span class="keyword">let</span> anotherPi = <span class="number">3</span> + <span class="number">0.14159</span></span><br><span class="line"><span class="comment">// anotherPi is also inferred to be of type Double</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Numeric-Literals"><a href="#Numeric-Literals" class="headerlink" title="Numeric Literals"></a>Numeric Literals</h2><p>Integer literals can be written as:</p>
+<ul>
+<li>A <em>decimal</em> number, with no prefix 十进制,无前缀</li>
+<li>A <em>binary</em> number, with a <code>0b</code> prefix 二进制</li>
+<li>An <em>octal</em> number, with a <code>0o</code> prefix 八进制</li>
+<li>A <em>hexadecimal</em> number, with a <code>0x</code> prefix 十六进制</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> decimalInteger = <span class="number">17</span></span><br><span class="line"><span class="keyword">let</span> binaryInteger = <span class="number">0b10001</span>       <span class="comment">// 17 in binary notation</span></span><br><span class="line"><span class="keyword">let</span> octalInteger = <span class="number">0o21</span>           <span class="comment">// 17 in octal notation</span></span><br><span class="line"><span class="keyword">let</span> hexadecimalInteger = <span class="number">0x11</span>     <span class="comment">// 17 in hexadecimal notation</span></span><br></pre></td></tr></table></figure>
+
+<p>科学计数法</p>
+<p>For decimal numbers with an exponent of <code>exp</code>, the base number is multiplied by 10exp:</p>
+<ul>
+<li><code>1.25e2</code> means $1.25 * 10^2$, or <code>125.0</code>.</li>
+<li><code>1.25e-2</code> means $1.25 * 10^{-2}$, or <code>0.0125</code>.</li>
+</ul>
+<p>For hexadecimal numbers with an exponent of <code>exp</code>, the base number is multiplied by 2exp:</p>
+<ul>
+<li><code>0xFp2</code> means $15 * 2^2$, or <code>60.0</code>.</li>
+<li><code>0xFp-2</code> means $15 * 2^{-2}$, or <code>3.75</code>.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一下各个值都是相同的12.1875</span></span><br><span class="line"><span class="keyword">let</span> decimalDouble = <span class="number">12.1875</span></span><br><span class="line"><span class="keyword">let</span> exponentDouble = <span class="number">1.21875e1</span></span><br><span class="line"><span class="keyword">let</span> hexadecimalDouble = <span class="number">0xC.3p0</span></span><br></pre></td></tr></table></figure>
+
+<p>Numeric literals can contain extra formatting to make them easier to read. Both integers and floats can be padded with extra zeros and can contain underscores to help with readability. Neither type of formatting affects the underlying value of the literal:</p>
+<p>使用下划线分隔使得数字更加容易读(又跟Kotlin一样)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> paddedDouble = <span class="number">000123.456</span></span><br><span class="line"><span class="keyword">let</span> oneMillion = <span class="number">1_000_000</span></span><br><span class="line"><span class="keyword">let</span> justOverOneMillion = <span class="number">1_000_000.000_000_1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Numeric-Type-Conversion"><a href="#Numeric-Type-Conversion" class="headerlink" title="Numeric Type Conversion"></a>Numeric Type Conversion</h2><p>总结为一句话,能用<code>Int</code>尽量用,除非为了性能,或者是内存控制,或者是其他必要的优化,再使用其他类型的<code>Int</code>.</p>
+<h3 id="Integer-Conversion"><a href="#Integer-Conversion" class="headerlink" title="Integer Conversion"></a>Integer Conversion</h3><p>The range of numbers that can be stored in an integer constant or variable is different for each numeric type. An <code>Int8</code> constant or variable can store numbers between <code>-128</code> and <code>127</code>, whereas a <code>UInt8</code> constant or variable can store numbers between <code>0</code> and <code>255</code>. A number that won’t fit into a constant or variable of a sized integer type is reported as an error when your code is compiled:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cannotBeNegative: <span class="type">UInt8</span> = -<span class="number">1</span></span><br><span class="line"><span class="comment">// UInt8 cannot store negative numbers, and so this will report an error</span></span><br><span class="line"><span class="keyword">let</span> tooBig: <span class="type">Int8</span> = <span class="type">Int8</span>.<span class="built_in">max</span> + <span class="number">1</span></span><br><span class="line"><span class="comment">// Int8 cannot store a number larger than its maximum value,</span></span><br><span class="line"><span class="comment">// and so this will also report an error</span></span><br></pre></td></tr></table></figure>
+
+<p>使用场景:比如一个Bitmap -ARGB-8888,每个通道就可以使用UInt8来表示</p>
+<p>显示类型转换</p>
+<p>To convert one specific number type to another, you initialize a new number of the desired type with the existing value. In the example below, the constant <code>twoThousand</code> is of type <code>UInt16</code>, whereas the constant <code>one</code> is of type <code>UInt8</code>. They can’t be added together directly, because they’re not of the same type. Instead, this example calls <code>UInt16(one)</code> to create a new <code>UInt16</code> initialized with the value of <code>one</code>, and uses this value in place of the original:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> twoThousand: <span class="type">UInt16</span> = <span class="number">2_000</span></span><br><span class="line"><span class="keyword">let</span> one: <span class="type">UInt8</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> twoThousandAndOne = twoThousand + <span class="type">UInt16</span>(one)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Integer-and-Floating-Point-Conversion"><a href="#Integer-and-Floating-Point-Conversion" class="headerlink" title="Integer and Floating-Point Conversion"></a>Integer and Floating-Point Conversion</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> three = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> pointOneFourOneFiveNine = <span class="number">0.14159</span></span><br><span class="line"><span class="keyword">let</span> pi = <span class="type">Double</span>(three) + pointOneFourOneFiveNine</span><br><span class="line"><span class="comment">// pi equals 3.14159, and is inferred to be of type Double</span></span><br></pre></td></tr></table></figure>
+
+<p>Floating-point to integer conversion must also be made explicit. An integer type can be initialized with a <code>Double</code> or <code>Float</code> value:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> integerPi = <span class="type">Int</span>(pi)</span><br><span class="line"><span class="comment">// integerPi equals 3, and is inferred to be of type Int</span></span><br></pre></td></tr></table></figure>
+
+<p>Floating-point values are always truncated when used to initialize a new integer value in this way. This means that <code>4.75</code> becomes <code>4</code>, and <code>-3.9</code> becomes <code>-3</code>.</p>
+<p>浮点数向整数转换会损失精度.</p>
+<h2 id="Type-Aliases"><a href="#Type-Aliases" class="headerlink" title="Type Aliases"></a>Type Aliases</h2><p>类型别名就是为现有的类型定义一个可选的名称,使用<code>typealias</code>关键字定义.这个和Kotlin也是一样的,Kotlin和Swift是不是有一腿.</p>
+<p>在Kotlin中,类型别名一般在定义泛型或者函数类型时特别有用,可以缩短语法,看起来更加精炼,并且使得函数类型参数变的有意义了.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">AudioSample</span> = <span class="type">UInt16</span></span><br><span class="line"><span class="keyword">var</span> maxAmplitudeFound = <span class="type">AudioSample</span>.<span class="built_in">min</span></span><br><span class="line"><span class="comment">// maxAmplitudeFound is now 0</span></span><br><span class="line"><span class="comment">//Here, AudioSample is defined as an alias for UInt16. Because it’s an alias, the call to AudioSample.min actually calls UInt16.min, which provides an initial value of 0 for the maxAmplitudeFound variable.</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Booleans"><a href="#Booleans" class="headerlink" title="Booleans"></a>Booleans</h2><p>Swift has a basic <em>Boolean</em> type, called <code>Bool</code>. Boolean values are referred to as <em>logical</em>, because they can only ever be true or false. Swift provides two Boolean constant values, <code>true</code> and <code>false</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> orangesAreOrange = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> turnipsAreDelicious = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> turnipsAreDelicious &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Mmm, tasty turnips!&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Eww, turnips are horrible.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;Eww, turnips are horrible.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Swift’s type safety prevents non-Boolean values from being substituted for <code>Bool</code>. The following example reports a compile-time error:</p>
+<p>不允许其他类型转换为布尔类型</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> i &#123;</span><br><span class="line">    <span class="comment">// this example will not compile, and will report an error</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> i == <span class="number">1</span> &#123;</span><br><span class="line">    <span class="comment">// this example will compile successfully</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Tupels"><a href="#Tupels" class="headerlink" title="Tupels"></a>Tupels</h2><p>元组</p>
+<p><em>Tuples</em> group multiple values into a single compound value. The values within a tuple can be of any type and don’t have to be of the same type as each other.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> http404Error = (<span class="number">404</span>, <span class="string">&quot;Not Found&quot;</span>)</span><br><span class="line"><span class="comment">// http404Error is of type (Int, String), and equals (404, &quot;Not Found&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//deconstruction 解构元组</span></span><br><span class="line"><span class="keyword">let</span> (statusCode, statusMessage) = http404Error</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status code is \(statusCode)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status code is 404&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status message is \(statusMessage)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status message is Not Found&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Kotlin</code>中的元组分为二元<code>Pair</code>和三元<code>Triple</code>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (a,b) = Pair(<span class="number">20</span>,<span class="string">&quot;hello&quot;</span>) <span class="comment">//解构元组</span></span><br><span class="line"><span class="keyword">var</span> (a,b,c) = Triple(<span class="number">200</span>,<span class="literal">true</span>,<span class="string">&quot;ni&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> tuple = Pair(<span class="number">20</span>,<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> (m,n) = tuple</span><br><span class="line"><span class="comment">//使用下划线忽略一个解构</span></span><br><span class="line"><span class="keyword">val</span>(r,_) = tuple</span><br></pre></td></tr></table></figure>
+
+<p>If you only need some of the tuple’s values, ignore parts of the tuple with an underscore (<code>_</code>) when you decompose the tuple:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (justTheStatusCode, <span class="number">_</span>) = http404Error</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status code is \(justTheStatusCode)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status code is 404&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Alternatively, access the individual element values in a tuple using index numbers starting at zero:</p>
+<p>使用元组的顺序索引元组元素.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status code is \(http404Error.0)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status code is 404&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status message is \(http404Error.1)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status message is Not Found&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Kotlin</code>使用first,second,third指定元组中元素的顺序(在Kotlin中,元组是一个类型,使用属性索引元素)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> v = Triple(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">println(<span class="string">&quot;<span class="subst">$&#123;v.first&#125;</span>,<span class="subst">$&#123;v.second&#125;</span>,<span class="subst">$&#123;v.third&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>You can name the individual elements in a tuple when the tuple is defined:</p>
+<p>==定义元组的时候,可以限定元组中元素的名称,注意了,这里和Kotlin不一样了啊!==</p>
+<p>可以使用元素名称索引元组中的元素</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> http200Status = (statusCode: <span class="number">200</span>, description: <span class="string">&quot;OK&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status code is \(http200Status.statusCode)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status code is 200&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The status message is \(http200Status.description)&quot;</span>)</span><br><span class="line"><span class="comment">// Prints &quot;The status message is OK&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Tuples are particularly useful as the return values of functions. A function that tries to retrieve a web page might return the <code>(Int, String)</code> tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type. For more information, see <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID164">Functions with Multiple Return Values</a>.</p>
+<p>元组非常适合作为函数的返回值,当函数有多个返回值的时候,使用元组作为返回能够一次性返回多个数值,而省去了包装一个对象</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//元组可以定义多个元素,Kotlin应该是甚至有二元和三元.</span></span><br><span class="line"><span class="keyword">let</span> http200Status = (statusCode: <span class="number">200</span>, description: <span class="string">&quot;OK&quot;</span>, type: <span class="string">&quot;success&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>==Kotlin的结构声明可以使用在结合的遍历当中==</p>
+<p>==因为数据类自动声明 componentN() 函数，所以这里可以用解构声明==</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name:String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span>(name, age) = Person(<span class="string">&quot;hefuduo&quot;</span>,<span class="number">29</span>)</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">val</span> p = Person(<span class="string">&quot;Libilian&quot;</span>,<span class="number">30</span>)</span><br><span class="line"><span class="keyword">val</span> name = p.component1(); <span class="comment">//data class has already implements the component function</span></span><br><span class="line"><span class="keyword">val</span> age = p.component2();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">请注意，componentN() 函数需要用 operator 关键字标记，以允许在解构声明中使用它们。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">解构声明也可以用在 for-循环中：当你写：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">for ((a, b) in collection) &#123; …… &#125;</span></span><br><span class="line"><span class="comment">变量 a 和 b 的值取自对集合中的元素上调用 component1() 和 component2() 的返回值。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>NOTE</p>
+<p>Tuples are useful for temporary groups of related values. They’re not suited to the creation of complex data structures. If your data structure is likely to persist beyond a temporary scope, model it as a class or structure, rather than as a tuple. For more information, see <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82">Classes and Structures</a>.</p>
+</blockquote>
+<p>元组适合临时的一组变量的值,并不适合创建一个复杂数据结构,并且更适合在一个临时区域.如果想永久的保存一组数据,更适合用结构体或类.</p>
+<h2 id="Optionals"><a href="#Optionals" class="headerlink" title="Optionals"></a>Optionals</h2><p>这里翻译为可空类型?跟Kotlin的感觉是一致的.</p>
+<p>You use <em>optionals</em> in situations where a value may be absent. An optional represents two possibilities: Either there <em>is</em> a value, and you can unwrap the optional to access that value, or there <em>isn’t</em> a value at all.</p>
+<blockquote>
+<p>NOTE</p>
+<p>The concept of optionals doesn’t exist in C or Objective-C. The nearest thing in Objective-C is the ability to return <code>nil</code> from a method that would otherwise return an object, with <code>nil</code> meaning “the absence of a valid object.” However, this only works for objects—it doesn’t work for structures, basic C types, or enumeration values. For these types, Objective-C methods typically return a special value (such as <code>NSNotFound</code>) to indicate the absence of a value. This approach assumes that the method’s caller knows there’s a special value to test against and remembers to check for it. Swift’s optionals let you indicate the absence of a value for <em>any type at all</em>, without the need for special constants.</p>
+</blockquote>
+<p><code>nil</code>只是对于对象,对于基本<code>C</code>类型或枚举类型,<code>nil</code>是不能用的,因此<code>swift</code>提供了一种<code>Optinal</code>类型,来表示任何类型的空值.</p>
+<p>Here’s an example of how optionals can be used to cope with the absence of a value. Swift’s <code>Int</code> type has an initializer which tries to convert a <code>String</code> value into an <code>Int</code> value. However, not every string can be converted into an integer. The string <code>&quot;123&quot;</code> can be converted into the numeric value <code>123</code>, but the string <code>&quot;hello, world&quot;</code>doesn’t have an obvious numeric value to convert to.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possibleNumber = <span class="string">&quot;123&quot;</span></span><br><span class="line"><span class="keyword">let</span> convertedNumber = <span class="type">Int</span>(possibleNumber)</span><br><span class="line"><span class="comment">// convertedNumber is inferred to be of type &quot;Int?&quot;, or &quot;optional Int&quot;</span></span><br><span class="line"><span class="comment">//看起来Int?对应的就是Kotlin的空类型,但是Kotlin的Int?是包装类型,不是原生类型</span></span><br><span class="line"><span class="comment">//此外,Kotlin还提供了Unit类型和Any?,还有一个Nothing类型,注意Kotlin的Unit和Java的void是两回事,Unit是一个类单例.Nothing是所有类型的子类型,Unit是Any的子类型.详见下面Unit的定义;Nothing? 是所有可空类型的子类型</span></span><br><span class="line"><span class="comment">//Nothing可以理解为是编译时的一个产物</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>null 是一个特殊的不可变基本值（没有结构），它的真实类型是 Nothing? （同时也是这个类型的唯一值）。null 同时也是所有可空类型的合法值，也意味着相对应的非空类型不能为 null 。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">object</span> <span class="built_in">Unit</span> &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span> = <span class="string">&quot;kotlin.Unit&quot;</span> <span class="comment">//单例是为了避免非配多余内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The root of the Kotlin class hierarchy. Every Kotlin class has [Any] as a superclass.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Any</span></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回来继续</p>
+<h3 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h3><p><code>Kotlin</code>和<code>Swift</code>一定有一腿的,嗯嗯~</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> serverResponseCode: <span class="type">Int?</span> = <span class="number">404</span></span><br><span class="line"><span class="comment">// serverResponseCode contains an actual Int value of 404</span></span><br><span class="line">serverResponseCode = <span class="literal">nil</span></span><br><span class="line"><span class="comment">// serverResponseCode now contains no value</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>NOTE</p>
+<p>You can’t use <code>nil</code> with nonoptional constants and variables. If a constant or variable in your code needs to work with the absence of a value under certain conditions, always declare it as an optional value of the appropriate type.</p>
+</blockquote>
+<p>If you define an optional variable without providing a default value, the variable is automatically set to <code>nil</code> for you:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> surveyAnswer: <span class="type">String?</span></span><br><span class="line"><span class="comment">// surveyAnswer is automatically set to nil</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Swift的nil与OC的nil不同</code></p>
+<blockquote>
+<p>NOTE</p>
+<p>Swift’s <code>nil</code> isn’t the same as <code>nil</code> in Objective-C. In Objective-C, <code>nil</code> is a pointer to a nonexistent object. In Swift, <code>nil</code> isn’t a pointer—it’s the absence of a value of a certain type. Optionals of <em>any</em> type can be set to <code>nil</code>, not just object types.</p>
+</blockquote>
+<h3 id="If-Statements-and-Forced-Unwrapping"><a href="#If-Statements-and-Forced-Unwrapping" class="headerlink" title="If Statements and Forced Unwrapping"></a>If Statements and Forced Unwrapping</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> convertedNumber != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;convertedNumber contains some integer value.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;convertedNumber contains some integer value.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Once you’re sure that the optional <em>does</em> contain a value, you can access its underlying value by adding an exclamation mark (<code>!</code>) to the end of the optional’s name. The exclamation mark effectively says, “I know that this optional definitely has a value; please use it.” This is known as <em>forced unwrapping</em> of the optional’s value:</p>
+<p>应该是和Kotlin中的<code>!!</code>非空断言类似,但是Kotlin中只要判断非空,就可以直接使用该变量了</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> convertedNumber != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;convertedNumber has an integer value of \(convertedNumber!).&quot;</span>) <span class="comment">//这里进行了非空断言</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;convertedNumber has an integer value of 123.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们看Kotlin是怎么做的</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> l : String? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">var</span> m = l!!.toString()<span class="comment">//这里进行了一个非空断言,相当于说我知道l是非空的</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//上面的程序会直接throw 以NPE异常</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>NOTE</p>
+<p>Trying to use <code>!</code> to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-<code>nil</code> value before using <code>!</code> to force-unwrap its value.</p>
+<p>不管在Koltin还是Swift中,都要慎重使用非空断言</p>
+</blockquote>
+<h3 id="Optional-Binding"><a href="#Optional-Binding" class="headerlink" title="Optional Binding"></a>Optional Binding</h3><p>You use <em>optional binding</em> to find out whether an optional contains a value, and if so, to make that value available as a temporary constant or variable. Optional binding can be used with <code>if</code> and <code>while</code> statements to check for a value inside an optional, and to extract that value into a constant or variable, as part of a single action. <code>if</code> and <code>while</code> statements are described in more detail in <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120">Control Flow</a>.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> constantName = someOptional&#123;</span><br><span class="line">  <span class="comment">//statement</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> actualNumber = <span class="type">Int</span>(possibleNumber) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\&quot;\(possibleNumber)\&quot; has an integer value of \(actualNumber)&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\&quot;\(possibleNumber)\&quot; could not be converted to an integer&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;&quot;123&quot; has an integer value of 123&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对于条件的解读</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>“If the optional <code>Int</code> returned by <code>Int(possibleNumber)</code> contains a value, set a new constant called <code>actualNumber</code> to the value contained in the optional.”</p>
+<p>If the conversion is successful, the <code>actualNumber</code> constant becomes available for use within the first branch of the <code>if</code> statement. It has already been initialized with the value contained <em>within</em> the optional, and so there’s no need to use the <code>!</code> suffix to access its value. In this example, <code>actualNumber</code> is simply used to print the result of the conversion.</p>
+<p>You can use both constants and variables with optional binding. If you wanted to manipulate the value of <code>actualNumber</code> within the first branch of the <code>if</code> statement, you could write <code>if var actualNumber</code> instead, and the value contained within the optional would be made available as a variable rather than a constant.</p>
+<p>You can include as many optional bindings and Boolean conditions in a single <code>if</code> statement as you need to, separated by commas. If any of the values in the optional bindings are <code>nil</code> or any Boolean condition evaluates to <code>false</code>, the whole <code>if</code> statement’s condition is considered to be <code>false</code>. The following <code>if</code> statements are equivalent:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> firstNumber = <span class="type">Int</span>(<span class="string">&quot;4&quot;</span>), <span class="keyword">let</span> secondNumber = <span class="type">Int</span>(<span class="string">&quot;42&quot;</span>), firstNumber &lt; secondNumber &amp;&amp; secondNumber &lt; <span class="number">100</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\(firstNumber) &lt; \(secondNumber) &lt; 100&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;4 &lt; 42 &lt; 100&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> firstNumber = <span class="type">Int</span>(<span class="string">&quot;4&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> secondNumber = <span class="type">Int</span>(<span class="string">&quot;42&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> firstNumber &lt; secondNumber &amp;&amp; secondNumber &lt; <span class="number">100</span> &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\(firstNumber) &lt; \(secondNumber) &lt; 100&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;4 &lt; 42 &lt; 100&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>NOTE</p>
+<p>Constants and variables created with optional binding in an <code>if</code> statement are available only within the body of the <code>if</code> statement. In contrast, the constants and variables created with a <code>guard</code> statement are available in the lines of code that follow the <code>guard</code> statement, as described in <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID525">Early Exit</a>.</p>
+</blockquote>
+<h3 id="Implicitly-Unwrapped-Optionals"><a href="#Implicitly-Unwrapped-Optionals" class="headerlink" title="Implicitly Unwrapped Optionals"></a>Implicitly Unwrapped Optionals</h3><p>隐式推断解包可空类型</p>
+<p>An implicitly unwrapped optional is a normal optional behind the scenes, but can also be used like a nonoptional value, without the need to unwrap the optional value each time it’s accessed. The following example shows the difference in behavior between an optional string and an implicitly unwrapped optional string when accessing their wrapped value as an explicit <code>String</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> possibleString: <span class="type">String?</span> = <span class="string">&quot;An optional string.&quot;</span></span><br><span class="line"><span class="keyword">let</span> forcedString: <span class="type">String</span> = possibleString! <span class="comment">// requires an exclamation mark</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> assumedString: <span class="type">String!</span> = <span class="string">&quot;An implicitly unwrapped optional string.&quot;</span></span><br><span class="line"><span class="keyword">let</span> implicitString: <span class="type">String</span> = assumedString <span class="comment">// no need for an exclamation mark</span></span><br></pre></td></tr></table></figure>
+
+<p>You can think of an implicitly unwrapped optional as giving permission for the optional to be unwrapped automatically whenever it’s used. Rather than placing an exclamation mark after the optional’s name each time you use it, you place an exclamation mark after the optional’s type when you declare it.</p>
+<blockquote>
+<p>NOTE</p>
+<p>If an implicitly unwrapped optional is <code>nil</code> and you try to access its wrapped value, you’ll trigger a runtime error. The result is exactly the same as if you place an exclamation mark after a normal optional that doesn’t contain a value.</p>
+</blockquote>
+<p>You can still treat an implicitly unwrapped optional like a normal optional, to check if it contains a value:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> assumedString != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(assumedString)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;An implicitly unwrapped optional string.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p> You can also use an implicitly unwrapped optional with optional binding, to check and unwrap its value in a single statement:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> definiteString = assumedString &#123;</span><br><span class="line">    <span class="built_in">print</span>(definiteString)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints &quot;An implicitly unwrapped optional string.&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>NOTE</p>
+<p>Don’t use an implicitly unwrapped optional when there’s a possibility of a variable becoming <code>nil</code> at a later point. Always use a normal optional type if you need to check for a <code>nil</code> value during the lifetime of a variable.</p>
+</blockquote>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>错误处理</p>
+<p>You use <em>error handling</em> to respond to error conditions your program may encounter during execution.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canThrowAnError</span> <span class="title">throws</span></span>&#123;</span><br><span class="line">    <span class="comment">//this function may or may not throw an error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A function indicates that it can throw an error by including the <code>throws</code> keyword in its declaration. When you call a function that can throw an error, you prepend the <code>try</code> keyword to the expression.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> canThrowAnError()</span><br><span class="line">    <span class="comment">// no error was thrown</span></span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="comment">// an error was thrown</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以捕捉更能多异常</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeASandwich</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> makeASandwich()</span><br><span class="line">    eatASandwich()</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="type">SandwichError</span>.outOfCleanDishes &#123;</span><br><span class="line">    washDishes()</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="type">SandwichError</span>.missingIngredients(<span class="keyword">let</span> ingredients) &#123;</span><br><span class="line">    buyGroceries(ingredients)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Assertions-and-Preconditions"><a href="#Assertions-and-Preconditions" class="headerlink" title="Assertions and Preconditions"></a>Assertions and Preconditions</h2><p><em>Assertions</em> and <em>preconditions</em> are checks that happen at runtime. You use them to make sure an essential condition is satisfied before executing any further code. If the Boolean condition in the assertion or precondition evaluates to <code>true</code>, code execution continues as usual. If the condition evaluates to <code>false</code>, the current state of the program is invalid; code execution ends, and your app is terminated.</p>
+<p>You use assertions and preconditions to express the assumptions you make and the expectations you have while coding, so you can include them as part of your code. Assertions help you find mistakes and incorrect assumptions during development, and preconditions help you detect issues in production.</p>
+<p>In addition to verifying your expectations at runtime, assertions and preconditions also become a useful form of documentation within the code. Unlike the error conditions discussed in <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID515">Error Handling</a> above, assertions and preconditions aren’t used for recoverable or expected errors. Because a failed assertion or precondition indicates an invalid program state, there’s no way to catch a failed assertion.</p>
+<p>Using assertions and preconditions isn’t a substitute for designing your code in such a way that invalid conditions are unlikely to arise. However, using them to enforce valid data and state causes your app to terminate more predictably if an invalid state occurs, and helps makes the problem easier to debug. Stopping execution as soon as an invalid state is detected also helps limit the damage caused by that invalid state.</p>
+<p>The difference between assertions and preconditions is in when they’re checked: Assertions are checked only in debug builds, but preconditions are checked in both debug and production builds. In production builds, the condition inside an assertion isn’t evaluated. This means you can use as many assertions as you want during your development process, without impacting performance in production.</p>
+<h3 id="Debuggin-with-Assertions"><a href="#Debuggin-with-Assertions" class="headerlink" title="Debuggin with Assertions"></a>Debuggin with Assertions</h3><p>You write an assertion by calling the <code>assert(_:_:file:line:)</code> function from the Swift standard library. You pass this function an expression that evaluates to <code>true</code> or <code>false</code> and a message to display if the result of the condition is <code>false</code>. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let age &#x3D; -3</span><br><span class="line">assert(age &gt;&#x3D; 0, &quot;A person&#39;s age can&#39;t be less than zero.&quot;)</span><br><span class="line">&#x2F;&#x2F; This assertion fails because -3 is not &gt;&#x3D; 0.</span><br></pre></td></tr></table></figure>
+
+<p>use assertion failure</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age &gt; <span class="number">10</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can ride the roller-coaster or the ferris wheel.&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> age &gt; <span class="number">0</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can ride the ferris wheel.&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">assertionFailure</span>(<span class="string">&quot;A person&#x27;s age can&#x27;t be less than zero.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Enforcing-Preconditions"><a href="#Enforcing-Preconditions" class="headerlink" title="Enforcing Preconditions"></a>Enforcing Preconditions</h3><p>Use a precondition whenever a condition has the potential to be false, but must <em>definitely</em> be true for your code to continue execution. For example, use a precondition to check that a subscript is not out of bounds, or to check that a function has been passed a valid value.</p>
+<p>You write a precondition by calling the <code>precondition(_:_:file:line:)</code> function. You pass this function an expression that evaluates to <code>true</code> or <code>false</code> and a message to display if the result of the condition is <code>false</code>. For example.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In the implementation of a subscript...</span></span><br><span class="line"><span class="built_in">precondition</span>(index &gt; <span class="number">0</span>, <span class="string">&quot;Index must be greater than zero.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>or u can use  <code>preconditionFailure(_:file:line:)</code> function to indicate that a failure has occurred</p>
+<blockquote>
+<p>NOTE</p>
+<p>If you compile in unchecked mode (<code>-Ounchecked</code>), preconditions aren’t checked. The compiler assumes that preconditions are always true, and it optimizes your code accordingly. However, the <code>fatalError(_:file:line:)</code> function always halts execution, regardless of optimization settings.You can use the <code>fatalError(_:file:line:)</code> function during prototyping and early development to create stubs for functionality that hasn’t been implemented yet, by writing <code>fatalError(&quot;Unimplemented&quot;)</code> as the stub implementation. Because fatal errors are never optimized out, unlike assertions or preconditions, you can be sure that execution always halts if it encounters a stub implementation.</p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/01/26/2018-01-25-IOSSerial2-2018/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/01/24/2018-01-24-Rx全家桶-2018/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-01-25 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/IOS/">IOS<span>2</span></a></li> <li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

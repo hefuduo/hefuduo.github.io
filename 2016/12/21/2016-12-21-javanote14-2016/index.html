@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Java学习笔记14 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java学习笔记14"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Java学习笔记14</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="第14章-类型信息"><a href="#第14章-类型信息" class="headerlink" title="第14章 类型信息"></a>第14章 类型信息</h1><h3 id="14-1-RTTI"><a href="#14-1-RTTI" class="headerlink" title="14.1 RTTI"></a>14.1 RTTI</h3><p>RTTI（Run-Time Type Information)，通过运行时类型信息程序能够使用基类的指针或引用来检查这些指针或引用所指的对象的实际派生类</p>
+<p>RTTI提供了以下两个非常有用的操作符：</p>
+<p>（1）typeid操作符，返回指针和引用所指的实际类型。</p>
+<p>（2）dynamic_cast操作符，将基类类型的指针或引用安全地转换为派生类型的指针或引用。</p>
+<p>面向对象的编程语言，像C++，Java，delphi都提供了对RTTI的支持。</p>
+<h3 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h3><p>类是程序的一部分，每个类都有一个Class对象。每当编写并且编译了一个新类，就会产生一个Class对象（准确说是被保存在一个同名的.class文件中）。为了生成这个累的对象，运行这个程序的JVM将使用“类加载器”的子系统。</p>
+<p>所有的类都是在对其第一次使用时，动态的加载到JVM中的。当程序创建第一个对象的静态成员的引用时，就会加载这个类。这个证明构造器也是类的静态方法，即使在构造器之前并没有使用static关键字，因此使用new操作符创建类的新对象也会别当做类的静态成员的引用。</p>
+<p>因此，Java程序在它开始运行之前并非被完全加载，各个部分都是在必需时才加载的，这些与许多传统语言不同。动态加载使能的行为，在类似C++这样的静态加载语言中很那或者是根本不能复制的，</p>
+<p>类加载器首先检查这个Class对象是否已经加载，如果尚未加载，默认的累加扎起就会根据类名查找Class文件（例如某个附加类加载器可能会在数据库中查找字节码）。在这个累的字节码被加载时，它们会接受验证（verify）以确保其没有被破坏，并且不包含不良的Java代码（这是Java中用于安全防范目的的措施之一）。</p>
+<p>一旦某个类的Class对象被载入内存，它就会被用来创建这个类的所有对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Candy</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Candy&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gum</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Gum&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cookie</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Cookie&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SweetShop</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    print(<span class="string">&quot;inside main&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Candy();</span><br><span class="line">    print(<span class="string">&quot;After creating Candy&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      Class.forName(<span class="string">&quot;Gum&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(ClassNotFoundException e)&#123;</span><br><span class="line">      print(<span class="string">&quot;Couldn&#x27;t find class Gum&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">&quot;After class.forName(\&quot;Gum\&quot;)&quot;</span> );</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">new</span> Cookie();</span><br><span class="line">    print(<span class="string">&quot;After creating Cookie&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">The output </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">inside main</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Candy</span></span><br><span class="line"><span class="comment">After creating Candy</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Gum</span></span><br><span class="line"><span class="comment">After class.forName(&quot;Gum&quot;)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Cookie</span></span><br><span class="line"><span class="comment">After creating Cookie</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由此可知，类对象尽在需要的时候被加载，static初始化是在类加载时进行的。</p>
+<p><code>Class.forName(String arg)</code></p>
+<p>注意这个方法，这个方法是Class类的一个Static成员。Class度意向就和其他对象一样。</p>
+<p>forName方法是取得Class对象的引用的一种方法，他使用一个包含目标类的文本名的String作为输入参数，返回一个Class对象的引用（经常能在反射中看到这个）。上面的代码忽略的返回值，而利用的是该方法的一个“副作用”：如果累Gum还没有被加载我就加它，在它加载的过程中，Gum的static自己被执行。</p>
+<p>如果该方法找不到arg所指的类，则会抛出一个ClassNotFoundException异常类型。</p>
+<p>无论何时，只要你想在运行时使用类型信息，就必须首先获得恰当的Class对象的引用，Class.forName就是实现此功能的便捷途径，因为你不需要为了获得Class引用而持有该类型的对象。但是，如果你已经有有一个感兴趣的类型的对象，可以直接调用该对象的getClass()方法直接获取该类型的对象。</p>
+<h3 id="14-3类型转换前先做检查"><a href="#14-3类型转换前先做检查" class="headerlink" title="14.3类型转换前先做检查"></a>14.3类型转换前先做检查</h3><p>如果执行了一次错误的类型转换，程序会抛出一个ClassCastException</p>
+<p><code>instanceof </code>关键字</p>
+<p>此外，还有动态的instanceof</p>
+<p><code>Class.isInstance</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean isInstance(Object obj)</span><br></pre></td></tr></table></figure>
+
+<p>Determines if the specified <code>Object</code> is assignment-compatible with the object represented by this <code>Class</code>. This method is the dynamic equivalent of the Java language <code>instanceof</code> operator. The method returns <code>true</code> if the specified <code>Object</code> argument is non-null and can be cast to the reference type represented by this <code>Class</code> object without raising a <code>ClassCastException.</code> It returns <code>false</code> otherwise.Specifically, if this <code>Class</code> object represents a declared class, this method returns <code>true</code> if the specified <code>Object</code> argument is an instance of the represented class (or of any of its subclasses); it returns <code>false</code> otherwise. If this <code>Class</code> object represents an array class, this method returns <code>true</code> if the specified <code>Object</code> argument can be converted to an object of the array class by an identity conversion or by a widening reference conversion; it returns <code>false</code> otherwise. If this <code>Class</code> object represents an interface, this method returns <code>true</code> if the class or any superclass of the specified <code>Object</code> argument implements this interface; it returns <code>false</code>otherwise. If this <code>Class</code> object represents a primitive type, this method returns <code>false</code>.</p>
+<h3 id="14-4-动态代理"><a href="#14-4-动态代理" class="headerlink" title="14.4 动态代理"></a>14.4 动态代理</h3><blockquote>
+<p>代理是基本的设计模式之一，他是你为了提供而外的或不同的操作，而插入的用来代替实际对象的对象。</p>
+<p>这些操作通常涉及与实际对象的通信，因此代理通常充当着中间人的角色。</p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2016/12/21/2016-12-21-javanote12-2016/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2016/12/21/2016-12-21-javanote11-2016/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2016-12-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

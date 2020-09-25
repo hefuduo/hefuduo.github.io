@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Android-Universal-ImageLoader源代码分析1 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android-Universal-ImageLoader源代码分析1"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Android-Universal-ImageLoader源代码分析1</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><h2 id="AUIL-的特点"><a href="#AUIL-的特点" class="headerlink" title="AUIL 的特点"></a>AUIL 的特点</h2><ul>
+<li>多线程下载图片(同步异步)</li>
+<li>提供多种ImageLoader的用户配置(thread executors, downloaders,decoder, memory and disk cache, display image options, etc.)</li>
+<li>为每一个显示图片的调用提供了非常丰富的配置(stub image, caching switch, decoding options, Bitmap processing and displaying, etc)</li>
+<li>提供图片的内存和文件缓存</li>
+<li>图片加载的监听和下载进度的监听</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="QuickSetup"><a href="#QuickSetup" class="headerlink" title="QuickSetup"></a>QuickSetup</h3><ol>
+<li><p>include library</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;com.nostra13.universalimageloader:universal-image-loader:1.9.5&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config manifest permission</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">manifest&gt;</span><br><span class="line">	<span class="comment">&lt;!-- Include following permission if you load images from Internet --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Include following permission if you want to cache images on SD card --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config imageloader and initial </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.onCreate();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Create global configuration and initialize ImageLoader with this config</span></span><br><span class="line">		ImageLoaderConfiguration config = <span class="keyword">new</span> ImageLoaderConfiguration.Builder(<span class="keyword">this</span>)</span><br><span class="line">			...</span><br><span class="line">			.build();</span><br><span class="line">		ImageLoader.getInstance().init(config);</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>Display Options</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DON&#x27;T COPY THIS CODE TO YOUR PROJECT! This is just example of ALL options using.</span></span><br><span class="line"><span class="comment">// See the sample project how to use ImageLoader correctly.</span></span><br><span class="line">DisplayImageOptions options = <span class="keyword">new</span> DisplayImageOptions.Builder()</span><br><span class="line">		.showImageOnLoading(R.drawable.ic_stub) <span class="comment">// resource or drawable</span></span><br><span class="line">		.showImageForEmptyUri(R.drawable.ic_empty) <span class="comment">// resource or drawable</span></span><br><span class="line">		.showImageOnFail(R.drawable.ic_error) <span class="comment">// resource or drawable</span></span><br><span class="line">		.resetViewBeforeLoading(<span class="keyword">false</span>)  <span class="comment">// default</span></span><br><span class="line">		.delayBeforeLoading(<span class="number">1000</span>)</span><br><span class="line">		.cacheInMemory(<span class="keyword">false</span>) <span class="comment">// default</span></span><br><span class="line">		.cacheOnDisk(<span class="keyword">false</span>) <span class="comment">// default</span></span><br><span class="line">		.preProcessor(...)</span><br><span class="line">		.postProcessor(...)</span><br><span class="line">		.extraForDownloader(...)</span><br><span class="line">		.considerExifParams(<span class="keyword">false</span>) <span class="comment">// default</span></span><br><span class="line">		.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2) <span class="comment">// default</span></span><br><span class="line">		.bitmapConfig(Bitmap.Config.ARGB_8888) <span class="comment">// default</span></span><br><span class="line">		.decodingOptions(...)</span><br><span class="line">		.displayer(<span class="keyword">new</span> SimpleBitmapDisplayer()) <span class="comment">// default</span></span><br><span class="line">		.handler(<span class="keyword">new</span> Handler()) <span class="comment">// default</span></span><br><span class="line">		.build();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><h4 id="可接受的的URI资源示例"><a href="#可接受的的URI资源示例" class="headerlink" title="可接受的的URI资源示例"></a>可接受的的URI资源示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;http:&#x2F;&#x2F;site.com&#x2F;image.png&quot; &#x2F;&#x2F; from Web</span><br><span class="line">&quot;file:&#x2F;&#x2F;&#x2F;mnt&#x2F;sdcard&#x2F;image.png&quot; &#x2F;&#x2F; from SD card</span><br><span class="line">&quot;file:&#x2F;&#x2F;&#x2F;mnt&#x2F;sdcard&#x2F;video.mp4&quot; &#x2F;&#x2F; from SD card (video thumbnail)</span><br><span class="line">&quot;content:&#x2F;&#x2F;media&#x2F;external&#x2F;images&#x2F;media&#x2F;13&quot; &#x2F;&#x2F; from content provider</span><br><span class="line">&quot;content:&#x2F;&#x2F;media&#x2F;external&#x2F;video&#x2F;media&#x2F;13&quot; &#x2F;&#x2F; from content provider (video thumbnail)</span><br><span class="line">&quot;assets:&#x2F;&#x2F;image.png&quot; &#x2F;&#x2F; from assets</span><br><span class="line">&quot;drawable:&#x2F;&#x2F;&quot; + R.drawable.img &#x2F;&#x2F; from drawables (non-9patch images)</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE:</strong> Use <code>drawable://</code> only if you really need it! Always <strong>consider the native way</strong> to load drawables - <code>ImageView.setImageResource(...)</code> instead of using of <code>ImageLoader</code>.</p>
+<h4 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view </span></span><br><span class="line"><span class="comment">//	which implements ImageAware interface)</span></span><br><span class="line">ImageLoader imageLoader = ImageLoader.getInstance();</span><br><span class="line">imageLoader.loadImage(imageUri, imageview);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load image, decode it to Bitmap and return Bitmap to callback</span></span><br><span class="line">imageLoader.loadImage(imageUri, <span class="keyword">new</span> SimpleImageLoadingListener() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingComplete</span><span class="params">(String imageUri, View view, Bitmap loadedImage)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Do whatever you want with Bitmap</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load image, decode it to Bitmap and return Bitmap synchronously</span></span><br><span class="line">Bitmap bmp = imageLoader.loadImageSync(imageUri);</span><br></pre></td></tr></table></figure>
+
+<h4 id="完全使用"><a href="#完全使用" class="headerlink" title="完全使用"></a>完全使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load image, decode it to Bitmap and display Bitmap in ImageView (or any other view </span></span><br><span class="line"><span class="comment">//	which implements ImageAware interface)</span></span><br><span class="line">imageLoader.displayImage(imageUri, imageView, options, <span class="keyword">new</span> ImageLoadingListener() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingStarted</span><span class="params">(String imageUri, View view)</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingFailed</span><span class="params">(String imageUri, View view, FailReason failReason)</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingComplete</span><span class="params">(String imageUri, View view, Bitmap loadedImage)</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingCancelled</span><span class="params">(String imageUri, View view)</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="keyword">new</span> ImageLoadingProgressListener() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(String imageUri, View view, <span class="keyword">int</span> current, <span class="keyword">int</span> total)</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// Load image, decode it to Bitmap and return Bitmap to callback</span></span><br><span class="line">ImageSize targetSize = <span class="keyword">new</span> ImageSize(<span class="number">80</span>, <span class="number">50</span>); <span class="comment">// result Bitmap will be fit to this size</span></span><br><span class="line">imageLoader.loadImage(imageUri, targetSize, options, <span class="keyword">new</span> SimpleImageLoadingListener() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingComplete</span><span class="params">(String imageUri, View view, Bitmap loadedImage)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Do whatever you want with Bitmap</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load image, decode it to Bitmap and return Bitmap synchronously</span></span><br><span class="line">ImageSize targetSize = <span class="keyword">new</span> ImageSize(<span class="number">80</span>, <span class="number">50</span>); <span class="comment">// result Bitmap will be fit to this size</span></span><br><span class="line">Bitmap bmp = imageLoader.loadImageSync(imageUri, targetSize, options);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Load-amp-Display-Task-Flow"><a href="#Load-amp-Display-Task-Flow" class="headerlink" title="Load &amp; Display Task Flow"></a>Load &amp; Display Task Flow</h4><p>重要, 这个是AUIL的加载图片流程</p>
+<p><img src="https://github.com/nostra13/Android-Universal-Image-Loader/raw/master/wiki/UIL_Flow.png" alt="AUIL"></p>
+<h2 id="用户须知"><a href="#用户须知" class="headerlink" title="用户须知"></a>用户须知</h2><ol>
+<li><p><strong>Caching is NOT enabled by default</strong>如果需要开启内存或者是磁盘缓存,需要配置<code>DisplayImageOptions</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create default options which will be used for every </span></span><br><span class="line"><span class="comment">//  displayImage(...) call if no options will be passed to this method</span></span><br><span class="line">DisplayImageOptions defaultOptions = <span class="keyword">new</span> DisplayImageOptions.Builder()</span><br><span class="line">   		...</span><br><span class="line">           .cacheInMemory(<span class="keyword">true</span>)</span><br><span class="line">           .cacheOnDisk(<span class="keyword">true</span>)</span><br><span class="line">           ...</span><br><span class="line">           .build();</span><br><span class="line">ImageLoaderConfiguration config = <span class="keyword">new</span> ImageLoaderConfiguration.Builder(getApplicationContext())</span><br><span class="line">           ...</span><br><span class="line">           .defaultDisplayImageOptions(defaultOptions)</span><br><span class="line">           ...</span><br><span class="line">           .build();</span><br><span class="line">ImageLoader.getInstance().init(config); <span class="comment">// Do it on Application start</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Then later, when you want to display image</span><br><span class="line">ImageLoader.getInstance().displayImage(imageUrl, imageView); &#x2F;&#x2F; Default options will be used</span><br></pre></td></tr></table></figure>
+
+<p>或者这样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DisplayImageOptions options &#x3D; new DisplayImageOptions.Builder()</span><br><span class="line">   		...</span><br><span class="line">           .cacheInMemory(true)</span><br><span class="line">           .cacheOnDisk(true)</span><br><span class="line">           ...</span><br><span class="line">           .build();</span><br><span class="line">ImageLoader.getInstance().displayImage(imageUrl, imageView, options); &#x2F;&#x2F; Incoming options will be used</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意<code>WRITE_EXTERNAL_STORAGE</code>这个权限的申请.</p>
+</li>
+<li><p>如果发生OOM可以尝试关掉内存缓存, 或减少线程池的大小, 或使用RGB-565的图像配置替换ARGB-8888, 或者裁剪图片显示小图.</p>
+</li>
+<li><p>MemoryChache的配置</p>
+<ol>
+<li>强引用 <code>LruMemoryCache</code></li>
+<li>强弱引用混用 1,3除外的算法.</li>
+<li>只是用弱引用 <code>WeakMemoryCache</code></li>
+</ol>
+</li>
+<li><p><code>DiscChache</code>也是可配置的<code>UnlimitedDiscCache</code> 是最快的,但是占用存储空间</p>
+</li>
+<li><p>使用<code>RoundedBigmaDisplayer</code>或<code>FadeInbitmapDisplayer</code> 装饰图片加载</p>
+</li>
+<li><p>为了是<code>ListView</code> or <code>GrideView</code>的性能提升, 使用<code>PauseOnScrollListener</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> pauseOnScroll = <span class="keyword">false</span>; <span class="comment">// or true</span></span><br><span class="line"><span class="keyword">boolean</span> pauseOnFling = <span class="keyword">true</span>; <span class="comment">// or false</span></span><br><span class="line">PauseOnScrollListener listener = <span class="keyword">new</span> PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling);</span><br><span class="line">listView.setOnScrollListener(listener);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If you see in logs some strange supplement at the end of image URL (e.g. <a target="_blank" rel="noopener" href="http://anysite.com/images/image.png_230x460">http://anysite.com/images/image.png_230x460</a>) then it doesn’t mean this URL is used in requests. This is just “URL + target size”, also this is key for Bitmap in memory cache. This postfix (_230x460) is NOT used in requests.</p>
+</li>
+</ol>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/04/03/2018-04-03-emmet-教程1-2018/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/01/31/2018-01-31-GoogleArchitectureSample1-2018/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-03-20 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>42</span></a></li> <li><a href="/tags/Android/">Android<span>26</span></a></li> <li><a href="/tags/open-source-library/">open source library<span>3</span></a></li> <li><a href="/tags/源码分析/">源码分析<span>3</span></a></li> <li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

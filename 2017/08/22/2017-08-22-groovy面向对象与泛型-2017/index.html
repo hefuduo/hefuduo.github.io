@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Groovy之面向对象与泛型 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Groovy之面向对象与泛型"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Groovy之面向对象与泛型</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><h2 id="变量声明范例"><a href="#变量声明范例" class="headerlink" title="变量声明范例"></a>变量声明范例</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> fieldWithModifier</span><br><span class="line">    String typedField</span><br><span class="line">    <span class="keyword">def</span> untypedField</span><br><span class="line">    <span class="keyword">protected</span> filed1, filed2, filed3</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> ClassFiled</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CONSTA = <span class="string">&#x27;a&#x27;</span>, CONSTB = <span class="string">&#x27;b&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> someMethod()&#123;</span><br><span class="line">        <span class="keyword">def</span> localUntypedVar = <span class="number">1</span></span><br><span class="line">        <span class="keyword">int</span> localTyoedVar = <span class="number">1</span></span><br><span class="line">        <span class="keyword">def</span> localVarWithoutAssignment, andAnotherOne</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> localVar = <span class="number">1</span>  <span class="comment">//脚本声明变量</span></span><br><span class="line">boundVar = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> someMthod()&#123;</span><br><span class="line">    localMethodVar = <span class="number">1</span></span><br><span class="line">    boundVar2 = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定位字段</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span> count = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> counter = <span class="keyword">new</span> Counter()</span><br><span class="line">counter.count = <span class="number">1</span></span><br><span class="line"><span class="keyword">assert</span> counter.count == <span class="number">1</span></span><br><span class="line"><span class="keyword">def</span> fieldNam = <span class="string">&#x27;count&#x27;</span></span><br><span class="line">counter[fieldName] = <span class="number">2</span></span><br><span class="line"><span class="keyword">assert</span> counter[<span class="string">&#x27;count&#x27;</span>] == <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法声明"><a href="#方法声明" class="headerlink" title="方法声明"></a>方法声明</h2><h3 id="方法返回值声明"><a href="#方法返回值声明" class="headerlink" title="方法返回值声明"></a>方法返回值声明</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>&#123;</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> main(args)&#123;</span><br><span class="line">    <span class="keyword">def</span> some = <span class="keyword">new</span> SomeClass()</span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&#x27;hi&#x27;</span> == some.publicUntyedMethod()</span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&#x27;ho&#x27;</span> == some.publicTypedMethod()</span><br><span class="line">    combineMethod()</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">void</span> publicVoidMethod()&#123;&#125;</span><br><span class="line">  <span class="keyword">def</span> pubicVoidMethod()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hi&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  String publicTypedMethod()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;ho&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> combineMethod()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法参数声明"><a href="#方法参数声明" class="headerlink" title="方法参数声明"></a>方法参数声明</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>&#123;</span></span><br><span class="line">  <span class="keyword">static</span> method(arg)&#123;</span><br><span class="line">      println <span class="string">&#x27;untyped&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> method(String arg)&#123;</span><br><span class="line">      println <span class="string">&#x27;typed&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> method(arg1, Number arg2)&#123;</span><br><span class="line">      println <span class="string">&#x27;mixed&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="高级方法参数使用"><a href="#高级方法参数使用" class="headerlink" title="高级方法参数使用"></a>高级方法参数使用</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Summer</span>&#123;</span></span><br><span class="line">  <span class="keyword">def</span> sumWithDefaults(a,b,c = <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> a + b + cs</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> sumWithList(List args)&#123;</span><br><span class="line">    <span class="keyword">return</span> args.inject(<span class="number">0</span>)&#123;</span><br><span class="line">        sum,i -&gt;</span><br><span class="line">      		sum += i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> sumWithOptionals(a, b, object[] optionals)&#123;</span><br><span class="line">      <span class="keyword">return</span> a + b + sumWithList(optionals.toList())</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> sumNamed(Map args)&#123;</span><br><span class="line">    [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>].each&#123;</span><br><span class="line">        args.get(it,<span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> args.a + args.b + args.c</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><h3 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VendorWithCtor</span> &#123;</span></span><br><span class="line">    String name, product</span><br><span class="line">    </span><br><span class="line">    VendorWithCtor(name,product)&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name</span><br><span class="line">        <span class="built_in">this</span>.product = product</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> first = <span class="keyword">new</span> VendorWithCtor(<span class="string">&#x27;canoo&#x27;</span>,<span class="string">&#x27;ULC&#x27;</span>) <span class="comment">// Normal constructor use</span></span><br><span class="line"><span class="keyword">def</span> second = [<span class="string">&#x27;Canoo&#x27;</span>, <span class="string">&#x27;ULC&#x27;</span>] <span class="keyword">as</span> VendorWithCtor <span class="comment">// Coercion with as</span></span><br><span class="line">VendorWithCtor third = [<span class="string">&#x27;Canoo&#x27;</span>, <span class="string">&#x27;ULC&#x27;</span>] <span class="comment">// Corecion in assignment</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="命名参数"><a href="#命名参数" class="headerlink" title="命名参数"></a>命名参数</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vendor</span>&#123;</span></span><br><span class="line">    String name, product</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> Vendor()</span><br><span class="line"><span class="keyword">new</span> Vendor(<span class="attr">name:</span> <span class="string">&#x27;Canoo&#x27;</span>)</span><br><span class="line"><span class="keyword">new</span> Vendor(<span class="attr">product:</span> <span class="string">&#x27;ULC&#x27;</span>)</span><br><span class="line"><span class="keyword">new</span> Vendor(<span class="attr">name:</span> <span class="string">&#x27;Canoo&#x27;</span>, <span class="attr">product:</span> <span class="string">&#x27;ULC&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> vendor = <span class="keyword">new</span> Vendor(<span class="attr">name:</span> <span class="string">&#x27;Canoo&#x27;</span>)</span><br><span class="line"><span class="keyword">assert</span> <span class="string">&#x27;Canoo&#x27;</span> == vendor.name</span><br></pre></td></tr></table></figure>
+
+<h3 id="隐式构造函数"><a href="#隐式构造函数" class="headerlink" title="隐式构造函数"></a>隐式构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.awt.Dimension area</span><br><span class="line">area &#x3D; [200,100]</span><br><span class="line">assert area.width &#x3D;&#x3D; 200</span><br><span class="line">assert area.height &#x3D;&#x3D; 100</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="属性获取设置器"><a href="#属性获取设置器" class="headerlink" title="属性获取设置器"></a>属性获取设置器</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyBean</span>&#123;</span></span><br><span class="line">  <span class="keyword">def</span> a</span><br><span class="line">  <span class="keyword">def</span> b</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> getA()&#123;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> getB()&#123;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> setA(a)&#123;</span><br><span class="line">    <span class="built_in">this</span>.a = a</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> setB(b)&#123;</span><br><span class="line">    <span class="built_in">this</span>.b = b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> mb = <span class="keyword">new</span> MyBean()</span><br><span class="line">mb.a = <span class="number">10</span></span><br><span class="line">mb.b = <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+<p>属性获取方法,Groovy方式直接.属性名就可以了.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Java</th>
+<th align="center">Groovy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">getPropertyName</td>
+<td align="center">propertyName</td>
+</tr>
+<tr>
+<td align="center">setPropertyName(value)</td>
+<td align="center">propertyName = value</td>
+</tr>
+</tbody></table>
+<h3 id="属性获取器和-语法的使用区别"><a href="#属性获取器和-语法的使用区别" class="headerlink" title="属性获取器和@语法的使用区别"></a>属性获取器和@语法的使用区别</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MrBean</span>&#123;</span></span><br><span class="line">    String firstName, lastName</span><br><span class="line">    String getName()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;$firstName $lastName&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> bean = <span class="keyword">new</span> MrBean(<span class="attr">firstName:</span> <span class="string">&#x27;Rowan&#x27;</span>)</span><br><span class="line">bean.lastName = <span class="string">&#x27;Atkinson&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//advanced accessors with groovy</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubleBean</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span> value <span class="comment">//visible value</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> setValue(value)&#123;</span><br><span class="line">        <span class="built_in">this</span>.value = value  <span class="comment">//inner field access</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> getValue()&#123;</span><br><span class="line">        value * <span class="number">2</span>     <span class="comment">//inner field access</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> bean2 = <span class="keyword">new</span> DoubleBean(<span class="attr">value:</span> <span class="number">100</span>)</span><br><span class="line"><span class="keyword">assert</span> <span class="number">200</span> == bean2.value   <span class="comment">//Property access  use getter method</span></span><br><span class="line"><span class="keyword">assert</span> <span class="number">100</span> == bean2.<span class="meta">@value</span>   <span class="comment">// Outer field access  directly access</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="GPaths查询对象"><a href="#GPaths查询对象" class="headerlink" title="GPaths查询对象"></a>GPaths查询对象</h2><p>invoke example for Gpath</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> &#123;</span></span><br><span class="line">    String name</span><br><span class="line">    List authors</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Author</span> &#123;</span></span><br><span class="line">    String name</span><br><span class="line">    Address addr</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span> &#123;</span></span><br><span class="line">    String province</span><br><span class="line">    String city</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> addr1 = <span class="keyword">new</span> Address(<span class="attr">province:</span><span class="string">&#x27;Guangdong&#x27;</span>,<span class="attr">city:</span><span class="string">&#x27;Shenzhen&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> addr2 = <span class="keyword">new</span> Address(<span class="attr">province:</span><span class="string">&#x27;Gunagdong&#x27;</span>,<span class="attr">city:</span><span class="string">&#x27;Guangzhou&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> addr3 = <span class="keyword">new</span> Address(<span class="attr">province:</span><span class="string">&#x27;Hunan&#x27;</span>,<span class="attr">city:</span><span class="string">&#x27;Changsha&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> addr4 = <span class="keyword">new</span> Address(<span class="attr">province:</span><span class="string">&#x27;Hubei&#x27;</span>,<span class="attr">city:</span><span class="string">&#x27;Wuhan&#x27;</span>)</span><br><span class="line"><span class="keyword">def</span> books = [<span class="keyword">new</span> Book(<span class="attr">name:</span><span class="string">&#x27;A glance at Java&#x27;</span>,<span class="attr">authors:</span>[<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Tom&#x27;</span>,<span class="attr">addr:</span>addr1)]),</span><br><span class="line">             <span class="keyword">new</span> Book(<span class="attr">name:</span><span class="string">&#x27;Deep into Groovy&#x27;</span>,<span class="attr">authors:</span>[<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Tom&#x27;</span>,<span class="attr">addr:</span>addr1),<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Mike&#x27;</span>,<span class="attr">addr:</span>addr3)]),</span><br><span class="line">             <span class="keyword">new</span> Book(<span class="attr">name:</span><span class="string">&#x27;A compare of Struts and Grails&#x27;</span>,<span class="attr">authors:</span>[<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Wallace&#x27;</span>,<span class="attr">addr:</span>addr4),<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Bill&#x27;</span>,<span class="attr">addr:</span>addr2)]),</span><br><span class="line">             <span class="keyword">new</span> Book(<span class="attr">name:</span><span class="string">&#x27;learning from Groovy to Grails&#x27;</span>,<span class="attr">authors:</span>[<span class="keyword">new</span> Author(<span class="attr">name:</span><span class="string">&#x27;Wallace&#x27;</span>,<span class="attr">addr:</span>addr3)])]</span><br><span class="line"></span><br><span class="line"><span class="comment">//目标是找到作者是&quot;Tom&quot;的书籍的书名</span></span><br><span class="line"><span class="comment">//Java风格</span></span><br><span class="line"><span class="keyword">def</span> booksOfTomOldWay = []</span><br><span class="line">books.each &#123;</span><br><span class="line">    <span class="keyword">def</span> book = it</span><br><span class="line">    <span class="keyword">def</span> aus = it.authors</span><br><span class="line">    </span><br><span class="line">    aus.each &#123;</span><br><span class="line">        au-&gt;</span><br><span class="line">            <span class="keyword">if</span> (au.name == <span class="string">&#x27;Tom&#x27;</span>)</span><br><span class="line">                booksOfTomOldWay &lt;&lt; book.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">println booksOfTomOldWay</span><br><span class="line"><span class="comment">//Groovy风格 非常简练,也符合一个正常的思考顺序.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> booksOfTom = books.grep&#123;</span><br><span class="line">    it.authors.any&#123;</span><br><span class="line">        it.name == <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;.name</span><br><span class="line"></span><br><span class="line">println booksOfTom</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="空操作安全"><a href="#空操作安全" class="headerlink" title="空操作安全"></a>空操作安全</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Duck duck = <span class="keyword">new</span> Duck()</span><br><span class="line">duck?.eat() <span class="comment">// ?.标识如果对象是一个空值,那么久不调用函数.只有非空对象才会执行函数的调用</span></span><br></pre></td></tr></table></figure>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/08/28/2017-08-28-Groovy与元编程-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/08/22/2017-08-22-groovy闭包-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-08-22 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

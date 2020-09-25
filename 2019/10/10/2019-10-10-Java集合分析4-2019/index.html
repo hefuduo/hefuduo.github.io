@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Java集合分析4 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java集合分析4"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Java集合分析4</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>主要是一些习题吧, 队列也是比较简单的数据结构, 主要体现在应用上.</p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/hefuduo/algorithm/blob/master/kotlinimpl/src/main/kotlin/kotlinimpl/chapter3.kt">数据结构与算法课后习题</a></p>
+</li>
+<li><p>单链表的反转 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;E&gt;</span> Node<span class="type">&lt;E&gt;</span>.<span class="title">printList</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> r: Node&lt;E&gt;? = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">while</span> (r?.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        println(r.item)</span><br><span class="line">        r = r.next</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;E&gt;</span> <span class="title">revserSingleOriententList</span><span class="params">(head: <span class="type">Node</span>&lt;<span class="type">E</span>&gt;?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> newHead = Node&lt;E&gt;(<span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">var</span> cur = head</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = cur.next</span><br><span class="line">        cur.next = newHead</span><br><span class="line">        newHead = cur</span><br><span class="line">        cur = temp</span><br><span class="line">    &#125;</span><br><span class="line">    newHead.printList()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> head: Node&lt;<span class="built_in">Int</span>&gt;? = Node(<span class="number">0</span>, <span class="literal">null</span>, <span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">var</span> x = head</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">9</span>) &#123;</span><br><span class="line">        x?.next = Node(i, <span class="literal">null</span>, <span class="literal">null</span>)</span><br><span class="line">        x = x?.next</span><br><span class="line">    &#125;</span><br><span class="line">    revserSingleOriententList(head)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>判断链表是否带环；若带环，求环的长度和入口点</p>
+<ol>
+<li><p><strong>实现思路：</strong>设置两个快慢指针分别指向链表的头节点，快指针一次走两步，慢指针一次走一步，如果两个相遇了，则单链表带环，如果快指针走到NULL节点，则链表不带环；</p>
+</li>
+<li><p><strong>实现思路：</strong>在判断单链表是否带环的问题中，我们找到了单环单链表的相遇结点，用于个指针从单链表的相遇结点开始走，并且设置一个计数器，每走一步，计数器加一，直到该指针再次遇到相遇点，则返回计数器的数；</p>
+</li>
+</ol>
+</li>
+<li><p>遍历一次，找到中间节点; 快慢指针, 快的是慢的两倍.</p>
+</li>
+<li><p>遍历一次，找到倒数第 k 个结点（k从1开始）原理同上.</p>
+<ol>
+<li>先让快指针走k-1步,然后两个指针一起走,直到快指针指向null了,此时慢指针指向倒数第k个节点.</li>
+</ol>
+</li>
+<li><p>遍历一次，删除倒数第 k 个结点（k从1开始），不能用替换删除法</p>
+<ol>
+<li>找到倒数第k-1个节点, 即k的前一个节点, 让next节点指向k个节点的next即可</li>
+</ol>
+</li>
+<li><p>约瑟夫环 已经解决</p>
+</li>
+<li><p>单链表冒泡排序</p>
+<ol>
+<li><p>找到单链表尾部, 尾部向前移动, 尾部始终是排好序的.</p>
+<p>实现</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单链表的冒泡排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;E: Comparable&lt;E&gt;</span>&gt; <span class="title">bubbleSort</span><span class="params">(head: <span class="type">Node</span>&lt;<span class="type">E</span>&gt;?)</span></span>: Node&lt;E&gt;? &#123;</span><br><span class="line">    <span class="keyword">val</span> pHead = head;</span><br><span class="line">    <span class="keyword">var</span> tail: Node&lt;E&gt;? = pHead</span><br><span class="line">    <span class="keyword">var</span> p: Node&lt;E&gt;? = pHead</span><br><span class="line">    <span class="keyword">var</span> prev: Node&lt;E&gt;? = p</span><br><span class="line">    <span class="keyword">while</span> (tail?.next != <span class="literal">null</span>)</span><br><span class="line">        tail = tail.next</span><br><span class="line">    <span class="keyword">while</span> (tail != pHead) &#123;</span><br><span class="line">        <span class="keyword">while</span> (p != tail) &#123;</span><br><span class="line">            <span class="keyword">if</span> (p?.item != <span class="literal">null</span> &amp;&amp; p.next?.item != <span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (p.item!! &gt; p.next!!.item!!)&#123;</span><br><span class="line">                    <span class="keyword">val</span> temp = p.item</span><br><span class="line">                    p.item = p.next!!.item</span><br><span class="line">                    p.next!!.item = temp</span><br><span class="line">                &#125;</span><br><span class="line">                prev = p</span><br><span class="line">                p = p.next</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        tail = prev</span><br><span class="line">        p = pHead</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ol>
+</li>
+</ol>
+<ol start="9">
+<li>合并两个有序链表 同交集并集</li>
+</ol>
+<ol start="10">
+<li><p>判断两个链表是否相交;相交则求交点(链表不带环)</p>
+<ol>
+<li>先判断有无环, 如果一个有一个没有,则肯定不会相交</li>
+<li>如果两个链表都没有环, 那么两个链表的尾结点肯定是交点</li>
+<li>如果两个链表都有环 如果两个链表h1,h2都有环，则可以找到两个链表上并且在环上的任何一个结点p1和p2。如果从结点p1开始遍历链表h1，能够遍历到p2，说明两个链表相交；否则从p1开始遍历h1，遍历一圈后又回到p1，而未遍历到p2，说明两个链表不相交。</li>
+</ol>
+</li>
+<li><p>链表的交集, 并集等.</p>
+</li>
+</ol>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><h2 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h2><h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><h2 id="队列在并发里的应用"><a href="#队列在并发里的应用" class="headerlink" title="队列在并发里的应用"></a>队列在并发里的应用</h2>
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/10/14/2019-10-14-Kotlin从入门到放弃-2019/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/10/10/2019-10-10-Java集合分析3-2019/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-10-10 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

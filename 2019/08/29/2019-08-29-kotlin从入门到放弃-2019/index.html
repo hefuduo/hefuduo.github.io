@@ -1,0 +1,528 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Kotlin学习笔记3 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Kotlin学习笔记3"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Kotlin学习笔记3</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="Nested-and-Inner-Classes"><a href="#Nested-and-Inner-Classes" class="headerlink" title="Nested and Inner Classes"></a>Nested and Inner Classes</h1><p> 类能够相互嵌套</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Nested</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer.Nested().foo() <span class="comment">// == 2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Inner-classes"><a href="#Inner-classes" class="headerlink" title="Inner classes"></a>Inner classes</h2><p>内部类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> bar: <span class="built_in">Int</span> = <span class="number">1</span></span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = bar</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> demo = Outer().Inner().foo() <span class="comment">// == 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Anonymous-inner-classes"><a href="#Anonymous-inner-classes" class="headerlink" title="Anonymous inner classes"></a>Anonymous inner classes</h2><p>匿名内部类</p>
+<p>匿名内部类使用使用对象表达式创建</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; ... &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><em>Note</em>: on the JVM, if the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method), you can create it using a lambda expression prefixed with the type of the interface</p>
+<p>在JVM上如果一个Java Interface只有一个抽象方法, 可以使用lambda表达式创建一个对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> listener = ActionListener &#123;</span><br><span class="line">  println(<span class="string">&quot;clicked&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Enum-Classes"><a href="#Enum-Classes" class="headerlink" title="Enum Classes"></a>Enum Classes</h1><p>The most basic usage of enum classes is implementing type-safe enums:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Direction</span> </span>&#123;</span><br><span class="line">  NORTH, SOUTH, WEST, EAST</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Each enum constant is an object. Enum constants are separated with commas.</p>
+<h2 id="Initialization-初始化"><a href="#Initialization-初始化" class="headerlink" title="Initialization 初始化"></a>Initialization 初始化</h2><p>Since each enum is an instance of the enum class, they can be initialized as:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">Color</span></span>(<span class="keyword">val</span> rgb: <span class="built_in">Int</span>) &#123;</span><br><span class="line">  RED(<span class="number">0xFF0000</span>),</span><br><span class="line">  GREEN(<span class="number">0x00FF00</span>),</span><br><span class="line">  BLUE(<span class="number">0x0000FF</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Anonymous-Classes"><a href="#Anonymous-Classes" class="headerlink" title="Anonymous Classes"></a>Anonymous Classes</h2><p>Enum constants can also declare their own anonymous classes with their corresponding methods, as well as overriding base methods.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">ProtocolState</span> </span>&#123;</span><br><span class="line">    WAITING &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span> = TALKING</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    TALKING &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span> = WAITING</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">signal</span><span class="params">()</span></span>: ProtocolState</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>If the enum class defines any members, separate the enum constant definitions from the member definitions with a semicolon.</p>
+<p>Enum entries cannot contain nested types other than inner classes (deprecated in Kotlin 1.2).</p>
+<h2 id="Implementing-Interfaces-in-Enum-Classes"><a href="#Implementing-Interfaces-in-Enum-Classes" class="headerlink" title="Implementing  Interfaces in Enum Classes"></a>Implementing  Interfaces in Enum Classes</h2><p>An enum class may implement an interface (but not derive from a class), providing either a single interface members implementation for all of the entries, or separate ones for each entry within its anonymous class. This is done by adding the interfaces to the enum class declaration as follows:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">IntArtithmetics</span> : <span class="type">BinaryOperator</span>&lt;<span class="type">Int</span>&gt;, <span class="type">IntBinaryOperator &#123;</span></span></span><br><span class="line">  PLUS &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">apply</span><span class="params">(t: <span class="type">Int</span>, u: <span class="type">Int</span>)</span></span> : <span class="built_in">Int</span> = t + u</span><br><span class="line">  &#125;,</span><br><span class="line">  TIMES &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">apply</span><span class="params">(t: <span class="type">Int</span>, u: <span class="type">Int</span>)</span></span> : <span class="built_in">Int</span> = t * u</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">applyAsInt</span><span class="params">(t: <span class="type">Int</span>, u: <span class="type">Int</span>)</span></span> = apply(t, u)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Working-with-Enum-Constants"><a href="#Working-with-Enum-Constants" class="headerlink" title="Working with Enum Constants"></a>Working with Enum Constants</h2><p>Enum classes in Kotlin have synthetic methods allowing to list the defined enum constants and to get an enum constant by its name. The signatures of these methods are as follows (assuming the name of the enum class is <code>EnumClass</code>):</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EnumClass.valueOf(value: String): EnumClass</span><br><span class="line">EnumClass.values(): Array&lt;EnumClass&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>The <code>valueOf()</code> method throws an <code>IllegalArgumentException</code> if the specified name does not match any of the enum constants defined in the class.</p>
+<p>Since Kotlin 1.1, it’s possible to access the constants in an enum class in a generic way, using the <code>enumValues&lt;T&gt;()</code> and <code>enumValueOf&lt;T&gt;()</code> functions:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">RGB</span> </span>&#123; RED, GREEN, BLUE &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;  T : Enum&lt;T&gt;</span>&gt; <span class="title">printAllValues</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(enumValues&lt;T&gt;().joinToString &#123; it.name &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printAllValues&lt;RGB&gt;() <span class="comment">// prints RED, GREEN, BLUE</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>Every enum constant has properties to obtain its name and position in the enum class declaration:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> name: String</span><br><span class="line"><span class="keyword">val</span> ordinal: <span class="built_in">Int</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Object-Expressions-and-Declarations-对象表达式与声明"><a href="#Object-Expressions-and-Declarations-对象表达式与声明" class="headerlink" title="Object Expressions and Declarations 对象表达式与声明"></a>Object Expressions and Declarations 对象表达式与声明</h1><p>Sometimes we need to create an object of a slight modification of some class, without explicitly declaring a new subclass for it. Kotlin handles this case with <em>object expressions</em> and <em>object declarations</em>.</p>
+<p>Object expression: 对象表达式, Object declarations : 对象声明</p>
+<h2 id="Object-expressions"><a href="#Object-expressions" class="headerlink" title="Object expressions"></a>Object expressions</h2><p>创建匿名类</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>If a supertype has a constructor, appropriate constructor parameters must be passed to it. Many supertypes may be specified as a comma-separated list after the colon:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>(x: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">open</span> <span class="keyword">val</span> y: <span class="built_in">Int</span> = x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> ab: A = <span class="keyword">object</span> : A(<span class="number">1</span>), B &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> y = <span class="number">15</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If, by any chance, we need “just an object”, with no nontrivial supertypes, we can simply say:</p>
+<p>直接声明一个对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> adHoc = <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  print(adHoc.x + adHoc.y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Note that anonymous objects can be used as types only in local and private declarations. If you use an anonymous object as a return type of a public function or the type of a public property, the actual type of that function or property will be the declared supertype of the anonymous object, or <code>Any</code> if you didn’t declare any supertype. Members added in the anonymous object will not be accessible.</p>
+<p>匿名对象当成类型使用只是在局部和私有声明处. 如果将匿名对象当成共有方法的返回值或者让共有属性的公共属性, 方法和属性的实际类型将是匿名对象的超类型, 或者是<code>Any</code>如果你没生命任何超类型. 在匿名对象添加的成员不能被访问.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Private function, so the return type is the anonymous object type</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">&quot;x&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Public function, so the return type is Any</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">publicFoo</span><span class="params">()</span></span> = <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x: String = <span class="string">&quot;x&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> x1 = foo().x        <span class="comment">// Works</span></span><br><span class="line">        <span class="keyword">val</span> x2 = publicFoo().x  <span class="comment">// ERROR: Unresolved reference &#x27;x&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The code in object expressions can access variables from the enclosing scope.</p>
+<p>对象表达式能够访问闭包的变量</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">countClicks</span><span class="params">(window: <span class="type">JComponent</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> clickCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> enterCount = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    window.addMouseListener(<span class="keyword">object</span> : MouseAdapter() &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">            clickCount++</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123;</span><br><span class="line">            enterCount++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Object-Declarations"><a href="#Object-Declarations" class="headerlink" title="Object Declarations"></a>Object Declarations</h2><p><a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Singleton_pattern">Singleton</a> may be useful in several cases, and Kotlin (after Scala) makes it easy to declare singletons:</p>
+<p>使用Object 声明单例</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">objec DataProviderManager &#123;</span><br><span class="line">   <span class="function"><span class="keyword">fun</span> <span class="title">registerDataProvider</span><span class="params">(provider: <span class="type">DataProvider</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> allDataProviders: Collection&lt;DataProvider&gt;</span><br><span class="line">        <span class="keyword">get</span>() = <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This is called an <em>object declaration</em>, and it always has a name following the <em>object</em> keyword. Just like a variable declaration, an object declaration is not an expression, and cannot be used on the right hand side of an assignment statement.</p>
+<p>Object declaration’s initialization is thread-safe.</p>
+<p>To refer to the object, we use its name directly:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataProviderManager.registerDataProvider(...)</span><br></pre></td></tr></table></figure>
+
+<p>Such objects can have supertypes:</p>
+<p>这样的对象可以有超类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> DefaultListener : MouseAdapter() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseClicked</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">mouseEntered</span><span class="params">(e: <span class="type">MouseEvent</span>)</span></span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE</strong>: object declarations can’t be local (i.e. be nested directly inside a function), but they can be nested into other object declarations or non-inner classes.</p>
+<p>注意: 对象声明不能是局部的(否则就是对象表达式了)</p>
+<h2 id="Companion-Objects"><a href="#Companion-Objects" class="headerlink" title="Companion Objects"></a>Companion Objects</h2><p>伴生对象</p>
+<p>kotlin类内部没有类似Java静态方法一说, 因此可以使用伴生对象定义静态方法或静态属性.</p>
+<p>An object declaration inside a class can be marked with the <em>companion</em> keyword:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> Factory &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: MyClass = MyClass()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Members of the companion object can be called by using simply the class name as the qualifier:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> instance = MyClass.create(); <span class="comment">//就好像调用静态方法一样</span></span><br></pre></td></tr></table></figure>
+
+<p>The name of the companion object can be omitted, in which case the name <code>Companion</code> will be used:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = MyClass.Companion</span><br></pre></td></tr></table></figure>
+
+<p>The name of a class used by itself (not as a qualifier to another name) acts as a reference to the companion object of the class (whether named or not):</p>
+<p>可以给伴生对象命名</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Named &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = MyClass1</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> y = MyClass2</span><br></pre></td></tr></table></figure>
+
+<p>Note that, even though the members of companion objects look like static members in other languages, at runtime those are still instance members of real objects, and can, for example, implement interfaces:</p>
+<p>注意看起来类似静态成员,但是实际上仍然是真实对象的实例成员, 并且能够实现接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Factory</span>&lt;<span class="type">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span> : T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> : Factory&lt;MyClass&gt; &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">create</span><span class="params">()</span></span>: MyClass = MyClass();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> f : Factory&lt;MyClass&gt; = MyClass</span><br></pre></td></tr></table></figure>
+
+<p>注意与Java的互操作性,如下描述:</p>
+<p>However, on the JVM you can have members of companion objects generated as real static methods and fields, if you use the <code>@JvmStatic</code> annotation. See the <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html#static-fields">Java interoperability</a> section for more details.</p>
+<h2 id="Semantic-difference-between-object-expressions-and-declarations"><a href="#Semantic-difference-between-object-expressions-and-declarations" class="headerlink" title="Semantic difference between object expressions and declarations"></a>Semantic difference between object expressions and declarations</h2><p>There is one important semantic difference between object expressions and object declarations:</p>
+<ul>
+<li>object expressions are executed (and initialized) <strong>immediately</strong>, where they are used;</li>
+<li>object declarations are initialized <strong>lazily</strong>, when accessed for the first time;</li>
+<li>a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer.</li>
+</ul>
+<h1 id="Type-aliases"><a href="#Type-aliases" class="headerlink" title="Type aliases"></a>Type aliases</h1><p>类型别名(特别像C++ 的typedefine)</p>
+<p>Type aliases provide alternative names for existing types. If the type name is too long you can introduce a different shorter name and use the new one instead.</p>
+<p>It’s useful to shorten long generic types. For instance, it’s often tempting to shrink collection types:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> NodeSet = Set&lt;Network.Node&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> FileTable&lt;K&gt; = MutableMap&lt;K, MutableList&lt;File&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>You can have new names for inner and nested classes:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">  <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typealias</span> AInner = A.Inner</span><br><span class="line"><span class="keyword">typealias</span> BInner = B.Inner</span><br></pre></td></tr></table></figure>
+
+<p>Type aliases do not introduce new types. They are equivalent to the corresponding underlying types. When you add <code>typealias Predicate&lt;T&gt;</code> and use <code>Predicate&lt;Int&gt;</code> in your code, the Kotlin compiler always expands it to <code>(Int) -&gt; Boolean</code>. Thus you can pass a variable of your type whenever a general function type is required and vice versa:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> Predicate&lt;T&gt; = (T) -&gt; <span class="built_in">Boolean</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">(p: <span class="type">Predicate</span>&lt;<span class="type">Int</span>&gt;)</span></span> = p(<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> f: (<span class="built_in">Int</span>) -&gt; <span class="built_in">Boolean</span> = &#123; it &gt; <span class="number">0</span>&#125;</span><br><span class="line">  println(foo(f)) <span class="comment">//prints &quot;true&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">val</span> p: Predicate&lt;<span class="built_in">Int</span>&gt; = &#123; it&gt; <span class="number">0</span>&#125;</span><br><span class="line">  println(listOf(<span class="number">1</span>, -<span class="number">2</span>).filter(p)) <span class="comment">//prints &quot;[1]&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Inline-classes"><a href="#Inline-classes" class="headerlink" title="Inline classes"></a>Inline classes</h2><p>内联类</p>
+<p>:warning: Inline classes are available only since Kotlin 1.3 and currently are <em>experimental</em>. See details </p>
+<p>暂时不介绍了, 稳定后再添加</p>
+<h2 id="Delegation-委托"><a href="#Delegation-委托" class="headerlink" title="Delegation 委托"></a>Delegation 委托</h2><h3 id="Property-Delegation"><a href="#Property-Delegation" class="headerlink" title="Property Delegation"></a>Property Delegation</h3><p>见下一章</p>
+<h3 id="Implementation-by-Delegation"><a href="#Implementation-by-Delegation" class="headerlink" title="Implementation by Delegation"></a>Implementation by Delegation</h3><p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Delegation_pattern">Delegation pattern</a> has proven to be a good alternative to implementation inheritance, and Kotlin supports it natively requiring zero boilerplate code. A class <code>Derived</code> can implement an interface <code>Base</code>by delegating all of its public members to a specified object</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123; print(x) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base) : Base <span class="keyword">by</span> b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">  Derived(b).print()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <em>by</em>-clause in the supertype list for <code>Derived</code> indicates that <code>b</code> will be stored internally in objects of <code>Derived</code> and the compiler will generate all the methods of <code>Base</code> that forward to <code>b</code>.</p>
+<h3 id="Overriding-a-member-of-an-interface-implemented-by-delegation"><a href="#Overriding-a-member-of-an-interface-implemented-by-delegation" class="headerlink" title="Overriding a member of an interface implemented by delegation"></a>Overriding a member of an interface implemented by delegation</h3><p><a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/classes.html#overriding-methods">Overrides</a> work as you might expect: the compiler will use your <code>override</code> implementations instead of those in the delegate object. If we were to add <code>override fun printMessage() &#123; print(&quot;abc&quot;) &#125;</code> to<code>Derived</code>, the program would print “abc” instead of “10” when <code>printMessage</code> is called:</p>
+<p>编译器将使用覆写的实现,而不是代理对象的function.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printMessage</span><span class="params">()</span></span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printMessageLine</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printMessage</span><span class="params">()</span></span> &#123; print(x) &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printMessageLine</span><span class="params">()</span></span> &#123; println(x) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base) : Base <span class="keyword">by</span> b &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printMessage</span><span class="params">()</span></span> &#123; print(<span class="string">&quot;abc&quot;</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">    Derived(b).printMessage()</span><br><span class="line">    Derived(b).printMessageLine()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用override function而不是使用委托中定义的function 这个要注意.</span></span><br></pre></td></tr></table></figure>
+
+<p>Note, however, that members overridden in this way do not get called from the members of the delegate object, which can only access its own implementations of the interface members:</p>
+<p>注意!然而, 以这种方式覆写的成员不能从代理对象的成员被调用, 只能访问接口成员的自己的实现.(好绕啊)</p>
+<p>总结, 代理类对象只能访问到代理类的属性, 而不能访问继承对象的实现;</p>
+<p>如下, <code>Baseimpl</code>代理类的对象只能访问<code>BaseImpl</code>的属性, 而不能访问<code>Derived</code>这个派生类对象的属性<code>message</code>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> message: String</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>) : Base &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> message = <span class="string">&quot;BaseImpl : x = <span class="variable">$x</span>&quot;</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123;println(message)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base) : Base <span class="keyword">by</span> b &#123;</span><br><span class="line">  <span class="comment">//This property is not accessed from b&#x27;s implementation of `print`</span></span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> message = <span class="string">&quot;Message of Derived&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> b = BaseImpl(<span class="number">10</span>)</span><br><span class="line">  <span class="keyword">val</span> derived = Derived(b)</span><br><span class="line">  derived.print() </span><br><span class="line">  println(derived.message)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//output </span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BaseImpl: x = 10</span></span><br><span class="line"><span class="comment">Message of Derived</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Delegated-Properties-属性代理"><a href="#Delegated-Properties-属性代理" class="headerlink" title="Delegated Properties 属性代理"></a>Delegated Properties 属性代理</h1><p>There are certain common kinds of properties, that, though we can implement them manually every time we need them, would be very nice to implement once and for all, and put into a library. Examples include:</p>
+<ul>
+<li>lazy properties: the value gets computed only upon first access;</li>
+<li>observable properties: listeners get notified about changes to this property;</li>
+<li>storing properties in a map, instead of a separate field for each property.</li>
+</ul>
+<p>To cover these (and other) cases, Kotlin supports <em>delegated properties</em>:</p>
+<ol>
+<li>延迟加载</li>
+<li>可监听</li>
+<li>将属性存储在map结构中</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> p: String <span class="keyword">by</span> Delegate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The delegated property syntax is :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val&#x2F;var &lt;property name&gt;: &lt;Type&gt; by &lt;expression&gt;</span><br></pre></td></tr></table></figure>
+
+<p>he expression after <em>by</em> is the <em>delegate</em>, because <code>get()</code> (and <code>set()</code>) corresponding to the property will be delegated to its <code>getValue()</code> and <code>setValue()</code> methods. Property delegates don’t have to implement any interface, but they have to provide a <code>getValue()</code> function (and <code>setValue()</code> — for <em>var</em>s). For example:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.reflect.KProperty</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Delegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;<span class="variable">$thisRef</span>, thank you for delegating &#x27;<span class="subst">$&#123;property.name&#125;</span>&#x27; to me!&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$value</span> has been assigned to &#x27;<span class="subst">$&#123;property.name&#125;</span>&#x27; in <span class="variable">$thisRef</span>.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>When we read from <code>p</code> that delegates to an instance of <code>Delegate</code>, the <code>getValue()</code> function from <code>Delegate</code> is called, so that its first parameter is the object we read <code>p</code> from and the second parameter holds a description of <code>p</code> itself (e.g. you can take its name). For example:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> e = Example()</span><br><span class="line">println(e.p)</span><br></pre></td></tr></table></figure>
+
+<p>Similarly, when we assign to <code>p</code>, the <code>setValue()</code> function is called. The first two parameters are the same, and the third holds the value being assigned:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.p = <span class="string">&quot;NEW&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NEW has been assigned to ‘p’ in Example@33a17727.</span><br></pre></td></tr></table></figure>
+
+<p>The specification of the requirements to the delegated object can be found <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/delegated-properties.html#property-delegate-requirements">below</a>.</p>
+<p>Note that since Kotlin 1.1 you can declare a delegated property inside a function or code block, it shouldn’t necessarily be a member of a class. Below you can find <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/delegated-properties.html#local-delegated-properties-since-11">the example</a>.</p>
+<h2 id="Standard-Delegates"><a href="#Standard-Delegates" class="headerlink" title="Standard Delegates"></a>Standard Delegates</h2><p>The Kotlin standard library provides factory methods for several useful kinds of delegates.</p>
+<h3 id="Lazy"><a href="#Lazy" class="headerlink" title="Lazy"></a>Lazy</h3><p><a target="_blank" rel="noopener" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html"><code>lazy()</code></a> is a function that takes a lambda and returns an instance of <code>Lazy&lt;T&gt;</code> which can serve as a delegate for implementing a lazy property: the first call to <code>get()</code> executes the lambda passed to <code>lazy()</code> and remembers the result, subsequent calls to <code>get()</code> simply return the remembered result.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lazyValue: String <span class="keyword">by</span> lazy &#123;</span><br><span class="line">	println(<span class="string">&quot;computed!&quot;</span>)</span><br><span class="line">	<span class="string">&quot;hello&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  println(lazyValue)</span><br><span class="line">  println(lazyValue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output=&gt;</span><br><span class="line"></span><br><span class="line">computed!</span><br><span class="line">hello</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<p>By default, the evaluation of lazy properties is <strong>synchronized</strong>: the value is computed only in one thread, and all threads will see the same value. If the synchronization of initialization delegate is not required, so that multiple threads can execute it simultaneously, pass <code>LazyThreadSafetyMode.PUBLICATION</code> as a parameter to the <code>lazy()</code> function. And if you’re sure that the initialization will always happen on the same thread as the one where you use the property, you can use <code>LazyThreadSafetyMode.NONE</code>: it doesn’t incur any thread-safety guarantees and the related overhead.</p>
+<p>默认线程安全</p>
+<h3 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h3><p><a target="_blank" rel="noopener" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> takes two arguments: the initial value and a handler for modifications. The handler gets called every time we assign to the property (<em>after</em> the assignment has been performed). It has three parameters: a property being assigned to, the old value and the new one:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlin.properties.Delegates</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;&lt;no name&gt;&quot;</span>) &#123;</span><br><span class="line">        prop, old, new -&gt;</span><br><span class="line">        println(<span class="string">&quot;<span class="variable">$old</span> -&gt; <span class="variable">$new</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> user = User()</span><br><span class="line">    user.name = <span class="string">&quot;first&quot;</span></span><br><span class="line">    user.name = <span class="string">&quot;second&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> Listener = (property: KProperty&lt;*&gt;, olderValue: String, newValue: String) -&gt; <span class="built_in">Unit</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">private</span> <span class="keyword">val</span> listener: Listener) &#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">&quot;&lt;no name&gt;&quot;</span>, listener)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> listener: Listener = &#123; _, old, new -&gt;</span><br><span class="line">        println(<span class="string">&quot;old is <span class="variable">$old</span> and new is <span class="variable">$new</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> user = User(listener)</span><br><span class="line">    user.name = <span class="string">&quot;hefuduo&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>If you want to be able to intercept an assignment and “veto” it, use <a target="_blank" rel="noopener" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> instead of <code>observable()</code>. The handler passed to the <code>vetoable</code> is called <em>before</em> the assignment of a new property value has been performed.</p>
+<p>veto: 否定;</p>
+<p>只有设置的值满足条件的时候, 才能成功</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BUser</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.vetoable(<span class="string">&quot;&lt;no name&gt;&quot;</span>, &#123; _, old, new -&gt;</span><br><span class="line">        println(<span class="string">&quot;the value set&quot;</span>)</span><br><span class="line">        new.length &gt; old.length</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Storing-Properties-in-a-Map"><a href="#Storing-Properties-in-a-Map" class="headerlink" title="Storing Properties in a Map"></a>Storing Properties in a Map</h2><p>One common use case is storing the values of properties in a map. This comes up often in applications like parsing JSON or doing other “dynamic” things. In this case, you can use the map instance itself as the delegate for a delegated property.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> map: Map&lt;String, Any?&gt;) &#123;</span><br><span class="line">  <span class="keyword">val</span> name: String <span class="keyword">by</span> map</span><br><span class="line">  <span class="keyword">val</span> age: <span class="built_in">Int</span> <span class="keyword">by</span> map</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In this example, the constructor takes a map:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> User = User(mapOf(</span><br><span class="line">  <span class="string">&quot;name&quot;</span> to <span class="string">&quot;John Doe&quot;</span>,</span><br><span class="line">  <span class="string">&quot;age&quot;</span> to <span class="number">25</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+
+<p>Delegated properties take values from this map (by the string keys –– names of properties):</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">println(user.name) <span class="comment">// Prints &quot;John Doe&quot;</span></span><br><span class="line">println(user.age)  <span class="comment">// Prints 25</span></span><br></pre></td></tr></table></figure>
+
+<p>This works also for <em>var</em>’s properties if you use a <code>MutableMap</code> instead of read-only <code>Map</code>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MutableUser</span></span>(<span class="keyword">val</span> map: MutableMap&lt;String, Any?&gt;) &#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> map</span><br><span class="line">    <span class="keyword">var</span> age: <span class="built_in">Int</span>     <span class="keyword">by</span> map</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Local-Delegated-Properties-since-1-1"><a href="#Local-Delegated-Properties-since-1-1" class="headerlink" title="Local Delegated Properties (since 1.1)"></a>Local Delegated Properties (since 1.1)</h2><p>You can declare local variables as delegated properties. For instance, you can make a local variable lazy:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">example</span><span class="params">(computeFoo: () -&gt; <span class="type">Foo</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> memoizedFoo <span class="keyword">by</span> lazy(computeFoo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (someCondition &amp;&amp; memoizedFoo.isValid()) &#123;</span><br><span class="line">        memoizedFoo.doSomething()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Properties-Delegate-Requirements"><a href="#Properties-Delegate-Requirements" class="headerlink" title="Properties Delegate Requirements"></a>Properties Delegate Requirements</h2><p>属性代理的            一些要求</p>
+<p>Here we summarize requirements to delegate objects.</p>
+<p>For a <strong>read-only</strong> property (i.e. a <em>val</em>), a delegate has to provide a function named <code>getValue</code> that takes the following parameters:</p>
+<ul>
+<li><code>thisRef</code> — must be the same or a supertype of the <em>property owner</em> (for extension properties — the type being extended);</li>
+<li><code>property</code> — must be of type <code>KProperty&lt;*&gt;</code> or its supertype.</li>
+</ul>
+<p>this function must return the same type as property (or its subtype).</p>
+<p>For a <strong>mutable</strong> property (a <em>var</em>), a delegate has to <em>additionally</em> provide a function named <code>setValue</code> that takes the following parameters:</p>
+<ul>
+<li><code>thisRef</code> — same as for <code>getValue()</code>;</li>
+<li><code>property</code> — same as for <code>getValue()</code>;</li>
+<li><code>new value</code> — must be of the same type as the property or its subtype.</li>
+</ul>
+<p><code>getValue()</code> and/or <code>setValue()</code> functions may be provided either as member functions of the delegate class or extension functions. The latter is handy when you need to delegate property to an object which doesn’t originally provide these functions. Both of the functions need to be marked with the <code>operator</code> keyword.</p>
+<p>The delegate class may implement one of the interfaces <code>ReadOnlyProperty</code> and <code>ReadWriteProperty</code>containing the required <code>operator</code> methods. These interfaces are declared in the Kotlin standard library:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ReadOnlyProperty</span>&lt;<span class="type">in R, out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ReadWriteProperty</span>&lt;<span class="type">in R, T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">R</span>, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Translation-Rules"><a href="#Translation-Rules" class="headerlink" title="Translation Rules"></a>Translation Rules</h2><p>Under the hood for every delegated property the Kotlin compiler generates an auxiliary property and delegates to it. For instance, for the property <code>prop</code> the hidden property <code>prop$delegate</code> is generated, and the code of the accessors simply delegates to this additional property:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> prop: Type <span class="keyword">by</span> MyDelegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//this code is generated by the compiler instead</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> prop$delegate = MyDelegate()</span><br><span class="line">  <span class="keyword">var</span> prop: Type </span><br><span class="line">  		<span class="keyword">get</span>() = prop$delegate.getValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop)</span><br><span class="line">  		<span class="keyword">set</span>(value: Type) = prop$delegate.setValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop, value)</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
+<p>The Kotlin compiler provides all the necessary information about <code>prop</code> in the arguments: the first argument <code>this</code> refers to an instance of the outer class <code>C</code> and <code>this::prop</code> is a reflection object of the <code>KProperty</code> type describing <code>prop</code> itself.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">this</span>::name</span><br><span class="line"><span class="keyword">val</span> b = <span class="keyword">this</span>.name</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Note that the syntax <code>this::prop</code> to refer a <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/reflection.html#bound-function-and-property-references-since-11">bound callable reference</a> in the code directly is available only since Kotlin 1.1.</p>
+<h2 id="Providing-a-delegate-since-1-1"><a href="#Providing-a-delegate-since-1-1" class="headerlink" title="Providing a delegate (since 1.1)"></a>Providing a delegate (since 1.1)</h2><p>By defining the <code>provideDelegate</code> operator you can extend the logic of creating the object to which the property implementation is delegated. If the object used on the right hand side of <code>by</code> defines <code>provideDelegate</code> as a member or extension function, that function will be called to create the property delegate instance.</p>
+<p>One of the possible use cases of <code>provideDelegate</code> is to check property consistency when the property is created, not only in its getter or setter.</p>
+<p>For example, if you want to check the property name before binding, you can write something like this</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceDelegate</span>&lt;<span class="type">T</span>&gt; : <span class="type">ReadOnlyProperty</span>&lt;<span class="type">MyUI, T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">MyUI</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceLoader</span>&lt;<span class="type">T</span>&gt;</span>(id: ResourceID&lt;T&gt;) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">provideDelegate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            thisRef: <span class="type">MyUI</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            prop: <span class="type">KProperty</span>&lt;*&gt;</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: ReadOnlyProperty&lt;MyUI, T&gt; &#123;</span><br><span class="line">        checkProperty(thisRef, prop.name)</span><br><span class="line">        <span class="comment">// create delegate</span></span><br><span class="line">        <span class="keyword">return</span> ResourceDelegate()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">checkProperty</span><span class="params">(thisRef: <span class="type">MyUI</span>, name: <span class="type">String</span>)</span></span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">bindResource</span><span class="params">(id: <span class="type">ResourceID</span>&lt;<span class="type">T</span>&gt;)</span></span>: ResourceLoader&lt;T&gt; &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> image <span class="keyword">by</span> bindResource(ResourceID.image_id)</span><br><span class="line">    <span class="keyword">val</span> text <span class="keyword">by</span> bindResource(ResourceID.text_id)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The parameters of <code>provideDelegate</code> are the same as for <code>getValue</code>:</p>
+<ul>
+<li><code>thisRef</code> — must be the same or a supertype of the <em>property owner</em> (for extension properties — the type being extended);</li>
+<li><code>property</code> — must be of type <code>KProperty&lt;*&gt;</code> or its supertype.</li>
+</ul>
+<p>The <code>provideDelegate</code> method is called for each property during the creation of the <code>MyUI</code> instance, and it performs the necessary validation right away.</p>
+<p>Without this ability to intercept the binding between the property and its delegate, to achieve the same functionality you’d have to pass the property name explicitly, which isn’t very convenient:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Checking the property name without &quot;provideDelegate&quot; functionality</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> image <span class="keyword">by</span> bindResource(ResourceID.image_id, <span class="string">&quot;image&quot;</span>)</span><br><span class="line">    <span class="keyword">val</span> text <span class="keyword">by</span> bindResource(ResourceID.text_id, <span class="string">&quot;text&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> MyUI.<span class="title">bindResource</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        id: <span class="type">ResourceID</span>&lt;<span class="type">T</span>&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">        propertyName: <span class="type">String</span></span></span></span><br><span class="line"><span class="function"><span class="params">)</span></span>: ReadOnlyProperty&lt;MyUI, T&gt; &#123;</span><br><span class="line">   checkProperty(<span class="keyword">this</span>, propertyName)</span><br><span class="line">   <span class="comment">// create delegate</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In the generated code, the <code>provideDelegate</code> method is called to initialize the auxiliary <code>prop$delegate</code> property. Compare the generated code for the property declaration <code>val prop: Type by MyDelegate()</code> with the generated code <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/delegated-properties.html#translation-rules">above</a> (when the <code>provideDelegate</code> method is not present):</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prop: Type <span class="keyword">by</span> MyDelegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// this code is generated by the compiler </span></span><br><span class="line"><span class="comment">// when the &#x27;provideDelegate&#x27; function is available:</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="comment">// calling &quot;provideDelegate&quot; to create the additional &quot;delegate&quot; property</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> prop$delegate = MyDelegate().provideDelegate(<span class="keyword">this</span>, <span class="keyword">this</span>::prop)</span><br><span class="line">    <span class="keyword">var</span> prop: Type</span><br><span class="line">        <span class="keyword">get</span>() = prop$delegate.getValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop)</span><br><span class="line">        <span class="keyword">set</span>(value: Type) = prop$delegate.setValue(<span class="keyword">this</span>, <span class="keyword">this</span>::prop, value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Note that the <code>provideDelegate</code> method affects only the creation of the auxiliary property and doesn’t affect the code generated for getter or setter.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/09/01/2019-09-01-kotlin从入门到放弃-2019/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/08/21/2019-08-21-kotlin从入门到放弃-2019/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-08-29 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

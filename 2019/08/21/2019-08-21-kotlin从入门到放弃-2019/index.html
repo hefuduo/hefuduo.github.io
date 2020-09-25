@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Kotlin学习笔记2 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Kotlin学习笔记2"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Kotlin学习笔记2</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Kotlin-学习笔记2"><a href="#Kotlin-学习笔记2" class="headerlink" title="Kotlin 学习笔记2"></a>Kotlin 学习笔记2</h1><h2 id="Classes-and-Inheritance-类与继承"><a href="#Classes-and-Inheritance-类与继承" class="headerlink" title="Classes and Inheritance 类与继承"></a>Classes and Inheritance 类与继承</h2><h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//keyword class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Invoice</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Constructors"><a href="#Constructors" class="headerlink" title="Constructors"></a>Constructors</h4><p>A class in Kotlin can have a <strong>primary constructor</strong> and one or more <strong>secondary constructors</strong>. The primary constructor is part of the class header: it goes after the class name (and optional type parameters)</p>
+<p>主构造函数,跟随类名</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">constructor</span></span>(firName: String) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If the primary constructor does not have any annotations or visibility modifiers, the <em>constructor</em> keyword can be omitted:</p>
+<p>主构造函数不带任何注解和可见性修饰符,  <code>constructor</code> 关键字可以被省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(firstname: String) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The primary constructor cannot contain any code. Initialization code can be placed in <strong>initializer blocks</strong>, which are prefixed with the <em>init</em> keyword.</p>
+<p>主构造函数不能包含任何代码, 所有的初始化操作都放在<code>init block</code>代码块中</p>
+<p>During an instance initialization, the initializer blocks are executed in the same order as they appear in the class body, interleaved with the property initializers:</p>
+<p>在实例初始化期间, 初始化块在body中按照顺序执行,插入在属性初始化器中</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InitOrderDemo</span></span>(name: String) &#123;</span><br><span class="line">    <span class="keyword">val</span> firstProperty = <span class="string">&quot;First property: <span class="variable">$name</span>&quot;</span>.also(::println)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;First initializer block that prints <span class="subst">$&#123;name&#125;</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">val</span> secondProperty = <span class="string">&quot;Second property: <span class="subst">$&#123;name.length&#125;</span>&quot;</span>.also(::println)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Second initializer block that prints <span class="subst">$&#123;name.length&#125;</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> p = InitOrderDemo(<span class="string">&quot;li&quot;</span>)</span><br><span class="line">    println(p.firstProperty)</span><br><span class="line">    println(p.secondProperty)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">First property: li</span><br><span class="line">First initializer block that prints li</span><br><span class="line">Second property: <span class="number">2</span></span><br><span class="line">Second initializer block that prints <span class="number">2</span></span><br><span class="line">First property: li</span><br><span class="line">Second property: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>Note that parameters of the primary constructor can be used in the initializer blocks. They can also be used in property initializers declared in the class body:</p>
+<p>主构造函数中的参数能在初始化块中使用, 也能够在类体重的属性初始化中使用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>(name: String) &#123;</span><br><span class="line">  <span class="keyword">val</span> customerKey = name.toUpperCase()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In fact, for declaring properties and initializing them from the primary constructor, Kotlin has a concise syntax:</p>
+<p>参数构造器与属性声明与初始化一同进行</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> fristName: String, <span class="keyword">val</span> lastName: String, <span class="keyword">var</span> age: int)</span><br></pre></td></tr></table></figure>
+
+<p>Much the same way as regular properties, the properties declared in the primary constructor can be mutable (<em>var</em>) or read-only (<em>val</em>).</p>
+<p>f the constructor has annotations or visibility modifiers, the <em>constructor</em> keyword is required, and the modifiers go before it:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span> <span class="keyword">public</span> <span class="meta">@Inject</span> <span class="keyword">constructor</span></span>(name: String)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Sencondary-constructors"><a href="#Sencondary-constructors" class="headerlink" title="Sencondary constructors"></a>Sencondary constructors</h4><p>声明次构造函数 使用<code>constructors</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>()&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> children: MutableList&lt;Person&gt; = mutableListOf()</span><br><span class="line">    <span class="keyword">constructor</span>(parent: Person) : <span class="keyword">this</span>() &#123;</span><br><span class="line">        parent.children.add(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Note that code in initializer blocks effectively becomes part of the primary constructor. Delegation to the primary constructor happens as the first statement of a secondary constructor, so the code in all initializer blocks is executed before the secondary constructor body. Even if the class has no primary constructor, the delegation still happens implicitly, and the initializer blocks are still executed:</p>
+<p><code>init</code>代码块一定会在次构造函数之前执行</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;init block&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        println(<span class="string">&quot;secondary constructor&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">init block</span></span><br><span class="line"><span class="comment">secondary constructor</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>NOTE</strong>: On the JVM, if all of the parameters of the primary constructor have default values, the compiler will generate an additional parameterless constructor which will use the default values. This makes it easier to use Kotlin with libraries such as Jackson or JPA that create class instances through parameterless constructors.</p>
+</blockquote>
+<blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>(<span class="keyword">val</span> customerName: String = <span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h4 id="Creating-instancees-of-classes"><a href="#Creating-instancees-of-classes" class="headerlink" title="Creating instancees of classes"></a>Creating instancees of classes</h4><p>类似C++ 的创建方式</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>If the derived class has a primary constructor, the base class can (and must) be initialized right there, using the parameters of the primary constructor.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>(p: <span class="built_in">Int</span>)		</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(p: <span class="built_in">Int</span>) : Base(p)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用<code>super</code>关键字调用父类构造函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyView</span> : <span class="type">View &#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(ctx: Context) : <span class="keyword">super</span>(ctx)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(ctx: Context, attrs: AttributeSet) : <span class="keyword">super</span>(ctx, attrs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Overriding-Methods"><a href="#Overriding-Methods" class="headerlink" title="Overriding Methods"></a>Overriding Methods</h4><p>As we mentioned before, we stick to making things explicit in Kotlin. So, Kotlin requires explicit modifiers for overridable members (we call them <em>open</em>) and for overrides:</p>
+<p>必须显式的指定open 和 override</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//use open modifier to make the class can be inheriate</span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;  </span><br><span class="line">  <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;&#125; <span class="comment">//use open to make the method  can be overrided</span></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">fill</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span>() : Shape() &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <em>override</em> modifier is required for <code>Circle.draw()</code>. If it were missing, the compiler would complain. If there is no <em>open</em> modifier on a function, like <code>Shape.fill()</code>, declaring a method with the same signature in a subclass is illegal, either with <em>override</em> or without it. The <em>open</em>modifier has no effect when added on members of a final class (i.e.. a class with no <em>open</em>modifier).</p>
+<p>如果没有使用<code>open</code>修饰函数,那么子类使用相同的签名将是不合法的.</p>
+<p>A member marked <em>override</em> is itself open, i.e. it may be overridden in subclasses. If you want to prohibit re-overriding, use <em>final</em>:</p>
+<p>使用override修饰的自带open属性, 如果不想方法被覆盖,使用<code>final</code>直接修饰方法.</p>
+<h4 id="Overriding-Properties"><a href="#Overriding-Properties" class="headerlink" title="Overriding Properties"></a>Overriding Properties</h4><p>覆盖属性与覆盖方法类似</p>
+<p>Overriding properties works in a similar way to overriding methods; properties declared on a superclass that are then redeclared on a derived class must be prefaced with <em>override</em>, and they must have a compatible type. Each declared property can be overridden by a property with an initializer or by a property with a <code>get</code> method.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="keyword">open</span> <span class="keyword">val</span> vertexCount: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>: <span class="type">Shape</span></span>() &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> vertexCount = <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You can also override a <code>val</code> property with a <code>var</code> property, but not (vice versa)(反之亦然). This is allowed because a <code>val</code> property essentially declares a <code>get</code> method, and overriding it as a <code>var</code> additionally declares a <code>set</code> method in the derived class.</p>
+<p>Note that you can use the <em>override</em> keyword as part of the property declaration in a primary constructor.</p>
+<p><code>var</code> 可以覆盖<code>val</code>反之则不行</p>
+<p>在主构造函数中直接指定可覆写的属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> vertexCount: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span></span>(<span class="keyword">override</span> <span class="keyword">val</span> vertexCount: <span class="built_in">Int</span> = <span class="number">4</span>) : Shape <span class="comment">// Always has 4 vertices</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polygon</span> : <span class="type">Shape &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">var</span> vertexCount: <span class="built_in">Int</span> = <span class="number">0</span>  <span class="comment">// Can be set to any number later</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Derived-class-initialization-order"><a href="#Derived-class-initialization-order" class="headerlink" title="Derived class initialization order"></a>Derived class initialization order</h4><p>During construction of a new instance of a derived class, the base class initialization is done as the first step (preceded only by evaluation of the arguments for the base class constructor) and thus happens before the initialization logic of the derived class is run.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>(<span class="keyword">val</span> name: String) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Initializing Base&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">val</span> size: <span class="built_in">Int</span> =</span><br><span class="line">            name.length.also &#123; println(<span class="string">&quot;Initializing size in Base: <span class="variable">$it</span>&quot;</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(</span><br><span class="line">        name: String,</span><br><span class="line">        <span class="keyword">val</span> lastName: String</span><br><span class="line">) : Base(name.capitalize().also &#123; println(<span class="string">&quot;Argument for Base: <span class="variable">$it</span>&quot;</span>) &#125;) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">      <span class="comment">//从输出来看, 如果此时在这个init块中使用size属性, 在运行时按照初始化顺序这个值为3, 而不是预想的5, 这个一定要注意, 尽量避免在 constructor init 属性初始化这三个地方使用open的properties</span></span><br><span class="line">        println(<span class="string">&quot;Initializing Derived&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> size: <span class="built_in">Int</span> =</span><br><span class="line">            (<span class="keyword">super</span>.size + lastName.length).also &#123; println(<span class="string">&quot;Initializing size in Derived: <span class="variable">$it</span>&quot;</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//output</span><br><span class="line">Argument for Base: Leo</span><br><span class="line">Initializing Base</span><br><span class="line">Initializing size in Base: 3</span><br><span class="line">Initializing Derived</span><br><span class="line">Initializing size in Derived: 5</span><br></pre></td></tr></table></figure>
+
+<p>It means that, by the time of the base class constructor execution, the properties declared or overridden in the derived class are not yet initialized. If any of those properties are used in the base class initialization logic (either directly or indirectly, through another overridden <em>open</em> member implementation), it may lead to incorrect behavior or a runtime failure. When designing a base class, you should therefore avoid using <em>open</em> members in the constructors, property initializers, and <em>init</em> blocks.</p>
+<p>当父类构造函数执行时. 在子类声明或覆盖的属性并没有执行初始化操作, 如果任何这些属性在父类初始化逻辑中使用到了, 可能会出现运行时异常, 当设计一个父类的时候, 因此需要避免在构造函数中, 属性初始化中, 初始化块中使用<code>open member</code></p>
+<h4 id="Calling-the-superclass-implementation"><a href="#Calling-the-superclass-implementation" class="headerlink" title="Calling the superclass implementation"></a>Calling the superclass implementation</h4><p>Code in a derived class can call its superclass functions and property accessors implementations using the <em>super</em> keyword:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">        <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; println(<span class="string">&quot;Drawing a rectangle&quot;</span>) &#125;</span><br><span class="line">        <span class="keyword">val</span> borderColor: String <span class="keyword">get</span>() = <span class="string">&quot;black&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">FilledRectangle</span> : <span class="type">Rectangle</span></span>() &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.draw <span class="comment">// calling the super method</span></span><br><span class="line">            println(<span class="string">&quot;Filling the rectangle&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> fillColor: String <span class="keyword">get</span>() = <span class="keyword">super</span>.borderColor</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Inside an inner class, accessing the superclass of the outer class is done with the <em>super</em>keyword qualified with the outer class name: <code>super@Outer</code>:</p>
+<p>use <code>this@Outer</code> 引用当期那类属性.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//nested class</span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; println(<span class="string">&quot;Drawing a rectangle&quot;</span>) &#125;</span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">val</span> borderColor: String <span class="keyword">get</span>() = <span class="string">&quot;black&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FilledRectangle</span> : <span class="type">Rectangle</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> borderColor : String <span class="keyword">get</span>() = <span class="string">&quot;red&quot;</span></span><br><span class="line">    <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">Filler</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">fill</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">drawAndFill</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="symbol">super@</span>FilledRectangle.draw() <span class="comment">// Calls Rectangle&#x27;s implementation of draw()</span></span><br><span class="line">            fill()</span><br><span class="line">            println(<span class="string">&quot;Drawn a filled rectangle with color <span class="subst">$&#123;super@FilledRectangle.borderColor&#125;</span>&quot;</span>) <span class="comment">// Uses Rectangle&#x27;s implementation of borderColor&#x27;s get()</span></span><br><span class="line">            println(<span class="string">&quot;this <span class="subst">$&#123;this@FilledRectangle.borderColor&#125;</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Overriding-Rules"><a href="#Overriding-Rules" class="headerlink" title="Overriding Rules"></a>Overriding Rules</h4><p>In Kotlin, implementation inheritance is regulated by the following rule: if a class inherits many implementations of the same member from its immediate superclasses, it must override this member and provide its own implementation (perhaps, using one of the inherited ones). To denote the supertype from which the inherited implementation is taken, we use <em>super</em> qualified by the supertype name in angle brackets, e.g. <code>super&lt;Base&gt;</code>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123; <span class="comment">/* ... */</span> &#125; <span class="comment">// interface members are &#x27;open&#x27; by default</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span></span>() : Rectangle(), Polygon &#123;</span><br><span class="line">    <span class="comment">// The compiler requires draw() to be overridden:</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>&lt;Rectangle&gt;.draw() <span class="comment">// call to Rectangle.draw()</span></span><br><span class="line">        <span class="keyword">super</span>&lt;Polygon&gt;.draw() <span class="comment">// call to Polygon.draw()</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>It’s fine to inherit from both <code>Rectangle</code> and <code>Polygon</code>, but both of them have their implementations of <code>draw()</code>, so we have to override <code>draw()</code> in <code>Square</code> and provide its own implementation that eliminates the ambiguity.</p>
+<h4 id="Abstract-Classes"><a href="#Abstract-Classes" class="headerlink" title="Abstract Classes"></a>Abstract Classes</h4><p>A class and some of its members may be declared <em>abstract</em>. An abstract member does not have an implementation in its class. Note that we do not need to annotate an abstract class or function with open – it goes without saying.</p>
+<p>We can override a non-abstract open member with an abstract one</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Polygon</span> </span>&#123;</span><br><span class="line">  <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> : <span class="type">Polygon</span></span>() &#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>or e.g.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> : <span class="type">A</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">        TODO(<span class="string">&quot;not implemented&quot;</span>) <span class="comment">//To change body of created functions use File | Settings | File Templates.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Companion-objects"><a href="#Companion-objects" class="headerlink" title="Companion objects"></a>Companion objects</h4><p>伴生对象</p>
+<p>If you need to write a function that can be called without having a class instance but needs access to the internals of a class (for example, a factory method), you can write it as a member of an <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/object-declarations.html">object declaration</a> inside that class.</p>
+<p>Even more specifically, if you declare a <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects">companion object</a> inside your class, you’ll be able to call its members using only the class name as a qualifier.</p>
+<h2 id="属性和字段-Properties-and-Fields"><a href="#属性和字段-Properties-and-Fields" class="headerlink" title="属性和字段 Properties and Fields"></a>属性和字段 Properties and Fields</h2><h3 id="Declaring-Properties"><a href="#Declaring-Properties" class="headerlink" title="Declaring Properties"></a>Declaring Properties</h3><p><code>var</code> mutable <code>val</code> immutable</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">&quot;Holmes, Sherlock&quot;</span></span><br><span class="line">    <span class="keyword">var</span> street: String = <span class="string">&quot;Baker&quot;</span></span><br><span class="line">    <span class="keyword">var</span> city: String = <span class="string">&quot;London&quot;</span></span><br><span class="line">    <span class="keyword">var</span> state: String? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">var</span> zip: String = <span class="string">&quot;123456&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To use a property, simply refer to it by name:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copyAddress</span><span class="params">(address: <span class="type">Address</span>)</span></span> : Address &#123;</span><br><span class="line">  <span class="keyword">val</span> result = Address() <span class="comment">// there&#x27;s no &#x27;new&#x27; keyword in Kotlin</span></span><br><span class="line">    result.name = address.name <span class="comment">// accessors are called</span></span><br><span class="line">    result.street = address.street</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Getters-and-Setters"><a href="#Getters-and-Setters" class="headerlink" title="Getters and Setters"></a>Getters and Setters</h3><p>Declaring a property use this syntax</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var|val &lt;propertyName&gt; [: &lt;PropertyType&gt;] [=PropertyValue] [&lt;getter&gt;] [&lt;setter&gt;]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>e.g.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> allByDefault: <span class="built_in">Int</span>? <span class="comment">// error: explicit initializer required, default getter and setter implied 必须被初始化</span></span><br><span class="line"><span class="keyword">var</span> initialized = <span class="number">1</span> <span class="comment">// has type Int, default getter and setter</span></span><br></pre></td></tr></table></figure>
+
+<p>The full syntax of a read-only property declaration differs from a mutable one in two ways: it starts with <code>val</code> instead of <code>var</code> and does not allow a setter:</p>
+<p>只读属性只有<code>getter</code> 没有<code>setter</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> simple: <span class="built_in">Int</span>? <span class="comment">// has type Int, default getter, must be initialized in constructor</span></span><br><span class="line"><span class="keyword">val</span> inferredType = <span class="number">1</span> <span class="comment">// has type Int and a default getter</span></span><br></pre></td></tr></table></figure>
+
+<p>We can define custom accessors for a property. If we define a custom getter, it will be called every time we access the property (this allows us to implement a computed property). Here’s an example of a custom getter:</p>
+<p>自定义属性访问器</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> isEmpty: <span class="built_in">Boolean</span></span><br><span class="line">    <span class="keyword">get</span>() = <span class="keyword">this</span>.size == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>If we define a custom setter, it will be called every time we assign a value to the property. A custom setter looks like this:</p>
+<p>使用自定义属性<code>setter</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stringRepresentation: String</span><br><span class="line">    <span class="keyword">get</span>() = <span class="keyword">this</span>.toString()</span><br><span class="line">    <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        setDataFromString(value) <span class="comment">// parses the string and assigns values to other properties</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问与设置</span></span><br><span class="line">stringRepresentation = <span class="string">&quot;?&quot;</span> (setter)</span><br><span class="line"><span class="keyword">val</span> a = stringRepresenation (getter)</span><br></pre></td></tr></table></figure>
+
+<p>By convention, the name of the setter parameter is <code>value</code>, but you can choose a different name if you prefer.</p>
+<p>Since Kotlin 1.1, you can omit the property type if it can be inferred from the getter:</p>
+<p><code>value</code>是默认的<code>set</code>参数名, 从koltin<code>1.1</code>开始, 属性类型可以被省略,因为类型可以被类型推断系统确定类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> isEmpty <span class="keyword">get</span>() = <span class="keyword">this</span>.size == <span class="number">0</span>  <span class="comment">// has type Boolean</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置属性访问器的可见性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> setterVisibility: String = <span class="string">&quot;abc&quot;</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">set</span><span class="comment">//the setter is private and has the default implementation</span></span><br><span class="line"><span class="keyword">var</span> setterWithAnnotation: Any? = <span class="literal">null</span></span><br><span class="line"><span class="meta">@Inject</span> <span class="keyword">set</span><span class="comment">//annotate the setter with Inject</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Backing-Fields"><a href="#Backing-Fields" class="headerlink" title="Backing Fields"></a>Backing Fields</h3><p>Fields cannot be declared directly in Kotlin classes. However, when a property needs a backing field, Kotlin provides it automatically. This backing field can be referenced in the accessors using the <code>field</code> identifier:</p>
+<p>使用<code>field</code>关键字引用幕后字段</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span></span><br><span class="line">	<span class="keyword">set</span>(value) &#123;</span><br><span class="line">    <span class="keyword">if</span>(value &gt;= <span class="number">0</span>) field = value <span class="comment">//field is the backing field</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><font color="red">The <code>field</code> identifier can only be used in the accessors of the property.</font></p>
+<p>A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the <code>field</code> identifier.</p>
+<p>For example, in the following case there will be no backing field:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> isEmpty: <span class="built_in">Boolean</span> </span><br><span class="line">	<span class="keyword">get</span>() = <span class="keyword">this</span>.size ==<span class="number">0</span> </span><br><span class="line"><span class="comment">//这中情况没有backing field</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Backing-Properties"><a href="#Backing-Properties" class="headerlink" title="Backing Properties"></a>Backing Properties</h3><p>If you want to do something that does not fit into this “implicit backing field” scheme, you can always fall back to having a <em>backing property</em>:</p>
+<p>如果不想使用<code>implicit backing field</code>可以直接使用退化的<em>backing property</em></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _table: HashMap&lt;String, String&gt;? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">val</span> table: Map&lt;String, String&gt;</span><br><span class="line">        <span class="keyword">get</span>() &#123;</span><br><span class="line">            <span class="keyword">if</span> (_table == <span class="literal">null</span>) &#123;</span><br><span class="line">                _table = HashMap()</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> _table ?: <span class="keyword">throw</span> IllegalArgumentException(<span class="string">&quot;error argument&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>On the JVM</strong>: The access to private properties with default getters and setters is optimized so no function call overhead is introduced in this case.</p>
+</blockquote>
+<h3 id="Compile-Time-Constants-编译时常量"><a href="#Compile-Time-Constants-编译时常量" class="headerlink" title="Compile-Time Constants 编译时常量"></a>Compile-Time Constants 编译时常量</h3><p>Properties the value of which is known at compile time can be marked as <em>compile time constants</em>using the <em>const</em> modifier. Such properties need to fulfil the following requirements:</p>
+<ul>
+<li>Top-level, or member of an <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/object-declarations.html#object-declarations"><em>object</em> declaration</a> or <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects">a <em>companion object</em></a>.</li>
+<li>Initialized with a value of type <code>String</code> or a primitive type</li>
+<li>No custom getter</li>
+</ul>
+<h3 id="Late-Initialized-Properties-and-Variables"><a href="#Late-Initialized-Properties-and-Variables" class="headerlink" title="Late-Initialized Properties and Variables"></a>Late-Initialized Properties and Variables</h3><p>Normally, properties declared as having a non-null type must be initialized in the constructor. However, fairly often this is not convenient. For example, properties can be initialized through dependency injection, or in the setup method of a unit test. In this case, you cannot supply a non-null initializer in the constructor, but you still want to avoid null checks when referencing the property inside the body of a class.</p>
+<p>To handle this case, you can mark the property with the <code>lateinit</code> modifier:</p>
+<p>使用<code>lateinit</code>来标记延迟初始化的属性,避免属性被编译器空检查</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> subject: TestSubject </span><br><span class="line"></span><br><span class="line">    <span class="meta">@SetUp</span> <span class="function"><span class="keyword">fun</span> <span class="title">setup</span><span class="params">()</span></span> &#123;</span><br><span class="line">        subject = TestSubject()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">        subject.method()  <span class="comment">// dereference directly</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>The modifier can be used on <code>var</code> properties declared inside the body of a class (not in the primary constructor, and only when the property does not have a custom getter or setter) and, since Kotlin 1.2, for top-level properties and local variables. The type of the property or variable must be non-null, and it must not be a primitive type.</p>
+<p>Accessing a <code>lateinit</code> property before it has been initialized throws a special exception that clearly identifies the property being accessed and the fact that it hasn’t been initialized.</p>
+<p>能够在class的body内修饰var属性(不能在主构造函数中使用,并且属性不能够有自定义属性访问器) 从kotlin 1.2, 顶级属性和本地变量. </p>
+<p>属性的类型必须是非空的, 并且不能是基础类型(Int Double Byte …)</p>
+<h3 id="Override-Properties"><a href="#Override-Properties" class="headerlink" title="Override Properties"></a>Override Properties</h3><p>See @ override Properties Chapter</p>
+<h3 id="Delegate-Properties"><a href="#Delegate-Properties" class="headerlink" title="Delegate Properties"></a>Delegate Properties</h3><p>See @ delegate Properties </p>
+<h2 id="Interfaces"><a href="#Interfaces" class="headerlink" title="Interfaces"></a>Interfaces</h2><p>Interfaces in Kotlin can contain declarations of abstract methods, as well as method implementations. What makes them different from abstract classes is that interfaces cannot store state. They can have properties but these need to be abstract or to provide accessor implementations.</p>
+<p>An interface is defined using the keyword <em>interface</em></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//optional body default</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Implementing-Interfaces"><a href="#Implementing-Interfaces" class="headerlink" title="Implementing Interfaces"></a>Implementing Interfaces</h3><p>A class or object can implement one or more interfaces</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> : <span class="type">MyInterface &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// body</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You can declare properties in interfaces. A property declared in an interface can either be abstract, or it can provide implementations for accessors. Properties declared in interfaces can’t have backing fields, and therefore accessors declared in interfaces can’t reference them.</p>
+<h3 id="Perperties-in-Interfaces"><a href="#Perperties-in-Interfaces" class="headerlink" title="Perperties in Interfaces"></a>Perperties in Interfaces</h3><p>在kotlin的接口中可以声明属性, 属性是可以被覆写的, 或者能够有一个默认的访问器, 在接口中定义的属性不能有幕后字段, 因此不能够在interfaces中定义访问器索引他们</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> prop: <span class="built_in">Int</span> <span class="comment">// abstract</span></span><br><span class="line">  <span class="keyword">val</span> propertyWithImplementation: String</span><br><span class="line">  	<span class="keyword">get</span>() = <span class="string">&quot;foo&quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(prop)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> : <span class="type">MyInterface &#123;</span></span></span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> prop: <span class="built_in">Int</span> = <span class="number">29</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Interfaces-Inheritance"><a href="#Interfaces-Inheritance" class="headerlink" title="Interfaces Inheritance"></a>Interfaces Inheritance</h3><p>接口的继承</p>
+<p>一个接口能够继承自另一个接口,并且提供新的属性和方法,又提供了父类的实现. 类实现属性可以只定义剩下的未实现的方法或属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Named</span> </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> name: String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Person</span> : <span class="type">Named &#123;</span></span></span><br><span class="line">  <span class="keyword">val</span> firstName : String</span><br><span class="line">  <span class="keyword">val</span> lastName: String</span><br><span class="line">  </span><br><span class="line"> <span class="keyword">override</span> <span class="keyword">val</span> name : String <span class="keyword">get</span>() = <span class="string">&quot;<span class="variable">$firstName</span> <span class="variable">$lastName</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>(</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> firstName: String,</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> lastName: String,</span><br><span class="line">  <span class="keyword">val</span> position: Position</span><br><span class="line">) : Person</span><br></pre></td></tr></table></figure>
+
+<h3 id="Resolving-Override-confilicts"><a href="#Resolving-Override-confilicts" class="headerlink" title="Resolving Override confilicts"></a>Resolving Override confilicts</h3><p>解决覆盖冲突<br>当我们在父类中声明了很多类型, 可能出现在继承时, 可能出现多个实现对应一个方法, 举例:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(<span class="string">&quot;A&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(<span class="string">&quot;B&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(<span class="string">&quot;bar&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> : <span class="type">A &#123;</span></span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;print(<span class="string">&quot;bar&quot;</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> : <span class="type">A</span>, <span class="type">B &#123;</span></span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>&lt;A&gt;.foo()</span><br><span class="line">    <span class="keyword">super</span>&lt;B&gt;.foo()</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>&lt;B&gt;.bar()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Interfaces <em>A</em> and <em>B</em> both declare functions <em>foo()</em> and <em>bar()</em>. Both of them implement <em>foo()</em>, but only <em>B</em>implements <em>bar()</em> (<em>bar()</em> is not marked abstract in <em>A</em>, because this is the default for interfaces, if the function has no body). Now, if we derive a concrete class <em>C</em> from <em>A</em>, we, obviously, have to override *bar()*and provide an implementation.</p>
+<p>However, if we derive <em>D</em> from <em>A</em> and <em>B</em>, we need to implement all the methods which we have inherited from multiple interfaces, and to specify how exactly <em>D</em> should implement them. This rule applies both to methods for which we’ve inherited a single implementation (<em>bar()</em>) and multiple implementations (<em>foo()</em>).</p>
+<p><code>class D </code>中从A和B中都继承了相同的方法, 那么调用A中的还是B中的呢, 需要明确指定父类的方法.</p>
+<h2 id="Visibility-Modifiers-可见性修饰"><a href="#Visibility-Modifiers-可见性修饰" class="headerlink" title="Visibility Modifiers 可见性修饰"></a>Visibility Modifiers 可见性修饰</h2><p>四个可见性修饰符</p>
+<ol>
+<li><code>private</code> 仅当前类的实例</li>
+<li><code>public</code>都可见</li>
+<li><code>protected</code>当前类和类的子类实例</li>
+<li><code>internal</code>当前模块</li>
+</ol>
+<h3 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h3><p><code>public</code> 是默认的, <code>protected</code>不能作为顶级声明使用</p>
+<h3 id="Classes-and-Interfaces"><a href="#Classes-and-Interfaces" class="headerlink" title="Classes and Interfaces"></a>Classes and Interfaces</h3><p>Example</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">open</span> <span class="keyword">val</span> b = <span class="number">2</span></span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">val</span> c = <span class="number">3</span></span><br><span class="line">    <span class="keyword">val</span> d = <span class="number">4</span>  <span class="comment">// public by default</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">protected</span> <span class="class"><span class="keyword">class</span> <span class="title">Nested</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">val</span> e: <span class="built_in">Int</span> = <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subclass</span> : <span class="type">Outer</span></span>() &#123;</span><br><span class="line">    <span class="comment">// a is not visible</span></span><br><span class="line">    <span class="comment">// b, c and d are visible</span></span><br><span class="line">    <span class="comment">// Nested and e are visible</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> b = <span class="number">5</span>   <span class="comment">// &#x27;b&#x27; is protected</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Unrelated</span></span>(o: Outer) &#123;</span><br><span class="line">    <span class="comment">// o.a, o.b are not visible</span></span><br><span class="line">    <span class="comment">// o.c and o.d are visible (same module)</span></span><br><span class="line">    <span class="comment">// Outer.Nested is not visible, and Nested::e is not visible either </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h3><p>To specify a visibility of the primary constructor of a class, use the following syntax (note that you need to add an explicit <em>constructor</em> keyword):</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>(a: <span class="built_in">Int</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="什么是模块"><a href="#什么是模块" class="headerlink" title="什么是模块"></a>什么是模块</h3><ul>
+<li>IntelliJ IDEA module;</li>
+<li>a Maven project;</li>
+<li>a Gradle source set (with the exception that the <code>test</code> source set can access the internal declarations of <code>main</code>);</li>
+<li>a set of files compiled with one invocation of the <code>&lt;kotlinc&gt;</code> Ant task.</li>
+</ul>
+<h2 id="Extensions-扩展"><a href="#Extensions-扩展" class="headerlink" title="Extensions 扩展"></a>Extensions 扩展</h2><p>Kotlin provides the ability to extend a class with new functionality without having to inherit from the class or use design patterns such as Decorator. This is done via special declarations called <em>extensions</em>. For example, you can write new functions for a class from a third-party library that you can’t modify. Such functions are available for calling in the usual way as if they were methods of the original class. This mechanism is called <em>extension functions</em>. There are also <em>extension properties</em> that let you define new properties for existing classes.</p>
+<h3 id="Extension-functions-扩展函数"><a href="#Extension-functions-扩展函数" class="headerlink" title="Extension functions 扩展函数"></a>Extension functions 扩展函数</h3><p>To declare an extension function, we need to prefix its name with a <em>receiver type</em>, i.e. the type being extended. The following adds a <code>swap</code> function to <code>MutableList&lt;Int&gt;</code>:</p>
+<p>扩展函数需要前置一个接受类型, 指定对哪个类型的扩展</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> MutableList<span class="type">&lt;Int&gt;</span>.<span class="title">swap</span><span class="params">(index1: <span class="type">Int</span>, index2: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> tmp = <span class="keyword">this</span>[index1] <span class="comment">// &#x27;this&#x27; corresponds to the list</span></span><br><span class="line">    <span class="keyword">this</span>[index1] = <span class="keyword">this</span>[index2]</span><br><span class="line">    <span class="keyword">this</span>[index2] = tmp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>扩展函数的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun &lt;genericType&gt; [receiveType][&lt;genericType&gt;].[function name]([parameters]): [returnType] &#123;</span><br><span class="line">	[body]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中,<code>this</code>指向<code>receive object</code> 本身.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = mutableListOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">list.swap(<span class="number">0</span>, <span class="number">2</span>) <span class="comment">// &#x27;this&#x27; inside &#x27;swap()&#x27; will hold the value of &#x27;list&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>进一步修改让它支持泛型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> MutableList<span class="type">&lt;T&gt;</span>.<span class="title">swap</span><span class="params">(index1: <span class="type">Int</span>, index2: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> tmp = <span class="keyword">this</span>[index1] <span class="comment">// &#x27;this&#x27; corresponds to the list</span></span><br><span class="line">    <span class="keyword">this</span>[index1] = <span class="keyword">this</span>[index2]</span><br><span class="line">    <span class="keyword">this</span>[index2] = tmp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Extensions-are-resolved-Statically"><a href="#Extensions-are-resolved-Statically" class="headerlink" title="Extensions are resolved Statically"></a>Extensions are resolved Statically</h3><p>扩展是类似Java的静态方法</p>
+<h3 id="Nullable-Receiver"><a href="#Nullable-Receiver" class="headerlink" title="Nullable Receiver"></a>Nullable Receiver</h3><p>可空接收者</p>
+<p>Note that extensions can be defined with a nullable receiver type. Such extensions can be called on an object variable even if its value is null, and can check for <code>this == null</code> inside the body. This is what allows you to call toString() in Kotlin without checking for null: the check happens inside the extension function.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> Any?.<span class="title">toString</span><span class="params">()</span></span>: String&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">this</span> == <span class="literal">null</span>) <span class="keyword">return</span> <span class="string">&quot;null&quot;</span></span><br><span class="line">  <span class="keyword">return</span> toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Extension-Properties-扩展属性"><a href="#Extension-Properties-扩展属性" class="headerlink" title="Extension Properties 扩展属性"></a>Extension Properties 扩展属性</h3><p>与扩展方法类似</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> &lt;T&gt; List&lt;T&gt;.lastIndex: <span class="built_in">Int</span> </span><br><span class="line">	<span class="keyword">get</span>() == size - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>Note that, since extensions do not actually insert members into classes, there’s no efficient way for an extension property to have a <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/properties.html#backing-fields">backing field</a>. This is why <strong>initializers are not allowed for extension properties</strong>. Their behavior can only be defined by explicitly providing getters/setters</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> House.number = <span class="number">1</span> <span class="comment">//error: initializers are not allowed for extension properties</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Companion-object-extensions-伴生对象扩展"><a href="#Companion-object-extensions-伴生对象扩展" class="headerlink" title="Companion object extensions  伴生对象扩展"></a>Companion object extensions  伴生对象扩展</h3><p>If a class has a <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects">companion object</a> defined, you can also define extension functions and properties for the companion object. Just like regular members of the companion object, they can be called using only the class name as the qualifier:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;&#125; <span class="comment">//will be called &quot;Companion&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> MyClass.Companion.<span class="title">printCompanion</span><span class="params">()</span></span> &#123;</span><br><span class="line">  println(<span class="string">&quot;compation&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  MyClass.printCompanion();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Scope-of-extensions-扩展的作用域"><a href="#Scope-of-extensions-扩展的作用域" class="headerlink" title="Scope of extensions 扩展的作用域"></a>Scope of extensions 扩展的作用域</h3><p>Most of the time we define extensions on the top level - directly under packages:</p>
+<p>在包名下定义顶级扩展</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.declarations</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">fun</span> List<span class="type">&lt;String&gt;</span>.<span class="title">getLongestString</span><span class="params">()</span></span> &#123; <span class="comment">/*...*/</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用时, import 进来</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example.usage</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.example.declarations.getLongestString</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> list = listOf(<span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span>)</span><br><span class="line">    list.getLongestString()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Declaring-extensions-as-members"><a href="#Declaring-extensions-as-members" class="headerlink" title="Declaring extensions as members"></a>Declaring extensions as members</h3><p>Inside a class, you can declare extensions for another class. Inside such an extension, there are multiple <em>implicit receivers</em> - objects members of which can be accessed without a qualifier. The instance of the class in which the extension is declared is called <em>dispatch receiver</em>, and the instance of the receiver type of the extension method is called <em>extension receiver</em>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Host</span></span>(<span class="keyword">val</span> hostname: String) &#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">printHostname</span><span class="params">()</span></span> &#123;print(hostname)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span></span>(<span class="keyword">val</span> host: Host, <span class="keyword">val</span> port: <span class="built_in">Int</span>)&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">printPort</span><span class="params">()</span></span> &#123;</span><br><span class="line">    print(port)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">fun</span> Host.<span class="title">printConnectionString</span><span class="params">(p: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">    printHostname()    <span class="comment">//call Host.printHostname</span></span><br><span class="line">    print(<span class="string">&quot;:&quot;</span>)</span><br><span class="line">    printPort()     call Connection.printPort</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">connect</span><span class="params">()</span></span> &#123;</span><br><span class="line">    host.printConnectionString(port) <span class="comment">//calls the extension function</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  Connection(Host(<span class="string">&quot;kotl.in&quot;</span>), <span class="number">443</span>).connect();</span><br><span class="line">  <span class="comment">//Host(&quot;Kotl.in&quot;).printConnectionString(443) //ERROR, the extension function is unavailable outside Connection</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>In case of a name conflict between the members of the dispatch receiver and the extension receiver, the extension receiver takes precedence. To refer to the member of the dispatch receiver you can use the <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/this-expressions.html#qualified">qualified <code>this</code> syntax</a>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Connection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> Host.<span class="title">getConnectionString</span><span class="params">()</span></span> &#123;</span><br><span class="line">        toString()         <span class="comment">// calls Host.toString()</span></span><br><span class="line">        <span class="keyword">this</span><span class="symbol">@Connection</span>.toString()  <span class="comment">// calls Connection.toString()</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Extensions declared as members can be declared as <code>open</code> and overridden in subclasses. This means that the dispatch of such functions is virtual with regard to the dispatch receiver type, but static with regard to the extension receiver type.</p>
+<p><strong>在class内部的扩展成员也能够声明成可被覆写的</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> : <span class="type">Base</span></span>() &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseCaller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> Base.<span class="title">printFunctionInfo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Base extension function in BaseCaller&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> Derived.<span class="title">printFunctionInfo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Derived extension function in BaseCaller&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">call</span><span class="params">(b: <span class="type">Base</span>)</span></span> &#123;</span><br><span class="line">        b.printFunctionInfo()   <span class="comment">// call the extension function</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedCaller</span>: <span class="type">BaseCaller</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> Base.<span class="title">printFunctionInfo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Base extension function in DerivedCaller&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> Derived.<span class="title">printFunctionInfo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Derived extension function in DerivedCaller&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    BaseCaller().call(Base())   <span class="comment">// &quot;Base extension function in BaseCaller&quot;</span></span><br><span class="line">    DerivedCaller().call(Base())  <span class="comment">// &quot;Base extension function in DerivedCaller&quot; - dispatch receiver is resolved virtually</span></span><br><span class="line">    DerivedCaller().call(Derived())  <span class="comment">// &quot;Base extension function in DerivedCaller&quot; - extension receiver is resolved statically</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="NOTE-On-visibility"><a href="#NOTE-On-visibility" class="headerlink" title="NOTE On visibility"></a>NOTE On visibility</h3><p>Extensions utilize the same <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/visibility-modifiers.html">visibility of other entities</a> as regular functions declared in the same scope would. For example:</p>
+<ul>
+<li>An extension declared on top level of a file has access to the other <code>private</code> top-level declarations in the same file;</li>
+<li>If an extension is declared outside its receiver type, such an extension cannot access the receiver’s <code>private</code> members.</li>
+</ul>
+<h2 id="Data-Classes-数据类"><a href="#Data-Classes-数据类" class="headerlink" title="Data Classes  数据类"></a>Data Classes  数据类</h2><p>We frequently create classes whose main purpose is to hold data. In such a class some standard functionality and utility functions are often mechanically derivable from the data. In Kotlin, this is called a <em>data class</em> and is marked as <code>data</code>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>The compiler automatically derives the following members from all properties declared in the primary constructor:</p>
+<ul>
+<li><code>equals()</code>/<code>hashCode()</code> pair;</li>
+<li><code>toString()</code> of the form <code>&quot;User(name=John, age=42)&quot;</code>;</li>
+<li><a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/multi-declarations.html"><code>componentN()</code> functions</a> corresponding to the properties in their order of declaration;</li>
+<li><code>copy()</code> function (see below).</li>
+</ul>
+<p>To ensure consistency and meaningful behavior of the generated code, data classes have to fulfill the following requirements:</p>
+<p>为了确保一致性和有意义的自动代码, 数据了类必须满足一下要求</p>
+<ul>
+<li>The primary constructor needs to have at least one parameter; 主构造函数至少要有一个参数</li>
+<li>All primary constructor parameters need to be marked as <code>val</code> or <code>var</code>; 所有主构造函数的参数都必须被标记为<code>val</code>或者是<code>var</code></li>
+<li>Data classes cannot be abstract, open, sealed or inner; 数据类不能是抽象的 , 可扩展, 密封的或是内部的</li>
+<li>(before 1.1) Data classes may only implement interfaces. 数据类型只能实现接口</li>
+</ul>
+<p>Additionally, the members generation follows these rules with regard to the members inheritance:</p>
+<p>此外,成员遵循以下继承的规则</p>
+<ul>
+<li>If there are explicit implementations of <code>equals()</code>, <code>hashCode()</code> or <code>toString()</code> in the data class body or <em>final</em> implementations in a superclass, then these functions are not generated, and the existing implementations are used;</li>
+<li>If a supertype has the <code>componentN()</code> functions that are <em>open</em> and return compatible types, the corresponding functions are generated for the data class and override those of the supertype. If the functions of the supertype cannot be overridden due to incompatible signatures or being final, an error is reported;</li>
+<li>Deriving a data class from a type that already has a <code>copy(...)</code> function with a matching signature is deprecated in Kotlin 1.2 and is prohibited in Kotlin 1.3.</li>
+<li>Providing explicit implementations for the <code>componentN()</code> and <code>copy()</code> functions is not allowed.</li>
+</ul>
+<p>Since 1.1, data classes may extend other classes (see <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/sealed-classes.html">Sealed classes</a> for examples).</p>
+<p>On the JVM, if the generated class needs to have a parameterless constructor, default values for all properties have to be specified (see <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/classes.html#constructors">Constructors</a>).</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String = <span class="string">&quot;&quot;</span>, <span class="keyword">val</span> age: <span class="built_in">Int</span> = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Note that the compiler only uses the properties defined inside the primary constructor for the automatically generated functions. To exclude a property from the generated implementations, declare it inside the class body:</p>
+<p>将一个属性从自动产生的实现中移除, 则在类体中声明它</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">person</span></span>(<span class="keyword">val</span> name: String) &#123;</span><br><span class="line">  <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Only the property <code>name</code> will be used inside the <code>toString()</code>, <code>equals()</code>, <code>hashCode()</code>, and <code>copy()</code>implementations, and there will only be one component function <code>component1()</code>. While two <code>Person</code>objects can have different ages, they will be treated as equal.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> person1 = Person(<span class="string">&quot;John&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> person2 = Person(<span class="string">&quot;John&quot;</span>)</span><br><span class="line">person1.age = <span class="number">10</span></span><br><span class="line">person2.age = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Copying-复制"><a href="#Copying-复制" class="headerlink" title="Copying 复制"></a>Copying 复制</h3><p>It’s often the case that we need to copy an object altering <em>some</em> of its properties, but keeping the rest unchanged. This is what <code>copy()</code> function is generated for. For the <code>User</code> class above, its implementation would be as follows:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copy</span><span class="params">(name: <span class="type">String</span> = this.name, age: <span class="type">Int</span> = this.age)</span></span> = User(name, age)</span><br></pre></td></tr></table></figure>
+
+<p>This allows us to write:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> jack = User(name = <span class="string">&quot;jack&quot;</span>, age = <span class="number">1</span>)</span><br><span class="line"><span class="keyword">val</span> olderJack = jack.copy(age = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Data-Class-and-Descrucuring-Declarations-数据类型和解构声明"><a href="#Data-Class-and-Descrucuring-Declarations-数据类型和解构声明" class="headerlink" title="Data  Class and Descrucuring Declarations 数据类型和解构声明"></a>Data  Class and Descrucuring Declarations 数据类型和解构声明</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> jane = User(<span class="string">&quot;Jane&quot;</span>, <span class="number">35</span>)</span><br><span class="line"><span class="keyword">val</span> (name, age) = jane</span><br><span class="line">println(<span class="string">&quot;<span class="variable">$name</span>, <span class="variable">$age</span> years of age&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Standard-Data-Classes-标准数据类"><a href="#Standard-Data-Classes-标准数据类" class="headerlink" title="Standard Data Classes 标准数据类"></a>Standard Data Classes 标准数据类</h3><p>标注函数库提提供了<code>Pair</code>和<code>Triple</code>. 在大多数情况下, 尽管, 命名数据类是一个更好的设计选择, 因为这使得代码更加可读, 并且为属性提供了有意义的名称.</p>
+<h2 id="Sealed-Classes-密封类"><a href="#Sealed-Classes-密封类" class="headerlink" title="Sealed Classes 密封类"></a>Sealed Classes 密封类</h2><p>Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances which can contain state.</p>
+<p>To declare a sealed class, you put the <code>sealed</code> modifier before the name of the class. A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself. (Before Kotlin 1.1, the rules were even more strict: classes had to be nested inside the declaration of the sealed class).</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Const</span></span>(<span class="keyword">val</span> number: <span class="built_in">Double</span>) : Expr()</span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Sum</span></span>(<span class="keyword">val</span> e1: Expr, <span class="keyword">val</span> e2: Expr) : Expr()</span><br><span class="line"><span class="keyword">object</span> NotANumber : Expr()</span><br></pre></td></tr></table></figure>
+
+<p>(The example above uses one additional new feature of Kotlin 1.1: the possibility for data classes to extend other classes, including sealed classes.)</p>
+<p>A sealed class is <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/classes.html#abstract-classes">abstract</a> by itself, it cannot be instantiated directly and can have <em>abstract</em> members.</p>
+<p>Sealed classes are not allowed to have non-<em>private</em> constructors (their constructors are <em>private</em> by default).</p>
+<p>Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily in the same file.</p>
+<p>The key benefit of using sealed classes comes into play when you use them in a <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"><code>when</code> expression</a>. If it’s possible to verify that the statement covers all cases, you don’t need to add an <code>else</code> clause to the statement. However, this works only if you use <code>when</code> as an expression (using the result) and not as a statement.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">eval</span><span class="params">(expr: <span class="type">Expr</span>)</span></span>: <span class="built_in">Double</span> = <span class="keyword">when</span>(expr) &#123;</span><br><span class="line">    <span class="keyword">is</span> Const -&gt; expr.number</span><br><span class="line">    <span class="keyword">is</span> Sum -&gt; eval(expr.e1) + eval(expr.e2)</span><br><span class="line">    NotANumber -&gt; <span class="built_in">Double</span>.NaN</span><br><span class="line">    <span class="comment">// the `else` clause is not required because we&#x27;ve covered all the cases</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>类似Java, Koltin也有类型参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="type">T</span>&gt;</span>(t: T) &#123;</span><br><span class="line">  <span class="keyword">var</span> value = t</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//大体上我们需要在创建实例时,提供参数的具体类型</span></span><br><span class="line"><span class="keyword">val</span> box: Box&lt;<span class="built_in">Int</span>&gt; = Box&lt;<span class="built_in">Int</span>&gt;(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果参数类型能够被推断, 则可以省略</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> box = Box(<span class="number">1</span>) <span class="comment">// 类型参数可以被省略</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Variance-变量"><a href="#Variance-变量" class="headerlink" title="Variance 变量"></a>Variance 变量</h3><p>One of the most tricky parts of Java’s type system is wildcard types (see <a target="_blank" rel="noopener" href="http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">Java Generics FAQ</a>). And Kotlin doesn’t have any. Instead, it has two other things: declaration-site variance and type projections.</p>
+<p>Kotlin没有类型通配符</p>
+<p>irst, let’s think about why Java needs those mysterious wildcards. The problem is explained in <a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java, 3rd Edition</a>, Item 31: <em>Use bounded wildcards to increase API flexibility</em>. First, generic types in Java are <strong>invariant</strong>, meaning that <code>List&lt;String&gt;</code> is <strong>not</strong> a subtype of <code>List&lt;Object&gt;</code>. Why so? If List was not <strong>invariant</strong>, it would have been no better than Java’s arrays, since the following code would have compiled and caused an exception at runtime:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java</span></span><br><span class="line">List&lt;String&gt; strs = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Object&gt; objs = strs; <span class="comment">// !!! The cause of the upcoming problem sits here. Java prohibits this!</span></span><br><span class="line">objs.add(<span class="number">1</span>); <span class="comment">// Here we put an Integer into a list of Strings</span></span><br><span class="line">String s = strs.get(<span class="number">0</span>); <span class="comment">// !!! ClassCastException: Cannot cast Integer to String</span></span><br></pre></td></tr></table></figure>
+
+<p>避免产生歧义</p>
+<p>So, Java prohibits such things in order to guarantee run-time safety. But this has some implications. For example, consider the <code>addAll()</code> method from <code>Collection</code> interface. What’s the signature of this method? Intuitively, we’d put it this way:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">addAll</span><span class="params">(Collection&lt;E&gt; items)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>But then, we would not be able to do the following simple thing (which is perfectly safe):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Java</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">copyAll</span><span class="params">(Collection&lt;Object&gt; to, Collection&lt;String&gt; from)</span> </span>&#123;</span><br><span class="line">  to.addAll(from);</span><br><span class="line">  <span class="comment">//Error.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(In Java, we learned this lesson the hard way, see <a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java, 3rd Edition</a>, Item 28: <em>Prefer lists to arrays</em>)</p>
+<p>That’s why the actual signature of <code>addAll()</code> is the following:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Java</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; items)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <strong>wildcard type argument</strong> <code>? extends E</code> indicates that this method accepts a collection of objects of <code>E</code> <em>or some subtype of</em> <code>E</code>, not just <code>E</code> itself. This means that we can safely <strong>read</strong> <code>E</code>‘s from items (elements of this collection are instances of a subclass of E), but <strong>cannot write</strong> to it since we do not know what objects comply to that unknown subtype of <code>E</code>. In return for this limitation, we have the desired behaviour: <code>Collection&lt;String&gt;</code> <em>is</em> a subtype of <code>Collection&lt;? extends Object&gt;</code>. In “clever words”, the wildcard with an <strong>extends</strong>-bound (<strong>upper</strong> bound) makes the type <strong>covariant</strong>.</p>
+<p>The key to understanding why this trick works is rather simple: if you can only <strong>take</strong> items from a collection, then using a collection of <code>String</code>s and reading <code>Object</code>s from it is fine. Conversely, if you can only <em>put</em> items into the collection, it’s OK to take a collection of <code>Object</code>s and put <code>String</code>s into it: in Java we have <code>List&lt;? super String&gt;</code> a <strong>supertype</strong> of <code>List&lt;Object&gt;</code>.</p>
+<p>The latter is called <strong>contravariance</strong>, and you can only call methods that take String as an argument on <code>List&lt;? super String&gt;</code> (e.g., you can call <code>add(String)</code> or <code>set(int, String)</code>), while if you call something that returns <code>T</code> in <code>List&lt;T&gt;</code>, you don’t get a <code>String</code>, but an <code>Object</code>.</p>
+<p>Joshua Bloch calls those objects you only <strong>read</strong> from <strong>Producers</strong>, and those you only <strong>write</strong> to <strong>Consumers</strong>. He recommends: “<em>For maximum flexibility, use wildcard types on input parameters that represent producers or consumers</em>“, and proposes the following mnemonic:</p>
+<p><em>PECS stands for Producer-Extends, Consumer-Super.</em></p>
+<p><em>NOTE</em>: if you use a producer-object, say, <code>List&lt;? extends Foo&gt;</code>, you are not allowed to call <code>add()</code> or <code>set()</code> on this object, but this does not mean that this object is <strong>immutable</strong>: for example, nothing prevents you from calling <code>clear()</code> to remove all items from the list, since <code>clear()</code> does not take any parameters at all. The only thing guaranteed by wildcards (or other types of variance) is <strong>type safety</strong>. Immutability is a completely different story.</p>
+<h3 id="Declaration-site-variance"><a href="#Declaration-site-variance" class="headerlink" title="Declaration-site variance"></a>Declaration-site variance</h3><p>Suppose we have a generic interface <code>Source&lt;T&gt;</code> that does not have any methods that take <code>T</code> as a parameter, only methods that return <code>T</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function">T <span class="title">nextT</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then, it would be perfectly safe to store a reference to an instance of <code>Source&lt;String&gt;</code> in a variable of type <code>Source&lt;Object&gt;</code> – there are no consumer-methods to call. But Java does not know this, and still prohibits it:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">demo</span><span class="params">(Source&lt;String&gt; strs)</span> </span>&#123;</span><br><span class="line">  Source&lt;Object&gt; objects = strs; <span class="comment">//ERROR Not allowed in Java</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To fix this, we have to declare objects of type <code>Source&lt;? extends Object&gt;</code>, which is sort of meaningless, because we can call all the same methods on such a variable as before, so there’s no value added by the more complex type. But the compiler does not know that.</p>
+<p>n Kotlin, there is a way to explain this sort of thing to the compiler. This is called <strong>declaration-site variance</strong>: we can annotate the <strong>type parameter</strong> <code>T</code> of Source to make sure that it is only <strong>returned</strong>(produced) from members of <code>Source&lt;T&gt;</code>, and never consumed. To do this we provide the <strong>out</strong> modifier:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="type">out T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">nextT</span><span class="params">()</span></span>: T</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(strs: <span class="type">Source</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> objects: Source&lt;Any&gt; = str <span class="comment">// this is ok, since T is an out-parameter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The general rule is: when a type parameter <code>T</code> of a class <code>C</code> is declared <strong>out</strong>, it may occur only in <strong>out</strong>-position in the members of <code>C</code>, but in return <code>C&lt;Base&gt;</code> can safely be a supertype of <code>C&lt;Derived&gt;</code>.</p>
+<p>通用规则: 当一个class <code>C</code>的类型参数<code>T</code>被声明为<code>out</code>, 他只能出现在<code>C</code>的<code>out-position</code>, <code>C&lt;Base&gt;</code>能够安全的成为<code>C&lt;Derive&gt;</code>的父类型</p>
+<p>In “clever words” they say that the class <code>C</code> is <strong>covariant</strong> in the parameter <code>T</code>, or that <code>T</code> is a <strong>covariant</strong>type parameter. You can think of <code>C</code> as being a <strong>producer</strong> of <code>T</code>‘s, and NOT a <strong>consumer</strong> of <code>T</code>‘s.</p>
+<p><code>T</code>称为协变参数.</p>
+<p>The <strong>out</strong> modifier is called a <strong>variance annotation</strong>, and since it is provided at the type parameter declaration site, we talk about <strong>declaration-site variance</strong>. This is in contrast with Java’s <strong>use-site variance</strong> where wildcards in the type usages make the types covariant.</p>
+<p>In addition to <strong>out</strong>, Kotlin provides a complementary variance annotation: <strong>in</strong>. It makes a type parameter <strong>contravariant</strong>: it can only be consumed and never produced. A good example of a contravariant type is <code>Comparable</code>:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">compareTo</span><span class="params">(other: <span class="type">T</span>)</span></span>: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(x: <span class="type">Comparable</span>&lt;<span class="type">Number</span>&gt;)</span></span> &#123;</span><br><span class="line">  x.compareTo(<span class="number">1.0</span>) <span class="comment">//1.0 has type double , which is subtype of Number</span></span><br><span class="line">  <span class="keyword">val</span> y: Comparable&lt;<span class="built_in">Double</span>&gt; = x <span class="comment">//OK!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We believe that the words <strong>in</strong> and <strong>out</strong> are self-explaining (as they were successfully used in C# for quite some time already), thus the mnemonic mentioned above is not really needed, and one can rephrase it for a higher purpose:</p>
+<p>准则: Consumer  in, Producer  Out!  = POCI</p>
+<p>out =&gt; extends , in =&gt; super</p>
+<h3 id="Type-Projections"><a href="#Type-Projections" class="headerlink" title="Type Projections"></a>Type Projections</h3><p>t is very convenient to declare a type parameter T as <em>out</em> and avoid trouble with subtyping on the use site, but some classes <strong>can’t</strong> actually be restricted to only return <code>T</code>‘s! A good example of this is Array:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Array</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> size: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(index: <span class="type">Int</span>)</span></span>: T &#123; ... &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(index: <span class="type">Int</span>, value: <span class="type">T</span>)</span></span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This class cannot be either co- or contravariant in <code>T</code>. And this imposes certain inflexibilities. Consider the following function:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copy</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;)</span></span> &#123;</span><br><span class="line">    assert(from.size == to.size)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> from.indices)</span><br><span class="line">        to[i] = from[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This function is supposed to copy items from one array to another. Let’s try to apply it in practice:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> ints: Array&lt;<span class="built_in">Int</span>&gt; = arrayOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">val</span> any = Array&lt;Any&gt;(<span class="number">3</span>) &#123; <span class="string">&quot;&quot;</span> &#125; </span><br><span class="line">copy(ints, any)</span><br><span class="line"><span class="comment">//   ^ type is Array&lt;Int&gt; but Array&lt;Any&gt; was expected</span></span><br></pre></td></tr></table></figure>
+
+<p>Here we run into the same familiar problem: <code>Array&lt;T&gt;</code> is <strong>invariant</strong> in <code>T</code>, thus neither of <code>Array&lt;Int&gt;</code>and <code>Array&lt;Any&gt;</code> is a subtype of the other. Why? Again, because copy <strong>might</strong> be doing bad things, i.e. it might attempt to <strong>write</strong>, say, a String to <code>from</code>, and if we actually passed an array of <code>Int</code> there, a <code>ClassCastException</code> would have been thrown sometime later.</p>
+<p>Then, the only thing we want to ensure is that <code>copy()</code> does not do any bad things. We want to prohibit it from <strong>writing</strong> to <code>from</code>, and we can:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copy</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">out</span> <span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;)</span></span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>What has happened here is called <strong>type projection</strong>: we said that <code>from</code> is not simply an array, but a restricted (<strong>projected</strong>) one: we can only call those methods that return the type parameter <code>T</code>, in this case it means that we can only call <code>get()</code>. This is our approach to <strong>use-site variance</strong>, and corresponds to Java’s <code>Array&lt;? extends Object&gt;</code>, but in a slightly simpler way.</p>
+<p>You can project a type with <strong>in</strong> as well:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fill</span><span class="params">(dest: <span class="type">Array</span>&lt;<span class="type">in</span> <span class="type">String</span>&gt;, value: <span class="type">String</span>)</span></span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Array&lt;in String&gt;</code> corresponds to Java’s <code>Array&lt;? super String&gt;</code>, i.e. you can pass an array of <code>CharSequence</code> or an array of <code>Object</code> to the <code>fill()</code> function.</p>
+<h3 id="Star-projections"><a href="#Star-projections" class="headerlink" title="Star-projections"></a>Star-projections</h3><p>Sometimes you want to say that you know nothing about the type argument, but still want to use it in a safe way. The safe way here is to define such a projection of the generic type, that every concrete instantiation of that generic type would be a subtype of that projection.</p>
+<p>Kotlin provides so called <strong>star-projection</strong> syntax for this:</p>
+<ul>
+<li>For <code>Foo&lt;out T : TUpper&gt;</code>, where <code>T</code> is a covariant type parameter with the upper bound <code>TUpper</code>, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;out TUpper&gt;</code>. It means that when the <code>T</code> is unknown you can safely <em>read</em> values of <code>TUpper</code> from <code>Foo&lt;*&gt;</code>.</li>
+<li>For <code>Foo&lt;in T&gt;</code>, where <code>T</code> is a contravariant type parameter, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;in Nothing&gt;</code>. It means there is nothing you can <em>write</em> to <code>Foo&lt;*&gt;</code> in a safe way when <code>T</code> is unknown.</li>
+<li>For <code>Foo&lt;T : TUpper&gt;</code>, where <code>T</code> is an invariant type parameter with the upper bound <code>TUpper</code>, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;out TUpper&gt;</code> for reading values and to <code>Foo&lt;in Nothing&gt;</code> for writing values.</li>
+</ul>
+<p>If a generic type has several type parameters each of them can be projected independently. For example, if the type is declared as <code>interface Function&lt;in T, out U&gt;</code> we can imagine the following star-projections:</p>
+<ul>
+<li><code>Function&lt;*, String&gt;</code> means <code>Function&lt;in Nothing, String&gt;</code>;</li>
+<li><code>Function&lt;Int, *&gt;</code> means <code>Function&lt;Int, out Any?&gt;</code>;</li>
+<li><code>Function&lt;*, *&gt;</code> means <code>Function&lt;in Nothing, out Any?&gt;</code>.</li>
+</ul>
+<p><em>Note</em>: star-projections are very much like Java’s raw types, but safe.</p>
+<h3 id="Generic-Functions"><a href="#Generic-Functions" class="headerlink" title="Generic Functions"></a>Generic Functions</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> singleTonList<span class="type">&lt;item: T&gt;</span> : List<span class="type">&lt;T&gt;</span> &#123;&#125; //normal</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">basicToString</span><span class="params">()</span></span>: String&#123;&#125;   <span class="comment">// extension function</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Generic-Constraints"><a href="#Generic-Constraints" class="headerlink" title="Generic Constraints"></a>Generic Constraints</h3><p>The set of all possible types that can be substituted for a given type parameter may be restricted by <strong>generic constraints</strong>.</p>
+<h4 id="Upper-Bounds"><a href="#Upper-Bounds" class="headerlink" title="Upper Bounds"></a>Upper Bounds</h4><p>The most common type of constraint is an <strong>upper bound</strong> that corresponds to Java’s <em>extends</em> keyword:</p>
+<p>上界, 类似Java的<code>extends</code>关键字</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Comparable&lt;T&gt;</span>&gt; <span class="title">sort</span><span class="params">(List: <span class="type">List</span>&lt;<span class="type">T</span>&gt;)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The type specified after a colon is the <strong>upper bound</strong>: only a subtype of <code>Comparable&lt;T&gt;</code> may be substituted for <code>T</code>. For example:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sort(listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// OK. Int is a subtype of Comparable&lt;Int&gt;</span></span><br><span class="line">sort(listOf(HashMap&lt;<span class="built_in">Int</span>, String&gt;())) <span class="comment">// Error: HashMap&lt;Int, String&gt; is not a subtype of Comparable&lt;HashMap&lt;Int, String&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The default upper bound (if none specified) is <code>Any?</code>. Only one upper bound can be specified inside the angle brackets. If the same type parameter needs more than one upper bound, we need a separate <strong>where</strong>-clause:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">copyWhenGreater</span><span class="params">(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;, threshold: <span class="type">T</span>)</span></span>: List&lt;String&gt;</span><br><span class="line">    <span class="keyword">where</span> T : CharSequence,</span><br><span class="line">          T : Comparable&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> list.filter &#123; it &gt; threshold &#125;.map &#123; it.toString() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The passed type must satisfy all conditions of the <code>where</code> clause simultaneously. In the above example, the <code>T</code> type must implement <em>both</em> <code>CharSequence</code> and <code>Comparable</code>.</p>
+<h3 id="Type-Erasure-类型擦除"><a href="#Type-Erasure-类型擦除" class="headerlink" title="Type Erasure (类型擦除)"></a>Type Erasure (类型擦除)</h3><p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time. At runtime, the instances of generic types do not hold any information about their actual type arguments. The type information is said to be <em>erased</em>. For example, the instances of <code>Foo&lt;Bar&gt;</code> and <code>Foo&lt;Baz?&gt;</code> are erased to just <code>Foo&lt;*&gt;</code>.</p>
+<p>Therefore, there is no general way to check whether an instance of a generic type was created with certain type arguments at runtime, and the compiler <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/typecasts.html#type-erasure-and-generic-type-checks">prohibits such <em>is</em>-checks</a>.</p>
+<p>Type casts to generic types with concrete type arguments, e.g. <code>foo as List&lt;String&gt;</code>, cannot be checked at runtime.<br>These <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/typecasts.html#unchecked-casts">unchecked casts</a> can be used when type safety is implied by the high-level program logic but cannot be inferred directly by the compiler. The compiler issues a warning on unchecked casts, and at runtime, only the non-generic part is checked (equivalent to <code>foo as List&lt;*&gt;</code>).</p>
+<p>The type arguments of generic function calls are also only checked at compile time. Inside the function bodies, the type parameters cannot be used for type checks, and type casts to type parameters (<code>foo as T</code>) are unchecked. However, <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/inline-functions.html#reified-type-parameters">reified type parameters</a> of inline functions are substituted by the actual type arguments in the inlined function body at the call sites and thus can be used for type checks and casts, with the same restrictions for instances of generic types as described above.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/08/29/2019-08-29-kotlin从入门到放弃-2019/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/08/20/2019-08-20-Kotlin从入门到放弃-2019/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-08-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 Leo He
+  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
