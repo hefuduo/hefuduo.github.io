@@ -226,7 +226,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -292,7 +292,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -708,7 +708,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -716,283 +716,6 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2016/12/21/2016-12-21-javanote15-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote21-2016/" >Java学习笔记21</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="21-并发"><a href="#21-并发" class="headerlink" title="21 并发"></a>21 并发</h1><h2 id="21-1-Thread类"><a href="#21-1-Thread类" class="headerlink" title="21.1 Thread类"></a>21.1 Thread类</h2><p>将Runnable对爱那个转变为工作任务的传统方式是把它提交给一个Thread构造器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicThreads</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//TODO </span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Thread 构造器只需要一个Runnable对象。调用Thread对象的<code>start()</code>方法为该线程执行必须的初始化操作，然后调用Runnable的run方法，以便在这个新县城中启动该任务。</p>
-<h2 id="21-2-使用Executor"><a href="#21-2-使用Executor" class="headerlink" title="21.2 使用Executor"></a>21.2 使用Executor</h2><p>java se5 可以使用Excutor为你管理Thread对象，从而简化了并发编程。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleThreadExecutor</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ExecutorService es = <span class="keyword">new</span> Executors.newSingleThreadExcutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="comment">//////</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    es.shutdonw();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="21-3-从任务中产生返回值"><a href="#21-3-从任务中产生返回值" class="headerlink" title="21.3 从任务中产生返回值"></a>21.3 从任务中产生返回值</h2><p><code>Runnable</code>是执行工作的独立任务，但是它不返回任何值。如果你希望任务在完成时能够返回同一个值，那么可以实现<code>Callable</code>接口，Java se5引入的<code>Callable</code>是一种具有类型参数的泛型，它的类型参数表示的是从方法<code>call()</code>中返回的值，并且必须使用<code>ExcutorService#submit()</code>方法调动它。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line">        ArrayList&lt;Future&lt;String&gt;&gt; results = <span class="keyword">new</span> ArrayList&lt;Future&lt;String&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            results.add(service.submit(<span class="keyword">new</span> TaskWithResult(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Future&lt;String&gt; fs : results) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(fs.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                service.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskWithResult</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskWithResult</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;result of taskwithresult &quot;</span> + id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="21-2-5-休眠"><a href="#21-2-5-休眠" class="headerlink" title="21.2.5 休眠"></a>21.2.5 休眠</h3><p>影响任务行为的一种简单方法是调用<code>sleep()</code>，这将是任务中止执行给定的事件。</p>
-<h3 id="21-2-6-优先级"><a href="#21-2-6-优先级" class="headerlink" title="21.2.6 优先级"></a>21.2.6 优先级</h3><p>线程的<em>优先级</em>将该线程的重要性传递给了调度器。在绝大多数时间里，所有线程都应该以默认的优先级运行。试图操纵线程优先级通常是一种错误。</p>
-<h3 id="21-2-7-让步"><a href="#21-2-7-让步" class="headerlink" title="21.2.7 让步"></a>21.2.7 让步</h3><p>如果知道已经完成了在<code>run()</code>方法的循环的一次迭代过程中所需的工作，就可以给线程调度机制一个暗示：工作已经完成，让出CPU。方法是调用<code>#yield()</code>方法。这只是一个暗示，但是并没有机制保证它一定会被采纳。</p>
-<h3 id="21-2-8-后台线程"><a href="#21-2-8-后台线程" class="headerlink" title="21.2.8 后台线程"></a>21.2.8 后台线程</h3><p>所谓后台(<code>daemmon</code>)线程，是指在程序运行的时候在后台提供的一种通用服务的线程，并且这种线程并不属于程序中不可获取的部分。因此，当所有的<em>非后台线程</em>结束时，程序也就终止了，同时会杀死进程中的所有后台线程，反过来说，只要有任何非后台线程在运行，程序就不会终止。比如<code>main()</code>就是一个非后台线程。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                TimeUnit.MICROSECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;sleep() interrupted&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            Thread daemon  = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonTest());</span><br><span class="line">            daemon.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">            daemon.start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;all daemon started&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//TimeUnit.MICROSECONDS.sleep(175);</span></span><br><span class="line">            TimeUnit.MICROSECONDS.sleep(<span class="number">5000</span>); <span class="comment">//改变这个主线程睡眠的时间，如果很短，那么你只能看到部分线程被创建并运行。如果是长一些的，那么你应该能够看见所有的10个后台线程在运行。</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>一旦<code>main()</code>完成其工作，就没什么能组织程序终止了，因为除了后台线程之外，已经没有线程在运行了。</p>
-<p>ps:</p>
-<p>如果是一个后台线程，那么它创建的任何线程将被自动设置为后台线程。</p>
-<h2 id="21-3-锁同步"><a href="#21-3-锁同步" class="headerlink" title="21.3 锁同步"></a>21.3 锁同步</h2><h4 id="隐式锁"><a href="#隐式锁" class="headerlink" title="隐式锁"></a>隐式锁</h4><p>synchronized 关键字</p>
-<h4 id="显示锁"><a href="#显示锁" class="headerlink" title="显示锁"></a>显示锁</h4><p>Java SE5的java.util.cocurrent类库还包含有定义在java.util.concurrent.locks中的显示的互斥机制。</p>
-<p><code>Lock</code>对象必须被显示的创建锁定与释放。虽然代码缺乏优雅性。但是，对于解决某些类型的问题来说，它更加灵活。比如条件锁。</p>
-<h4 id="原子性与易变性"><a href="#原子性与易变性" class="headerlink" title="原子性与易变性"></a>原子性与易变性</h4><p>volatile关键字确保了应用中的可视性。如果讲一个域生命为<code>volatile</code>的，那么只要对这个域产生了写操作，那么所有的读操作就可以看到这个修改。即便使用了本地的缓存，情况也确实如此，<code>volatile</code>域会立即被写入到主存中，而读取操作就是发生在主存中。</p>
-<h4 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h4><p>Java SE5 一如了诸如<code>AtomicInteger,AtomicLong,AtomicReference,AtomicBoolean</code>等特殊的原子性变量类。他们提供下面形式的原子性条件更新操作:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(expectedValue,updateValue)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>这些类被调整为可以使用在某些现代处理器上的可获得的，并且是在机器级别上的原子性，因此对于使用他们无须担心，这些原子类在性能调优上非常有用。</p>
-<h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><p>防止多个线程同事访问方法内部的布恩代码而不是防止访问整个方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//this can be access</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//this only one task a time</span></span><br><span class="line">  <span class="keyword">synchronized</span>(some object)&#123;</span><br><span class="line">    <span class="comment">//同步的</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h4><h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>当下列四个条件同时满足时，就会发生死锁：</p>
-<ol>
-<li>互斥条件。任务使用的资源中至少有一个是不能共享的。</li>
-<li>至少有一个任务它必须有一个资源且正在等待获取一个当前被别的任务持有的资源。</li>
-<li>资源不能被任务抢占，任务必须把资源释放当做普通事件。</li>
-<li>必须有循环等待，这时，一个任务等其他任务所持有的资源，后者又在等待另一个任务所持有的资源，这样一直下去，知道有一个任务在等待第一个任务所持有的资源，使得大家都被锁住。</li>
-</ol>
-<p>因为要发生死锁的话，所有这些条件必须全部满足：所以要防止死锁的话，只需要破坏其中一个即可。在程序中，<strong>防止死锁发生最容易的方法是破坏第四个条件</strong></p>
-<h2 id="21-7-新类库中的构建"><a href="#21-7-新类库中的构建" class="headerlink" title="21.7 新类库中的构建"></a>21.7 新类库中的构建</h2><p>Java SE5 cocurrent包下面引入了大量涉及用来解决并发问题的新类。</p>
-<p>例如：<code>CountDownLatch,CylicBarrier,Semaphore,ConcurrentHashMap,BlockingQueue</code>。</p>
-<p>//TODO Java并发编程 单独出一份笔记吧</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote21-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote19-2016/" >Java学习笔记19</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><blockquote>
-<p>关键字keyword <code>enum</code>可以讲一组具名的值得优先集合创建为一种新的类型，而这些具名的值可以作为常规的程序组价使用，这是一种非常有用的Function</p>
-</blockquote>
-<h3 id="switch语句中的enum"><a href="#switch语句中的enum" class="headerlink" title="switch语句中的enum"></a>switch语句中的enum</h3><p>在<code>switch</code>语句中使用<code>enum</code>，是一种非常便利的功能。一般来说，在switch中只能使用整数值，而枚举实例天生就具备<em>整数值</em>的次序，并且可以使用<code>ordinal()</code>方法取得其次序。</p>
-<h3 id="实现而非继承"><a href="#实现而非继承" class="headerlink" title="实现而非继承"></a>实现而非继承</h3><p>所有<code>enum</code>都继承自<code>java.lang.Enum</code>类，因此不能再继承其他的类。但是可以实现一个或者多个接口。</p>
-<h3 id="使用EnumSet替代标志"><a href="#使用EnumSet替代标志" class="headerlink" title="使用EnumSet替代标志"></a>使用<code>EnumSet</code>替代标志</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSets</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    EnumSet&lt;AlarmPoints&gt; points = Enumset.noneOf(AlarmPoints.class);<span class="comment">//Empty set</span></span><br><span class="line">    points.add(BATHROOM);</span><br><span class="line">    points.addAll(Enumset.of(START1,START2,START3));</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用EnumMap"><a href="#使用EnumMap" class="headerlink" title="使用EnumMap"></a>使用<code>EnumMap</code></h3><p><code>EnumMap</code>是一种特殊的Map，他要求其中的key必须来自一个enum。由于enum本身的限制，所以<code>EnumMap</code>在内部可有数组实现。</p>
-<h3 id="常量相关方法"><a href="#常量相关方法" class="headerlink" title="常量相关方法"></a>常量相关方法</h3><p>Java的enum有一个非常有趣的特性，即它允许程序员为enum的实例编写方法，从而为每个enum实例赋予各自不同的行为。要实现常量相关的方法，你需要为enum定义一个或者多个abstract方法，然后</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ConstantSpecificMethod</span></span>&#123;</span><br><span class="line">  DATE_TIME&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> XXXXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  CLASSPATH&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> XXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> String <span class="title">getInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote19-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote18-2016/" >Java学习笔记18</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="Java-I-O-教程"><a href="#Java-I-O-教程" class="headerlink" title="Java I/O 教程"></a>Java I/O 教程</h1><h1 id="Java-NIO教程"><a href="#Java-NIO教程" class="headerlink" title="Java NIO教程"></a>Java NIO教程</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="http://ifeve.com/java-io/">并发编程网</a></p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote18-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote17-2016/" >Java学习笔记17</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h2 id="持有引用"><a href="#持有引用" class="headerlink" title="持有引用"></a>持有引用</h2><p><code>java.lang.ref</code>类库包含了一组类，这些类为垃圾回收提供了更大的灵活性。当存在可能会耗尽内存的大对象的时候，这些类显得特别有用。有三个继承自抽象类<code>Reference</code>的类；</p>
-<p><code>SoftReference,WeakReference,PhantomReference</code></p>
-<h3 id="Strong-Reference"><a href="#Strong-Reference" class="headerlink" title="Strong Reference"></a>Strong Reference</h3><p>强引用，一般性的对象引用。如果一个对象具有强引用，垃圾回收器不会回收它。</p>
-<p>软引用，如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收，该对象就可以被使用。</p>
-<h3 id="软引用SoftReference"><a href="#软引用SoftReference" class="headerlink" title="软引用SoftReference"></a>软引用<code>SoftReference</code></h3><p><strong>软引用可用来实现内存高速缓存</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(jvm low memo)&#123;</span><br><span class="line">  str = <span class="keyword">null</span>; <span class="comment">//change to softreference.</span></span><br><span class="line">  System.gc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>虚引用在实际中有重要的应用，例如浏览器的后退按钮。按后退时，这个后退时显示的网页内容是重新进行请求还是从缓存中取出呢？这就要看具体的实现策略了。</p>
-<p>（1）如果一个网页在浏览结束时就进行内容的回收，则按后退查看前面浏览过的页面时，需要重新构建.</p>
-<p>（2）如果将浏览过的网页存储到内存中会造成内存的大量浪费，甚至会造成内存溢出</p>
-<p>这时候就可以使用软引用.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Browser prev = <span class="keyword">new</span> Browser();</span><br><span class="line">SoftReference sr = <span class="keyword">new</span> SoftReference(prev);</span><br><span class="line"><span class="keyword">if</span>(sr != <span class="keyword">null</span>)&#123;</span><br><span class="line">  prev = (Browser)sr.get();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  prev = <span class="keyword">new</span> Browser();</span><br><span class="line">  sr = <span class="keyword">new</span> SoftReference(prev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>软引用可以和一个引用队列<code>ReferenceQueue</code>联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这些软引用加入到与之关联的引用队列中。</p>
-<h3 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用 WeakReference"></a>弱引用 <code>WeakReference</code></h3><p>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WeakReference&lt;String&gt; stringWeakReference  = <span class="keyword">new</span> WeakReference&lt;String&gt;(<span class="string">&quot;llllll&quot;</span>);</span><br><span class="line">String sr = stringWeakReference.get();</span><br></pre></td></tr></table></figure>
-
-<p>如果这个对象是偶尔的使用，并且希望在使用时随时就能获取到，但又不想影响此对象的垃圾收集，那么你应该用 Weak Reference 来记住此对象。</p>
-<p>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中</p>
-<h3 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用 PhantomReference"></a>虚引用 <code>PhantomReference</code></h3><p>虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。</p>
-<p> 虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之 关联的引用队列中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ReferenceQueue queue = <span class="keyword">new</span> ReferenceQueue();</span><br><span class="line">PhantomReference pr = <span class="keyword">new</span> PhantomReference(object,queue);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="为什么要这么用？"><a href="#为什么要这么用？" class="headerlink" title="为什么要这么用？"></a>为什么要这么用？</h3><p>如果在创建SoftReference对象的时候，使用了一个ReferenceQueue对象作为参数提供给SoftReference的构造方法，如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReferenceQueue queue = <span class="keyword">new</span></span><br><span class="line">ReferenceQueue();</span><br><span class="line"></span><br><span class="line">SoftReference</span><br><span class="line">ref= <span class="keyword">new</span></span><br><span class="line">SoftReference(aMyObject, queue); </span><br></pre></td></tr></table></figure>
-
-<p>那么当这个SoftReference所软引用的aMyOhject被垃圾收集器回收的同时，ref所强引用的SoftReference对象被列入ReferenceQueue。也就是说，ReferenceQueue中保存的对象是Reference对象，而且是已经失去了它所软引用的对象的Reference对象。另外从ReferenceQueue这个名字也可以看出，它是一个队列，当我们调用它的poll()方法的时候，如果这个队列中不是空队列，那么将返回队列前面的那个Reference对象。<br>在任何时候，我们都可以调用ReferenceQueue的poll()方法来检查是否有它所关心的非强可及对象被回收。如果队列为空，将返回一个null,否则该方法返回队列中前面的一个Reference对象。利用这个方法，我们可以检查哪个SoftReference所软引用的对象已经被回收。于是我们可以把这些失去所软引用的对象的SoftReference对象清除掉。常用的方式为:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SoftReference ref = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> ((ref = (EmployeeRef) q.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 清除ref</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<table>
-<thead>
-<tr>
-<th>引用类型</th>
-<th>被垃圾回收时间</th>
-<th>用途</th>
-<th>生存时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>强引用</td>
-<td>从来不会</td>
-<td>对象一般态</td>
-<td>JVM生命周期</td>
-</tr>
-<tr>
-<td>软引用</td>
-<td>Low Memory</td>
-<td>高速对象缓存</td>
-<td>Low Memory</td>
-</tr>
-<tr>
-<td>弱引用</td>
-<td>在垃圾回收时</td>
-<td>对象缓存</td>
-<td>gc运行后终止</td>
-</tr>
-<tr>
-<td>虚引用</td>
-<td>任何时候</td>
-<td>任何</td>
-<td>任何</td>
-</tr>
-</tbody></table>
-<p>ps ：题外话，关于这些引用在Android中的应用</p>
-<p>可以看一下LeakCanary的源码</p>
-<h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a><code>WeakHashMap</code></h3><p>容器类中有一种特殊的<code>Map</code>，即<code>WeakHashMap</code>，它被用来保存<code>WeakReference</code>。</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote17-2016/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -1129,7 +852,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1137,6 +860,283 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2016/12/21/2016-12-21-javanote20-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote17-2016/" >Java学习笔记17</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h2 id="持有引用"><a href="#持有引用" class="headerlink" title="持有引用"></a>持有引用</h2><p><code>java.lang.ref</code>类库包含了一组类，这些类为垃圾回收提供了更大的灵活性。当存在可能会耗尽内存的大对象的时候，这些类显得特别有用。有三个继承自抽象类<code>Reference</code>的类；</p>
+<p><code>SoftReference,WeakReference,PhantomReference</code></p>
+<h3 id="Strong-Reference"><a href="#Strong-Reference" class="headerlink" title="Strong Reference"></a>Strong Reference</h3><p>强引用，一般性的对象引用。如果一个对象具有强引用，垃圾回收器不会回收它。</p>
+<p>软引用，如果一个对象只具有软引用，则内存空间足够，垃圾回收器就不会回收它；如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收，该对象就可以被使用。</p>
+<h3 id="软引用SoftReference"><a href="#软引用SoftReference" class="headerlink" title="软引用SoftReference"></a>软引用<code>SoftReference</code></h3><p><strong>软引用可用来实现内存高速缓存</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(jvm low memo)&#123;</span><br><span class="line">  str = <span class="keyword">null</span>; <span class="comment">//change to softreference.</span></span><br><span class="line">  System.gc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虚引用在实际中有重要的应用，例如浏览器的后退按钮。按后退时，这个后退时显示的网页内容是重新进行请求还是从缓存中取出呢？这就要看具体的实现策略了。</p>
+<p>（1）如果一个网页在浏览结束时就进行内容的回收，则按后退查看前面浏览过的页面时，需要重新构建.</p>
+<p>（2）如果将浏览过的网页存储到内存中会造成内存的大量浪费，甚至会造成内存溢出</p>
+<p>这时候就可以使用软引用.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Browser prev = <span class="keyword">new</span> Browser();</span><br><span class="line">SoftReference sr = <span class="keyword">new</span> SoftReference(prev);</span><br><span class="line"><span class="keyword">if</span>(sr != <span class="keyword">null</span>)&#123;</span><br><span class="line">  prev = (Browser)sr.get();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  prev = <span class="keyword">new</span> Browser();</span><br><span class="line">  sr = <span class="keyword">new</span> SoftReference(prev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>软引用可以和一个引用队列<code>ReferenceQueue</code>联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这些软引用加入到与之关联的引用队列中。</p>
+<h3 id="弱引用-WeakReference"><a href="#弱引用-WeakReference" class="headerlink" title="弱引用 WeakReference"></a>弱引用 <code>WeakReference</code></h3><p>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WeakReference&lt;String&gt; stringWeakReference  = <span class="keyword">new</span> WeakReference&lt;String&gt;(<span class="string">&quot;llllll&quot;</span>);</span><br><span class="line">String sr = stringWeakReference.get();</span><br></pre></td></tr></table></figure>
+
+<p>如果这个对象是偶尔的使用，并且希望在使用时随时就能获取到，但又不想影响此对象的垃圾收集，那么你应该用 Weak Reference 来记住此对象。</p>
+<p>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中</p>
+<h3 id="虚引用-PhantomReference"><a href="#虚引用-PhantomReference" class="headerlink" title="虚引用 PhantomReference"></a>虚引用 <code>PhantomReference</code></h3><p>虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。</p>
+<p> 虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之 关联的引用队列中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ReferenceQueue queue = <span class="keyword">new</span> ReferenceQueue();</span><br><span class="line">PhantomReference pr = <span class="keyword">new</span> PhantomReference(object,queue);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="为什么要这么用？"><a href="#为什么要这么用？" class="headerlink" title="为什么要这么用？"></a>为什么要这么用？</h3><p>如果在创建SoftReference对象的时候，使用了一个ReferenceQueue对象作为参数提供给SoftReference的构造方法，如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReferenceQueue queue = <span class="keyword">new</span></span><br><span class="line">ReferenceQueue();</span><br><span class="line"></span><br><span class="line">SoftReference</span><br><span class="line">ref= <span class="keyword">new</span></span><br><span class="line">SoftReference(aMyObject, queue); </span><br></pre></td></tr></table></figure>
+
+<p>那么当这个SoftReference所软引用的aMyOhject被垃圾收集器回收的同时，ref所强引用的SoftReference对象被列入ReferenceQueue。也就是说，ReferenceQueue中保存的对象是Reference对象，而且是已经失去了它所软引用的对象的Reference对象。另外从ReferenceQueue这个名字也可以看出，它是一个队列，当我们调用它的poll()方法的时候，如果这个队列中不是空队列，那么将返回队列前面的那个Reference对象。<br>在任何时候，我们都可以调用ReferenceQueue的poll()方法来检查是否有它所关心的非强可及对象被回收。如果队列为空，将返回一个null,否则该方法返回队列中前面的一个Reference对象。利用这个方法，我们可以检查哪个SoftReference所软引用的对象已经被回收。于是我们可以把这些失去所软引用的对象的SoftReference对象清除掉。常用的方式为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SoftReference ref = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> ((ref = (EmployeeRef) q.poll()) != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 清除ref</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<table>
+<thead>
+<tr>
+<th>引用类型</th>
+<th>被垃圾回收时间</th>
+<th>用途</th>
+<th>生存时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>强引用</td>
+<td>从来不会</td>
+<td>对象一般态</td>
+<td>JVM生命周期</td>
+</tr>
+<tr>
+<td>软引用</td>
+<td>Low Memory</td>
+<td>高速对象缓存</td>
+<td>Low Memory</td>
+</tr>
+<tr>
+<td>弱引用</td>
+<td>在垃圾回收时</td>
+<td>对象缓存</td>
+<td>gc运行后终止</td>
+</tr>
+<tr>
+<td>虚引用</td>
+<td>任何时候</td>
+<td>任何</td>
+<td>任何</td>
+</tr>
+</tbody></table>
+<p>ps ：题外话，关于这些引用在Android中的应用</p>
+<p>可以看一下LeakCanary的源码</p>
+<h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a><code>WeakHashMap</code></h3><p>容器类中有一种特殊的<code>Map</code>，即<code>WeakHashMap</code>，它被用来保存<code>WeakReference</code>。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote17-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote21-2016/" >Java学习笔记21</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="21-并发"><a href="#21-并发" class="headerlink" title="21 并发"></a>21 并发</h1><h2 id="21-1-Thread类"><a href="#21-1-Thread类" class="headerlink" title="21.1 Thread类"></a>21.1 Thread类</h2><p>将Runnable对爱那个转变为工作任务的传统方式是把它提交给一个Thread构造器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicThreads</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//TODO </span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Thread 构造器只需要一个Runnable对象。调用Thread对象的<code>start()</code>方法为该线程执行必须的初始化操作，然后调用Runnable的run方法，以便在这个新县城中启动该任务。</p>
+<h2 id="21-2-使用Executor"><a href="#21-2-使用Executor" class="headerlink" title="21.2 使用Executor"></a>21.2 使用Executor</h2><p>java se5 可以使用Excutor为你管理Thread对象，从而简化了并发编程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleThreadExecutor</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ExecutorService es = <span class="keyword">new</span> Executors.newSingleThreadExcutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="comment">//////</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    es.shutdonw();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="21-3-从任务中产生返回值"><a href="#21-3-从任务中产生返回值" class="headerlink" title="21.3 从任务中产生返回值"></a>21.3 从任务中产生返回值</h2><p><code>Runnable</code>是执行工作的独立任务，但是它不返回任何值。如果你希望任务在完成时能够返回同一个值，那么可以实现<code>Callable</code>接口，Java se5引入的<code>Callable</code>是一种具有类型参数的泛型，它的类型参数表示的是从方法<code>call()</code>中返回的值，并且必须使用<code>ExcutorService#submit()</code>方法调动它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line">        ArrayList&lt;Future&lt;String&gt;&gt; results = <span class="keyword">new</span> ArrayList&lt;Future&lt;String&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            results.add(service.submit(<span class="keyword">new</span> TaskWithResult(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Future&lt;String&gt; fs : results) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(fs.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                service.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskWithResult</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskWithResult</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;result of taskwithresult &quot;</span> + id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="21-2-5-休眠"><a href="#21-2-5-休眠" class="headerlink" title="21.2.5 休眠"></a>21.2.5 休眠</h3><p>影响任务行为的一种简单方法是调用<code>sleep()</code>，这将是任务中止执行给定的事件。</p>
+<h3 id="21-2-6-优先级"><a href="#21-2-6-优先级" class="headerlink" title="21.2.6 优先级"></a>21.2.6 优先级</h3><p>线程的<em>优先级</em>将该线程的重要性传递给了调度器。在绝大多数时间里，所有线程都应该以默认的优先级运行。试图操纵线程优先级通常是一种错误。</p>
+<h3 id="21-2-7-让步"><a href="#21-2-7-让步" class="headerlink" title="21.2.7 让步"></a>21.2.7 让步</h3><p>如果知道已经完成了在<code>run()</code>方法的循环的一次迭代过程中所需的工作，就可以给线程调度机制一个暗示：工作已经完成，让出CPU。方法是调用<code>#yield()</code>方法。这只是一个暗示，但是并没有机制保证它一定会被采纳。</p>
+<h3 id="21-2-8-后台线程"><a href="#21-2-8-后台线程" class="headerlink" title="21.2.8 后台线程"></a>21.2.8 后台线程</h3><p>所谓后台(<code>daemmon</code>)线程，是指在程序运行的时候在后台提供的一种通用服务的线程，并且这种线程并不属于程序中不可获取的部分。因此，当所有的<em>非后台线程</em>结束时，程序也就终止了，同时会杀死进程中的所有后台线程，反过来说，只要有任何非后台线程在运行，程序就不会终止。比如<code>main()</code>就是一个非后台线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                TimeUnit.MICROSECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;sleep() interrupted&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            Thread daemon  = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonTest());</span><br><span class="line">            daemon.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">            daemon.start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;all daemon started&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//TimeUnit.MICROSECONDS.sleep(175);</span></span><br><span class="line">            TimeUnit.MICROSECONDS.sleep(<span class="number">5000</span>); <span class="comment">//改变这个主线程睡眠的时间，如果很短，那么你只能看到部分线程被创建并运行。如果是长一些的，那么你应该能够看见所有的10个后台线程在运行。</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一旦<code>main()</code>完成其工作，就没什么能组织程序终止了，因为除了后台线程之外，已经没有线程在运行了。</p>
+<p>ps:</p>
+<p>如果是一个后台线程，那么它创建的任何线程将被自动设置为后台线程。</p>
+<h2 id="21-3-锁同步"><a href="#21-3-锁同步" class="headerlink" title="21.3 锁同步"></a>21.3 锁同步</h2><h4 id="隐式锁"><a href="#隐式锁" class="headerlink" title="隐式锁"></a>隐式锁</h4><p>synchronized 关键字</p>
+<h4 id="显示锁"><a href="#显示锁" class="headerlink" title="显示锁"></a>显示锁</h4><p>Java SE5的java.util.cocurrent类库还包含有定义在java.util.concurrent.locks中的显示的互斥机制。</p>
+<p><code>Lock</code>对象必须被显示的创建锁定与释放。虽然代码缺乏优雅性。但是，对于解决某些类型的问题来说，它更加灵活。比如条件锁。</p>
+<h4 id="原子性与易变性"><a href="#原子性与易变性" class="headerlink" title="原子性与易变性"></a>原子性与易变性</h4><p>volatile关键字确保了应用中的可视性。如果讲一个域生命为<code>volatile</code>的，那么只要对这个域产生了写操作，那么所有的读操作就可以看到这个修改。即便使用了本地的缓存，情况也确实如此，<code>volatile</code>域会立即被写入到主存中，而读取操作就是发生在主存中。</p>
+<h4 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h4><p>Java SE5 一如了诸如<code>AtomicInteger,AtomicLong,AtomicReference,AtomicBoolean</code>等特殊的原子性变量类。他们提供下面形式的原子性条件更新操作:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(expectedValue,updateValue)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这些类被调整为可以使用在某些现代处理器上的可获得的，并且是在机器级别上的原子性，因此对于使用他们无须担心，这些原子类在性能调优上非常有用。</p>
+<h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><p>防止多个线程同事访问方法内部的布恩代码而不是防止访问整个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//this can be access</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//this only one task a time</span></span><br><span class="line">  <span class="keyword">synchronized</span>(some object)&#123;</span><br><span class="line">    <span class="comment">//同步的</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h4><h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>当下列四个条件同时满足时，就会发生死锁：</p>
+<ol>
+<li>互斥条件。任务使用的资源中至少有一个是不能共享的。</li>
+<li>至少有一个任务它必须有一个资源且正在等待获取一个当前被别的任务持有的资源。</li>
+<li>资源不能被任务抢占，任务必须把资源释放当做普通事件。</li>
+<li>必须有循环等待，这时，一个任务等其他任务所持有的资源，后者又在等待另一个任务所持有的资源，这样一直下去，知道有一个任务在等待第一个任务所持有的资源，使得大家都被锁住。</li>
+</ol>
+<p>因为要发生死锁的话，所有这些条件必须全部满足：所以要防止死锁的话，只需要破坏其中一个即可。在程序中，<strong>防止死锁发生最容易的方法是破坏第四个条件</strong></p>
+<h2 id="21-7-新类库中的构建"><a href="#21-7-新类库中的构建" class="headerlink" title="21.7 新类库中的构建"></a>21.7 新类库中的构建</h2><p>Java SE5 cocurrent包下面引入了大量涉及用来解决并发问题的新类。</p>
+<p>例如：<code>CountDownLatch,CylicBarrier,Semaphore,ConcurrentHashMap,BlockingQueue</code>。</p>
+<p>//TODO Java并发编程 单独出一份笔记吧</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote21-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote18-2016/" >Java学习笔记18</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="Java-I-O-教程"><a href="#Java-I-O-教程" class="headerlink" title="Java I/O 教程"></a>Java I/O 教程</h1><h1 id="Java-NIO教程"><a href="#Java-NIO教程" class="headerlink" title="Java NIO教程"></a>Java NIO教程</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="http://ifeve.com/java-io/">并发编程网</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote18-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote19-2016/" >Java学习笔记19</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><blockquote>
+<p>关键字keyword <code>enum</code>可以讲一组具名的值得优先集合创建为一种新的类型，而这些具名的值可以作为常规的程序组价使用，这是一种非常有用的Function</p>
+</blockquote>
+<h3 id="switch语句中的enum"><a href="#switch语句中的enum" class="headerlink" title="switch语句中的enum"></a>switch语句中的enum</h3><p>在<code>switch</code>语句中使用<code>enum</code>，是一种非常便利的功能。一般来说，在switch中只能使用整数值，而枚举实例天生就具备<em>整数值</em>的次序，并且可以使用<code>ordinal()</code>方法取得其次序。</p>
+<h3 id="实现而非继承"><a href="#实现而非继承" class="headerlink" title="实现而非继承"></a>实现而非继承</h3><p>所有<code>enum</code>都继承自<code>java.lang.Enum</code>类，因此不能再继承其他的类。但是可以实现一个或者多个接口。</p>
+<h3 id="使用EnumSet替代标志"><a href="#使用EnumSet替代标志" class="headerlink" title="使用EnumSet替代标志"></a>使用<code>EnumSet</code>替代标志</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSets</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    EnumSet&lt;AlarmPoints&gt; points = Enumset.noneOf(AlarmPoints.class);<span class="comment">//Empty set</span></span><br><span class="line">    points.add(BATHROOM);</span><br><span class="line">    points.addAll(Enumset.of(START1,START2,START3));</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用EnumMap"><a href="#使用EnumMap" class="headerlink" title="使用EnumMap"></a>使用<code>EnumMap</code></h3><p><code>EnumMap</code>是一种特殊的Map，他要求其中的key必须来自一个enum。由于enum本身的限制，所以<code>EnumMap</code>在内部可有数组实现。</p>
+<h3 id="常量相关方法"><a href="#常量相关方法" class="headerlink" title="常量相关方法"></a>常量相关方法</h3><p>Java的enum有一个非常有趣的特性，即它允许程序员为enum的实例编写方法，从而为每个enum实例赋予各自不同的行为。要实现常量相关的方法，你需要为enum定义一个或者多个abstract方法，然后</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ConstantSpecificMethod</span></span>&#123;</span><br><span class="line">  DATE_TIME&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> XXXXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  CLASSPATH&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> XXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> String <span class="title">getInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote19-2016/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -1233,7 +1233,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1308,7 +1308,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1368,45 +1368,45 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
-		
-			<li><a href="/tags/安全/">安全<span>1</span></a></li>
-		
 			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
 		
-			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
-		
-			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
-		
-			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
 		
 			<li><a href="/tags/协程/">协程<span>1</span></a></li>
 		
-			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
+			<li><a href="/tags/Java/">Java<span>42</span></a></li>
 		
 			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
 		
-			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
-		
 			<li><a href="/tags/编程技巧/">编程技巧<span>1</span></a></li>
 		
-			<li><a href="/tags/View/">View<span>1</span></a></li>
+			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
 		
-			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
-		
-			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
 		
 			<li><a href="/tags/html/">html<span>1</span></a></li>
 		
-			<li><a href="/tags/XML/">XML<span>1</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
-		
-			<li><a href="/tags/Android/">Android<span>26</span></a></li>
-		
 			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
 		
-			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
+			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+		
+			<li><a href="/tags/工具/">工具<span>1</span></a></li>
+		
+			<li><a href="/tags/问题/">问题<span>1</span></a></li>
+		
+			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
+		
+			<li><a href="/tags/XML/">XML<span>1</span></a></li>
+		
+			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
+		
+			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+		
+			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
+		
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
+		
+			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>49</span></a></li>

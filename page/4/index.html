@@ -197,7 +197,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -205,100 +205,6 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2019/04/18/2019-03-20-UniversalImageLoader源码分析2-2019/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/04/03/2018-04-04-emmet-教程2-2018/" >Emmet简明教程2</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-04-03  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="CSS-缩写"><a href="#CSS-缩写" class="headerlink" title="CSS 缩写"></a>CSS 缩写</h1><p>While Emmet abbreviations are good for generating HTML, XML or any other structured markup, it may look useless for CSS. You don’t want to write CSS selectors and transform them to CSS selectors, right? The only thing Emmet can do for you is to provide shorthands for CSS properties, but editors with native snippets and autocomplete can help you way better.</p>
-<p>Actually, Emmet has something to offer.</p>
-<p>For CSS syntax, Emmet has a lot of predefined snippets for properties. For example, you can expand <code>m</code> abbreviation to get <code>margin: ;</code> snippet. But you don’t want just <code>margin</code> property, you want to <em>specify a value</em> for this property. So you have to manually type, let’s say, <code>10px</code>.</p>
-<p>Emmet can greatly optimize your workflow here: you can <em>inject value directly into abbreviation</em>. To get <code>margin: 10px;</code>you can simply expand the <code>m10</code> abbreviation. Want multiple values? Use a hypen to separate them: <code>m10-20</code> expands to <code>margin: 10px 20px;</code>. Negative values? No problem: precede the first value with hyphen and all the rest with double hyphens: <code>m-10--20</code> expands to <code>margin: -10px -20px;</code></p>
-<h2 id="使用单位标注值-Supplying-Values-with-units"><a href="#使用单位标注值-Supplying-Values-with-units" class="headerlink" title="使用单位标注值(Supplying Values with units)"></a>使用单位标注值(Supplying Values with units)</h2><p>By default, when you expand an abbreviation with integer value, Emmet outputs it with a <code>px</code> unit: <code>m10</code> → <code>margin: 10px;</code>. If you’re expanding an abbreviation with a float value, it is outputted with an <code>em</code> unit: <code>m1.5</code> → <code>margin: 1.5em;</code>. But you can explicitly provide the unit name, just by putting any alpha characters right after value: <code>m1.5ex</code> → <code>margin: 1.5ex;</code>, <code>m10foo</code> → <code>margin: 10foo;</code>.</p>
-<p>If you’re explicitly defining units, you don’t need to use hyphens to separate values anymore: <code>m10ex20em</code> → <code>margin: 10ex 20em;</code>, <code>m10ex-5</code> → <code>margin: 10ex -5px;</code>.</p>
-<h2 id="数值的别称-Value-alias"><a href="#数值的别称-Value-alias" class="headerlink" title="数值的别称(Value alias)"></a>数值的别称(Value alias)</h2><p>Emmet has a few aliases for commonly used values:</p>
-<ul>
-<li><code>p</code> → <code>%</code></li>
-<li><code>e</code> → <code>em</code></li>
-<li><code>x</code> → <code>ex</code></li>
-</ul>
-<p>You can use aliases instead of full units:</p>
-<ul>
-<li><code>w100p</code> → <code>width: 100%</code></li>
-<li><code>m10p30e5x</code> → <code>margin: 10% 30em 5ex</code></li>
-</ul>
-<h2 id="色值-Color-values"><a href="#色值-Color-values" class="headerlink" title="色值(Color values)"></a>色值(Color values)</h2><ul>
-<li><code>#1</code> → <code>#111111</code></li>
-<li><code>#e0</code> → <code>#e0e0e0</code></li>
-<li><code>#fc0</code> → <code>#ffcc00</code></li>
-</ul>
-<h2 id="无单位属性-unit-less-properties"><a href="#无单位属性-unit-less-properties" class="headerlink" title="无单位属性(unit-less properties)"></a>无单位属性(unit-less properties)</h2><p>Some CSS properties are defined as <em>unit-less</em>, e.g. no unit suffix will be outputted: <code>lh2</code> → <code>line-height: 2;</code>, <code>fw400</code>→ <code>font-weight: 400;</code>.</p>
-<p>These values are: <code>&#39;z-index</code>, <code>line-height</code>, <code>opacity</code> and <code>font-weight</code> but you can override them with <code>css.unitlessProperties</code> preferences.</p>
-<h2 id="重要修饰符-important-modifier"><a href="#重要修饰符-important-modifier" class="headerlink" title="重要修饰符(!important modifier)"></a>重要修饰符(!important modifier)</h2><p>尽量不要使用这个</p>
-<p>You can add <code>!</code> suffix at the end of any CSS abbreviation to get <code>!important</code> value:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p!+m10e!</span><br></pre></td></tr></table></figure>
-
-<p>…will produce</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding</span>:  !<span class="selector-tag">important</span>;</span><br><span class="line"><span class="selector-tag">margin</span>: 10<span class="selector-tag">em</span> !<span class="selector-tag">important</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>##Vendor Prefixes</p>
-<p><code>-bdrs</code> abbreviation will be expanded into</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">-webkit-border-radius</span>: ;</span><br><span class="line"><span class="selector-tag">-moz-border-radius</span>: ;</span><br><span class="line"><span class="selector-tag">border-radius</span>: ;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Add-prefixed-properties-by-default"><a href="#Add-prefixed-properties-by-default" class="headerlink" title="Add prefixed properties by default"></a>Add prefixed properties by default</h2><p>While writing CSS files, you may find that a “clear” CSS3 property is useless without its vendor-prefixed variants. It makes writing hyphenated abbreviations like <code>-trf</code> (<code>trf</code> is an alias to <code>transform</code> property) a bit awkward.</p>
-<p>This is why Emmet has <code>css.autoInsertVendorPrefixes</code> preference enabled by default. With this preference enabled, all CSS properties defined in vendor catalogs will be automatically supplied with matched vendor-prefixed variants.</p>
-<p>It means that you don’t need to use a hyphen to get valid prefixed variants for known CSS properties, simply expand abbreviations like <code>bdrs</code> or <code>trf</code> to get a valid list of vendor-prefixed properties.</p>
-<h2 id="Explicit-vendor-prefixed"><a href="#Explicit-vendor-prefixed" class="headerlink" title="Explicit vendor prefixed"></a>Explicit vendor prefixed</h2><p>Sometimes you may want to output CSS properties with specified vendor prefixed properties only.</p>
-<p>Let’s say you want to output <code>transform</code> property with <code>webkit</code> and <code>moz</code> prefixes only. In this case you can expand the following abbreviation:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-wm-trf</span><br></pre></td></tr></table></figure>
-
-<p>As you can see, we slightly modified the abbreviation by adding a list of one-letter prefixes. In this case, these are <code>w</code>(<code>webkit</code>) and <code>m</code> (<code>moz</code>) prefixes. Emmet has the following one-letter prefixes:</p>
-<ul>
-<li><code>w</code>: <code>webkit</code></li>
-<li><code>m</code>: <code>moz</code></li>
-<li><code>s</code>: <code>ms</code></li>
-<li><code>o</code>: <code>o</code></li>
-</ul>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2019/04/03/2018-04-04-emmet-教程2-2018/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -500,7 +406,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -508,6 +414,100 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2019/04/03/2018-04-03-emmet-教程1-2018/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/04/03/2018-04-04-emmet-教程2-2018/" >Emmet简明教程2</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-04-03  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="CSS-缩写"><a href="#CSS-缩写" class="headerlink" title="CSS 缩写"></a>CSS 缩写</h1><p>While Emmet abbreviations are good for generating HTML, XML or any other structured markup, it may look useless for CSS. You don’t want to write CSS selectors and transform them to CSS selectors, right? The only thing Emmet can do for you is to provide shorthands for CSS properties, but editors with native snippets and autocomplete can help you way better.</p>
+<p>Actually, Emmet has something to offer.</p>
+<p>For CSS syntax, Emmet has a lot of predefined snippets for properties. For example, you can expand <code>m</code> abbreviation to get <code>margin: ;</code> snippet. But you don’t want just <code>margin</code> property, you want to <em>specify a value</em> for this property. So you have to manually type, let’s say, <code>10px</code>.</p>
+<p>Emmet can greatly optimize your workflow here: you can <em>inject value directly into abbreviation</em>. To get <code>margin: 10px;</code>you can simply expand the <code>m10</code> abbreviation. Want multiple values? Use a hypen to separate them: <code>m10-20</code> expands to <code>margin: 10px 20px;</code>. Negative values? No problem: precede the first value with hyphen and all the rest with double hyphens: <code>m-10--20</code> expands to <code>margin: -10px -20px;</code></p>
+<h2 id="使用单位标注值-Supplying-Values-with-units"><a href="#使用单位标注值-Supplying-Values-with-units" class="headerlink" title="使用单位标注值(Supplying Values with units)"></a>使用单位标注值(Supplying Values with units)</h2><p>By default, when you expand an abbreviation with integer value, Emmet outputs it with a <code>px</code> unit: <code>m10</code> → <code>margin: 10px;</code>. If you’re expanding an abbreviation with a float value, it is outputted with an <code>em</code> unit: <code>m1.5</code> → <code>margin: 1.5em;</code>. But you can explicitly provide the unit name, just by putting any alpha characters right after value: <code>m1.5ex</code> → <code>margin: 1.5ex;</code>, <code>m10foo</code> → <code>margin: 10foo;</code>.</p>
+<p>If you’re explicitly defining units, you don’t need to use hyphens to separate values anymore: <code>m10ex20em</code> → <code>margin: 10ex 20em;</code>, <code>m10ex-5</code> → <code>margin: 10ex -5px;</code>.</p>
+<h2 id="数值的别称-Value-alias"><a href="#数值的别称-Value-alias" class="headerlink" title="数值的别称(Value alias)"></a>数值的别称(Value alias)</h2><p>Emmet has a few aliases for commonly used values:</p>
+<ul>
+<li><code>p</code> → <code>%</code></li>
+<li><code>e</code> → <code>em</code></li>
+<li><code>x</code> → <code>ex</code></li>
+</ul>
+<p>You can use aliases instead of full units:</p>
+<ul>
+<li><code>w100p</code> → <code>width: 100%</code></li>
+<li><code>m10p30e5x</code> → <code>margin: 10% 30em 5ex</code></li>
+</ul>
+<h2 id="色值-Color-values"><a href="#色值-Color-values" class="headerlink" title="色值(Color values)"></a>色值(Color values)</h2><ul>
+<li><code>#1</code> → <code>#111111</code></li>
+<li><code>#e0</code> → <code>#e0e0e0</code></li>
+<li><code>#fc0</code> → <code>#ffcc00</code></li>
+</ul>
+<h2 id="无单位属性-unit-less-properties"><a href="#无单位属性-unit-less-properties" class="headerlink" title="无单位属性(unit-less properties)"></a>无单位属性(unit-less properties)</h2><p>Some CSS properties are defined as <em>unit-less</em>, e.g. no unit suffix will be outputted: <code>lh2</code> → <code>line-height: 2;</code>, <code>fw400</code>→ <code>font-weight: 400;</code>.</p>
+<p>These values are: <code>&#39;z-index</code>, <code>line-height</code>, <code>opacity</code> and <code>font-weight</code> but you can override them with <code>css.unitlessProperties</code> preferences.</p>
+<h2 id="重要修饰符-important-modifier"><a href="#重要修饰符-important-modifier" class="headerlink" title="重要修饰符(!important modifier)"></a>重要修饰符(!important modifier)</h2><p>尽量不要使用这个</p>
+<p>You can add <code>!</code> suffix at the end of any CSS abbreviation to get <code>!important</code> value:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p!+m10e!</span><br></pre></td></tr></table></figure>
+
+<p>…will produce</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding</span>:  !<span class="selector-tag">important</span>;</span><br><span class="line"><span class="selector-tag">margin</span>: 10<span class="selector-tag">em</span> !<span class="selector-tag">important</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>##Vendor Prefixes</p>
+<p><code>-bdrs</code> abbreviation will be expanded into</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">-webkit-border-radius</span>: ;</span><br><span class="line"><span class="selector-tag">-moz-border-radius</span>: ;</span><br><span class="line"><span class="selector-tag">border-radius</span>: ;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Add-prefixed-properties-by-default"><a href="#Add-prefixed-properties-by-default" class="headerlink" title="Add prefixed properties by default"></a>Add prefixed properties by default</h2><p>While writing CSS files, you may find that a “clear” CSS3 property is useless without its vendor-prefixed variants. It makes writing hyphenated abbreviations like <code>-trf</code> (<code>trf</code> is an alias to <code>transform</code> property) a bit awkward.</p>
+<p>This is why Emmet has <code>css.autoInsertVendorPrefixes</code> preference enabled by default. With this preference enabled, all CSS properties defined in vendor catalogs will be automatically supplied with matched vendor-prefixed variants.</p>
+<p>It means that you don’t need to use a hyphen to get valid prefixed variants for known CSS properties, simply expand abbreviations like <code>bdrs</code> or <code>trf</code> to get a valid list of vendor-prefixed properties.</p>
+<h2 id="Explicit-vendor-prefixed"><a href="#Explicit-vendor-prefixed" class="headerlink" title="Explicit vendor prefixed"></a>Explicit vendor prefixed</h2><p>Sometimes you may want to output CSS properties with specified vendor prefixed properties only.</p>
+<p>Let’s say you want to output <code>transform</code> property with <code>webkit</code> and <code>moz</code> prefixes only. In this case you can expand the following abbreviation:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-wm-trf</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, we slightly modified the abbreviation by adding a list of one-letter prefixes. In this case, these are <code>w</code>(<code>webkit</code>) and <code>m</code> (<code>moz</code>) prefixes. Emmet has the following one-letter prefixes:</p>
+<ul>
+<li><code>w</code>: <code>webkit</code></li>
+<li><code>m</code>: <code>moz</code></li>
+<li><code>s</code>: <code>ms</code></li>
+<li><code>o</code>: <code>o</code></li>
+</ul>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2019/04/03/2018-04-04-emmet-教程2-2018/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -615,7 +615,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -820,7 +820,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -858,7 +858,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -934,7 +934,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1122,7 +1122,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1435,7 +1435,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1472,7 +1472,7 @@ var _hmt = _hmt || [];
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
 	    gitalkConfig.id = md5(location.pathname);
 		var gitalk = new Gitalk(gitalkConfig);
 	    gitalk.render("gitalk-container");
@@ -1532,45 +1532,45 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Android/">Android<span>26</span></a></li>
+			<li><a href="/tags/html/">html<span>1</span></a></li>
 		
-			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
-		
-			<li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
-		
-			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
-		
-			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
-		
-			<li><a href="/tags/View/">View<span>1</span></a></li>
-		
-			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
-		
-			<li><a href="/tags/IOS/">IOS<span>2</span></a></li>
-		
-			<li><a href="/tags/Git/">Git<span>2</span></a></li>
-		
-			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
-		
-			<li><a href="/tags/XML/">XML<span>1</span></a></li>
-		
-			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
-		
-			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
+			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
 		
 			<li><a href="/tags/软件工程/">软件工程<span>4</span></a></li>
 		
-			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
+			<li><a href="/tags/协程/">协程<span>1</span></a></li>
 		
-			<li><a href="/tags/安全/">安全<span>1</span></a></li>
+			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
 		
-			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
+			<li><a href="/tags/问题/">问题<span>1</span></a></li>
+		
+			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
+		
+			<li><a href="/tags/编程思想/">编程思想<span>1</span></a></li>
 		
 			<li><a href="/tags/java/">java<span>2</span></a></li>
+		
+			<li><a href="/tags/Java/">Java<span>42</span></a></li>
+		
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+		
+			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
+		
+			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
+		
+			<li><a href="/tags/IOS/">IOS<span>2</span></a></li>
+		
+			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
+		
+			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
+		
+			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+		
+			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
+		
+			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>49</span></a></li>
