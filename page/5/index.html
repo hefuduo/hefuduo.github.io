@@ -241,66 +241,6 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2017/12/27/2017-12-28-AndroidJNI-2017/" >Android JNI 系列</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2017-12-27  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="Android-JNI-基本知识"><a href="#Android-JNI-基本知识" class="headerlink" title="Android JNI 基本知识"></a>Android JNI 基本知识</h1><h2 id="1-1-什么是JNI"><a href="#1-1-什么是JNI" class="headerlink" title="1.1 什么是JNI"></a>1.1 什么是JNI</h2><p><code>JNI (Java Native Interface)</code>,它提供了若干<code>API</code>使得<code>Java</code>可以和其他语言互通,是<code>JDK</code>的一部分.</p>
-<p>理解这些就可以了!</p>
-<h2 id="1-2-为什么使用JNI"><a href="#1-2-为什么使用JNI" class="headerlink" title="1.2 为什么使用JNI"></a>1.2 为什么使用JNI</h2><p>使用<code>JNI</code>是为了将现有的<code>C或C++</code>库集成到使用<code>Java</code>语言开发的应用中,或者有些性能要求较高的场景下,使用<code>C</code>或<code>C++</code>才能满足的场景.</p>
-<h2 id="1-3-使用JNI带来的问题"><a href="#1-3-使用JNI带来的问题" class="headerlink" title="1.3 使用JNI带来的问题"></a>1.3 使用JNI带来的问题</h2><p>程序不再跨平台,还有JNI带来的内存问题,以及可能引起的<code>Crash</code></p>
-<h1 id="使用Android-Studio-搭建JNI开发环境"><a href="#使用Android-Studio-搭建JNI开发环境" class="headerlink" title="使用Android Studio 搭建JNI开发环境"></a>使用Android Studio 搭建JNI开发环境</h1><p>目前使用<code>Android Studio 3.0</code>可以直接建立一个支持<code>C或C++</code>语言的<code>JNI</code>项目.</p>
-<p>如果需要将现有的应用集成<code>JNI</code>可参照<code>Google Dev</code>的官方文档操作.</p>
-<p>编译<code>JNI</code>程序,可以使用<code>NDK</code>编译,或者使用<code>CMAKE</code>来编译,现在来讲都可行,推荐使用<code>CMAKE</code>来编译.</p>
-<p>在<code>app</code>目录下建立一个<code>JNI目录</code>源文件都放到这里.</p>
-<p><img src="/img/jni/jni1.png" alt="error"></p>
-<p><img src="/img/jni/jni2.png" alt="jni2"></p>
-<p>注意目录名称是<code>JNI</code>,只是在<code>Android Studio</code>中显示为<code>cpp目录</code></p>
-<p>下面写CMAKE文件</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里使用的是bsdiff patch的JNI库例子.</span></span><br><span class="line"><span class="comment"># For more information about using CMake with Android Studio, read the</span></span><br><span class="line"><span class="comment"># documentation: https://d.android.com/studio/projects/add-native-code.html</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets the minimum version of CMake required to build the native library.</span></span><br><span class="line"><span class="comment"># 设置CMake编译器的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creates and names a library, sets it as either STATIC</span></span><br><span class="line"><span class="comment"># or SHARED, and provides the relative paths to its source code.</span></span><br><span class="line"><span class="comment"># You can define multiple libraries, and CMake builds them for you.</span></span><br><span class="line"><span class="comment"># Gradle automatically packages shared libraries with your APK.</span></span><br><span class="line"><span class="comment"># 声明源文件路径</span></span><br><span class="line"><span class="keyword">file</span>(GLOB bzip <span class="string">&quot;src/main/jni/bzip2/*.c&quot;</span>)</span><br><span class="line"><span class="keyword">file</span>(GLOB bs_src <span class="string">&quot;src/main/jni/*.c&quot;</span>)</span><br><span class="line"><span class="comment"># 引入头文件路径 (这里必须要引入)</span></span><br><span class="line"><span class="keyword">include_directories</span>(</span><br><span class="line"><span class="string">&quot;src/main/jni/bzip2/&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 引入源文件</span></span><br><span class="line"><span class="keyword">add_library</span>( <span class="comment"># Sets the name of the library.</span></span><br><span class="line">             <span class="comment"># 设置编译后的库名称</span></span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Sets the library as a shared library.</span></span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Provides a relative path to your source file(s).</span></span><br><span class="line">             <span class="comment"># 设置源文件的位置</span></span><br><span class="line">             <span class="variable">$&#123;bzip&#125;</span></span><br><span class="line">             src/main/jni/native-lib.c )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Searches for a specified prebuilt library and stores the path as a</span></span><br><span class="line"><span class="comment"># variable. Because CMake includes system libraries in the search path by</span></span><br><span class="line"><span class="comment"># default, you only need to specify the name of the public NDK library</span></span><br><span class="line"><span class="comment"># you want to add. CMake verifies that the library exists before</span></span><br><span class="line"><span class="comment"># completing its build.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_library</span>( <span class="comment"># Sets the name of the path variable.</span></span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              <span class="comment"># Specifies the name of the NDK library that</span></span><br><span class="line">              <span class="comment"># you want CMake to locate.</span></span><br><span class="line">              <span class="comment"># 引入依赖库</span></span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specifies libraries CMake should link to your target library. You</span></span><br><span class="line"><span class="comment"># can link multiple libraries, such as libraries you define in this</span></span><br><span class="line"><span class="comment"># build script, prebuilt third-party libraries, or system libraries.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>( <span class="comment"># Specifies the target library.</span></span><br><span class="line">                       native-lib</span><br><span class="line">						</span><br><span class="line">                       <span class="comment"># Links the target library to the log library</span></span><br><span class="line">                       <span class="comment"># included in the NDK.</span></span><br><span class="line">                       <span class="variable">$&#123;log-lib&#125;</span> )</span><br></pre></td></tr></table></figure>
-
-
-
-<p>简单的来一个JNI HelloWorld</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;native-lib&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">helloworld</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line">JNIEXPORT jstring JNICALL</span><br><span class="line">Java_com_sankuai_meituan_testjni_MainActivity_helloworld(JNIEnv *env, jclass type) &#123;</span><br><span class="line">    <span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>从<code>C</code>的函数定义中可以发现,函数的签名是有一定规律的一般是下面这种格式</p>
-<p><code>Java_[包名]_[类名]_[方法名](JNIEnv * env,jclass type,[params])</code></p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2017/12/27/2017-12-28-AndroidJNI-2017/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
 			<a href="/2017/12/27/2018-01-16-RxJava-Tutorial-2018/" >RxJava系列</a>
 		</h3>
 		</div>
@@ -356,6 +296,66 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2017/12/27/2018-01-16-RxJava-Tutorial-2018/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/12/27/2017-12-28-AndroidJNI-2017/" >Android JNI 系列</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-12-27  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="Android-JNI-基本知识"><a href="#Android-JNI-基本知识" class="headerlink" title="Android JNI 基本知识"></a>Android JNI 基本知识</h1><h2 id="1-1-什么是JNI"><a href="#1-1-什么是JNI" class="headerlink" title="1.1 什么是JNI"></a>1.1 什么是JNI</h2><p><code>JNI (Java Native Interface)</code>,它提供了若干<code>API</code>使得<code>Java</code>可以和其他语言互通,是<code>JDK</code>的一部分.</p>
+<p>理解这些就可以了!</p>
+<h2 id="1-2-为什么使用JNI"><a href="#1-2-为什么使用JNI" class="headerlink" title="1.2 为什么使用JNI"></a>1.2 为什么使用JNI</h2><p>使用<code>JNI</code>是为了将现有的<code>C或C++</code>库集成到使用<code>Java</code>语言开发的应用中,或者有些性能要求较高的场景下,使用<code>C</code>或<code>C++</code>才能满足的场景.</p>
+<h2 id="1-3-使用JNI带来的问题"><a href="#1-3-使用JNI带来的问题" class="headerlink" title="1.3 使用JNI带来的问题"></a>1.3 使用JNI带来的问题</h2><p>程序不再跨平台,还有JNI带来的内存问题,以及可能引起的<code>Crash</code></p>
+<h1 id="使用Android-Studio-搭建JNI开发环境"><a href="#使用Android-Studio-搭建JNI开发环境" class="headerlink" title="使用Android Studio 搭建JNI开发环境"></a>使用Android Studio 搭建JNI开发环境</h1><p>目前使用<code>Android Studio 3.0</code>可以直接建立一个支持<code>C或C++</code>语言的<code>JNI</code>项目.</p>
+<p>如果需要将现有的应用集成<code>JNI</code>可参照<code>Google Dev</code>的官方文档操作.</p>
+<p>编译<code>JNI</code>程序,可以使用<code>NDK</code>编译,或者使用<code>CMAKE</code>来编译,现在来讲都可行,推荐使用<code>CMAKE</code>来编译.</p>
+<p>在<code>app</code>目录下建立一个<code>JNI目录</code>源文件都放到这里.</p>
+<p><img src="/img/jni/jni1.png" alt="error"></p>
+<p><img src="/img/jni/jni2.png" alt="jni2"></p>
+<p>注意目录名称是<code>JNI</code>,只是在<code>Android Studio</code>中显示为<code>cpp目录</code></p>
+<p>下面写CMAKE文件</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里使用的是bsdiff patch的JNI库例子.</span></span><br><span class="line"><span class="comment"># For more information about using CMake with Android Studio, read the</span></span><br><span class="line"><span class="comment"># documentation: https://d.android.com/studio/projects/add-native-code.html</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sets the minimum version of CMake required to build the native library.</span></span><br><span class="line"><span class="comment"># 设置CMake编译器的版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creates and names a library, sets it as either STATIC</span></span><br><span class="line"><span class="comment"># or SHARED, and provides the relative paths to its source code.</span></span><br><span class="line"><span class="comment"># You can define multiple libraries, and CMake builds them for you.</span></span><br><span class="line"><span class="comment"># Gradle automatically packages shared libraries with your APK.</span></span><br><span class="line"><span class="comment"># 声明源文件路径</span></span><br><span class="line"><span class="keyword">file</span>(GLOB bzip <span class="string">&quot;src/main/jni/bzip2/*.c&quot;</span>)</span><br><span class="line"><span class="keyword">file</span>(GLOB bs_src <span class="string">&quot;src/main/jni/*.c&quot;</span>)</span><br><span class="line"><span class="comment"># 引入头文件路径 (这里必须要引入)</span></span><br><span class="line"><span class="keyword">include_directories</span>(</span><br><span class="line"><span class="string">&quot;src/main/jni/bzip2/&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 引入源文件</span></span><br><span class="line"><span class="keyword">add_library</span>( <span class="comment"># Sets the name of the library.</span></span><br><span class="line">             <span class="comment"># 设置编译后的库名称</span></span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Sets the library as a shared library.</span></span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Provides a relative path to your source file(s).</span></span><br><span class="line">             <span class="comment"># 设置源文件的位置</span></span><br><span class="line">             <span class="variable">$&#123;bzip&#125;</span></span><br><span class="line">             src/main/jni/native-lib.c )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Searches for a specified prebuilt library and stores the path as a</span></span><br><span class="line"><span class="comment"># variable. Because CMake includes system libraries in the search path by</span></span><br><span class="line"><span class="comment"># default, you only need to specify the name of the public NDK library</span></span><br><span class="line"><span class="comment"># you want to add. CMake verifies that the library exists before</span></span><br><span class="line"><span class="comment"># completing its build.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_library</span>( <span class="comment"># Sets the name of the path variable.</span></span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              <span class="comment"># Specifies the name of the NDK library that</span></span><br><span class="line">              <span class="comment"># you want CMake to locate.</span></span><br><span class="line">              <span class="comment"># 引入依赖库</span></span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specifies libraries CMake should link to your target library. You</span></span><br><span class="line"><span class="comment"># can link multiple libraries, such as libraries you define in this</span></span><br><span class="line"><span class="comment"># build script, prebuilt third-party libraries, or system libraries.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>( <span class="comment"># Specifies the target library.</span></span><br><span class="line">                       native-lib</span><br><span class="line">						</span><br><span class="line">                       <span class="comment"># Links the target library to the log library</span></span><br><span class="line">                       <span class="comment"># included in the NDK.</span></span><br><span class="line">                       <span class="variable">$&#123;log-lib&#125;</span> )</span><br></pre></td></tr></table></figure>
+
+
+
+<p>简单的来一个JNI HelloWorld</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;native-lib&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> String <span class="title">helloworld</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line">JNIEXPORT jstring JNICALL</span><br><span class="line">Java_com_sankuai_meituan_testjni_MainActivity_helloworld(JNIEnv *env, jclass type) &#123;</span><br><span class="line">    <span class="keyword">return</span> (*env)-&gt;NewStringUTF(env, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从<code>C</code>的函数定义中可以发现,函数的签名是有一定规律的一般是下面这种格式</p>
+<p><code>Java_[包名]_[类名]_[方法名](JNIEnv * env,jclass type,[params])</code></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/12/27/2017-12-28-AndroidJNI-2017/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -650,43 +650,6 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2017/08/31/2017-08-31-Android之View体系-2017/" >Android系列2</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2017-08-31  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2017/08/31/2017-08-31-Android之View体系-2017/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
 			<a href="/2017/08/31/2017-08-31-Android之控件详解-2017/" >Android系列1</a>
 		</h3>
 		</div>
@@ -723,6 +686,43 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2017/08/31/2017-08-31-Android之控件详解-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/08/31/2017-08-31-Android之View体系-2017/" >Android系列2</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-08-31  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/08/31/2017-08-31-Android之View体系-2017/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -775,45 +775,45 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/生活/">生活<span>2</span></a></li>
+			<li><a href="/tags/工具/">工具<span>1</span></a></li>
 		
-			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
-		
-			<li><a href="/tags/编程思想/">编程思想<span>1</span></a></li>
-		
-			<li><a href="/tags/问题/">问题<span>1</span></a></li>
-		
-			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
-		
-			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
-		
-			<li><a href="/tags/Android/">Android<span>26</span></a></li>
+			<li><a href="/tags/源码分析/">源码分析<span>3</span></a></li>
 		
 			<li><a href="/tags/View/">View<span>1</span></a></li>
 		
-			<li><a href="/tags/XML/">XML<span>1</span></a></li>
-		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
-		
-			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
+			<li><a href="/tags/生活/">生活<span>2</span></a></li>
 		
 			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
 		
 			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
 		
-			<li><a href="/tags/软件工程/">软件工程<span>4</span></a></li>
+			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
 		
-			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+			<li><a href="/tags/问题/">问题<span>1</span></a></li>
 		
-			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
+			<li><a href="/tags/Android/">Android<span>26</span></a></li>
 		
-			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
+			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
 		
-			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
 		
-			<li><a href="/tags/安全/">安全<span>1</span></a></li>
+			<li><a href="/tags/html/">html<span>1</span></a></li>
+		
+			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
+		
+			<li><a href="/tags/协程/">协程<span>1</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+		
+			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
+		
+			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
+		
+			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+		
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+		
+			<li><a href="/tags/计算机网络/">计算机网络<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>49</span></a></li>

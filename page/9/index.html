@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2017/02/14/2017-02-14-git教程-2017/" >Git教程</a>
+			<a href="/2017/02/14/2017-02-14-防御性编程-2017/" >防御性编程</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -157,21 +157,70 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<blockquote>
-<p>写在前面，希望这篇文章能够带给你帮助。</p>
-</blockquote>
-<p>[TOC]</p>
-<h1 id="第一章-起步"><a href="#第一章-起步" class="headerlink" title="第一章 起步"></a>第一章 起步</h1><h2 id="1-1关于版本控制"><a href="#1-1关于版本控制" class="headerlink" title="1.1关于版本控制"></a>1.1关于版本控制</h2><p>版本控制是一种软件工程的工具，它记录程序各个模组的改动，并未每次改动编上序号，我们可以回溯版本。</p>
-<p>以上，是百度百科关于版本控制的定义。</p>
-<p>举个🌰：</p>
-<p>比如你现在要写一个毕业论文。一篇论文二三万字，如果删除，修改了，你怎么知道自己改了什么呢？所以以前的很笨的方法就是另存为一个文件，然后在修改的地方标注上，那么删除了的我怎么知道删除呢？</p>
-<p>所以一个毕设文件夹下面，放了一堆文档：</p>
-<p>命名都是ver1，ver2，ver3，….最终写成一个final_version。然而这些都不是最坑的，最坑的是老师给你review论文，提出一大堆修改点，删删改改的，你怎么去追踪历史？最后被玩死😂。</p>
-<p>版本控制就是为了防止这种无法追踪历史的情况发生。</p>
-<p>版本控制可以分为几种，例如本地的版本控制，这个不多说。还有集中化的版本控制系统，例如CVS、Subverison以及Perforce等，这种版本控制系统的特点就是都有一个单一的几种管理的服务器，保存所有文件的修订版本。所有干活的都要连接到则台服务器，先下载最新的代码，然后提交更新。这种好处坏处都有，好处就是权限管理比较方便，更安全。坏处就是中央服务器一旦故障所有人都不能干活了。</p>
-<p>（To be continued）</p>
-<p>李思佳股东卡升级过</p>
+		<h1 id="防御性编程"><a href="#防御性编程" class="headerlink" title="防御性编程"></a>防御性编程</h1><p>在讲防御性编程之前，我先讲一个故事。</p>
+<p>爱德华墨菲是美国爱德华兹空军基地的上尉工程师。</p>
+<p>1949年，他和上司斯塔普少校参加美国空军心境的MX981火箭减速超重实验。这个实验的目的是为了测定人类对加速度的承受极限。其中有一个实验项目是将16个火箭加速计悬空安装在受试者上方，当时有丽娜各种方法可以讲加速度计固定在支架上，而不可思议的是，竟然有人有条不紊地讲16个加速度计全部装在错误的位置上。</p>
+<p>于是墨菲做出了这一著名的论断，如果某项工作有多种方法，而其中有一种方法将导致事故，那么一定有人会按照这种方法去做。</p>
+<p>这就是著名的“墨菲定律”。</p>
+<p>“墨菲定律”主要内容有四个方面</p>
+<ol>
+<li>任何事都没有表面看起来那么简单</li>
+<li>所有的事都会比你预计的时间长</li>
+<li>会出错的事总会出错</li>
+<li>如果你担心某种情况发生，那么它就更可能发生</li>
+</ol>
+<p>好了，上面的故事告诉我们一个道理，凡是可能出错的事有很大几率会出错。在编程中，你也许听过这样一句话，没有任何系统是安全的，它总会有漏洞；没有任何软件是没有问题的，它总会存在一些Bug。</p>
+<p>打个比方，我们要解析一段json，约定这个json的格式，只能是正常格式，或者是空，那么一旦返回json的方法返回了一个『既不是正常格式，又不是空的异常值』，程序该如何处理呢？</p>
+<p>小花：一旦碰到约定异常，程序必须兼容处理，一定不能让程序Crash</p>
+<p>小Fa：一旦碰到约定异常，就必须抛出去，告知约定有误，找出具体错误原因</p>
+<p>这个问题，相信只要是程序猿基本都遇到过，举个最常见的栗子，NullPointerException，假如我们要从json中取一个字段，突然发现发生了NullPointerException，一些开发者认为是数据问题，那么把json中的这个字段改正确就行了；还有一些开发者认为是程序问题，认为程序需要做非空判断，再去使用。我相信这两种程序猿都有自己的理由，第一种程序简洁明了，代码逻辑干净，但一旦出错，就会崩溃，第二种程序耐操，随你数据怎么错，我都能不Crash，但代码中到处存在非空判断，臃肿、重复。</p>
+<p>因此，我们需要一个防御式的编程。就是不要信任任何人，对于程序任何可能错误的输入，都要做出兼容。</p>
+<p>那什么是防御性编程呢？</p>
+<p>防御性编程是一种细致、谨慎的编程方法。为了开发可靠的软件，我们要设计系统中的每个组件，以使其尽可能的“保护”自己。我们通过明确地在代码中对设想进行检查，击碎了未记录下来的设想。这是一种努力，防止我们的代码以将会展现错误行为的方式被调用。</p>
+<p>防御性编程并不能排除所有的程序错误。但是相应的问题所带来的麻烦将会减少，并且易于修改。</p>
+<p color="red">防御性程序员只是抓住飘落的雪花，而不是被埋葬在错误的雪崩中。</p>
 
+
+
+<p>讲完了上面的概念性的东西，下面来点干货。Show me the code！</p>
+<p>1.为了防止偶发性的NullPointException异常，我们通常将String放置在equals()函数的左边来实现比较：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">var</span>.equals(<span class="string">&quot;literal&quot;</span>))&#123;</span><br><span class="line">  <span class="comment">//this is bad because var may be null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;literal&quot;</span>.equals(<span class="keyword">var</span>))&#123;</span><br><span class="line">  <span class="comment">//good code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.不要永远相信别人提供的SDK，可能是大坑。看早起的Java api</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String[] files = file.list();</span><br><span class="line"><span class="comment">//watch out</span></span><br><span class="line"><span class="keyword">if</span>(files != <span class="keyword">null</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++)&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果这个虚拟路径不表示一个文件夹目录，则此方法返回null。否则将会返回一个</span></span><br><span class="line"><span class="comment">//字符串数据，字符串表示目录中的文件或文件夹。所以应该添加一些校验</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(files.isDirectory())&#123;</span><br><span class="line">  String[] files = file.list();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//watch out</span></span><br><span class="line">  <span class="keyword">if</span>(files != <span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++)&#123;</span><br><span class="line">      <span class="comment">//.....</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.不要相信“-1”</p>
+<p>javadoc中对String.indexOf()方法明确指出：对象内第一次出现制定字符的位置索引，如果为-1则表示该字符不在字符序列中。举个🌰</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(string.indexOf(charactor) != -<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="comment">//bad </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(string.indexOf(charactor) &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.避免意外赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">var</span> = <span class="number">5</span>)&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//a better way</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">5</span> = <span class="keyword">var</span>)&#123;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="number">5</span> === <span class="keyword">var</span>)&#123;</span><br><span class="line">  <span class="comment">//Ooops</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所以你可以讲比较常量放在左侧，这样就不会发生意外的赋值错误了</span></span><br></pre></td></tr></table></figure>
+
+<p>5.检查Null和Length</p>
+<p>只要有数组和集合等，请确保它存在，并且不为空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//...bad</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(array != <span class="keyword">null</span> &amp;&amp; array.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.对于那些意义明确的方法要严格使用fina标识</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boom</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//bad</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">dontTouch</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>7.所有变量和参数都是final</p>
+<p>我不相信我自己（不要意外覆盖我的值）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(String importantMessage)</span></span>&#123;</span><br><span class="line">  String answer = <span class="string">&quot;...&quot;</span>;</span><br><span class="line">  answer = importantMessage = <span class="string">&quot;LoL accident&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//good</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">final</span> String importantMessage)</span></span>&#123;</span><br><span class="line">  <span class="keyword">final</span> String answer = <span class="string">&quot;...&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>8.重载时不要相信泛型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(T value)</span></span>&#123;</span><br><span class="line">  bad(Collections.singletonList(value));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(List values)</span></span>&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(List values)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//good </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">good</span><span class="params">(<span class="keyword">final</span> T value)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(value instance of List)&#123;</span><br><span class="line">    good(List&lt;?&gt; value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    good(Collections.singletonList(value));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">good</span><span class="params">(<span class="keyword">final</span> List values)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//this library sucks</span></span><br><span class="line"><span class="meta">@SuppressWarning(&quot;all&quot;)</span></span><br><span class="line">Object t = (Object)(List)Arrays.asList(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">bad(t);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>结束语：</p>
+<p>防御性编程并不能完全防止程序中出现的bug问题，但是他会大大降低软件崩溃的几率，尽管可能要多些几行代码，但是对于大型软件来说，可靠性才是第一位的不是吗？一个软件的鲁棒性（谁翻译的鲁棒？音译好难听！）是至关重要的。并且，防御性编程的程序在后期的维护中也更加方便。</p>
+<p>推荐，在写程序的时候，注意防御性编程。</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -184,7 +233,7 @@ var _hmt = _hmt || [];
 	    </script>
 	
 	</div>
-  <a type="button" href="/2017/02/14/2017-02-14-git教程-2017/#more" class="btn btn-default more">Read More</a>
+  <a type="button" href="/2017/02/14/2017-02-14-防御性编程-2017/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -194,7 +243,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote21-2016/" >Java学习笔记21</a>
+			<a href="/2016/12/21/2016-12-21-javanote16-2016/" >Java学习笔记16</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -209,51 +258,35 @@ var _hmt = _hmt || [];
 	
 	
 		<p>[TOC]</p>
-<h1 id="21-并发"><a href="#21-并发" class="headerlink" title="21 并发"></a>21 并发</h1><h2 id="21-1-Thread类"><a href="#21-1-Thread类" class="headerlink" title="21.1 Thread类"></a>21.1 Thread类</h2><p>将Runnable对爱那个转变为工作任务的传统方式是把它提交给一个Thread构造器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicThreads</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//TODO </span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Thread 构造器只需要一个Runnable对象。调用Thread对象的<code>start()</code>方法为该线程执行必须的初始化操作，然后调用Runnable的run方法，以便在这个新县城中启动该任务。</p>
-<h2 id="21-2-使用Executor"><a href="#21-2-使用Executor" class="headerlink" title="21.2 使用Executor"></a>21.2 使用Executor</h2><p>java se5 可以使用Excutor为你管理Thread对象，从而简化了并发编程。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleThreadExecutor</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ExecutorService es = <span class="keyword">new</span> Executors.newSingleThreadExcutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="comment">//////</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    es.shutdonw();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="21-3-从任务中产生返回值"><a href="#21-3-从任务中产生返回值" class="headerlink" title="21.3 从任务中产生返回值"></a>21.3 从任务中产生返回值</h2><p><code>Runnable</code>是执行工作的独立任务，但是它不返回任何值。如果你希望任务在完成时能够返回同一个值，那么可以实现<code>Callable</code>接口，Java se5引入的<code>Callable</code>是一种具有类型参数的泛型，它的类型参数表示的是从方法<code>call()</code>中返回的值，并且必须使用<code>ExcutorService#submit()</code>方法调动它。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line">        ArrayList&lt;Future&lt;String&gt;&gt; results = <span class="keyword">new</span> ArrayList&lt;Future&lt;String&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            results.add(service.submit(<span class="keyword">new</span> TaskWithResult(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Future&lt;String&gt; fs : results) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(fs.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                service.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskWithResult</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskWithResult</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;result of taskwithresult &quot;</span> + id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="21-2-5-休眠"><a href="#21-2-5-休眠" class="headerlink" title="21.2.5 休眠"></a>21.2.5 休眠</h3><p>影响任务行为的一种简单方法是调用<code>sleep()</code>，这将是任务中止执行给定的事件。</p>
-<h3 id="21-2-6-优先级"><a href="#21-2-6-优先级" class="headerlink" title="21.2.6 优先级"></a>21.2.6 优先级</h3><p>线程的<em>优先级</em>将该线程的重要性传递给了调度器。在绝大多数时间里，所有线程都应该以默认的优先级运行。试图操纵线程优先级通常是一种错误。</p>
-<h3 id="21-2-7-让步"><a href="#21-2-7-让步" class="headerlink" title="21.2.7 让步"></a>21.2.7 让步</h3><p>如果知道已经完成了在<code>run()</code>方法的循环的一次迭代过程中所需的工作，就可以给线程调度机制一个暗示：工作已经完成，让出CPU。方法是调用<code>#yield()</code>方法。这只是一个暗示，但是并没有机制保证它一定会被采纳。</p>
-<h3 id="21-2-8-后台线程"><a href="#21-2-8-后台线程" class="headerlink" title="21.2.8 后台线程"></a>21.2.8 后台线程</h3><p>所谓后台(<code>daemmon</code>)线程，是指在程序运行的时候在后台提供的一种通用服务的线程，并且这种线程并不属于程序中不可获取的部分。因此，当所有的<em>非后台线程</em>结束时，程序也就终止了，同时会杀死进程中的所有后台线程，反过来说，只要有任何非后台线程在运行，程序就不会终止。比如<code>main()</code>就是一个非后台线程。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                TimeUnit.MICROSECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;sleep() interrupted&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            Thread daemon  = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonTest());</span><br><span class="line">            daemon.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">            daemon.start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;all daemon started&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//TimeUnit.MICROSECONDS.sleep(175);</span></span><br><span class="line">            TimeUnit.MICROSECONDS.sleep(<span class="number">5000</span>); <span class="comment">//改变这个主线程睡眠的时间，如果很短，那么你只能看到部分线程被创建并运行。如果是长一些的，那么你应该能够看见所有的10个后台线程在运行。</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>一旦<code>main()</code>完成其工作，就没什么能组织程序终止了，因为除了后台线程之外，已经没有线程在运行了。</p>
-<p>ps:</p>
-<p>如果是一个后台线程，那么它创建的任何线程将被自动设置为后台线程。</p>
-<h2 id="21-3-锁同步"><a href="#21-3-锁同步" class="headerlink" title="21.3 锁同步"></a>21.3 锁同步</h2><h4 id="隐式锁"><a href="#隐式锁" class="headerlink" title="隐式锁"></a>隐式锁</h4><p>synchronized 关键字</p>
-<h4 id="显示锁"><a href="#显示锁" class="headerlink" title="显示锁"></a>显示锁</h4><p>Java SE5的java.util.cocurrent类库还包含有定义在java.util.concurrent.locks中的显示的互斥机制。</p>
-<p><code>Lock</code>对象必须被显示的创建锁定与释放。虽然代码缺乏优雅性。但是，对于解决某些类型的问题来说，它更加灵活。比如条件锁。</p>
-<h4 id="原子性与易变性"><a href="#原子性与易变性" class="headerlink" title="原子性与易变性"></a>原子性与易变性</h4><p>volatile关键字确保了应用中的可视性。如果讲一个域生命为<code>volatile</code>的，那么只要对这个域产生了写操作，那么所有的读操作就可以看到这个修改。即便使用了本地的缓存，情况也确实如此，<code>volatile</code>域会立即被写入到主存中，而读取操作就是发生在主存中。</p>
-<h4 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h4><p>Java SE5 一如了诸如<code>AtomicInteger,AtomicLong,AtomicReference,AtomicBoolean</code>等特殊的原子性变量类。他们提供下面形式的原子性条件更新操作:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(expectedValue,updateValue)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>这些类被调整为可以使用在某些现代处理器上的可获得的，并且是在机器级别上的原子性，因此对于使用他们无须担心，这些原子类在性能调优上非常有用。</p>
-<h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><p>防止多个线程同事访问方法内部的布恩代码而不是防止访问整个方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//this can be access</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//this only one task a time</span></span><br><span class="line">  <span class="keyword">synchronized</span>(some object)&#123;</span><br><span class="line">    <span class="comment">//同步的</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="16-数组"><a href="#16-数组" class="headerlink" title="16 数组"></a>16 数组</h1><h2 id="16-1数组为什么特殊"><a href="#16-1数组为什么特殊" class="headerlink" title="16.1数组为什么特殊"></a>16.1数组为什么特殊</h2><p>Java中有大量的其他方式可以持有对象。数组与其他种类的容器之间的区别有三个方面：<strong>效率，类型和保存基础类型的能力</strong>。</p>
+<p>在Java中，数组是一种效率最高的存储和时机访问对象引用序列的方式。</p>
+<h2 id="16-2-数组是第一级对象"><a href="#16-2-数组是第一级对象" class="headerlink" title="16.2 数组是第一级对象"></a>16.2 数组是第一级对象</h2><p>无论使用哪种类型的数组，数组标识符其实只是一个引用，指向堆中创建的一个真实对象，这个数组对象泳衣保存指向其他对象的引用。</p>
+<h2 id="16-3-返回一个数组"><a href="#16-3-返回一个数组" class="headerlink" title="16.3 返回一个数组"></a>16.3 返回一个数组</h2><p>假设你要写一个方法，而且希望它返回的不止一个值，而是一组值，这个对于C和C++这样的</p>
+<p>语言来说就有点困难，因为他们不能返回一个数组，而只能返回指向数组的指针。这会造成一些问题，因为它是的控制数组的生命周期造成困难，并且容易造成<em>内存泄漏</em>。</p>
+<p>在Java中，你只是直接“返回一个数组”，而无需担心要为数组负责-只要你需要它，它就会一直存在，当你使用完后，垃圾回收器会清理掉他。</p>
+<h2 id="16-4-多维数组"><a href="#16-4-多维数组" class="headerlink" title="16.4 多维数组"></a>16.4 多维数组</h2><p>创建多维数组很方便，对于基本类型的多维素组，可以使用花括号将每个向量分隔开：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultidimensionPrimitiveArray</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] a = &#123;</span><br><span class="line">      &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,</span><br><span class="line">        &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//是这样婶的	</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h4><h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>当下列四个条件同时满足时，就会发生死锁：</p>
-<ol>
-<li>互斥条件。任务使用的资源中至少有一个是不能共享的。</li>
-<li>至少有一个任务它必须有一个资源且正在等待获取一个当前被别的任务持有的资源。</li>
-<li>资源不能被任务抢占，任务必须把资源释放当做普通事件。</li>
-<li>必须有循环等待，这时，一个任务等其他任务所持有的资源，后者又在等待另一个任务所持有的资源，这样一直下去，知道有一个任务在等待第一个任务所持有的资源，使得大家都被锁住。</li>
-</ol>
-<p>因为要发生死锁的话，所有这些条件必须全部满足：所以要防止死锁的话，只需要破坏其中一个即可。在程序中，<strong>防止死锁发生最容易的方法是破坏第四个条件</strong></p>
-<h2 id="21-7-新类库中的构建"><a href="#21-7-新类库中的构建" class="headerlink" title="21.7 新类库中的构建"></a>21.7 新类库中的构建</h2><p>Java SE5 cocurrent包下面引入了大量涉及用来解决并发问题的新类。</p>
-<p>例如：<code>CountDownLatch,CylicBarrier,Semaphore,ConcurrentHashMap,BlockingQueue</code>。</p>
-<p>//TODO Java并发编程 单独出一份笔记吧</p>
+<h2 id="16-6-数组与泛型"><a href="#16-6-数组与泛型" class="headerlink" title="16.6 数组与泛型"></a>16.6 数组与泛型</h2><blockquote>
+<p>通常,数组与泛型不能很好的结合。你不能实例化具有参数化类型的数组。Java泛型的类型擦除会移除类型信息，而数组必须知道他们所持有的确切类型，以强制保证类型安全。但是，你可以参数化数组本身的类型。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassParameter</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> T[] f(T[] arg)&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MethodParameter</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] f(T[] arg)&#123;</span><br><span class="line">      <span class="keyword">return</span> arg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParamterizedArrayType</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">      Integer[] ints = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">      Double[] doubles = &#123;<span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">2.2</span>, <span class="number">3.3</span>&#125;;</span><br><span class="line">      Integer[] ints2 = <span class="keyword">new</span> ClassParameter&lt;Integer&gt;().f(ints);</span><br><span class="line">      Double[] doubles2 = <span class="keyword">new</span> Classparameter&lt;Double&gt;()f(doubles);</span><br><span class="line">      ints2 = MethodsParameter.f(ints);</span><br><span class="line">      double2 = MethodParamter.f(doubles);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，使用参数化方法而不使用参数化类的方便之处在于：你不必为需要应用的每种不同的类型都使用一个参数去实例化这个类，并且你可以将其定义为静态的。当然没你不能总是选择使用参数化方法而不是参数化类，但是它应该成为首选。</p>
+<h2 id="16-7-Arrays使用功能"><a href="#16-7-Arrays使用功能" class="headerlink" title="16.7 Arrays使用功能"></a>16.7 Arrays使用功能</h2><p>在java.util类库中可以找到Array类，他有一套用于数组的static使用方法，其中有六个基本方法。</p>
+<h3 id="16-7-1-复制数组"><a href="#16-7-1-复制数组" class="headerlink" title="16.7.1 复制数组"></a>16.7.1 复制数组</h3><p>Java标准类库提供有static方法，<code>System.arrayCopy()</code>用它复制数组比用for循环复制要快很多。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] i = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">7</span>];</span><br><span class="line"><span class="keyword">int</span>[] j = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">System.arrayCopy(i,<span class="number">0</span>,j,<span class="number">0</span>,i.length);</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数原型，我觉得应该是内存操作，这样肯定比for循环赋值要快多了。</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">arraycopy</span><span class="params">(Object src,  <span class="keyword">int</span>  srcPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        Object dest, <span class="keyword">int</span> destPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">int</span> length)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="16-7-2-数组的比较"><a href="#16-7-2-数组的比较" class="headerlink" title="16.7.2 数组的比较"></a>16.7.2 数组的比较</h3><p>Arrays类提供了重载后的<code>equals()</code>方法，用来比较整个数组。同样，此方法针对所有基本类型与Object都做了重载，数组相等的条件是元素的个数*必须相等，并且对应的未知的元素也相等。</p>
+<h3 id="16-7-3-数组元素的比较"><a href="#16-7-3-数组元素的比较" class="headerlink" title="16.7.3 数组元素的比较"></a>16.7.3 数组元素的比较</h3><p>排序必须根据对象的实际类型执行比较操作。一种自然的解决方案是为每种不同的类型各市县一个不同的排序方法，但是这样的代码难以被新的类型所复用。</p>
+<p>自然而然想到的方式就是策略模式。</p>
+<h3 id="16-7-4-数组的排序"><a href="#16-7-4-数组的排序" class="headerlink" title="16.7.4 数组的排序"></a>16.7.4 数组的排序</h3><p>使用内置的排序方法，就可以对任意的基本类型数组进行排序，也可以对任意的对象数组进行排序，只要该对象实现了comparable接口或具有相关联的Comparator。</p>
+<h3 id="16-7-5-在已排序的数组中查找"><a href="#16-7-5-在已排序的数组中查找" class="headerlink" title="16.7.5 在已排序的数组中查找"></a>16.7.5 在已排序的数组中查找</h3><p>如果数组已经排好序列了，那么可以使用<code>Array.binarySearch()</code>来执行二分查找。</p>
+<h2 id="16-8-总结"><a href="#16-8-总结" class="headerlink" title="16.8 总结"></a>16.8 总结</h2><p>Java中对尺寸固定的低级数组做了一些适度的支持，这种数组强调的是性能而不是灵活性，并且与C和C++中的数组模型类似。</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -266,7 +299,7 @@ var _hmt = _hmt || [];
 	    </script>
 	
 	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote21-2016/#more" class="btn btn-default more">Read More</a>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote16-2016/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -692,6 +725,136 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote21-2016/" >Java学习笔记21</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h1 id="21-并发"><a href="#21-并发" class="headerlink" title="21 并发"></a>21 并发</h1><h2 id="21-1-Thread类"><a href="#21-1-Thread类" class="headerlink" title="21.1 Thread类"></a>21.1 Thread类</h2><p>将Runnable对爱那个转变为工作任务的传统方式是把它提交给一个Thread构造器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicThreads</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//TODO </span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    t.start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Thread 构造器只需要一个Runnable对象。调用Thread对象的<code>start()</code>方法为该线程执行必须的初始化操作，然后调用Runnable的run方法，以便在这个新县城中启动该任务。</p>
+<h2 id="21-2-使用Executor"><a href="#21-2-使用Executor" class="headerlink" title="21.2 使用Executor"></a>21.2 使用Executor</h2><p>java se5 可以使用Excutor为你管理Thread对象，从而简化了并发编程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleThreadExecutor</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ExecutorService es = <span class="keyword">new</span> Executors.newSingleThreadExcutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="comment">//////</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    es.shutdonw();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="21-3-从任务中产生返回值"><a href="#21-3-从任务中产生返回值" class="headerlink" title="21.3 从任务中产生返回值"></a>21.3 从任务中产生返回值</h2><p><code>Runnable</code>是执行工作的独立任务，但是它不返回任何值。如果你希望任务在完成时能够返回同一个值，那么可以实现<code>Callable</code>接口，Java se5引入的<code>Callable</code>是一种具有类型参数的泛型，它的类型参数表示的是从方法<code>call()</code>中返回的值，并且必须使用<code>ExcutorService#submit()</code>方法调动它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line">        ArrayList&lt;Future&lt;String&gt;&gt; results = <span class="keyword">new</span> ArrayList&lt;Future&lt;String&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            results.add(service.submit(<span class="keyword">new</span> TaskWithResult(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (Future&lt;String&gt; fs : results) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(fs.get());</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                service.shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaskWithResult</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskWithResult</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;currentThread = &quot;</span> + Thread.currentThread().getName());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;result of taskwithresult &quot;</span> + id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="21-2-5-休眠"><a href="#21-2-5-休眠" class="headerlink" title="21.2.5 休眠"></a>21.2.5 休眠</h3><p>影响任务行为的一种简单方法是调用<code>sleep()</code>，这将是任务中止执行给定的事件。</p>
+<h3 id="21-2-6-优先级"><a href="#21-2-6-优先级" class="headerlink" title="21.2.6 优先级"></a>21.2.6 优先级</h3><p>线程的<em>优先级</em>将该线程的重要性传递给了调度器。在绝大多数时间里，所有线程都应该以默认的优先级运行。试图操纵线程优先级通常是一种错误。</p>
+<h3 id="21-2-7-让步"><a href="#21-2-7-让步" class="headerlink" title="21.2.7 让步"></a>21.2.7 让步</h3><p>如果知道已经完成了在<code>run()</code>方法的循环的一次迭代过程中所需的工作，就可以给线程调度机制一个暗示：工作已经完成，让出CPU。方法是调用<code>#yield()</code>方法。这只是一个暗示，但是并没有机制保证它一定会被采纳。</p>
+<h3 id="21-2-8-后台线程"><a href="#21-2-8-后台线程" class="headerlink" title="21.2.8 后台线程"></a>21.2.8 后台线程</h3><p>所谓后台(<code>daemmon</code>)线程，是指在程序运行的时候在后台提供的一种通用服务的线程，并且这种线程并不属于程序中不可获取的部分。因此，当所有的<em>非后台线程</em>结束时，程序也就终止了，同时会杀死进程中的所有后台线程，反过来说，只要有任何非后台线程在运行，程序就不会终止。比如<code>main()</code>就是一个非后台线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                TimeUnit.MICROSECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;sleep() interrupted&quot;</span>);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            Thread daemon  = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonTest());</span><br><span class="line">            daemon.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">            daemon.start();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;all daemon started&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//TimeUnit.MICROSECONDS.sleep(175);</span></span><br><span class="line">            TimeUnit.MICROSECONDS.sleep(<span class="number">5000</span>); <span class="comment">//改变这个主线程睡眠的时间，如果很短，那么你只能看到部分线程被创建并运行。如果是长一些的，那么你应该能够看见所有的10个后台线程在运行。</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一旦<code>main()</code>完成其工作，就没什么能组织程序终止了，因为除了后台线程之外，已经没有线程在运行了。</p>
+<p>ps:</p>
+<p>如果是一个后台线程，那么它创建的任何线程将被自动设置为后台线程。</p>
+<h2 id="21-3-锁同步"><a href="#21-3-锁同步" class="headerlink" title="21.3 锁同步"></a>21.3 锁同步</h2><h4 id="隐式锁"><a href="#隐式锁" class="headerlink" title="隐式锁"></a>隐式锁</h4><p>synchronized 关键字</p>
+<h4 id="显示锁"><a href="#显示锁" class="headerlink" title="显示锁"></a>显示锁</h4><p>Java SE5的java.util.cocurrent类库还包含有定义在java.util.concurrent.locks中的显示的互斥机制。</p>
+<p><code>Lock</code>对象必须被显示的创建锁定与释放。虽然代码缺乏优雅性。但是，对于解决某些类型的问题来说，它更加灵活。比如条件锁。</p>
+<h4 id="原子性与易变性"><a href="#原子性与易变性" class="headerlink" title="原子性与易变性"></a>原子性与易变性</h4><p>volatile关键字确保了应用中的可视性。如果讲一个域生命为<code>volatile</code>的，那么只要对这个域产生了写操作，那么所有的读操作就可以看到这个修改。即便使用了本地的缓存，情况也确实如此，<code>volatile</code>域会立即被写入到主存中，而读取操作就是发生在主存中。</p>
+<h4 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h4><p>Java SE5 一如了诸如<code>AtomicInteger,AtomicLong,AtomicReference,AtomicBoolean</code>等特殊的原子性变量类。他们提供下面形式的原子性条件更新操作:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(expectedValue,updateValue)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这些类被调整为可以使用在某些现代处理器上的可获得的，并且是在机器级别上的原子性，因此对于使用他们无须担心，这些原子类在性能调优上非常有用。</p>
+<h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><p>防止多个线程同事访问方法内部的布恩代码而不是防止访问整个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//this can be access</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//this only one task a time</span></span><br><span class="line">  <span class="keyword">synchronized</span>(some object)&#123;</span><br><span class="line">    <span class="comment">//同步的</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h4><h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>当下列四个条件同时满足时，就会发生死锁：</p>
+<ol>
+<li>互斥条件。任务使用的资源中至少有一个是不能共享的。</li>
+<li>至少有一个任务它必须有一个资源且正在等待获取一个当前被别的任务持有的资源。</li>
+<li>资源不能被任务抢占，任务必须把资源释放当做普通事件。</li>
+<li>必须有循环等待，这时，一个任务等其他任务所持有的资源，后者又在等待另一个任务所持有的资源，这样一直下去，知道有一个任务在等待第一个任务所持有的资源，使得大家都被锁住。</li>
+</ol>
+<p>因为要发生死锁的话，所有这些条件必须全部满足：所以要防止死锁的话，只需要破坏其中一个即可。在程序中，<strong>防止死锁发生最容易的方法是破坏第四个条件</strong></p>
+<h2 id="21-7-新类库中的构建"><a href="#21-7-新类库中的构建" class="headerlink" title="21.7 新类库中的构建"></a>21.7 新类库中的构建</h2><p>Java SE5 cocurrent包下面引入了大量涉及用来解决并发问题的新类。</p>
+<p>例如：<code>CountDownLatch,CylicBarrier,Semaphore,ConcurrentHashMap,BlockingQueue</code>。</p>
+<p>//TODO Java并发编程 单独出一份笔记吧</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote21-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote19-2016/" >Java学习笔记19</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>[TOC]</p>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><blockquote>
+<p>关键字keyword <code>enum</code>可以讲一组具名的值得优先集合创建为一种新的类型，而这些具名的值可以作为常规的程序组价使用，这是一种非常有用的Function</p>
+</blockquote>
+<h3 id="switch语句中的enum"><a href="#switch语句中的enum" class="headerlink" title="switch语句中的enum"></a>switch语句中的enum</h3><p>在<code>switch</code>语句中使用<code>enum</code>，是一种非常便利的功能。一般来说，在switch中只能使用整数值，而枚举实例天生就具备<em>整数值</em>的次序，并且可以使用<code>ordinal()</code>方法取得其次序。</p>
+<h3 id="实现而非继承"><a href="#实现而非继承" class="headerlink" title="实现而非继承"></a>实现而非继承</h3><p>所有<code>enum</code>都继承自<code>java.lang.Enum</code>类，因此不能再继承其他的类。但是可以实现一个或者多个接口。</p>
+<h3 id="使用EnumSet替代标志"><a href="#使用EnumSet替代标志" class="headerlink" title="使用EnumSet替代标志"></a>使用<code>EnumSet</code>替代标志</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSets</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    EnumSet&lt;AlarmPoints&gt; points = Enumset.noneOf(AlarmPoints.class);<span class="comment">//Empty set</span></span><br><span class="line">    points.add(BATHROOM);</span><br><span class="line">    points.addAll(Enumset.of(START1,START2,START3));</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用EnumMap"><a href="#使用EnumMap" class="headerlink" title="使用EnumMap"></a>使用<code>EnumMap</code></h3><p><code>EnumMap</code>是一种特殊的Map，他要求其中的key必须来自一个enum。由于enum本身的限制，所以<code>EnumMap</code>在内部可有数组实现。</p>
+<h3 id="常量相关方法"><a href="#常量相关方法" class="headerlink" title="常量相关方法"></a>常量相关方法</h3><p>Java的enum有一个非常有趣的特性，即它允许程序员为enum的实例编写方法，从而为每个enum实例赋予各自不同的行为。要实现常量相关的方法，你需要为enum定义一个或者多个abstract方法，然后</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ConstantSpecificMethod</span></span>&#123;</span><br><span class="line">  DATE_TIME&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> XXXXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  CLASSPATH&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> XXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> String <span class="title">getInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote19-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2016/12/21/2016-12-21-javanote18-2016/" >Java学习笔记18</a>
 		</h3>
 		</div>
@@ -830,120 +993,6 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2016/12/21/2016-12-21-javanote17-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote16-2016/" >Java学习笔记16</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="16-数组"><a href="#16-数组" class="headerlink" title="16 数组"></a>16 数组</h1><h2 id="16-1数组为什么特殊"><a href="#16-1数组为什么特殊" class="headerlink" title="16.1数组为什么特殊"></a>16.1数组为什么特殊</h2><p>Java中有大量的其他方式可以持有对象。数组与其他种类的容器之间的区别有三个方面：<strong>效率，类型和保存基础类型的能力</strong>。</p>
-<p>在Java中，数组是一种效率最高的存储和时机访问对象引用序列的方式。</p>
-<h2 id="16-2-数组是第一级对象"><a href="#16-2-数组是第一级对象" class="headerlink" title="16.2 数组是第一级对象"></a>16.2 数组是第一级对象</h2><p>无论使用哪种类型的数组，数组标识符其实只是一个引用，指向堆中创建的一个真实对象，这个数组对象泳衣保存指向其他对象的引用。</p>
-<h2 id="16-3-返回一个数组"><a href="#16-3-返回一个数组" class="headerlink" title="16.3 返回一个数组"></a>16.3 返回一个数组</h2><p>假设你要写一个方法，而且希望它返回的不止一个值，而是一组值，这个对于C和C++这样的</p>
-<p>语言来说就有点困难，因为他们不能返回一个数组，而只能返回指向数组的指针。这会造成一些问题，因为它是的控制数组的生命周期造成困难，并且容易造成<em>内存泄漏</em>。</p>
-<p>在Java中，你只是直接“返回一个数组”，而无需担心要为数组负责-只要你需要它，它就会一直存在，当你使用完后，垃圾回收器会清理掉他。</p>
-<h2 id="16-4-多维数组"><a href="#16-4-多维数组" class="headerlink" title="16.4 多维数组"></a>16.4 多维数组</h2><p>创建多维数组很方便，对于基本类型的多维素组，可以使用花括号将每个向量分隔开：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultidimensionPrimitiveArray</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] a = &#123;</span><br><span class="line">      &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;,</span><br><span class="line">        &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//是这样婶的	</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="16-6-数组与泛型"><a href="#16-6-数组与泛型" class="headerlink" title="16.6 数组与泛型"></a>16.6 数组与泛型</h2><blockquote>
-<p>通常,数组与泛型不能很好的结合。你不能实例化具有参数化类型的数组。Java泛型的类型擦除会移除类型信息，而数组必须知道他们所持有的确切类型，以强制保证类型安全。但是，你可以参数化数组本身的类型。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassParameter</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> T[] f(T[] arg)&#123;</span><br><span class="line">    <span class="keyword">return</span> arg;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">MethodParameter</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] f(T[] arg)&#123;</span><br><span class="line">      <span class="keyword">return</span> arg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParamterizedArrayType</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">      Integer[] ints = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">      Double[] doubles = &#123;<span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">2.2</span>, <span class="number">3.3</span>&#125;;</span><br><span class="line">      Integer[] ints2 = <span class="keyword">new</span> ClassParameter&lt;Integer&gt;().f(ints);</span><br><span class="line">      Double[] doubles2 = <span class="keyword">new</span> Classparameter&lt;Double&gt;()f(doubles);</span><br><span class="line">      ints2 = MethodsParameter.f(ints);</span><br><span class="line">      double2 = MethodParamter.f(doubles);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意，使用参数化方法而不使用参数化类的方便之处在于：你不必为需要应用的每种不同的类型都使用一个参数去实例化这个类，并且你可以将其定义为静态的。当然没你不能总是选择使用参数化方法而不是参数化类，但是它应该成为首选。</p>
-<h2 id="16-7-Arrays使用功能"><a href="#16-7-Arrays使用功能" class="headerlink" title="16.7 Arrays使用功能"></a>16.7 Arrays使用功能</h2><p>在java.util类库中可以找到Array类，他有一套用于数组的static使用方法，其中有六个基本方法。</p>
-<h3 id="16-7-1-复制数组"><a href="#16-7-1-复制数组" class="headerlink" title="16.7.1 复制数组"></a>16.7.1 复制数组</h3><p>Java标准类库提供有static方法，<code>System.arrayCopy()</code>用它复制数组比用for循环复制要快很多。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] i = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">7</span>];</span><br><span class="line"><span class="keyword">int</span>[] j = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">System.arrayCopy(i,<span class="number">0</span>,j,<span class="number">0</span>,i.length);</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数原型，我觉得应该是内存操作，这样肯定比for循环赋值要快多了。</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">arraycopy</span><span class="params">(Object src,  <span class="keyword">int</span>  srcPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        Object dest, <span class="keyword">int</span> destPos,</span></span></span><br><span class="line"><span class="function"><span class="params">                                        <span class="keyword">int</span> length)</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="16-7-2-数组的比较"><a href="#16-7-2-数组的比较" class="headerlink" title="16.7.2 数组的比较"></a>16.7.2 数组的比较</h3><p>Arrays类提供了重载后的<code>equals()</code>方法，用来比较整个数组。同样，此方法针对所有基本类型与Object都做了重载，数组相等的条件是元素的个数*必须相等，并且对应的未知的元素也相等。</p>
-<h3 id="16-7-3-数组元素的比较"><a href="#16-7-3-数组元素的比较" class="headerlink" title="16.7.3 数组元素的比较"></a>16.7.3 数组元素的比较</h3><p>排序必须根据对象的实际类型执行比较操作。一种自然的解决方案是为每种不同的类型各市县一个不同的排序方法，但是这样的代码难以被新的类型所复用。</p>
-<p>自然而然想到的方式就是策略模式。</p>
-<h3 id="16-7-4-数组的排序"><a href="#16-7-4-数组的排序" class="headerlink" title="16.7.4 数组的排序"></a>16.7.4 数组的排序</h3><p>使用内置的排序方法，就可以对任意的基本类型数组进行排序，也可以对任意的对象数组进行排序，只要该对象实现了comparable接口或具有相关联的Comparator。</p>
-<h3 id="16-7-5-在已排序的数组中查找"><a href="#16-7-5-在已排序的数组中查找" class="headerlink" title="16.7.5 在已排序的数组中查找"></a>16.7.5 在已排序的数组中查找</h3><p>如果数组已经排好序列了，那么可以使用<code>Array.binarySearch()</code>来执行二分查找。</p>
-<h2 id="16-8-总结"><a href="#16-8-总结" class="headerlink" title="16.8 总结"></a>16.8 总结</h2><p>Java中对尺寸固定的低级数组做了一些适度的支持，这种数组强调的是性能而不是灵活性，并且与C和C++中的数组模型类似。</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote16-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/21/2016-12-21-javanote19-2016/" >Java学习笔记19</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-21  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><blockquote>
-<p>关键字keyword <code>enum</code>可以讲一组具名的值得优先集合创建为一种新的类型，而这些具名的值可以作为常规的程序组价使用，这是一种非常有用的Function</p>
-</blockquote>
-<h3 id="switch语句中的enum"><a href="#switch语句中的enum" class="headerlink" title="switch语句中的enum"></a>switch语句中的enum</h3><p>在<code>switch</code>语句中使用<code>enum</code>，是一种非常便利的功能。一般来说，在switch中只能使用整数值，而枚举实例天生就具备<em>整数值</em>的次序，并且可以使用<code>ordinal()</code>方法取得其次序。</p>
-<h3 id="实现而非继承"><a href="#实现而非继承" class="headerlink" title="实现而非继承"></a>实现而非继承</h3><p>所有<code>enum</code>都继承自<code>java.lang.Enum</code>类，因此不能再继承其他的类。但是可以实现一个或者多个接口。</p>
-<h3 id="使用EnumSet替代标志"><a href="#使用EnumSet替代标志" class="headerlink" title="使用EnumSet替代标志"></a>使用<code>EnumSet</code>替代标志</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSets</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    EnumSet&lt;AlarmPoints&gt; points = Enumset.noneOf(AlarmPoints.class);<span class="comment">//Empty set</span></span><br><span class="line">    points.add(BATHROOM);</span><br><span class="line">    points.addAll(Enumset.of(START1,START2,START3));</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用EnumMap"><a href="#使用EnumMap" class="headerlink" title="使用EnumMap"></a>使用<code>EnumMap</code></h3><p><code>EnumMap</code>是一种特殊的Map，他要求其中的key必须来自一个enum。由于enum本身的限制，所以<code>EnumMap</code>在内部可有数组实现。</p>
-<h3 id="常量相关方法"><a href="#常量相关方法" class="headerlink" title="常量相关方法"></a>常量相关方法</h3><p>Java的enum有一个非常有趣的特性，即它允许程序员为enum的实例编写方法，从而为每个enum实例赋予各自不同的行为。要实现常量相关的方法，你需要为enum定义一个或者多个abstract方法，然后</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ConstantSpecificMethod</span></span>&#123;</span><br><span class="line">  DATE_TIME&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> XXXXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  CLASSPATH&#123;</span><br><span class="line">    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> XXX;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> String <span class="title">getInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"git@github.com:hefuduo/hefuduo.github.io.git","owner":"hefuduo","admin":"hefuduo","distractionFreeMode":false};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/21/2016-12-21-javanote19-2016/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -1319,45 +1368,45 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/计算机网络/">计算机网络<span>1</span></a></li>
-		
-			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
-		
-			<li><a href="/tags/工具/">工具<span>1</span></a></li>
+			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
 		
 			<li><a href="/tags/安全/">安全<span>1</span></a></li>
 		
-			<li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
 		
-			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
+			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
+		
+			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+		
+			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+		
+			<li><a href="/tags/协程/">协程<span>1</span></a></li>
 		
 			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
 		
-			<li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
+			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
 		
-			<li><a href="/tags/软件工程/">软件工程<span>4</span></a></li>
-		
-			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
-		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
-		
-			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
 		
 			<li><a href="/tags/编程技巧/">编程技巧<span>1</span></a></li>
 		
-			<li><a href="/tags/编程思想/">编程思想<span>1</span></a></li>
+			<li><a href="/tags/View/">View<span>1</span></a></li>
 		
-			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
-		
-			<li><a href="/tags/IOS/">IOS<span>2</span></a></li>
-		
-			<li><a href="/tags/XML/">XML<span>1</span></a></li>
+			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
 		
 			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+			<li><a href="/tags/html/">html<span>1</span></a></li>
 		
-			<li><a href="/tags/java/">java<span>2</span></a></li>
+			<li><a href="/tags/XML/">XML<span>1</span></a></li>
+		
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+		
+			<li><a href="/tags/Android/">Android<span>26</span></a></li>
+		
+			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
+		
+			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>49</span></a></li>
