@@ -100,6 +100,15 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: freemind
 
+plugins:
+  gitalk:
+    clientID: 287314570e232c0e401f
+    clientSecret: bb261daec807b4f3dd21e7161f4fbbc7f1a546ab
+    repo: hefuduo.github.io
+    owner: hefuduo
+    admin: hefuduo
+
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
