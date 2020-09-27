@@ -143,106 +143,6 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2016/12/05/2016-12-05-javanote2-2016/" >java学习笔记2</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-05  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="第二章-一切都是对象"><a href="#第二章-一切都是对象" class="headerlink" title="第二章 一切都是对象"></a>第二章 一切都是对象</h1><hr>
-<p>总结：</p>
-<p>构建一个Java的程序。Java中一切都是对象，就连入口函数也需要用一个类来包裹。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="题外记："><a href="#题外记：" class="headerlink" title="题外记："></a>题外记：</h2><h3 id="Android中-Java-编码风格"><a href="#Android中-Java-编码风格" class="headerlink" title="Android中 Java 编码风格"></a>Android中 Java 编码风格</h3><p>Java的编码风格：</p>
-<ol>
-<li>驼峰命名规则</li>
-<li>隔行缩进规则（4个空格）</li>
-<li>域变量命名</li>
-<li>局部变量命名</li>
-<li>静态变量命名</li>
-<li>常量命名</li>
-<li>参数命名</li>
-<li>函数命名</li>
-<li>接口命名</li>
-<li>类命名</li>
-<li>特殊格式命名</li>
-<li>其他</li>
-</ol>
-<p>范例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类命名</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argsv)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名1 I[interface_name]</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAnimation</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">animate</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名2 On[Action]Listener</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnClickListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名3 [name]er</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成员变量,方法命名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadingView</span> <span class="keyword">extends</span> <span class="title">View</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TAG = <span class="string">&quot;LoadingView&quot;</span>;</span><br><span class="line">    <span class="comment">//注意数组的命名鬼发</span></span><br><span class="line">    <span class="keyword">private</span> String[] mTagNames;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//域变量:尽量定义有意义的词 并加入getter和setter;</span></span><br><span class="line">    <span class="keyword">private</span> Button mButton;</span><br><span class="line">    <span class="keyword">private</span> Color mColor;</span><br><span class="line">    <span class="keyword">private</span> Bitmap mBitmap;</span><br><span class="line">    <span class="comment">//常量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WIDTH = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEIGHT = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadingView</span><span class="params">(Context context,AttributeSet attr)</span></span>&#123;</span><br><span class="line">         <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(MeasureSpec heightSpec,MeasureSpec widthSpec)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(heightSpec,widthSpec)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span></span>&#123;</span><br><span class="line">        <span class="comment">//局部变量</span></span><br><span class="line">        Path path = <span class="keyword">new</span> Path();</span><br><span class="line">        <span class="comment">//如果局部变量和参数名重复，可以加上下划线</span></span><br><span class="line">        Canvas _canvs = <span class="keyword">new</span> Canvas();</span><br><span class="line">        <span class="comment">//或者，可以使用其他的名称代替。</span></span><br><span class="line">        Canvas sCanvas = <span class="keyword">new</span> Canvas();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Android中-XML-的命名规范"><a href="#Android中-XML-的命名规范" class="headerlink" title="Android中 XML 的命名规范"></a>Android中 XML 的命名规范</h3><hr>
-<p>Android 中的XML即标签的ID也存在一定的命名规范，好的命名规范是非常方便找到并使用Layout中的控件的，而且，不会使得和代码中的其他名字混淆（尤其是在)</p>
-<hr>
-<table border="2" color="green">
- <tr>
-     <th>Buttton</th>
-      <td>btn\_[button\_name];</td>
-     <th>TextView</th>
-     <td>tv\_[text\_view\_name]</td>
- </tr>
- <tr>
-    <th>ImageView</th>
-    <td>iv\_[image\_view\_name]</td>
-    <th>CheckBox</th>
-    <td>cb\_[check\_box\_name]</td>
- </tr>
- <tr>
-    <th>ProgressBar</th>
-    <td>pb\_[progress\_bar\_name]</td>
-    <th>SeekBar</th>
-    <td>sk\_[seek\_bar\_name]</td>
- </tr>
- <tr>
-    <th>Switch</th>
-    <td>switch\_[switch\_name]</td>
-    <th>EditText</th>
-    <td>et\_[edit\_text\_name]</td>
- </tr>
- <tr>
-    <th>XXXLayout</th>
-    <td>layout\_[layout\_name]</td>
-    <th>SearchView</th>
-    <td>sv\_[search\_view\_name]</td>
- </tr>
- <tr>
-    <th>OTHERS</th>
-    <td>define by the situation</td>
-</tr>
-</table>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/05/2016-12-05-javanote2-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
 			<a href="/2016/12/02/2016-12-02-javanote1-2016/" >java学习笔记1</a>
 		</h3>
 		</div>
@@ -416,48 +316,48 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
-		
-			<li><a href="/tags/java/">java<span>2</span></a></li>
-		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
-		
-			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
-		
-			<li><a href="/tags/编程技巧/">编程技巧<span>1</span></a></li>
-		
-			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
-		
-			<li><a href="/tags/css/">css<span>1</span></a></li>
-		
-			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
-		
-			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
-		
-			<li><a href="/tags/maven/">maven<span>1</span></a></li>
-		
-			<li><a href="/tags/编程思想/">编程思想<span>1</span></a></li>
+			<li><a href="/tags/源码分析/">源码分析<span>3</span></a></li>
 		
 			<li><a href="/tags/协程/">协程<span>1</span></a></li>
 		
+			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
+		
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+		
+			<li><a href="/tags/软件工程/">软件工程<span>3</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span>4</span></a></li>
+		
+			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+		
+			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
+		
+			<li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
+		
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
+		
+			<li><a href="/tags/问题/">问题<span>1</span></a></li>
+		
+			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
+		
+			<li><a href="/tags/生活/">生活<span>2</span></a></li>
+		
 			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
 		
-			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
-		
-			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
 		
 			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
 		
-			<li><a href="/tags/IOS/">IOS<span>2</span></a></li>
+			<li><a href="/tags/安全/">安全<span>1</span></a></li>
 		
-			<li><a href="/tags/html/">html<span>1</span></a></li>
+			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
+		
+			<li><a href="/tags/编程技巧/">编程技巧<span>1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span>49</span></a></li>
+		   <li><a href="/tags">...<span>48</span></a></li>
 		 
 		</ul>
 	</div>
