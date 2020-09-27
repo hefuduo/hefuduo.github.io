@@ -143,6 +143,148 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote12-2016/" >Java学习笔记12</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="第12章-异常处理"><a href="#第12章-异常处理" class="headerlink" title="第12章 异常处理"></a>第12章 异常处理</h1><blockquote>
+<p>Java的基本理念是：“结构不佳的代码不能运行”。</p>
+</blockquote>
+<h3 id="Java标准异常："><a href="#Java标准异常：" class="headerlink" title="Java标准异常："></a>Java标准异常：</h3><p>Throwable这个Java类被用来表示任何可以作为异常被抛出的类，Throwable对象可分为两种类型：</p>
+<ol>
+<li>Error用来表示编译时和系统错误。</li>
+<li>Exception是可以抛出的基本类型</li>
+<li>特例：RuntimeException</li>
+</ol>
+<h3 id="使用finally进行清理："><a href="#使用finally进行清理：" class="headerlink" title="使用finally进行清理："></a>使用finally进行清理：</h3><p>对于一些代码，可能会希望无论try块中的异常是否抛出，他们都能得到执行，这通常适用于内存回收之外的情况。为了达到这个目的，可以在异常处理程序后面加上<strong>finally</strong>子句，完整的异常处理程序看起来是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="comment">//dangerous region</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(A a1)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">catch</span>(B b1)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  <span class="comment">//activities that will always execute</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>为了证明finally总是可以运行的，可以试试这个程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//因为finally子句总是会执行的，所以在一个方法中，可以从多个点返回，并且可以保证重要的清理工作仍会执行。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FinallyReturn</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      <span class="comment">//something dangerous</span></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">      <span class="comment">//must be executed</span></span><br><span class="line">      print(<span class="string">&quot;this will executed no matter \&quot;return\&quot; statement is ahead.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="异常丢失"><a href="#异常丢失" class="headerlink" title="异常丢失"></a>异常丢失</h3><p>Java的异常也是有瑕疵的，异常作为程序的错误标志，绝不应该被忽略，但是他还是有可能被轻易忽略的，用某些特殊的方式使用finally子句，就会发生这种情况：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    LostMessage lm = <span class="keyword">new</span> LostMessage();</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      lm.f();</span><br><span class="line">    &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">      lm.dispose();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    sout(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LostMessage</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">throws</span> VeryImportantException</span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> VeryImportantException();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> <span class="keyword">throws</span> HohumException</span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> HohumException();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个程序的VeryImportantException不见了，他被finally子句里的HohumException所取代。这是相当严重的缺陷，因为一场可能会以一种比前面例子所示更加微妙和难以察觉的方式完全丢失。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="异常的限制"><a href="#异常的限制" class="headerlink" title="异常的限制"></a>异常的限制</h3><p>当覆盖方法时，只能排除在基类方法的异常说明里列出的那些异常,这个限制意味着当基类使用的代码应用到派生类对象的时候，一样能够工作，异常也不例外。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举个🌰</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">  <span class="comment">//实际上父类型没有抛出异常</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> throw XXException</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> throw XXException</span>&#123;</span><br><span class="line">    <span class="comment">//子类型覆盖父类型</span></span><br><span class="line">    <span class="comment">//必须强制子类型抛出异常</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> XXException();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>异常限制对构造器不起作用，</p>
+<blockquote>
+<p>派生类构造器不能捕获基类构造器抛出的异常。</p>
+</blockquote>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><blockquote>
+<p>有一个很重要的一点：“如果异常发生了，所有的东西能被正确的清理吗？”。</p>
+<p>大多数情况下，由于Java的垃圾回收机制，都是安全的。但是涉及到构造器时，问题就出现了。</p>
+</blockquote>
+<p>构造器会把对象设置成安全的初始状态，但是还会有别的动作，比如打开一个文件，这样的动作只有在对象使用完毕并且用户调用了特殊的清理方法之后才能得以清理，如果构造器内部抛出了异常，这些清理行为也许就不能正常工作了，这就意味着编写构造器的时候一定要<strong>格外小心</strong>。</p>
+<h3 id="异常匹配"><a href="#异常匹配" class="headerlink" title="异常匹配"></a>异常匹配</h3><p>try-catch句块，的catch处理代码，可以捕获不同的异常，可以针对不同的异常做处理，抛出的异常如果匹配到哪一个catch句块的异常，就分给那个异常处理。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote12-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2016/12/21/2016-12-21-javanote14-2016/" >Java学习笔记14</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2016-12-21  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="第14章-类型信息"><a href="#第14章-类型信息" class="headerlink" title="第14章 类型信息"></a>第14章 类型信息</h1><h3 id="14-1-RTTI"><a href="#14-1-RTTI" class="headerlink" title="14.1 RTTI"></a>14.1 RTTI</h3><p>RTTI（Run-Time Type Information)，通过运行时类型信息程序能够使用基类的指针或引用来检查这些指针或引用所指的对象的实际派生类</p>
+<p>RTTI提供了以下两个非常有用的操作符：</p>
+<p>（1）typeid操作符，返回指针和引用所指的实际类型。</p>
+<p>（2）dynamic_cast操作符，将基类类型的指针或引用安全地转换为派生类型的指针或引用。</p>
+<p>面向对象的编程语言，像C++，Java，delphi都提供了对RTTI的支持。</p>
+<h3 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h3><p>类是程序的一部分，每个类都有一个Class对象。每当编写并且编译了一个新类，就会产生一个Class对象（准确说是被保存在一个同名的.class文件中）。为了生成这个累的对象，运行这个程序的JVM将使用“类加载器”的子系统。</p>
+<p>所有的类都是在对其第一次使用时，动态的加载到JVM中的。当程序创建第一个对象的静态成员的引用时，就会加载这个类。这个证明构造器也是类的静态方法，即使在构造器之前并没有使用static关键字，因此使用new操作符创建类的新对象也会别当做类的静态成员的引用。</p>
+<p>因此，Java程序在它开始运行之前并非被完全加载，各个部分都是在必需时才加载的，这些与许多传统语言不同。动态加载使能的行为，在类似C++这样的静态加载语言中很那或者是根本不能复制的，</p>
+<p>类加载器首先检查这个Class对象是否已经加载，如果尚未加载，默认的累加扎起就会根据类名查找Class文件（例如某个附加类加载器可能会在数据库中查找字节码）。在这个累的字节码被加载时，它们会接受验证（verify）以确保其没有被破坏，并且不包含不良的Java代码（这是Java中用于安全防范目的的措施之一）。</p>
+<p>一旦某个类的Class对象被载入内存，它就会被用来创建这个类的所有对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Candy</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Candy&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gum</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Gum&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cookie</span></span>&#123;</span><br><span class="line">  <span class="keyword">static</span>&#123;</span><br><span class="line">    print(<span class="string">&quot;Loading Cookie&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SweetShop</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    print(<span class="string">&quot;inside main&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Candy();</span><br><span class="line">    print(<span class="string">&quot;After creating Candy&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">      Class.forName(<span class="string">&quot;Gum&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(ClassNotFoundException e)&#123;</span><br><span class="line">      print(<span class="string">&quot;Couldn&#x27;t find class Gum&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">&quot;After class.forName(\&quot;Gum\&quot;)&quot;</span> );</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">new</span> Cookie();</span><br><span class="line">    print(<span class="string">&quot;After creating Cookie&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">The output </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">inside main</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Candy</span></span><br><span class="line"><span class="comment">After creating Candy</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Gum</span></span><br><span class="line"><span class="comment">After class.forName(&quot;Gum&quot;)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Loading Cookie</span></span><br><span class="line"><span class="comment">After creating Cookie</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由此可知，类对象尽在需要的时候被加载，static初始化是在类加载时进行的。</p>
+<p><code>Class.forName(String arg)</code></p>
+<p>注意这个方法，这个方法是Class类的一个Static成员。Class度意向就和其他对象一样。</p>
+<p>forName方法是取得Class对象的引用的一种方法，他使用一个包含目标类的文本名的String作为输入参数，返回一个Class对象的引用（经常能在反射中看到这个）。上面的代码忽略的返回值，而利用的是该方法的一个“副作用”：如果累Gum还没有被加载我就加它，在它加载的过程中，Gum的static自己被执行。</p>
+<p>如果该方法找不到arg所指的类，则会抛出一个ClassNotFoundException异常类型。</p>
+<p>无论何时，只要你想在运行时使用类型信息，就必须首先获得恰当的Class对象的引用，Class.forName就是实现此功能的便捷途径，因为你不需要为了获得Class引用而持有该类型的对象。但是，如果你已经有有一个感兴趣的类型的对象，可以直接调用该对象的getClass()方法直接获取该类型的对象。</p>
+<h3 id="14-3类型转换前先做检查"><a href="#14-3类型转换前先做检查" class="headerlink" title="14.3类型转换前先做检查"></a>14.3类型转换前先做检查</h3><p>如果执行了一次错误的类型转换，程序会抛出一个ClassCastException</p>
+<p><code>instanceof </code>关键字</p>
+<p>此外，还有动态的instanceof</p>
+<p><code>Class.isInstance</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public boolean isInstance(Object obj)</span><br></pre></td></tr></table></figure>
+
+<p>Determines if the specified <code>Object</code> is assignment-compatible with the object represented by this <code>Class</code>. This method is the dynamic equivalent of the Java language <code>instanceof</code> operator. The method returns <code>true</code> if the specified <code>Object</code> argument is non-null and can be cast to the reference type represented by this <code>Class</code> object without raising a <code>ClassCastException.</code> It returns <code>false</code> otherwise.Specifically, if this <code>Class</code> object represents a declared class, this method returns <code>true</code> if the specified <code>Object</code> argument is an instance of the represented class (or of any of its subclasses); it returns <code>false</code> otherwise. If this <code>Class</code> object represents an array class, this method returns <code>true</code> if the specified <code>Object</code> argument can be converted to an object of the array class by an identity conversion or by a widening reference conversion; it returns <code>false</code> otherwise. If this <code>Class</code> object represents an interface, this method returns <code>true</code> if the class or any superclass of the specified <code>Object</code> argument implements this interface; it returns <code>false</code>otherwise. If this <code>Class</code> object represents a primitive type, this method returns <code>false</code>.</p>
+<h3 id="14-4-动态代理"><a href="#14-4-动态代理" class="headerlink" title="14.4 动态代理"></a>14.4 动态代理</h3><blockquote>
+<p>代理是基本的设计模式之一，他是你为了提供而外的或不同的操作，而插入的用来代替实际对象的对象。</p>
+<p>这些操作通常涉及与实际对象的通信，因此代理通常充当着中间人的角色。</p>
+</blockquote>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2016/12/21/2016-12-21-javanote14-2016/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2016/12/21/2016-12-21-javanote11-2016/" >Java学习笔记11</a>
 		</h3>
 		</div>
@@ -686,188 +828,6 @@ var _hmt = _hmt || [];
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/06/2016-12-06-javanote3-2016/" >java学习笔记3</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-06  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>[TOC]</p>
-<h1 id="第三章-操作符"><a href="#第三章-操作符" class="headerlink" title="第三章 操作符"></a>第三章 操作符</h1><p>在最底层，Java数据是通过操作符操作的。</p>
-<h2 id="3-1-赋值与算数逻辑运算"><a href="#3-1-赋值与算数逻辑运算" class="headerlink" title="3.1 赋值与算数逻辑运算"></a>3.1 赋值与算数逻辑运算</h2><h3 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h3><p><code>a = 4</code>是一个赋值操作，但是，当赋值对象时候，情况却发生了变化。对一个对象进行赋值操作时，真正操作的是对<br>对象的引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Object a = <span class="keyword">new</span> Object();</span><br><span class="line">        Object b = a;</span><br><span class="line">        <span class="comment">//将a对象赋值给b;</span></span><br><span class="line">        <span class="comment">//实际上是，a和b引用堆中的一个对象（new Object()）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h3><p>加法+ 减法- 乘法*  除法 / 取余%<br>注意除法的被除数不能为0，整数除法问题，如果想得到单精度/双精度结果，应将除数或被除数转换为单/双精度数。</p>
-<p>加等+= 减等-= 乘等*= 除等/=</p>
-<p>自增自减运算符。<br>++i和i++的区别是：前者是先执行运算，在使用运算后得到的结果，后者是先使用变量结果，然后再执行运算。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> java.lang.Exception</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">	    System.out.println(i++);</span><br><span class="line">	    System.out.println(++j);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果： [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p> 大等于 &gt;=，小等于 &lt;=, 恒等于 == , 不等于 !=, 大于 &gt; ， 小于 &lt; ;</p>
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p> 与 &amp;&amp; 或 || 非 ！</p>
-<h3 id="直接常量"><a href="#直接常量" class="headerlink" title="直接常量"></a>直接常量</h3><p>10(byte) 二进制;binary<br>10 十进制；decimal<br>010 八进制；Octal<br>0x10 十六进制；hex<br>10L 长整形；<br>10f 单精度；<br>10d 双精度；</p>
-<p>指数表示：</p>
-<p>14e3 = 14 * 10^3;</p>
-<h2 id="3-2-位运算"><a href="#3-2-位运算" class="headerlink" title="3.2 位运算"></a>3.2 位运算</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&amp; 按位与操作： <span class="number">1</span> &amp; <span class="number">1</span> = <span class="number">1</span>； <span class="number">1</span> &amp; <span class="number">0</span> = <span class="number">0</span>；</span><br><span class="line"></span><br><span class="line">| 按位或操作： <span class="number">1</span> | <span class="number">1</span> = <span class="number">1</span>； <span class="number">1</span> | <span class="number">0</span> = <span class="number">1</span>； <span class="number">0</span> | <span class="number">0</span> = <span class="number">0</span>；</span><br><span class="line"></span><br><span class="line">^ 按位异或操作： <span class="number">0</span> ^ <span class="number">0</span> = <span class="number">0</span>; <span class="number">1</span> ^ <span class="number">1</span> = <span class="number">0</span>; <span class="number">1</span> ^ <span class="number">0</span> = <span class="number">1</span>; <span class="number">0</span> ^ <span class="number">1</span> = <span class="number">1</span>; (同为<span class="number">0</span>，异为<span class="number">1</span>)</span><br><span class="line">~ 取反运算 ： ~<span class="number">0</span> = <span class="number">1</span>; ~<span class="number">1</span> = <span class="number">0</span>;</span><br><span class="line">&amp;= |= ^=都是合法的，由于取反是一元操作符号，因此不能和=号连用。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;&lt; 左移操作 <span class="number">1</span> &lt;&lt; <span class="number">1</span> = <span class="number">10</span> binary = <span class="number">2</span> decimal;</span><br><span class="line">\&gt;&gt; （有符号）右移操作 <span class="number">1000</span> \&gt;&gt; <span class="number">2</span> = <span class="number">0010</span> binary = <span class="number">2</span> decimal;</span><br><span class="line">\&gt;&gt;&gt; 无符号右移操作</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> java.lang.Exception</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    System.out.println(<span class="number">3</span> &lt;&lt; <span class="number">2</span>);</span><br><span class="line">	    System.out.println(-<span class="number">3</span> &lt;&lt; <span class="number">2</span>);</span><br><span class="line">	    System.out.println(<span class="number">6</span> &gt;&gt; <span class="number">2</span>);</span><br><span class="line">	    System.out.println(-<span class="number">6</span> &gt;&gt; <span class="number">2</span>);</span><br><span class="line">        System.out.println(<span class="number">6</span> &gt;&gt;&gt; <span class="number">2</span>);</span><br><span class="line">	    System.out.println(-<span class="number">6</span> &gt;&gt;&gt; <span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果 <span class="number">12</span></span><br><span class="line">     -<span class="number">12</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line">     -<span class="number">2</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line">     <span class="number">1073741822</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000011</span> +<span class="number">3</span>在计算机中表示</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111100</span> 反码</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111101</span> <span class="number">-3</span>在计算机中表示 补码 （反码+<span class="number">1</span>）</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">1111110100</span> 左移<span class="number">2</span>位，补<span class="number">0</span>，结果为负数，就是补码了，求原码</span><br><span class="line"><span class="number">10000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00001011</span> 反码</span><br><span class="line"><span class="number">10000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00001100</span> 结果<span class="number">-12</span> 补码 （反码+<span class="number">1</span>）</span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000110</span> +<span class="number">6</span>在计算机中表示方法</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111001</span></span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111010</span> <span class="number">-6</span>在计算机中的表示</span><br><span class="line"><span class="number">1111111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111010</span> 右移两位，结果为负数</span><br><span class="line"><span class="number">1000000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">000001</span></span><br><span class="line"><span class="number">1000000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">000010</span> 结果为<span class="number">-2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意有符号的位移运算，符号位始终没有改变</span><br><span class="line"></span><br><span class="line">对于无符号位移操作：</span><br><span class="line"><span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111010</span> <span class="number">-6</span>在计算机中的表示</span><br><span class="line">无符号右移两位</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">00111111</span> <span class="number">11111111</span> <span class="number">11111111</span> <span class="number">11111110</span> 结果为 <span class="number">1073741822</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-<p>** 对于char byte short 类型的数值进行移位操作的时候，那么在移位操作之前，它们先被转换成int类型，并且得到的结果也是一个int类型，只有值右端的低5位才有用，这样可以防止我们位移超过int型值所具有的位数。如果队一个long类型进行处理，最后的到的结果也是long类型，此时只会用到数值的右端低6位，以防止超过long型数值具有的位数. **</p>
-<p>**  位移操作可以结合等于号组合使用，但是注意，如果对于byte,short,char,值进行这样的运算，当将右边移位操作的数值赋予左边时，会发生截断，可能得不到最终想要的值。**</p>
-<h2 id="3-3-三元操作符"><a href="#3-3-三元操作符" class="headerlink" title="3.3 三元操作符"></a>3.3 三元操作符</h2><blockquote>
-<p>if-else 操作符</p>
-</blockquote>
-<p><code>boolean expression ? (true) value1 : (false) value2 ;</code></p>
-<h2 id="3-4-字符串操作"><a href="#3-4-字符串操作" class="headerlink" title="3.4 字符串操作"></a>3.4 字符串操作</h2><p>字符串连接操作： +</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; ”hello“;</span><br><span class="line">String c &#x3D; s + &quot;world&quot;;</span><br><span class="line">println(c);</span><br><span class="line"></span><br><span class="line">结果：hello world;</span><br><span class="line"></span><br><span class="line">注意（Java中没有操作符重载机制。）</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-5-强制转换"><a href="#3-5-强制转换" class="headerlink" title="3.5 强制转换"></a>3.5 强制转换</h2><p>Java允许我们将任何类型转换成其他类型（布尔型除外）；在类型转换过程中，如果执行窄化转换，即会产生截断时，需要显示声明转化类型。</p>
-<p>** 截断和舍入 **</p>
-<p><em>在执行窄化转化时，必须注意截断和舍入问题，例如将一个浮点数转换为整型</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *what will happens when cast a float </span></span><br><span class="line"><span class="comment"> * or double to an integral value.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> java.lang.Exception</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    <span class="keyword">double</span> above = <span class="number">0.7</span>,below = <span class="number">0.4</span>;</span><br><span class="line">	    <span class="keyword">float</span> fabove = <span class="number">0.7f</span>, fbelow = <span class="number">0.4f</span>;</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)above = &quot;</span> + (<span class="keyword">int</span>)above);</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)below = &quot;</span> + (<span class="keyword">int</span>)below);</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)fabove = &quot;</span> + (<span class="keyword">int</span>)fabove);</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)fbelow = &quot;</span> + (<span class="keyword">int</span>)fbelow);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果:</span><br><span class="line">(<span class="keyword">int</span>)above = <span class="number">0</span></span><br><span class="line">(<span class="keyword">int</span>)below = <span class="number">0</span></span><br><span class="line">(<span class="keyword">int</span>)fabove = <span class="number">0</span></span><br><span class="line">(<span class="keyword">int</span>)fbelow = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p><em>因此答案就是将float或double转换为整型值时候，总是对该数字执行截尾。如果想要得到舍入的结果，就需要使用java.lang,Math中的round方法</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *what will happens when cast a float </span></span><br><span class="line"><span class="comment"> * or double to an integral value.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span>  </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> java.lang.Exception</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    <span class="keyword">double</span> above = <span class="number">0.7</span>,below = <span class="number">0.4</span>;</span><br><span class="line">	    <span class="keyword">float</span> fabove = <span class="number">0.7f</span>, fbelow = <span class="number">0.4f</span>;</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)above = &quot;</span> + Math.round(above));</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)below = &quot;</span> + Math.round(below));</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)fabove = &quot;</span> + Math.round(fabove));</span><br><span class="line">	    System.out.println(<span class="string">&quot;(int)fbelow = &quot;</span> + Math.round(fbelow));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果 ：</span><br><span class="line">(<span class="keyword">int</span>)above = <span class="number">1</span></span><br><span class="line">(<span class="keyword">int</span>)below = <span class="number">0</span></span><br><span class="line">(<span class="keyword">int</span>)fabove = <span class="number">1</span></span><br><span class="line">(<span class="keyword">int</span>)fbelow = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>提升</strong>：<br>如果对基本数据类型执行算数运算或按位运算，只要类型比int小（即 char,byte,short），那么再运算之前，这些类型会自动转换成int。这样最终生成的结果就是int类型。如果想把结果赋值给较小的类型，就必须使用类型转换，出现了这种情况，就有可能会出现信息丢失。通常一个表达式的最大的数据类型决定了表达式最终结果的数据类型。</p>
-<blockquote>
-<p>java中没有sizeof运算，在c中，数据类型的长度是与平台有关的，为了移植方便。Java的数据类型的长度是固定的。因此不需要sizeof运算。</p>
-</blockquote>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/06/2016-12-06-javanote3-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2016/12/05/2016-12-05-javanote2-2016/" >java学习笔记2</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2016-12-05  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="第二章-一切都是对象"><a href="#第二章-一切都是对象" class="headerlink" title="第二章 一切都是对象"></a>第二章 一切都是对象</h1><hr>
-<p>总结：</p>
-<p>构建一个Java的程序。Java中一切都是对象，就连入口函数也需要用一个类来包裹。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="题外记："><a href="#题外记：" class="headerlink" title="题外记："></a>题外记：</h2><h3 id="Android中-Java-编码风格"><a href="#Android中-Java-编码风格" class="headerlink" title="Android中 Java 编码风格"></a>Android中 Java 编码风格</h3><p>Java的编码风格：</p>
-<ol>
-<li>驼峰命名规则</li>
-<li>隔行缩进规则（4个空格）</li>
-<li>域变量命名</li>
-<li>局部变量命名</li>
-<li>静态变量命名</li>
-<li>常量命名</li>
-<li>参数命名</li>
-<li>函数命名</li>
-<li>接口命名</li>
-<li>类命名</li>
-<li>特殊格式命名</li>
-<li>其他</li>
-</ol>
-<p>范例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类命名</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argsv)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名1 I[interface_name]</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IAnimation</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">animate</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名2 On[Action]Listener</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnClickListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接口命名3 [name]er</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成员变量,方法命名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadingView</span> <span class="keyword">extends</span> <span class="title">View</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TAG = <span class="string">&quot;LoadingView&quot;</span>;</span><br><span class="line">    <span class="comment">//注意数组的命名鬼发</span></span><br><span class="line">    <span class="keyword">private</span> String[] mTagNames;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//域变量:尽量定义有意义的词 并加入getter和setter;</span></span><br><span class="line">    <span class="keyword">private</span> Button mButton;</span><br><span class="line">    <span class="keyword">private</span> Color mColor;</span><br><span class="line">    <span class="keyword">private</span> Bitmap mBitmap;</span><br><span class="line">    <span class="comment">//常量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WIDTH = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEIGHT = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoadingView</span><span class="params">(Context context,AttributeSet attr)</span></span>&#123;</span><br><span class="line">         <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(MeasureSpec heightSpec,MeasureSpec widthSpec)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(heightSpec,widthSpec)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span></span>&#123;</span><br><span class="line">        <span class="comment">//局部变量</span></span><br><span class="line">        Path path = <span class="keyword">new</span> Path();</span><br><span class="line">        <span class="comment">//如果局部变量和参数名重复，可以加上下划线</span></span><br><span class="line">        Canvas _canvs = <span class="keyword">new</span> Canvas();</span><br><span class="line">        <span class="comment">//或者，可以使用其他的名称代替。</span></span><br><span class="line">        Canvas sCanvas = <span class="keyword">new</span> Canvas();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Android中-XML-的命名规范"><a href="#Android中-XML-的命名规范" class="headerlink" title="Android中 XML 的命名规范"></a>Android中 XML 的命名规范</h3><hr>
-<p>Android 中的XML即标签的ID也存在一定的命名规范，好的命名规范是非常方便找到并使用Layout中的控件的，而且，不会使得和代码中的其他名字混淆（尤其是在)</p>
-<hr>
-<table border="2" color="green">
- <tr>
-     <th>Buttton</th>
-      <td>btn\_[button\_name];</td>
-     <th>TextView</th>
-     <td>tv\_[text\_view\_name]</td>
- </tr>
- <tr>
-    <th>ImageView</th>
-    <td>iv\_[image\_view\_name]</td>
-    <th>CheckBox</th>
-    <td>cb\_[check\_box\_name]</td>
- </tr>
- <tr>
-    <th>ProgressBar</th>
-    <td>pb\_[progress\_bar\_name]</td>
-    <th>SeekBar</th>
-    <td>sk\_[seek\_bar\_name]</td>
- </tr>
- <tr>
-    <th>Switch</th>
-    <td>switch\_[switch\_name]</td>
-    <th>EditText</th>
-    <td>et\_[edit\_text\_name]</td>
- </tr>
- <tr>
-    <th>XXXLayout</th>
-    <td>layout\_[layout\_name]</td>
-    <th>SearchView</th>
-    <td>sv\_[search\_view\_name]</td>
- </tr>
- <tr>
-    <th>OTHERS</th>
-    <td>define by the situation</td>
-</tr>
-</table>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2016/12/05/2016-12-05-javanote2-2016/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -911,54 +871,63 @@ var _hmt = _hmt || [];
 
 		
 			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/code/">code<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
 		
 			
 	<div class="widget">
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
-		
-			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
-		
-			<li><a href="/tags/html/">html<span>1</span></a></li>
-		
-			<li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
-		
-			<li><a href="/tags/maven/">maven<span>1</span></a></li>
-		
-			<li><a href="/tags/源码分析/">源码分析<span>3</span></a></li>
-		
-			<li><a href="/tags/css/">css<span>1</span></a></li>
-		
-			<li><a href="/tags/Android/">Android<span>26</span></a></li>
+			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
 		
 			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
 		
-			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+			<li><a href="/tags/源码分析/">源码分析<span>3</span></a></li>
 		
-			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
-		
-			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
-		
-			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
-		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
-		
-			<li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
-		
-			<li><a href="/tags/问题/">问题<span>1</span></a></li>
-		
-			<li><a href="/tags/协程/">协程<span>1</span></a></li>
-		
-			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
+			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
 		
 			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
 		
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
+		
+			<li><a href="/tags/协程/">协程<span>1</span></a></li>
+		
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+		
+			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span>2</span></a></li>
+		
+			<li><a href="/tags/安全/">安全<span>1</span></a></li>
+		
+			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+		
+			<li><a href="/tags/SASS-SCSS-CSS/">SASS SCSS CSS<span>1</span></a></li>
+		
 			<li><a href="/tags/View/">View<span>1</span></a></li>
 		
+			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
 		
-		   <li><a href="/tags">...<span>48</span></a></li>
+			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
+		
+			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
+		
+			<li><a href="/tags/maven/">maven<span>1</span></a></li>
+		
+			<li><a href="/tags/计算机网络/">计算机网络<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
+		
+		
+		   <li><a href="/tags">...<span>50</span></a></li>
 		 
 		</ul>
 	</div>

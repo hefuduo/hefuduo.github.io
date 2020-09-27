@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2019/11/25/2019-11-25-深入浅出Android系列-2019/" >深入浅出Android系列</a>
+			<a href="/2019/11/25/2019-11-25-深入浅出计算机网络1-2019/" >深入浅出计算机网络1</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -157,9 +157,7 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<p>#深入与浅出 Android控件</p>
-<p>富文本 SpannableStringBuilder <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/472fd3e32324">https://www.jianshu.com/p/472fd3e32324</a></p>
-
+		
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -171,7 +169,7 @@ var _hmt = _hmt || [];
 	    </script>
 	
 	</div>
-  <a type="button" href="/2019/11/25/2019-11-25-深入浅出Android系列-2019/#more" class="btn btn-default more">Read More</a>
+  <a type="button" href="/2019/11/25/2019-11-25-深入浅出计算机网络1-2019/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -461,6 +459,62 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2019/10/10/2019-10-10-Java集合分析3-2019/" >Java集合分析3</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-10-10  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈的实现其实有两种, 一种是使用Vector实现的, 一种是使用队列行数据结构实现的具体参考一下两种方式</p>
+<h2 id="实现方式1-线程安全的"><a href="#实现方式1-线程安全的" class="headerlink" title="实现方式1 线程安全的"></a>实现方式1 线程安全的</h2><blockquote>
+<p>写在前面, 在讲栈之前, 先要讲一下Vector, Vector其实是类似于ArrayList的, 其内部本身实现的方式也是使用数组存放元素,其与ArrayList不同之处在于, Vector对数组的操作是同步的, 其是一个线程安全的集合类.(方法是synchronized)</p>
+</blockquote>
+<p>整体的代码非常简单, 注意这个栈的操作也是线程安全的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Creates an empty Stack.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pushes an item onto the top of this stack. This has exactly</span></span><br><span class="line"><span class="comment">     * the same effect as:</span></span><br><span class="line"><span class="comment">     * &lt;blockquote&gt;&lt;pre&gt;</span></span><br><span class="line"><span class="comment">     * addElement(item)&lt;/pre&gt;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   item   the item to be pushed onto this stack.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the &lt;code&gt;item&lt;/code&gt; argument.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span>     java.util.Vector#addElement</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">push</span><span class="params">(E item)</span> </span>&#123;</span><br><span class="line">        addElement(item);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Removes the object at the top of this stack and returns that</span></span><br><span class="line"><span class="comment">     * object as the value of this function.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  The object at the top of this stack (the last item</span></span><br><span class="line"><span class="comment">     *          of the &lt;tt&gt;Vector&lt;/tt&gt; object).</span></span><br><span class="line"><span class="comment">     栈顶是数组的末尾.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span>  EmptyStackException  if this stack is empty.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        E       obj;</span><br><span class="line">        <span class="keyword">int</span>     len = size();</span><br><span class="line"></span><br><span class="line">        obj = peek();</span><br><span class="line">        removeElementAt(len - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Looks at the object at the top of this stack without removing it</span></span><br><span class="line"><span class="comment">     * from the stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the object at the top of this stack (the last item</span></span><br><span class="line"><span class="comment">     *          of the &lt;tt&gt;Vector&lt;/tt&gt; object).</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span>  EmptyStackException  if this stack is empty.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>     len = size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">        <span class="keyword">return</span> elementAt(len - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Tests if this stack is empty.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  &lt;code&gt;true&lt;/code&gt; if and only if this stack contains</span></span><br><span class="line"><span class="comment">     *          no items; &lt;code&gt;false&lt;/code&gt; otherwise.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the 1-based position where an object is on this stack.</span></span><br><span class="line"><span class="comment">     * If the object &lt;tt&gt;o&lt;/tt&gt; occurs as an item in this stack, this</span></span><br><span class="line"><span class="comment">     * method returns the distance from the top of the stack of the</span></span><br><span class="line"><span class="comment">     * occurrence nearest the top of the stack; the topmost item on the</span></span><br><span class="line"><span class="comment">     * stack is considered to be at distance &lt;tt&gt;1&lt;/tt&gt;. The &lt;tt&gt;equals&lt;/tt&gt;</span></span><br><span class="line"><span class="comment">     * method is used to compare &lt;tt&gt;o&lt;/tt&gt; to the</span></span><br><span class="line"><span class="comment">     * items in this stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   o   the desired object.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the 1-based position from the top of the stack where</span></span><br><span class="line"><span class="comment">     *          the object is located; the return value &lt;code&gt;-1&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     *          indicates that the object is not on the stack.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lastIndexOf(o);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> size() - i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** use serialVersionUID from JDK 1.0.2 for interoperability */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1224463164541339165L</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="实现方式2-非线程安全"><a href="#实现方式2-非线程安全" class="headerlink" title="实现方式2 非线程安全"></a>实现方式2 非线程安全</h2><p>我们在上一个文章中详细说明了LinkedList, 其实LinkedList也是可以做为栈使用的.参考一片文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24752167?refer=dreawer">Java 集合源码剖析</a>, <em>ArrayDeque</em>和<em>LinkedList</em>是<em>Deque</em>的两个通用实现，由于官方更推荐使用<em>AarryDeque</em>用作栈和队列.</p>
+<p>从名字可以看出<em>ArrayDeque</em>底层通过数组实现，为了满足可以同时在数组两端插入或删除元素的需求，该数组还必须是循环的，即<strong>循环数组（circular array）</strong>，也就是说数组的任何一点都可能被看作起点或者终点。<em>ArrayDeque</em>是非线程安全的（not thread-safe），当多个线程同时使用的时候，需要程序员手动同步；另外，该容器不允许放入null元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDeque</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以直接参考一下<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24752167?refer=dreawer">Java 集合源码剖析</a>无非就是对数组两端的增删改查, 特殊的在于ArrayDeque实现的是<strong>循环数组</strong>.</p>
+<p>非常经典的一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        elements[head = (head - <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)] = e; </span><br><span class="line">        <span class="keyword">if</span> (head == tail)</span><br><span class="line">            doubleCapacity();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>head = (head - 1) &amp; (elements.length - 1)</code>, 这一句由于<code>elements.length</code> 始终是2的整数倍, 且是int类型因此</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">elements.length -<span class="number">1</span> 的二进制应该是</span><br><span class="line"><span class="number">0</span> xxxxxxxx <span class="number">1111</span>(初始化是<span class="number">16</span> <span class="number">0</span>-<span class="number">15</span>)</span><br><span class="line">因此首次head -<span class="number">1</span> = -<span class="number">1</span> (<span class="number">1</span>的反码+<span class="number">1</span> 就是-<span class="number">1</span>)</span><br><span class="line">因该是(补码)</span><br><span class="line"><span class="number">111111111111111</span> </span><br><span class="line">与上面的按位与被置为整数<span class="number">15</span> (保留低位<span class="number">4</span>位)</span><br><span class="line">下一次</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    elements[tail] = e;</span><br><span class="line">    <span class="keyword">if</span> ( (tail = (tail + <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)) == head)</span><br><span class="line">        doubleCapacity();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2019/10/10/2019-10-10-Java集合分析3-2019/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2019/10/10/2019-10-10-Java集合分析4-2019/" >Java集合分析4</a>
 		</h3>
 		</div>
@@ -561,62 +615,6 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2019/10/10/2019-10-10-Java集合分析3-2019/" >Java集合分析3</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-10-10  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈的实现其实有两种, 一种是使用Vector实现的, 一种是使用队列行数据结构实现的具体参考一下两种方式</p>
-<h2 id="实现方式1-线程安全的"><a href="#实现方式1-线程安全的" class="headerlink" title="实现方式1 线程安全的"></a>实现方式1 线程安全的</h2><blockquote>
-<p>写在前面, 在讲栈之前, 先要讲一下Vector, Vector其实是类似于ArrayList的, 其内部本身实现的方式也是使用数组存放元素,其与ArrayList不同之处在于, Vector对数组的操作是同步的, 其是一个线程安全的集合类.(方法是synchronized)</p>
-</blockquote>
-<p>整体的代码非常简单, 注意这个栈的操作也是线程安全的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Creates an empty Stack.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Pushes an item onto the top of this stack. This has exactly</span></span><br><span class="line"><span class="comment">     * the same effect as:</span></span><br><span class="line"><span class="comment">     * &lt;blockquote&gt;&lt;pre&gt;</span></span><br><span class="line"><span class="comment">     * addElement(item)&lt;/pre&gt;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   item   the item to be pushed onto this stack.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the &lt;code&gt;item&lt;/code&gt; argument.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span>     java.util.Vector#addElement</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">push</span><span class="params">(E item)</span> </span>&#123;</span><br><span class="line">        addElement(item);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Removes the object at the top of this stack and returns that</span></span><br><span class="line"><span class="comment">     * object as the value of this function.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  The object at the top of this stack (the last item</span></span><br><span class="line"><span class="comment">     *          of the &lt;tt&gt;Vector&lt;/tt&gt; object).</span></span><br><span class="line"><span class="comment">     栈顶是数组的末尾.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span>  EmptyStackException  if this stack is empty.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        E       obj;</span><br><span class="line">        <span class="keyword">int</span>     len = size();</span><br><span class="line"></span><br><span class="line">        obj = peek();</span><br><span class="line">        removeElementAt(len - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Looks at the object at the top of this stack without removing it</span></span><br><span class="line"><span class="comment">     * from the stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the object at the top of this stack (the last item</span></span><br><span class="line"><span class="comment">     *          of the &lt;tt&gt;Vector&lt;/tt&gt; object).</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span>  EmptyStackException  if this stack is empty.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>     len = size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">        <span class="keyword">return</span> elementAt(len - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Tests if this stack is empty.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  &lt;code&gt;true&lt;/code&gt; if and only if this stack contains</span></span><br><span class="line"><span class="comment">     *          no items; &lt;code&gt;false&lt;/code&gt; otherwise.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the 1-based position where an object is on this stack.</span></span><br><span class="line"><span class="comment">     * If the object &lt;tt&gt;o&lt;/tt&gt; occurs as an item in this stack, this</span></span><br><span class="line"><span class="comment">     * method returns the distance from the top of the stack of the</span></span><br><span class="line"><span class="comment">     * occurrence nearest the top of the stack; the topmost item on the</span></span><br><span class="line"><span class="comment">     * stack is considered to be at distance &lt;tt&gt;1&lt;/tt&gt;. The &lt;tt&gt;equals&lt;/tt&gt;</span></span><br><span class="line"><span class="comment">     * method is used to compare &lt;tt&gt;o&lt;/tt&gt; to the</span></span><br><span class="line"><span class="comment">     * items in this stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>   o   the desired object.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  the 1-based position from the top of the stack where</span></span><br><span class="line"><span class="comment">     *          the object is located; the return value &lt;code&gt;-1&lt;/code&gt;</span></span><br><span class="line"><span class="comment">     *          indicates that the object is not on the stack.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lastIndexOf(o);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> size() - i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** use serialVersionUID from JDK 1.0.2 for interoperability */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1224463164541339165L</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="实现方式2-非线程安全"><a href="#实现方式2-非线程安全" class="headerlink" title="实现方式2 非线程安全"></a>实现方式2 非线程安全</h2><p>我们在上一个文章中详细说明了LinkedList, 其实LinkedList也是可以做为栈使用的.参考一片文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24752167?refer=dreawer">Java 集合源码剖析</a>, <em>ArrayDeque</em>和<em>LinkedList</em>是<em>Deque</em>的两个通用实现，由于官方更推荐使用<em>AarryDeque</em>用作栈和队列.</p>
-<p>从名字可以看出<em>ArrayDeque</em>底层通过数组实现，为了满足可以同时在数组两端插入或删除元素的需求，该数组还必须是循环的，即<strong>循环数组（circular array）</strong>，也就是说数组的任何一点都可能被看作起点或者终点。<em>ArrayDeque</em>是非线程安全的（not thread-safe），当多个线程同时使用的时候，需要程序员手动同步；另外，该容器不允许放入null元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDeque</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Deque</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以直接参考一下<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24752167?refer=dreawer">Java 集合源码剖析</a>无非就是对数组两端的增删改查, 特殊的在于ArrayDeque实现的是<strong>循环数组</strong>.</p>
-<p>非常经典的一个方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">        elements[head = (head - <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)] = e; </span><br><span class="line">        <span class="keyword">if</span> (head == tail)</span><br><span class="line">            doubleCapacity();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>head = (head - 1) &amp; (elements.length - 1)</code>, 这一句由于<code>elements.length</code> 始终是2的整数倍, 且是int类型因此</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">elements.length -<span class="number">1</span> 的二进制应该是</span><br><span class="line"><span class="number">0</span> xxxxxxxx <span class="number">1111</span>(初始化是<span class="number">16</span> <span class="number">0</span>-<span class="number">15</span>)</span><br><span class="line">因此首次head -<span class="number">1</span> = -<span class="number">1</span> (<span class="number">1</span>的反码+<span class="number">1</span> 就是-<span class="number">1</span>)</span><br><span class="line">因该是(补码)</span><br><span class="line"><span class="number">111111111111111</span> </span><br><span class="line">与上面的按位与被置为整数<span class="number">15</span> (保留低位<span class="number">4</span>位)</span><br><span class="line">下一次</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    elements[tail] = e;</span><br><span class="line">    <span class="keyword">if</span> ( (tail = (tail + <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)) == head)</span><br><span class="line">        doubleCapacity();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2019/10/10/2019-10-10-Java集合分析3-2019/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
 			<a href="/2019/09/26/2019-09-26-Java集合源码解读之集合框架-2019/" >Java集合框架</a>
 		</h3>
 		</div>
@@ -692,54 +690,63 @@ var _hmt = _hmt || [];
 
 		
 			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/code/">code<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
 		
 			
 	<div class="widget">
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
+			<li><a href="/tags/源码分析/">源码分析<span>3</span></a></li>
 		
-			<li><a href="/tags/Java/">Java<span>41</span></a></li>
-		
-			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
-		
-			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
-		
-			<li><a href="/tags/maven/">maven<span>1</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
-		
-			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
-		
-			<li><a href="/tags/计算机网络/">计算机网络<span>1</span></a></li>
-		
-			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
-		
-			<li><a href="/tags/java/">java<span>2</span></a></li>
-		
-			<li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
 		
 			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
+			<li><a href="/tags/maven/">maven<span>1</span></a></li>
 		
 			<li><a href="/tags/工具/">工具<span>1</span></a></li>
 		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
+			<li><a href="/tags/View/">View<span>1</span></a></li>
 		
-			<li><a href="/tags/生活/">生活<span>2</span></a></li>
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
 		
-			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
+			<li><a href="/tags/Git/">Git<span>2</span></a></li>
 		
-			<li><a href="/tags/协程/">协程<span>1</span></a></li>
+			<li><a href="/tags/密码学/">密码学<span>2</span></a></li>
+		
+			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
+		
+			<li><a href="/tags/安全/">安全<span>1</span></a></li>
+		
+			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span>4</span></a></li>
 		
 			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
 		
-			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
+			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+		
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
+		
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+		
+			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+		
+			<li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
+		
+			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span>48</span></a></li>
+		   <li><a href="/tags">...<span>50</span></a></li>
 		 
 		</ul>
 	</div>

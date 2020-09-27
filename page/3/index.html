@@ -143,6 +143,51 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
+			<a href="/2019/09/26/2019-09-18-mvn生成aar的pom文件-2019/" >使用mvn命令将jar/aar添加到本地仓库</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-09-26  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>背景:</p>
+<p>​    某些情况下需要使用第三方的sdk, 但是第三方sdk大部分是将jar/aar文件离线提供的, 不方便公司内部各个APP 集成, 需要将aar上传到公司的maven仓库中, 可以使用mvn命令手动生成aar/jar文件的xml格式的pom文件.</p>
+<p>使用如下</p>
+<p>在${user}/.m2/repository目录下执行如下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file </span><br><span class="line"><span class="meta">#</span><span class="bash">parameters</span></span><br><span class="line">-Dfile=&lt;your aar/jar file path&gt; </span><br><span class="line">-DgroupId=&lt;groupId&gt; # com.xxx.xxx</span><br><span class="line">-DartifactId=&lt;artifactId&gt; #project id</span><br><span class="line">-Dpackaging=&lt;package format&gt; # aar / jar </span><br><span class="line">-DgeneratePom=&lt;false or true&gt; #genegerate pom file or not</span><br><span class="line">-Dversion=&lt;x.y.z&gt; #versioncode</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>活学活用, 现学现用, 后面记录.</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2019/09/26/2019-09-18-mvn生成aar的pom文件-2019/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
 			<a href="/2019/09/26/2019-09-26-Java集合源码解读之表栈与队列-2019/" >Java集合分析2</a>
 		</h3>
 		</div>
@@ -280,51 +325,6 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2019/09/26/2019-09-26-Java集合源码解读之表栈与队列-2019/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/09/26/2019-09-18-mvn生成aar的pom文件-2019/" >使用mvn命令将jar/aar添加到本地仓库</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-09-26  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<p>背景:</p>
-<p>​    某些情况下需要使用第三方的sdk, 但是第三方sdk大部分是将jar/aar文件离线提供的, 不方便公司内部各个APP 集成, 需要将aar上传到公司的maven仓库中, 可以使用mvn命令手动生成aar/jar文件的xml格式的pom文件.</p>
-<p>使用如下</p>
-<p>在${user}/.m2/repository目录下执行如下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file </span><br><span class="line"><span class="meta">#</span><span class="bash">parameters</span></span><br><span class="line">-Dfile=&lt;your aar/jar file path&gt; </span><br><span class="line">-DgroupId=&lt;groupId&gt; # com.xxx.xxx</span><br><span class="line">-DartifactId=&lt;artifactId&gt; #project id</span><br><span class="line">-Dpackaging=&lt;package format&gt; # aar / jar </span><br><span class="line">-DgeneratePom=&lt;false or true&gt; #genegerate pom file or not</span><br><span class="line">-Dversion=&lt;x.y.z&gt; #versioncode</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>活学活用, 现学现用, 后面记录.</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2019/09/26/2019-09-18-mvn生成aar的pom文件-2019/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -1841,11 +1841,11 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2019/05/08/2019-05-08-Picasso源码分析1-2019/" >Picasso源码分析1</a>
+			<a href="/2019/05/15/2019-05-15-String-2019/" >String, StringBuilder and StringBuffer</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
-		<div class="date">post @ 2019-05-08  </div>
+		<div class="date">post @ 2019-05-15  </div>
 		</div>
 	</div>
 	
@@ -1856,33 +1856,15 @@ var _hmt = _hmt || [];
 	
 	
 		<p>[TOC]</p>
-<p>#Picasso使用指南</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>一行代码搞定图片加载</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Picasso.get().load(<span class="string">&quot;http://i.imgur.com/DvpvklR.png&quot;</span>).into(imageView);</span><br></pre></td></tr></table></figure>
-
-<p>在<code>Android</code>上许多常见图片加载陷阱都将自动的被<code>Picasso</code>处理.</p>
-<ol>
-<li>处理<code>ImageView</code>回收和下载取消</li>
-<li>使用少量内存就能够处理复杂的图片变化<code>Image Transformations</code></li>
-<li>自动内存和磁盘缓存</li>
+<h1 id="Java-字符串"><a href="#Java-字符串" class="headerlink" title="Java 字符串"></a>Java 字符串</h1><h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><ol>
+<li>字符串是不可变的</li>
+<li>所有对字符串的操作都会生成新的字符串</li>
+<li>字符串常量相加编译器会有所优化</li>
 </ol>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><h3 id="ADAPTER-DOWNLOADS"><a href="#ADAPTER-DOWNLOADS" class="headerlink" title="ADAPTER DOWNLOADS"></a>ADAPTER DOWNLOADS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">  SquaredImageView view = (SquaredImageView) convertView;</span><br><span class="line">  <span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</span><br><span class="line">    view = <span class="keyword">new</span> SquaredImageView(context);</span><br><span class="line">  &#125;</span><br><span class="line">  String url = getItem(position);</span><br><span class="line"></span><br><span class="line">  Picasso.get().load(url).into(view);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SHOW THE CODE</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">String b = <span class="string">&quot;hello &quot;</span> + <span class="string">&quot;world&quot;</span>;</span><br><span class="line">sout(a = b);</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="comment">//因为a和b指向内存同一块区域</span></span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">sout(a = c);</span><br><span class="line"><span class="comment">//false 因为c指向了一个新对象;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String aSub = a.subString(<span class="number">0</span>, a.length-<span class="number">1</span>);</span><br><span class="line">sout(aSub = a);</span><br><span class="line"><span class="comment">//false 返回了新的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//line 2 : 编译器会将b直接优化成字符串常量, 因为b的值在编译时就确认了</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="IMAGETRANSFORMATIONS"><a href="#IMAGETRANSFORMATIONS" class="headerlink" title="IMAGETRANSFORMATIONS"></a>IMAGETRANSFORMATIONS</h3><p>变换图片适应大小</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Picasso.get()</span><br><span class="line">  .load(url)</span><br><span class="line">  .resize(<span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">  .into(imageView);</span><br></pre></td></tr></table></figure>
-
-<p>也可以使用自定义变换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CropSquareTransformation</span> <span class="keyword">implements</span> <span class="title">Transformation</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Bitmap <span class="title">transform</span><span class="params">(Bitmap source)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size = Math.min(source.getWidth(), source.getHeight());</span><br><span class="line">    <span class="keyword">int</span> x = (source.getWidth() - size) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> y = (source.getHeight() - size) / <span class="number">2</span>;</span><br><span class="line">    Bitmap result = Bitmap.createBitmap(source, x, y, size, size);</span><br><span class="line">    <span class="keyword">if</span> (result != source) &#123;</span><br><span class="line">      source.recycle();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> String <span class="title">key</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;square()&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用Picasso实例的transform方法来应用形变</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="PLACEHOLDERS"><a href="#PLACEHOLDERS" class="headerlink" title="PLACEHOLDERS"></a>PLACEHOLDERS</h3><p><code>Picasso</code>支持站位符</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Picasso.get()</span><br><span class="line">  .load(url)</span><br><span class="line">  .placeholder(R.drawable.?) <span class="comment">//加载站位符</span></span><br><span class="line">  .error(R.drawable.?) <span class="comment">//错误站位符</span></span><br><span class="line">  .into(imageView)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="RESOURCE-LOADING"><a href="#RESOURCE-LOADING" class="headerlink" title="RESOURCE LOADING"></a>RESOURCE LOADING</h3><p><code>Resource, assets, files, content providers</code> supported</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Picasso.get().load(R.drawable.?).into(imageView);</span><br><span class="line">Picasso.get().load(<span class="string">&quot;file://android_asset/?&quot;</span>).into(imageView);</span><br><span class="line">Picasso.get().load(<span class="keyword">new</span> File()).into(imageView);</span><br></pre></td></tr></table></figure>
+<h2 id="String-StringBuilder-和StringBuffer"><a href="#String-StringBuilder-和StringBuffer" class="headerlink" title="String,  StringBuilder 和StringBuffer"></a>String,  StringBuilder 和StringBuffer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = -; i &lt; <span class="number">100</span>; i ++)&#123;</span><br><span class="line">  s += <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这段代码编译成的字节码</span></span><br><span class="line">LINENUMBER <span class="number">33</span> L7</span><br><span class="line">   FRAME SAME</span><br><span class="line">    LDC <span class="string">&quot;&quot;</span></span><br><span class="line">    ASTORE <span class="number">3</span></span><br><span class="line">   L13</span><br><span class="line">    LINENUMBER <span class="number">34</span> L13</span><br><span class="line">    ICONST_0</span><br><span class="line">    ISTORE <span class="number">4</span></span><br><span class="line">   L14</span><br><span class="line">   FRAME APPEND [java/lang/String I]</span><br><span class="line">    ILOAD <span class="number">4</span></span><br><span class="line">    BIPUSH <span class="number">100</span></span><br><span class="line">    IF_ICMPGE L15</span><br><span class="line">   L16</span><br><span class="line">    LINENUMBER <span class="number">35</span> L16</span><br><span class="line">    NEW java/lang/StringBuilder</span><br><span class="line">    DUP</span><br><span class="line">    INVOKESPECIAL java/lang/StringBuilder.&lt;init&gt; ()V</span><br><span class="line">    ALOAD <span class="number">3</span></span><br><span class="line">    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;</span><br><span class="line">    LDC <span class="string">&quot;hello&quot;</span></span><br><span class="line">    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;</span><br><span class="line">    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;</span><br><span class="line">    ASTORE <span class="number">3</span></span><br><span class="line">   L17</span><br><span class="line">    LINENUMBER <span class="number">34</span> L17</span><br><span class="line">    IINC <span class="number">4</span> <span class="number">1</span></span><br><span class="line">    GOTO L14</span><br><span class="line">   L15</span><br><span class="line">    LINENUMBER <span class="number">37</span> L15</span><br><span class="line">   FRAME CHOP <span class="number">1</span></span><br><span class="line">    RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以看出使用StringBuilder来构建新的字符串, 每次循环都执行了new StringBuilder(), 调用StringBuild#append方法, 再StringBuilder#toString()方法,在循环中会产生大量的临时对象.</span></span><br><span class="line"><span class="comment">//如果使用StringBuilder</span></span><br><span class="line"></span><br><span class="line">StringBuilder b = <span class="keyword">new</span> StringBuild();s</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i ++)&#123;</span><br><span class="line">	b.append(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">sout(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">//减少临时对象的生成.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//StringBuffer的源码中操作都加了synchronized ,所以StringBuffer与StringBuilder的区别是前者是线程安全的, 后者是线程不安全的. 两个类都继承自 AbstractStringBuilder.</span></span><br></pre></td></tr></table></figure>
 
 
 <div id="gitalk-container"></div>
@@ -1896,7 +1878,7 @@ var _hmt = _hmt || [];
 	    </script>
 	
 	</div>
-  <a type="button" href="/2019/05/08/2019-05-08-Picasso源码分析1-2019/#more" class="btn btn-default more">Read More</a>
+  <a type="button" href="/2019/05/15/2019-05-15-String-2019/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -1943,54 +1925,63 @@ var _hmt = _hmt || [];
 
 		
 			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/code/">code<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
 		
 			
 	<div class="widget">
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
-		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
-		
-			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
-		
-			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
+			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
 		
 			<li><a href="/tags/并发/">并发<span>1</span></a></li>
 		
-			<li><a href="/tags/java/">java<span>2</span></a></li>
-		
-			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
-		
-			<li><a href="/tags/TCP-IP/">TCP/IP<span>1</span></a></li>
-		
-			<li><a href="/tags/构建工具/">构建工具<span>1</span></a></li>
-		
-			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
-		
-			<li><a href="/tags/Android/">Android<span>26</span></a></li>
-		
-			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
-		
-			<li><a href="/tags/问题/">问题<span>1</span></a></li>
-		
-			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
-		
-			<li><a href="/tags/工具/">工具<span>1</span></a></li>
+			<li><a href="/tags/软件工程/">软件工程<span>3</span></a></li>
 		
 			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
 		
-			<li><a href="/tags/View/">View<span>1</span></a></li>
+			<li><a href="/tags/工具/">工具<span>1</span></a></li>
 		
-			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
+			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
+		
+			<li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
 		
 			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
 		
-			<li><a href="/tags/maven/">maven<span>1</span></a></li>
+			<li><a href="/tags/XML/">XML<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
+		
+			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+		
+			<li><a href="/tags/css/">css<span>1</span></a></li>
+		
+			<li><a href="/tags/协程/">协程<span>1</span></a></li>
+		
+			<li><a href="/tags/tag1/">tag1<span>1</span></a></li>
+		
+			<li><a href="/tags/html/">html<span>1</span></a></li>
+		
+			<li><a href="/tags/tag2/">tag2<span>1</span></a></li>
+		
+			<li><a href="/tags/Gradle/">Gradle<span>2</span></a></li>
+		
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+		
+			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
+		
+			<li><a href="/tags/Git/">Git<span>2</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span>48</span></a></li>
+		   <li><a href="/tags">...<span>50</span></a></li>
 		 
 		</ul>
 	</div>

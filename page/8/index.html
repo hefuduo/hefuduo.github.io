@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2017/04/24/2017-04-24-如何命名版本号-2017/" >语义化版本</a>
+			<a href="/2017/04/24/2017-04-24-构建仓库与管理器-2017/" >构建仓库与管理器</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -157,77 +157,57 @@ var _hmt = _hmt || [];
   <div class="row">
 	
 	
-		<p>转载： <a target="_blank" rel="noopener" href="http://semver.org/lang/zh-CN/">http://semver.org/lang/zh-CN/</a></p>
-<h1 id="语义化版本-2-0-0"><a href="#语义化版本-2-0-0" class="headerlink" title="语义化版本 2.0.0"></a>语义化版本 2.0.0</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
-<ol>
-<li>主版本号：当你做了不兼容的 API 修改，</li>
-<li>次版本号：当你做了向下兼容的功能性新增，</li>
-<li>修订号：当你做了向下兼容的问题修正。</li>
-</ol>
-<p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在软件管理的领域里存在着被称作“依赖地狱”的死亡之谷，系统规模越大，加入的套件越多，你就越有可能在未来的某一天发现自己已深陷绝望之中。</p>
-<p>在依赖高的系统中发布新版本套件可能很快会成为恶梦。如果依赖关系过高，可能面临版本控制被锁死的风险（必须对每一个相依套件改版才能完成某次升级）。而如果依赖关系过于松散，又将无法避免版本的混乱（假设兼容于未来的多个版本已超出了合理数量）。当你专案的进展因为版本相依被锁死或版本混乱变得不够简便和可靠，就意味着你正处于依赖地狱之中。</p>
-<p>作为这个问题的解决方案之一，我提议用一组简单的规则及条件来约束版本号的配置和增长。这些规则是根据（但不局限于）已经被各种封闭、开放源码软件所广泛使用的惯例所设计。为了让这套理论运作，你必须先有定义好的公共 API 。这可以透过文件定义或代码强制要求来实现。无论如何，这套 API 的清楚明了是十分重要的。一旦你定义了公共 API，你就可以透过修改相应的版本号来向大家说明你的修改。考虑使用这样的版本号格式：XYZ （主版本号.次版本号.修订号）修复问题但不影响API 时，递增修订号；API 保持向下兼容的新增及修改时，递增次版本号；进行不向下兼容的修改时，递增主版本号。</p>
-<p>我称这套系统为“语义化的版本控制”，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</p>
-<h2 id="语义化版本控制规范（SemVer）"><a href="#语义化版本控制规范（SemVer）" class="headerlink" title="语义化版本控制规范（SemVer）"></a>语义化版本控制规范（SemVer）</h2><p>以下关键词 MUST、MUST NOT、REQUIRED、SHALL、SHALL NOT、SHOULD、SHOULD NOT、 RECOMMENDED、MAY、OPTIONAL 依照 RFC 2119 的叙述解读。（译注：为了保持语句顺畅， 以下文件遇到的关键词将依照整句语义进行翻译，在此先不进行个别翻译。）</p>
-<ol>
-<li><p>​</p>
-<p>使用语义化版本控制的软件“必须 MUST ”定义公共 API。该 API 可以在代码中被定义或出现于严谨的文件内。无论何种形式都应该力求精确且完整。</p>
-</li>
-<li><p>​</p>
-<p>标准的版本号“必须 MUST ”采用 XYZ 的格式，其中 X、Y 和 Z 为非负的整数，且“禁止 MUST NOT”在数字前方补零。X 是主版本号、Y 是次版本号、而 Z 为修订号。每个元素“必须 MUST ”以数值来递增。例如：1.9.1 -&gt; 1.10.0 -&gt; 1.11.0。</p>
-</li>
-<li><p>​</p>
-<p>标记版本号的软件发行后，“禁止 MUST NOT ”改变该版本软件的内容。任何修改都“必须 MUST ”以新版本发行。</p>
-</li>
-<li><p>​</p>
-<p>主版本号为零（0.y.z）的软件处于开发初始阶段，一切都可能随时被改变。这样的公共 API 不应该被视为稳定版。</p>
-</li>
-<li><p>​</p>
-<p>1.0.0 的版本号用于界定公共 API 的形成。这一版本之后所有的版本号更新都基于公共 API 及其修改内容。</p>
-</li>
-<li><p>​</p>
-<p>修订号 Z（x.y.Z <code>|</code> x &gt; 0）“必须 MUST ”在只做了向下兼容的修正时才递增。这里的修正指的是针对不正确结果而进行的内部修改。</p>
-</li>
-<li><p>​</p>
-<p>次版本号 Y（x.Y.z <code>|</code> x &gt; 0）“必须 MUST ”在有向下兼容的新功能出现时递增。在任何公共 API 的功能被标记为弃用时也“必须 MUST ”递增。也“可以 MAY ”在内部程序有大量新功能或改进被加入时递增，其中“可以 MAY ”包括修订级别的改变。每当次版本号递增时，修订号“必须 MUST ”归零。</p>
-</li>
-<li><p>​</p>
-<p>主版本号 X（X.y.z <code>|</code> X &gt; 0）“必须 MUST ”在有任何不兼容的修改被加入公共 API 时递增。其中“可以 MAY ”包括次版本号及修订级别的改变。每当主版本号递增时，次版本号和修订号“必须 MUST ”归零。</p>
-</li>
-<li><p>​</p>
-<p>先行版本号“可以 MAY ”被标注在修订版之后，先加上一个连接号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 码的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。数字型的标识符号“禁止 MUST NOT ”在前方补零。先行版的优先级低于相关联的标准版本。被标上先行版本号则表示这个版本并非稳定而且可能无法达到兼容的需求。范例：1.0.0-alpha、1.0.0-alpha.1、1.0.0-0.3.7、1.0.0-x.7.z.92。</p>
-</li>
-<li><p>​</p>
-<p>版本编译信息“可以 MAY ”被标注在修订版或先行版本号之后，先加上一个加号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。当判断版本的优先层级时，版本编译信息“可 SHOULD ”被忽略。因此当两个版本只有在版本编译信息有差别时，属于相同的优先层级。范例：1.0.0-alpha+001、1.0.0+20130313144700、1.0.0-beta+exp.sha.5114f85。</p>
-</li>
-<li><p>​</p>
-<p>版本的优先层级指的是不同版本在排序时如何比较。判断优先层级时，“必须 MUST ”把版本依序拆分为主版本号、次版本号、修订号及先行版本号后进行比较（版本编译信息不在这份比较的列表中）。由左到右依序比较每个标识符号，第一个差异值用来决定优先层级：主版本号、次版本号及修订号以数值比较，例如：1.0.0 &lt; 2.0.0 &lt; 2.1.0 &lt; 2.1.1。当主版本号、次版本号及修订号都相同时，改以优先层级比较低的先行版本号决定。例如：1.0.0-alpha &lt; 1.0.0。有相同主版本号、次版本号及修订号的两个先行版本号，其优先层级“必须 MUST ”透过由左到右的每个被句点分隔的标识符号来比较，直到找到一个差异值后决定：只有数字的标识符号以数值高低比较，有字母或连接号时则逐字以 ASCII 的排序来比较。数字的标识符号比非数字的标识符号优先层级低。若开头的标识符号都相同时，栏位比较多的先行版本号优先层级比较高。范例：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-beta &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0- rc.1 &lt; 1.0.0。</p>
-</li>
-</ol>
-<h2 id="为什么要使用语义化的版本控制？"><a href="#为什么要使用语义化的版本控制？" class="headerlink" title="为什么要使用语义化的版本控制？"></a>为什么要使用语义化的版本控制？</h2><p>这并不是一个新的或者革命性的想法。实际上，你可能已经在做一些近似的事情了。问题在于只是“近似”还不够。如果没有某个正式的规范可循，版本号对于依赖的管理并无实质意义。将上述的想法命名并给予清楚的定义，让你对软件使用者传达意向变得容易。一旦这些意向变得清楚，弹性（但又不会太弹性）的依赖规范就能达成。</p>
-<p>举个简单的例子就可以展示语义化的版本控制如何让依赖地狱成为过去。假设有个名为“救火车”的函式库，它需要另一个名为“梯子”并已经有使用语义化版本控制的套件。当救火车创建时，梯子的版本号为 3.1.0。因为救火车使用了一些版本 3.1.0 所新增的功能， 你可以放心地指定相依于梯子的版本号大等于 3.1.0 但小于 4.0.0。这样，当梯子版本 3.1.1 和 3.2.0 发布时，你可以将直接它们纳入你的套件管理系统，因为它们能与原有相依的软件兼容。</p>
-<p>作为一位负责任的开发者，你理当确保每次套件升级的运作与版本号的表述一致。现实世界是复杂的，我们除了提高警觉外能做的不多。你所能做的就是让语义化的版本控制为你提供一个健全的方式来发行以及升级套件，而无需推出新的相依套件，节省你的时间及烦恼。</p>
-<p>如果你对此认同，希望立即开始使用语义化版本控制，你只需声明你的函式库正在使用它并遵循这些规则就可以了。请在你的 README 文件中保留此页连结，让别人也知道这些规则并从中受益。</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="在-0-y-z-初始开发阶段，我该如何进行版本控制？"><a href="#在-0-y-z-初始开发阶段，我该如何进行版本控制？" class="headerlink" title="在 0.y.z 初始开发阶段，我该如何进行版本控制？"></a>在 0.y.z 初始开发阶段，我该如何进行版本控制？</h3><p>最简单的做法是以 0.1.0 作为你的初始化开发版本，并在后续的每次发行时递增次版本号。</p>
-<h3 id="如何判断发布-1-0-0-版本的时机？"><a href="#如何判断发布-1-0-0-版本的时机？" class="headerlink" title="如何判断发布 1.0.0 版本的时机？"></a>如何判断发布 1.0.0 版本的时机？</h3><p>当你的软件被用于正式环境，它应该已经达到了 1.0.0 版。如果你已经有个稳定的 API 被使用者依赖，也会是 1.0.0 版。如果你很担心向下兼容的问题，也应该算是 1.0.0 版了。</p>
-<h3 id="这不会阻碍快速开发和迭代吗？"><a href="#这不会阻碍快速开发和迭代吗？" class="headerlink" title="这不会阻碍快速开发和迭代吗？"></a>这不会阻碍快速开发和迭代吗？</h3><p>主版本号为零的时候就是为了做快速开发。如果你每天都在改变 API，那么你应该仍在主版本号为零的阶段（0.y.z），或是正在下个主版本的独立开发分支中。</p>
-<h3 id="对于公共-API，若即使是最小但不向下兼容的改变都需要产生新的主版本号，岂不是很快就达到-42-0-0-版？"><a href="#对于公共-API，若即使是最小但不向下兼容的改变都需要产生新的主版本号，岂不是很快就达到-42-0-0-版？" class="headerlink" title="对于公共 API，若即使是最小但不向下兼容的改变都需要产生新的主版本号，岂不是很快就达到 42.0.0 版？"></a>对于公共 API，若即使是最小但不向下兼容的改变都需要产生新的主版本号，岂不是很快就达到 42.0.0 版？</h3><p>这是开发的责任感和前瞻性的问题。不兼容的改变不应该轻易被加入到有许多依赖代码的软件中。升级所付出的代价可能是巨大的。要递增主版本号来发行不兼容的改版，意味着你必须为这些改变所带来的影响深思熟虑，并且评估所涉及的成本及效益比。</p>
-<h3 id="为整个公共-API-写文件太费事了！"><a href="#为整个公共-API-写文件太费事了！" class="headerlink" title="为整个公共 API 写文件太费事了！"></a>为整个公共 API 写文件太费事了！</h3><p>为供他人使用的软件编写适当的文件，是你作为一名专业开发者应尽的职责。保持专案高效一个非常重要的部份是掌控软件的复杂度，如果没有人知道如何使用你的软件或不知道哪些函数的调用是可靠的，要掌控复杂度会是困难的。长远来看，使用语义化版本控制以及对于公共 API 有良好规范的坚持，可以让每个人及每件事都运行顺畅。</p>
-<h3 id="万一不小心把一个不兼容的改版当成了次版本号发行了该怎么办？"><a href="#万一不小心把一个不兼容的改版当成了次版本号发行了该怎么办？" class="headerlink" title="万一不小心把一个不兼容的改版当成了次版本号发行了该怎么办？"></a>万一不小心把一个不兼容的改版当成了次版本号发行了该怎么办？</h3><p>一旦发现自己破坏了语义化版本控制的规范，就要修正这个问题，并发行一个新的次版本号来更正这个问题并且恢复向下兼容。即使是这种情况，也不能去修改已发行的版本。可以的话，将有问题的版本号记录到文件中，告诉使用者问题所在，让他们能够意识到这是有问题的版本。</p>
-<h3 id="如果我更新了自己的依赖但没有改变公共-API-该怎么办？"><a href="#如果我更新了自己的依赖但没有改变公共-API-该怎么办？" class="headerlink" title="如果我更新了自己的依赖但没有改变公共 API 该怎么办？"></a>如果我更新了自己的依赖但没有改变公共 API 该怎么办？</h3><p>由于没有影响到公共 API，这可以被认定是兼容的。若某个软件和你的套件有共同依赖，则它会有自己的依赖规范，作者也会告知可能的冲突。要判断改版是属于修订等级或是次版等级，是依据你更新的依赖关系是为了修复问题或是加入新功能。对于后者，我经常会预期伴随着更多的代码，这显然会是一个次版本号级别的递增。</p>
-<h3 id="如果我变更了公共-API-但无意中未遵循版本号的改动怎么办呢？（意即在修订等级的发布中，误将重大且不兼容的改变加到代码之中）"><a href="#如果我变更了公共-API-但无意中未遵循版本号的改动怎么办呢？（意即在修订等级的发布中，误将重大且不兼容的改变加到代码之中）" class="headerlink" title="如果我变更了公共 API 但无意中未遵循版本号的改动怎么办呢？（意即在修订等级的发布中，误将重大且不兼容的改变加到代码之中）"></a>如果我变更了公共 API 但无意中未遵循版本号的改动怎么办呢？（意即在修订等级的发布中，误将重大且不兼容的改变加到代码之中）</h3><p>自行做最佳的判断。如果你有庞大的使用者群在依照公共 API 的意图而变更行为后会大受影响，那么最好做一次主版本的发布，即使严格来说这个修复仅是修订等级的发布。记住， 语义化的版本控制就是透过版本号的改变来传达意义。若这些改变对你的使用者是重要的，那就透过版本号来向他们说明。</p>
-<h3 id="我该如何处理即将弃用的功能？"><a href="#我该如何处理即将弃用的功能？" class="headerlink" title="我该如何处理即将弃用的功能？"></a>我该如何处理即将弃用的功能？</h3><p>弃用现存的功能是软件开发中的家常便饭，也通常是向前发展所必须的。当你弃用部份公共 API 时，你应该做两件事：（1）更新你的文件让使用者知道这个改变，（2）在适当的时机将弃用的功能透过新的次版本号发布。在新的主版本完全移除弃用功能前，至少要有一个次版本包含这个弃用信息，这样使用者才能平顺地转移到新版 API。</p>
-<h3 id="语义化版本对于版本的字串长度是否有限制呢？"><a href="#语义化版本对于版本的字串长度是否有限制呢？" class="headerlink" title="语义化版本对于版本的字串长度是否有限制呢？"></a>语义化版本对于版本的字串长度是否有限制呢？</h3><p>没有，请自行做适当的判断。举例来说，长到 255 个字元的版本已过度夸张。再者，特定的系统对于字串长度可能会有他们自己的限制。</p>
-<p>版本号后缀：</p>
-<p>alpha：功能上实现阶段，BUG较多，功能不完善。</p>
-<p>beta：解决主要错误，完善功能，需进行测试进一步优化。</p>
-<p>RC：在beta基础上的进一步完善，release之前的版本。</p>
-<p>release：最终版本，该版本最终交付给用户使用。命名为R，例如1.1.1_R(r)</p>
-<p>举个🌰：</p>
-<p>主版本号.次版本号.修订版本号.日期版本号_希腊字母版本号</p>
-<p>希腊字母版本号：base alpha beta RC release</p>
-<p>日期版本号：20160403</p>
+		<p>[TOC]</p>
+<h1 id="构建仓库与管理器"><a href="#构建仓库与管理器" class="headerlink" title="构建仓库与管理器"></a>构建仓库与管理器</h1><h2 id="什么是中央仓库"><a href="#什么是中央仓库" class="headerlink" title="什么是中央仓库"></a>什么是中央仓库</h2><blockquote>
+<p>在中央仓库出现以前，一个工程往往需要引用一些库，那这些库就放在工程的一个lib文件夹下面。每次新建一个工程，你都要拷贝这些库到lib文件夹下面，这就造成了一个问题。一个工程的库文件可能需要更新，这就要靠手动的更新；不同工程引用相同的库文件，都要拷贝一份。</p>
+<p>尤其当这个工程需要使用GIt或SVN进行版本管理的时候，这些lib就成了一个噩梦。</p>
+</blockquote>
+<p>当maven仓库出现以后呢？</p>
+<p>这个中央仓库就是存放这些库的地方，当你需要引用这些库文件的时候，只是需要在工程中写一条语句就可以了。</p>
+<p>举个栗子，在Android中，如果想引用一个包需要怎么写呢：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;com.android.support:design:23.2.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>就这么简单。</p>
+<p>gradle会自行将在中央仓库中查找该库的相应版本下载到本地，并添加到项目依赖中，编译时会将该库文件一并编译进去。</p>
+<p>用这样的方式来管理依赖，可以非常的安装卸载依赖，并且升级也很简单；同时，由于使用脚本语言，避免了git直接保存jar/aar的快照，而是追踪了脚本的变化，对于版本管理也非常方便。</p>
+<p>综上所述：Maven仓库就是放置所有JAR文件（WAR，ZIP，POM等等）的地方，所有Maven项目可以从同一个Maven仓库中获取自己所需要的依赖JAR，这节省了磁盘资源。此外，由于Maven仓库中所有的JAR都有其自己的坐标，该坐标告诉Maven它的组ID，构件ID，版本，打包方式等等，因此Maven项目可以方便的进行依赖版本管理。你也不在需要提交JAR文件到SCM仓库中，你可以建立一个组织层次的Maven仓库，供所有成员使用。</p>
+<p>Maven仓库能帮助我们管理构件（主要是JAR）。</p>
+<h2 id="远程仓库与本地仓库"><a href="#远程仓库与本地仓库" class="headerlink" title="远程仓库与本地仓库"></a>远程仓库与本地仓库</h2><p>运行Maven的时候，Maven所需要的任何构件都是直接从本地仓库获取的。如果本地仓库没有，它会首先尝试从远程仓库下载构件至本地仓库，然后再使用本地仓库的构件。</p>
+<p>比如说，你的项目配置了junit-3.8的依赖，在你运行<strong>mvn test</strong> 的时候，Maven需要使用junit-3.8的jar文件，它首先根据坐标查找本地仓库，如果找到，就直接使用。如果没有，Maven会检查可用的远程仓库配置，然后一次尝试从这些远程仓库下载junit-3.8的依赖，如果找到了就下载下来使用，如果没有则会报错。</p>
+<blockquote>
+<p>在Android中，gradle会将文件下载到.gralde/cache/moduleXX这个文件夹下面，在gradle引用项目时，先从这里找，如果没有，则在指定的maven远程仓库中获取。</p>
+</blockquote>
+<p>指定远程仓库</p>
+<p>如果想在Android中指定可以使用</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">allprojects&#123;</span><br><span class="line">  repositories&#123;</span><br><span class="line">    mavenLocal() <span class="comment">//本地仓库</span></span><br><span class="line">    jcenter() <span class="comment">//jcenter</span></span><br><span class="line">    maven&#123;</span><br><span class="line">      url <span class="string">&#x27;your_remote_repository_url&#x27;</span> <span class="comment">//指定一个远程仓库</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//注意 allprojects声明的是该工程以及工程的子工程。</p>
+<p>//而在buildScript中声明的repositories仅仅是对于build.gradle脚本本身的声明.(脚本也是调用gradle的API,因此会以来一些文件).</p>
+<p>上传aar包到指定的仓库</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;maven&#x27;</span><span class="comment">//应用maven插件，这个插件会自动帮你做一些事情</span></span><br><span class="line">description <span class="string">&quot;unionid&quot;</span><span class="comment">//项目的包名称</span></span><br><span class="line">group = project.[your defined group] <span class="comment">//group id 类似于com.xxx.xxx;</span></span><br><span class="line"><span class="comment">//version = &#x27;0.1.6-SNAPSHOT&#x27;</span></span><br><span class="line">version = project.[your defined version]</span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(<span class="attr">url:</span> <span class="string">&quot;your_url&quot;</span>) &#123;</span><br><span class="line">                authentication(<span class="attr">userName:</span><span class="string">&#x27;your_usr_name&#x27;</span>, <span class="attr">password:</span><span class="string">&#x27;your_password&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一些项目的属性都在gradle.properties中定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VERSION_NAME&#x3D;</span><br><span class="line">VERSION_CODE&#x3D;</span><br><span class="line">GROUP&#x3D;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<blockquote>
+<p>题外话</p>
+<p>Gradle支持从maven中央仓库和JCenter上获取构件，那这两者有什么区别呢？</p>
+<p>maven中央仓库（<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/">http://repo1.maven.org/maven2/</a>）是由Sonatype公司提供的服务，它是Apache Maven、SBT和其他构建系统的默认仓库，并能很容易被Apache Ant/Ivy、Gradle和其他工具所使用。开源组织例如Apache软件基金会、Eclipse基金会、JBoss和很多个人开源项目都将构件发布到中央仓库。 maven中央仓库已经将内容浏览功能禁掉了，可在<a target="_blank" rel="noopener" href="http://search.maven.org/">http://search.maven.org/</a>查询构件。</p>
+<p><a target="_blank" rel="noopener" href="https://bintray.com/bintray/jcenter'%3EJCenter%3C/a%3E%EF%BC%88%3Ca%20href=">https://jcenter.bintray.com</a> ）是由JFrog公司提供的Bintray中的Java仓库。它是当前世界上最大的Java和Android开源软件构件仓库。 所有内容都通过内容分发网络（CDN）使用加密https连接获取。JCenter是<a target="_blank" rel="noopener" href="http://groovy.codehaus.org/Grape">Goovy Grape</a>内的默认仓库，Gradle内建支持（jcenter()仓库），非常易于在（可能除了Maven之外的）其他构建工具内进行配置。</p>
+<p>JCenter相比mavenCenter构件更多，性能也更好。但还是有些构件仅存在mavenCenter中。</p>
+</blockquote>
+<h2 id="常见工具说明"><a href="#常见工具说明" class="headerlink" title="常见工具说明"></a>常见工具说明</h2><p>使用Maven，可以从<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/">Maven中央仓库</a>下载所需要的构件（artifact），但这通常不是一个好的做法，一般是在企业内部架设一个Maven仓库服务器，在代理远程仓库的同时维护本地仓库，以节省带宽和时间。企业仓库管理器一般可以提供高并发访问、浏览和查询、报表、访问控制、备份、对其他仓库进行代理、REST API等特性</p>
+<p>了解一下构件仓库管理器，市场上最好的是JFrog的<a target="_blank" rel="noopener" href="http://www.jfrog.com/#os-arti">Artifactory</a>和Sonatype的<a target="_blank" rel="noopener" href="http://www.sonatype.org/nexus/">Nexus</a>，而且这两个产品既有商业版也有免费社区版。</p>
+<p>以Artifactory为例，Ant+Ivy、Maven和Gradle这些构建工具都可以自动下载Artifactory里的构件（artifact），此外Jenkins、Bamboo等CI工具也可以通过构建工具将生成的构件（artifact）部署到Artifactory上。</p>
+<p>一张图片看懂：</p>
+<p><img src="/img/java/maven.jpeg" alt="maven"></p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_72ef7bea0102vq0k.html">了解构建仓库管理器Artifactory和Nexus</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_72ef7bea0102vvqg.html">聊一聊MavenCenter和JCenter</a></p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -240,7 +220,45 @@ var _hmt = _hmt || [];
 	    </script>
 	
 	</div>
-  <a type="button" href="/2017/04/24/2017-04-24-如何命名版本号-2017/#more" class="btn btn-default more">Read More</a>
+  <a type="button" href="/2017/04/24/2017-04-24-构建仓库与管理器-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/04/24/2017-04-24-单元测试与MOCK-2017/" >单元测试与MOCK</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-04-24  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>【TODO】mockio 的使用 junit的使用 instrumence的使用</p>
+<p>Android中的单元测试？How to create test case？</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/04/24/2017-04-24-单元测试与MOCK-2017/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -322,6 +340,49 @@ var _hmt = _hmt || [];
 	
 	</div>
   <a type="button" href="/2017/04/24/2017-04-24-伪随机数与安全性-2017/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2017/04/24/2017-04-24-Android下的hook与代码inject-2017/" >Android下的挂钩和代码注入</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2017-04-24  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<p>【TODO】代码的注入与挂钩总结</p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/wang_walfred/article/details/48245283">Android下的挂钩与注入</a></p>
+<p><a target="_blank" rel="noopener" href="https://sec.xiaomi.com/article/23">浅谈Android hook技术</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/crmulliner/adbi">github adbi</a></p>
+<p>【TODO】Android中的逆向工程</p>
+<p>【TODO】引申——插件化与组件化的原理？？</p>
+<p>【TODO】==JVM的原理？？？？==</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+	
+	</div>
+  <a type="button" href="/2017/04/24/2017-04-24-Android下的hook与代码inject-2017/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -804,157 +865,6 @@ var _hmt = _hmt || [];
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2017/02/14/2017-02-14-防御性编程-2017/" >防御性编程</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2017-02-14  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="防御性编程"><a href="#防御性编程" class="headerlink" title="防御性编程"></a>防御性编程</h1><p>在讲防御性编程之前，我先讲一个故事。</p>
-<p>爱德华墨菲是美国爱德华兹空军基地的上尉工程师。</p>
-<p>1949年，他和上司斯塔普少校参加美国空军心境的MX981火箭减速超重实验。这个实验的目的是为了测定人类对加速度的承受极限。其中有一个实验项目是将16个火箭加速计悬空安装在受试者上方，当时有丽娜各种方法可以讲加速度计固定在支架上，而不可思议的是，竟然有人有条不紊地讲16个加速度计全部装在错误的位置上。</p>
-<p>于是墨菲做出了这一著名的论断，如果某项工作有多种方法，而其中有一种方法将导致事故，那么一定有人会按照这种方法去做。</p>
-<p>这就是著名的“墨菲定律”。</p>
-<p>“墨菲定律”主要内容有四个方面</p>
-<ol>
-<li>任何事都没有表面看起来那么简单</li>
-<li>所有的事都会比你预计的时间长</li>
-<li>会出错的事总会出错</li>
-<li>如果你担心某种情况发生，那么它就更可能发生</li>
-</ol>
-<p>好了，上面的故事告诉我们一个道理，凡是可能出错的事有很大几率会出错。在编程中，你也许听过这样一句话，没有任何系统是安全的，它总会有漏洞；没有任何软件是没有问题的，它总会存在一些Bug。</p>
-<p>打个比方，我们要解析一段json，约定这个json的格式，只能是正常格式，或者是空，那么一旦返回json的方法返回了一个『既不是正常格式，又不是空的异常值』，程序该如何处理呢？</p>
-<p>小花：一旦碰到约定异常，程序必须兼容处理，一定不能让程序Crash</p>
-<p>小Fa：一旦碰到约定异常，就必须抛出去，告知约定有误，找出具体错误原因</p>
-<p>这个问题，相信只要是程序猿基本都遇到过，举个最常见的栗子，NullPointerException，假如我们要从json中取一个字段，突然发现发生了NullPointerException，一些开发者认为是数据问题，那么把json中的这个字段改正确就行了；还有一些开发者认为是程序问题，认为程序需要做非空判断，再去使用。我相信这两种程序猿都有自己的理由，第一种程序简洁明了，代码逻辑干净，但一旦出错，就会崩溃，第二种程序耐操，随你数据怎么错，我都能不Crash，但代码中到处存在非空判断，臃肿、重复。</p>
-<p>因此，我们需要一个防御式的编程。就是不要信任任何人，对于程序任何可能错误的输入，都要做出兼容。</p>
-<p>那什么是防御性编程呢？</p>
-<p>防御性编程是一种细致、谨慎的编程方法。为了开发可靠的软件，我们要设计系统中的每个组件，以使其尽可能的“保护”自己。我们通过明确地在代码中对设想进行检查，击碎了未记录下来的设想。这是一种努力，防止我们的代码以将会展现错误行为的方式被调用。</p>
-<p>防御性编程并不能排除所有的程序错误。但是相应的问题所带来的麻烦将会减少，并且易于修改。</p>
-<p color="red">防御性程序员只是抓住飘落的雪花，而不是被埋葬在错误的雪崩中。</p>
-
-
-
-<p>讲完了上面的概念性的东西，下面来点干货。Show me the code！</p>
-<p>1.为了防止偶发性的NullPointException异常，我们通常将String放置在equals()函数的左边来实现比较：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">var</span>.equals(<span class="string">&quot;literal&quot;</span>))&#123;</span><br><span class="line">  <span class="comment">//this is bad because var may be null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;literal&quot;</span>.equals(<span class="keyword">var</span>))&#123;</span><br><span class="line">  <span class="comment">//good code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.不要永远相信别人提供的SDK，可能是大坑。看早起的Java api</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">String[] files = file.list();</span><br><span class="line"><span class="comment">//watch out</span></span><br><span class="line"><span class="keyword">if</span>(files != <span class="keyword">null</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++)&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果这个虚拟路径不表示一个文件夹目录，则此方法返回null。否则将会返回一个</span></span><br><span class="line"><span class="comment">//字符串数据，字符串表示目录中的文件或文件夹。所以应该添加一些校验</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(files.isDirectory())&#123;</span><br><span class="line">  String[] files = file.list();</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//watch out</span></span><br><span class="line">  <span class="keyword">if</span>(files != <span class="keyword">null</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++)&#123;</span><br><span class="line">      <span class="comment">//.....</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.不要相信“-1”</p>
-<p>javadoc中对String.indexOf()方法明确指出：对象内第一次出现制定字符的位置索引，如果为-1则表示该字符不在字符序列中。举个🌰</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(string.indexOf(charactor) != -<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="comment">//bad </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(string.indexOf(charactor) &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>4.避免意外赋值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">var</span> = <span class="number">5</span>)&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//a better way</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="number">5</span> = <span class="keyword">var</span>)&#123;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="number">5</span> === <span class="keyword">var</span>)&#123;</span><br><span class="line">  <span class="comment">//Ooops</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所以你可以讲比较常量放在左侧，这样就不会发生意外的赋值错误了</span></span><br></pre></td></tr></table></figure>
-
-<p>5.检查Null和Length</p>
-<p>只要有数组和集合等，请确保它存在，并且不为空。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//...bad</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(array != <span class="keyword">null</span> &amp;&amp; array.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6.对于那些意义明确的方法要严格使用fina标识</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">boom</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//bad</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">dontTouch</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">//good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>7.所有变量和参数都是final</p>
-<p>我不相信我自己（不要意外覆盖我的值）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(String importantMessage)</span></span>&#123;</span><br><span class="line">  String answer = <span class="string">&quot;...&quot;</span>;</span><br><span class="line">  answer = importantMessage = <span class="string">&quot;LoL accident&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//good</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">final</span> String importantMessage)</span></span>&#123;</span><br><span class="line">  <span class="keyword">final</span> String answer = <span class="string">&quot;...&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>8.重载时不要相信泛型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//bad</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(T value)</span></span>&#123;</span><br><span class="line">  bad(Collections.singletonList(value));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(List values)</span></span>&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bad</span><span class="params">(List values)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//good </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">good</span><span class="params">(<span class="keyword">final</span> T value)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(value instance of List)&#123;</span><br><span class="line">    good(List&lt;?&gt; value)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    good(Collections.singletonList(value));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">good</span><span class="params">(<span class="keyword">final</span> List values)</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//this library sucks</span></span><br><span class="line"><span class="meta">@SuppressWarning(&quot;all&quot;)</span></span><br><span class="line">Object t = (Object)(List)Arrays.asList(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">bad(t);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>结束语：</p>
-<p>防御性编程并不能完全防止程序中出现的bug问题，但是他会大大降低软件崩溃的几率，尽管可能要多些几行代码，但是对于大型软件来说，可靠性才是第一位的不是吗？一个软件的鲁棒性（谁翻译的鲁棒？音译好难听！）是至关重要的。并且，防御性编程的程序在后期的维护中也更加方便。</p>
-<p>推荐，在写程序的时候，注意防御性编程。</p>
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2017/02/14/2017-02-14-防御性编程-2017/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2017/02/14/2017-02-14-git教程-2017/" >Git教程</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2017-02-14  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<blockquote>
-<p>写在前面，希望这篇文章能够带给你帮助。</p>
-</blockquote>
-<p>[TOC]</p>
-<h1 id="第一章-起步"><a href="#第一章-起步" class="headerlink" title="第一章 起步"></a>第一章 起步</h1><h2 id="1-1关于版本控制"><a href="#1-1关于版本控制" class="headerlink" title="1.1关于版本控制"></a>1.1关于版本控制</h2><p>版本控制是一种软件工程的工具，它记录程序各个模组的改动，并未每次改动编上序号，我们可以回溯版本。</p>
-<p>以上，是百度百科关于版本控制的定义。</p>
-<p>举个🌰：</p>
-<p>比如你现在要写一个毕业论文。一篇论文二三万字，如果删除，修改了，你怎么知道自己改了什么呢？所以以前的很笨的方法就是另存为一个文件，然后在修改的地方标注上，那么删除了的我怎么知道删除呢？</p>
-<p>所以一个毕设文件夹下面，放了一堆文档：</p>
-<p>命名都是ver1，ver2，ver3，….最终写成一个final_version。然而这些都不是最坑的，最坑的是老师给你review论文，提出一大堆修改点，删删改改的，你怎么去追踪历史？最后被玩死😂。</p>
-<p>版本控制就是为了防止这种无法追踪历史的情况发生。</p>
-<p>版本控制可以分为几种，例如本地的版本控制，这个不多说。还有集中化的版本控制系统，例如CVS、Subverison以及Perforce等，这种版本控制系统的特点就是都有一个单一的几种管理的服务器，保存所有文件的修订版本。所有干活的都要连接到则台服务器，先下载最新的代码，然后提交更新。这种好处坏处都有，好处就是权限管理比较方便，更安全。坏处就是中央服务器一旦故障所有人都不能干活了。</p>
-<p>（To be continued）</p>
-<p>李思佳股东卡升级过</p>
-
-
-<div id="gitalk-container"></div>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-		<script>
-		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
-	    gitalkConfig.id = md5(location.pathname);
-		var gitalk = new Gitalk(gitalkConfig);
-	    gitalk.render("gitalk-container");
-	    </script>
-	
-	</div>
-  <a type="button" href="/2017/02/14/2017-02-14-git教程-2017/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -998,54 +908,63 @@ var _hmt = _hmt || [];
 
 		
 			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/code/">code<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
 		
 			
 	<div class="widget">
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/XML/">XML<span>1</span></a></li>
-		
-			<li><a href="/tags/软件工程/">软件工程<span>3</span></a></li>
-		
-			<li><a href="/tags/html/">html<span>1</span></a></li>
-		
 			<li><a href="/tags/emmet/">emmet<span>2</span></a></li>
-		
-			<li><a href="/tags/Kotlin/">Kotlin<span>9</span></a></li>
-		
-			<li><a href="/tags/计算机网络/">计算机网络<span>1</span></a></li>
 		
 			<li><a href="/tags/Swift4-0-3/">Swift4.0.3<span>2</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>8</span></a></li>
+			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
 		
 			<li><a href="/tags/IOS/">IOS<span>2</span></a></li>
 		
-			<li><a href="/tags/读书笔记/">读书笔记<span>1</span></a></li>
+			<li><a href="/tags/UI布局/">UI布局<span>1</span></a></li>
 		
-			<li><a href="/tags/版本控制/">版本控制<span>1</span></a></li>
+			<li><a href="/tags/View/">View<span>1</span></a></li>
 		
-			<li><a href="/tags/设计模式/">设计模式<span>4</span></a></li>
+			<li><a href="/tags/Architecture/">Architecture<span>2</span></a></li>
 		
-			<li><a href="/tags/并发编程/">并发编程<span>2</span></a></li>
+			<li><a href="/tags/html/">html<span>1</span></a></li>
 		
-			<li><a href="/tags/widget/">widget<span>1</span></a></li>
+			<li><a href="/tags/并发/">并发<span>1</span></a></li>
+		
+			<li><a href="/tags/SASS-SCSS-CSS/">SASS SCSS CSS<span>1</span></a></li>
+		
+			<li><a href="/tags/算法第四版/">算法第四版<span>1</span></a></li>
+		
+			<li><a href="/tags/程序设计/">程序设计<span>1</span></a></li>
+		
+			<li><a href="/tags/DSL/">DSL<span>1</span></a></li>
+		
+			<li><a href="/tags/Android/">Android<span>26</span></a></li>
 		
 			<li><a href="/tags/安全/">安全<span>1</span></a></li>
 		
-			<li><a href="/tags/拓展/">拓展<span>1</span></a></li>
-		
 			<li><a href="/tags/图片库/">图片库<span>3</span></a></li>
 		
-			<li><a href="/tags/JVM/">JVM<span>2</span></a></li>
+			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
-			<li><a href="/tags/plugin/">plugin<span>2</span></a></li>
+			<li><a href="/tags/open-source-library/">open source library<span>3</span></a></li>
 		
-			<li><a href="/tags/编程技巧/">编程技巧<span>1</span></a></li>
+			<li><a href="/tags/java/">java<span>2</span></a></li>
+		
+			<li><a href="/tags/开源组件/">开源组件<span>1</span></a></li>
 		
 		
-		   <li><a href="/tags">...<span>48</span></a></li>
+		   <li><a href="/tags">...<span>50</span></a></li>
 		 
 		</ul>
 	</div>
