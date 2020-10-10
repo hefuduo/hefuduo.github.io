@@ -16,6 +16,14 @@ tags:
 
 
 
+> 主要讲一些assets resource目录下的文件以及具体用途
+
+
+
+<!-- more -->
+
+
+
 # res文件夹
 
 ## drawable 
