@@ -9,7 +9,7 @@
   <title>构建仓库与管理器 | LeoHe&#39;s Space</title>
   <meta name="author" content="Leo He">
   
-  <meta name="description" content="声明不息，学习不止">
+  <meta name="description" content="中央仓库">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -60,7 +60,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
  <body>  
   <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -133,6 +134,10 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> 中央仓库
+		 </div> <!-- alert -->
 	  		
 
 	  <p>[TOC]</p>
@@ -143,8 +148,7 @@ var _hmt = _hmt || [];
 <p>当maven仓库出现以后呢？</p>
 <p>这个中央仓库就是存放这些库的地方，当你需要引用这些库文件的时候，只是需要在工程中写一条语句就可以了。</p>
 <p>举个栗子，在Android中，如果想引用一个包需要怎么写呢：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;com.android.support:design:23.2.0&#x27;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-groovy"><code class="language-groovy">    compile <span class="token string">'com.android.support:design:23.2.0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>就这么简单。</p>
 <p>gradle会自行将在中央仓库中查找该库的相应版本下载到本地，并添加到项目依赖中，编译时会将该库文件一并编译进去。</p>
 <p>用这样的方式来管理依赖，可以非常的安装卸载依赖，并且升级也很简单；同时，由于使用脚本语言，避免了git直接保存jar/aar的快照，而是追踪了脚本的变化，对于版本管理也非常方便。</p>
@@ -157,20 +161,36 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>指定远程仓库</p>
 <p>如果想在Android中指定可以使用</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">allprojects&#123;</span><br><span class="line">  repositories&#123;</span><br><span class="line">    mavenLocal() <span class="comment">//本地仓库</span></span><br><span class="line">    jcenter() <span class="comment">//jcenter</span></span><br><span class="line">    maven&#123;</span><br><span class="line">      url <span class="string">&#x27;your_remote_repository_url&#x27;</span> <span class="comment">//指定一个远程仓库</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-groovy"><code class="language-groovy">allprojects<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  repositories<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">mavenLocal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//本地仓库</span>
+    <span class="token function">jcenter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//jcenter</span>
+    maven<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      url <span class="token string">'your_remote_repository_url'</span> <span class="token comment" spellcheck="true">//指定一个远程仓库</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>//注意 allprojects声明的是该工程以及工程的子工程。</p>
 <p>//而在buildScript中声明的repositories仅仅是对于build.gradle脚本本身的声明.(脚本也是调用gradle的API,因此会以来一些文件).</p>
 <p>上传aar包到指定的仓库</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;maven&#x27;</span><span class="comment">//应用maven插件，这个插件会自动帮你做一些事情</span></span><br><span class="line">description <span class="string">&quot;unionid&quot;</span><span class="comment">//项目的包名称</span></span><br><span class="line">group = project.[your defined group] <span class="comment">//group id 类似于com.xxx.xxx;</span></span><br><span class="line"><span class="comment">//version = &#x27;0.1.6-SNAPSHOT&#x27;</span></span><br><span class="line">version = project.[your defined version]</span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(<span class="attr">url:</span> <span class="string">&quot;your_url&quot;</span>) &#123;</span><br><span class="line">                authentication(<span class="attr">userName:</span><span class="string">&#x27;your_usr_name&#x27;</span>, <span class="attr">password:</span><span class="string">&#x27;your_password&#x27;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="line-numbers language-groovy"><code class="language-groovy">apply plugin<span class="token punctuation">:</span> <span class="token string">'maven'</span><span class="token comment" spellcheck="true">//应用maven插件，这个插件会自动帮你做一些事情</span>
+description <span class="token string">"unionid"</span><span class="token comment" spellcheck="true">//项目的包名称</span>
+group <span class="token operator">=</span> project<span class="token operator">.</span><span class="token punctuation">[</span>your defined group<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">//group id 类似于com.xxx.xxx;</span>
+<span class="token comment" spellcheck="true">//version = '0.1.6-SNAPSHOT'</span>
+version <span class="token operator">=</span> project<span class="token operator">.</span><span class="token punctuation">[</span>your defined version<span class="token punctuation">]</span>
+uploadArchives <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    repositories <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        mavenDeployer <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">repository</span><span class="token punctuation">(</span>url<span class="token punctuation">:</span> <span class="token string">"your_url"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token function">authentication</span><span class="token punctuation">(</span>userName<span class="token punctuation">:</span><span class="token string">'your_usr_name'</span><span class="token punctuation">,</span> password<span class="token punctuation">:</span><span class="token string">'your_password'</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>一些项目的属性都在gradle.properties中定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VERSION_NAME&#x3D;</span><br><span class="line">VERSION_CODE&#x3D;</span><br><span class="line">GROUP&#x3D;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<pre><code>VERSION_NAME=
+VERSION_CODE=
+GROUP=</code></pre>
 <blockquote>
 <p>题外话</p>
 <p>Gradle支持从maven中央仓库和JCenter上获取构件，那这两者有什么区别呢？</p>
@@ -204,13 +224,13 @@ var _hmt = _hmt || [];
 
     
     
-    <a href="/2017/04/24/2017-04-24-Kotlin and Anko-2017/" type="button" class="btn btn-default"><i
+    <a href="/2017/04/24/2017-04-24-如何命名版本号-2017/" type="button" class="btn btn-default"><i
                 class="fa fa-arrow-circle-o-left"></i> Prev</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
     
-    <a href="/2017/04/24/2017-04-24-单元测试与MOCK-2017/" type="button" class="btn btn-default ">Next<i
+    <a href="/2017/04/24/2017-04-24-伪随机数与安全性-2017/" type="button" class="btn btn-default ">Next<i
                 class="fa fa-arrow-circle-o-right"></i></a>
     
 
@@ -245,6 +265,17 @@ var _hmt = _hmt || [];
 
 	<!-- categories -->
     
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/DevOps/">DevOps<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
 
 	<!-- tags -->
 	
@@ -259,6 +290,12 @@ var _hmt = _hmt || [];
 
 	<!-- toc -->
 	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#%E6%9E%84%E5%BB%BA%E4%BB%93%E5%BA%93%E4%B8%8E%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-article-text">构建仓库与管理器</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93"><span class="toc-article-text">什么是中央仓库</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-article-text">远程仓库与本地仓库</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%98%8E"><span class="toc-article-text">常见工具说明</span></a></li></ol></li></ol>
+		</div>
 	
 	</div>
 	
@@ -279,6 +316,8 @@ var _hmt = _hmt || [];
   <footer> <p>
   &copy; 2020 Leo He
   
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
 </p>
  </footer>
 </div> <!-- container-narrow -->

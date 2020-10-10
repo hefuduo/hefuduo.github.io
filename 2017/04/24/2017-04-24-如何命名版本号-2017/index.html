@@ -9,7 +9,7 @@
   <title>语义化版本 | LeoHe&#39;s Space</title>
   <meta name="author" content="Leo He">
   
-  <meta name="description" content="声明不息，学习不止">
+  <meta name="description" content="如何命名版本号">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -60,7 +60,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
  <body>  
   <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -133,6 +134,10 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> 如何命名版本号
+		 </div> <!-- alert -->
 	  		
 
 	  <p>转载： <a target="_blank" rel="noopener" href="http://semver.org/lang/zh-CN/">http://semver.org/lang/zh-CN/</a></p>
@@ -149,38 +154,27 @@ var _hmt = _hmt || [];
 <p>我称这套系统为“语义化的版本控制”，在这套约定下，版本号及其更新方式包含了相邻版本间的底层代码和修改内容的信息。</p>
 <h2 id="语义化版本控制规范（SemVer）"><a href="#语义化版本控制规范（SemVer）" class="headerlink" title="语义化版本控制规范（SemVer）"></a>语义化版本控制规范（SemVer）</h2><p>以下关键词 MUST、MUST NOT、REQUIRED、SHALL、SHALL NOT、SHOULD、SHOULD NOT、 RECOMMENDED、MAY、OPTIONAL 依照 RFC 2119 的叙述解读。（译注：为了保持语句顺畅， 以下文件遇到的关键词将依照整句语义进行翻译，在此先不进行个别翻译。）</p>
 <ol>
-<li><p>​</p>
-<p>使用语义化版本控制的软件“必须 MUST ”定义公共 API。该 API 可以在代码中被定义或出现于严谨的文件内。无论何种形式都应该力求精确且完整。</p>
+<li><p>使用语义化版本控制的软件“必须 MUST ”定义公共 API。该 API 可以在代码中被定义或出现于严谨的文件内。无论何种形式都应该力求精确且完整。</p>
 </li>
-<li><p>​</p>
-<p>标准的版本号“必须 MUST ”采用 XYZ 的格式，其中 X、Y 和 Z 为非负的整数，且“禁止 MUST NOT”在数字前方补零。X 是主版本号、Y 是次版本号、而 Z 为修订号。每个元素“必须 MUST ”以数值来递增。例如：1.9.1 -&gt; 1.10.0 -&gt; 1.11.0。</p>
+<li><p>标准的版本号“必须 MUST ”采用 XYZ 的格式，其中 X、Y 和 Z 为非负的整数，且“禁止 MUST NOT”在数字前方补零。X 是主版本号、Y 是次版本号、而 Z 为修订号。每个元素“必须 MUST ”以数值来递增。例如：1.9.1 -&gt; 1.10.0 -&gt; 1.11.0。</p>
 </li>
-<li><p>​</p>
-<p>标记版本号的软件发行后，“禁止 MUST NOT ”改变该版本软件的内容。任何修改都“必须 MUST ”以新版本发行。</p>
+<li><p>标记版本号的软件发行后，“禁止 MUST NOT ”改变该版本软件的内容。任何修改都“必须 MUST ”以新版本发行。</p>
 </li>
-<li><p>​</p>
-<p>主版本号为零（0.y.z）的软件处于开发初始阶段，一切都可能随时被改变。这样的公共 API 不应该被视为稳定版。</p>
+<li><p>主版本号为零（0.y.z）的软件处于开发初始阶段，一切都可能随时被改变。这样的公共 API 不应该被视为稳定版。</p>
 </li>
-<li><p>​</p>
-<p>1.0.0 的版本号用于界定公共 API 的形成。这一版本之后所有的版本号更新都基于公共 API 及其修改内容。</p>
+<li><p>1.0.0 的版本号用于界定公共 API 的形成。这一版本之后所有的版本号更新都基于公共 API 及其修改内容。</p>
 </li>
-<li><p>​</p>
-<p>修订号 Z（x.y.Z <code>|</code> x &gt; 0）“必须 MUST ”在只做了向下兼容的修正时才递增。这里的修正指的是针对不正确结果而进行的内部修改。</p>
+<li><p>修订号 Z（x.y.Z <code>|</code> x &gt; 0）“必须 MUST ”在只做了向下兼容的修正时才递增。这里的修正指的是针对不正确结果而进行的内部修改。</p>
 </li>
-<li><p>​</p>
-<p>次版本号 Y（x.Y.z <code>|</code> x &gt; 0）“必须 MUST ”在有向下兼容的新功能出现时递增。在任何公共 API 的功能被标记为弃用时也“必须 MUST ”递增。也“可以 MAY ”在内部程序有大量新功能或改进被加入时递增，其中“可以 MAY ”包括修订级别的改变。每当次版本号递增时，修订号“必须 MUST ”归零。</p>
+<li><p>次版本号 Y（x.Y.z <code>|</code> x &gt; 0）“必须 MUST ”在有向下兼容的新功能出现时递增。在任何公共 API 的功能被标记为弃用时也“必须 MUST ”递增。也“可以 MAY ”在内部程序有大量新功能或改进被加入时递增，其中“可以 MAY ”包括修订级别的改变。每当次版本号递增时，修订号“必须 MUST ”归零。</p>
 </li>
-<li><p>​</p>
-<p>主版本号 X（X.y.z <code>|</code> X &gt; 0）“必须 MUST ”在有任何不兼容的修改被加入公共 API 时递增。其中“可以 MAY ”包括次版本号及修订级别的改变。每当主版本号递增时，次版本号和修订号“必须 MUST ”归零。</p>
+<li><p>主版本号 X（X.y.z <code>|</code> X &gt; 0）“必须 MUST ”在有任何不兼容的修改被加入公共 API 时递增。其中“可以 MAY ”包括次版本号及修订级别的改变。每当主版本号递增时，次版本号和修订号“必须 MUST ”归零。</p>
 </li>
-<li><p>​</p>
-<p>先行版本号“可以 MAY ”被标注在修订版之后，先加上一个连接号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 码的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。数字型的标识符号“禁止 MUST NOT ”在前方补零。先行版的优先级低于相关联的标准版本。被标上先行版本号则表示这个版本并非稳定而且可能无法达到兼容的需求。范例：1.0.0-alpha、1.0.0-alpha.1、1.0.0-0.3.7、1.0.0-x.7.z.92。</p>
+<li><p>先行版本号“可以 MAY ”被标注在修订版之后，先加上一个连接号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 码的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。数字型的标识符号“禁止 MUST NOT ”在前方补零。先行版的优先级低于相关联的标准版本。被标上先行版本号则表示这个版本并非稳定而且可能无法达到兼容的需求。范例：1.0.0-alpha、1.0.0-alpha.1、1.0.0-0.3.7、1.0.0-x.7.z.92。</p>
 </li>
-<li><p>​</p>
-<p>版本编译信息“可以 MAY ”被标注在修订版或先行版本号之后，先加上一个加号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。当判断版本的优先层级时，版本编译信息“可 SHOULD ”被忽略。因此当两个版本只有在版本编译信息有差别时，属于相同的优先层级。范例：1.0.0-alpha+001、1.0.0+20130313144700、1.0.0-beta+exp.sha.5114f85。</p>
+<li><p>版本编译信息“可以 MAY ”被标注在修订版或先行版本号之后，先加上一个加号再加上一连串以句点分隔的标识符号来修饰。标识符号“必须 MUST ”由 ASCII 的英数字和连接号 [0-9A-Za-z-] 组成，且“禁止 MUST NOT ”留白。当判断版本的优先层级时，版本编译信息“可 SHOULD ”被忽略。因此当两个版本只有在版本编译信息有差别时，属于相同的优先层级。范例：1.0.0-alpha+001、1.0.0+20130313144700、1.0.0-beta+exp.sha.5114f85。</p>
 </li>
-<li><p>​</p>
-<p>版本的优先层级指的是不同版本在排序时如何比较。判断优先层级时，“必须 MUST ”把版本依序拆分为主版本号、次版本号、修订号及先行版本号后进行比较（版本编译信息不在这份比较的列表中）。由左到右依序比较每个标识符号，第一个差异值用来决定优先层级：主版本号、次版本号及修订号以数值比较，例如：1.0.0 &lt; 2.0.0 &lt; 2.1.0 &lt; 2.1.1。当主版本号、次版本号及修订号都相同时，改以优先层级比较低的先行版本号决定。例如：1.0.0-alpha &lt; 1.0.0。有相同主版本号、次版本号及修订号的两个先行版本号，其优先层级“必须 MUST ”透过由左到右的每个被句点分隔的标识符号来比较，直到找到一个差异值后决定：只有数字的标识符号以数值高低比较，有字母或连接号时则逐字以 ASCII 的排序来比较。数字的标识符号比非数字的标识符号优先层级低。若开头的标识符号都相同时，栏位比较多的先行版本号优先层级比较高。范例：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-beta &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0- rc.1 &lt; 1.0.0。</p>
+<li><p>版本的优先层级指的是不同版本在排序时如何比较。判断优先层级时，“必须 MUST ”把版本依序拆分为主版本号、次版本号、修订号及先行版本号后进行比较（版本编译信息不在这份比较的列表中）。由左到右依序比较每个标识符号，第一个差异值用来决定优先层级：主版本号、次版本号及修订号以数值比较，例如：1.0.0 &lt; 2.0.0 &lt; 2.1.0 &lt; 2.1.1。当主版本号、次版本号及修订号都相同时，改以优先层级比较低的先行版本号决定。例如：1.0.0-alpha &lt; 1.0.0。有相同主版本号、次版本号及修订号的两个先行版本号，其优先层级“必须 MUST ”透过由左到右的每个被句点分隔的标识符号来比较，直到找到一个差异值后决定：只有数字的标识符号以数值高低比较，有字母或连接号时则逐字以 ASCII 的排序来比较。数字的标识符号比非数字的标识符号优先层级低。若开头的标识符号都相同时，栏位比较多的先行版本号优先层级比较高。范例：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-beta &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0- rc.1 &lt; 1.0.0。</p>
 </li>
 </ol>
 <h2 id="为什么要使用语义化的版本控制？"><a href="#为什么要使用语义化的版本控制？" class="headerlink" title="为什么要使用语义化的版本控制？"></a>为什么要使用语义化的版本控制？</h2><p>这并不是一个新的或者革命性的想法。实际上，你可能已经在做一些近似的事情了。问题在于只是“近似”还不够。如果没有某个正式的规范可循，版本号对于依赖的管理并无实质意义。将上述的想法命名并给予清楚的定义，让你对软件使用者传达意向变得容易。一旦这些意向变得清楚，弹性（但又不会太弹性）的依赖规范就能达成。</p>
@@ -224,13 +218,13 @@ var _hmt = _hmt || [];
 
     
     
-    <a href="/2017/04/25/2017-04-25-Android依赖注入框架-2017/" type="button" class="btn btn-default"><i
+    <a href="/2017/06/22/2017-06-22-常驻后台线程-2017/" type="button" class="btn btn-default"><i
                 class="fa fa-arrow-circle-o-left"></i> Prev</a>
     
 
     <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
     
-    <a href="/2017/04/24/2017-04-24-Kotlin and Anko-2017/" type="button" class="btn btn-default ">Next<i
+    <a href="/2017/04/24/2017-04-24-构建仓库与管理器-2017/" type="button" class="btn btn-default ">Next<i
                 class="fa fa-arrow-circle-o-right"></i></a>
     
 
@@ -265,6 +259,17 @@ var _hmt = _hmt || [];
 
 	<!-- categories -->
     
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/DevOps/">DevOps<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
 
 	<!-- tags -->
 	
@@ -299,6 +304,8 @@ var _hmt = _hmt || [];
   <footer> <p>
   &copy; 2020 Leo He
   
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
 </p>
  </footer>
 </div> <!-- container-narrow -->
