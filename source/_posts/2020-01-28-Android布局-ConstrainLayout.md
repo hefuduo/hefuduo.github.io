@@ -1,9 +1,9 @@
 ---
-title: Android布局详解
+titble: Android布局详解
 toc: true
 date: 2021-01-28 11:13:49
-description:安卓布局值ConstrainLayout详解
-categories:Android基础
+description: 安卓布局值ConstrainLayout详解
+categories: Android基础
 tags:
 	-Android
 	-Layout
@@ -24,5 +24,7 @@ https://blog.csdn.net/shulianghan/article/details/97246870
 
 
 
+
 > 约束布局 如何使用 有何优势呢?
+
 
