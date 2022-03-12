@@ -38,6 +38,8 @@ universalimageloader|
 	|-utils
 ```
 
+<!-- more -->
+
 ## 整体设计架构与说明
 
 
