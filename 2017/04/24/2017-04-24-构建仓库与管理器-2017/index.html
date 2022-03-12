@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>构建仓库与管理器 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="中央仓库">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="构建仓库与管理器"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 构建仓库与管理器</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> 中央仓库
+		 </div> <!-- alert -->
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="构建仓库与管理器"><a href="#构建仓库与管理器" class="headerlink" title="构建仓库与管理器"></a>构建仓库与管理器</h1><h2 id="什么是中央仓库"><a href="#什么是中央仓库" class="headerlink" title="什么是中央仓库"></a>什么是中央仓库</h2><blockquote>
+<p>在中央仓库出现以前，一个工程往往需要引用一些库，那这些库就放在工程的一个lib文件夹下面。每次新建一个工程，你都要拷贝这些库到lib文件夹下面，这就造成了一个问题。一个工程的库文件可能需要更新，这就要靠手动的更新；不同工程引用相同的库文件，都要拷贝一份。</p>
+<p>尤其当这个工程需要使用GIt或SVN进行版本管理的时候，这些lib就成了一个噩梦。</p>
+</blockquote>
+<p>当maven仓库出现以后呢？</p>
+<p>这个中央仓库就是存放这些库的地方，当你需要引用这些库文件的时候，只是需要在工程中写一条语句就可以了。</p>
+<p>举个栗子，在Android中，如果想引用一个包需要怎么写呢：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">    compile <span class="token string">'com.android.support:design:23.2.0'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>就这么简单。</p>
+<p>gradle会自行将在中央仓库中查找该库的相应版本下载到本地，并添加到项目依赖中，编译时会将该库文件一并编译进去。</p>
+<p>用这样的方式来管理依赖，可以非常的安装卸载依赖，并且升级也很简单；同时，由于使用脚本语言，避免了git直接保存jar/aar的快照，而是追踪了脚本的变化，对于版本管理也非常方便。</p>
+<p>综上所述：Maven仓库就是放置所有JAR文件（WAR，ZIP，POM等等）的地方，所有Maven项目可以从同一个Maven仓库中获取自己所需要的依赖JAR，这节省了磁盘资源。此外，由于Maven仓库中所有的JAR都有其自己的坐标，该坐标告诉Maven它的组ID，构件ID，版本，打包方式等等，因此Maven项目可以方便的进行依赖版本管理。你也不在需要提交JAR文件到SCM仓库中，你可以建立一个组织层次的Maven仓库，供所有成员使用。</p>
+<p>Maven仓库能帮助我们管理构件（主要是JAR）。</p>
+<span id="more"></span>
+
+<h2 id="远程仓库与本地仓库"><a href="#远程仓库与本地仓库" class="headerlink" title="远程仓库与本地仓库"></a>远程仓库与本地仓库</h2><p>运行Maven的时候，Maven所需要的任何构件都是直接从本地仓库获取的。如果本地仓库没有，它会首先尝试从远程仓库下载构件至本地仓库，然后再使用本地仓库的构件。</p>
+<p>比如说，你的项目配置了junit-3.8的依赖，在你运行<strong>mvn test</strong> 的时候，Maven需要使用junit-3.8的jar文件，它首先根据坐标查找本地仓库，如果找到，就直接使用。如果没有，Maven会检查可用的远程仓库配置，然后一次尝试从这些远程仓库下载junit-3.8的依赖，如果找到了就下载下来使用，如果没有则会报错。</p>
+<blockquote>
+<p>在Android中，gradle会将文件下载到.gralde/cache/moduleXX这个文件夹下面，在gradle引用项目时，先从这里找，如果没有，则在指定的maven远程仓库中获取。</p>
+</blockquote>
+<p>指定远程仓库</p>
+<p>如果想在Android中指定可以使用</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">allprojects<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  repositories<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">mavenLocal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//本地仓库</span>
+    <span class="token function">jcenter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//jcenter</span>
+    maven<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      url <span class="token string">'your_remote_repository_url'</span> <span class="token comment" spellcheck="true">//指定一个远程仓库</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>//注意 allprojects声明的是该工程以及工程的子工程。</p>
+<p>//而在buildScript中声明的repositories仅仅是对于build.gradle脚本本身的声明.(脚本也是调用gradle的API,因此会以来一些文件).</p>
+<p>上传aar包到指定的仓库</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">apply plugin<span class="token punctuation">:</span> <span class="token string">'maven'</span><span class="token comment" spellcheck="true">//应用maven插件，这个插件会自动帮你做一些事情</span>
+description <span class="token string">"unionid"</span><span class="token comment" spellcheck="true">//项目的包名称</span>
+group <span class="token operator">=</span> project<span class="token operator">.</span><span class="token punctuation">[</span>your defined group<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">//group id 类似于com.xxx.xxx;</span>
+<span class="token comment" spellcheck="true">//version = '0.1.6-SNAPSHOT'</span>
+version <span class="token operator">=</span> project<span class="token operator">.</span><span class="token punctuation">[</span>your defined version<span class="token punctuation">]</span>
+uploadArchives <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    repositories <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        mavenDeployer <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token function">repository</span><span class="token punctuation">(</span>url<span class="token punctuation">:</span> <span class="token string">"your_url"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token function">authentication</span><span class="token punctuation">(</span>userName<span class="token punctuation">:</span><span class="token string">'your_usr_name'</span><span class="token punctuation">,</span> password<span class="token punctuation">:</span><span class="token string">'your_password'</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一些项目的属性都在gradle.properties中定义</p>
+<pre><code>VERSION_NAME=
+VERSION_CODE=
+GROUP=
+</code></pre>
+<blockquote>
+<p>题外话</p>
+<p>Gradle支持从maven中央仓库和JCenter上获取构件，那这两者有什么区别呢？</p>
+<p>maven中央仓库（<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/">http://repo1.maven.org/maven2/</a>）是由Sonatype公司提供的服务，它是Apache Maven、SBT和其他构建系统的默认仓库，并能很容易被Apache Ant/Ivy、Gradle和其他工具所使用。开源组织例如Apache软件基金会、Eclipse基金会、JBoss和很多个人开源项目都将构件发布到中央仓库。 maven中央仓库已经将内容浏览功能禁掉了，可在<a target="_blank" rel="noopener" href="http://search.maven.org/">http://search.maven.org/</a>查询构件。</p>
+<p><a target="_blank" rel="noopener" href="https://bintray.com/bintray/jcenter'%3EJCenter%3C/a%3E%EF%BC%88%3Ca%20href=">https://jcenter.bintray.com</a> ）是由JFrog公司提供的Bintray中的Java仓库。它是当前世界上最大的Java和Android开源软件构件仓库。 所有内容都通过内容分发网络（CDN）使用加密https连接获取。JCenter是<a target="_blank" rel="noopener" href="http://groovy.codehaus.org/Grape">Goovy Grape</a>内的默认仓库，Gradle内建支持（jcenter()仓库），非常易于在（可能除了Maven之外的）其他构建工具内进行配置。</p>
+<p>JCenter相比mavenCenter构件更多，性能也更好。但还是有些构件仅存在mavenCenter中。</p>
+</blockquote>
+<h2 id="常见工具说明"><a href="#常见工具说明" class="headerlink" title="常见工具说明"></a>常见工具说明</h2><p>使用Maven，可以从<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/">Maven中央仓库</a>下载所需要的构件（artifact），但这通常不是一个好的做法，一般是在企业内部架设一个Maven仓库服务器，在代理远程仓库的同时维护本地仓库，以节省带宽和时间。企业仓库管理器一般可以提供高并发访问、浏览和查询、报表、访问控制、备份、对其他仓库进行代理、REST API等特性</p>
+<p>了解一下构件仓库管理器，市场上最好的是JFrog的<a target="_blank" rel="noopener" href="http://www.jfrog.com/#os-arti">Artifactory</a>和Sonatype的<a target="_blank" rel="noopener" href="http://www.sonatype.org/nexus/">Nexus</a>，而且这两个产品既有商业版也有免费社区版。</p>
+<p>以Artifactory为例，Ant+Ivy、Maven和Gradle这些构建工具都可以自动下载Artifactory里的构件（artifact），此外Jenkins、Bamboo等CI工具也可以通过构建工具将生成的构件（artifact）部署到Artifactory上。</p>
+<p>一张图片看懂：</p>
+<p><img src="/img/java/maven.jpeg" alt="maven"></p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_72ef7bea0102vq0k.html">了解构建仓库管理器Artifactory和Nexus</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_72ef7bea0102vvqg.html">聊一聊MavenCenter和JCenter</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/04/24/2017-04-24-如何命名版本号-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/03/31/2017-03-31-Android生命周期-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-04-24 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/DevOps/">DevOps<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/软件工程/">软件工程<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#%E6%9E%84%E5%BB%BA%E4%BB%93%E5%BA%93%E4%B8%8E%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-article-text">构建仓库与管理器</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93"><span class="toc-article-text">什么是中央仓库</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-article-text">远程仓库与本地仓库</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%98%8E"><span class="toc-article-text">常见工具说明</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2022 Leo He
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

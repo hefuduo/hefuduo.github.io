@@ -1,0 +1,1246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Groovy简明教程 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Groovy简明教程"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Groovy简明教程</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="Groovy特点"><a href="#Groovy特点" class="headerlink" title="Groovy特点"></a>Groovy特点</h2><ul>
+<li>同时支持静态与动态类型</li>
+<li>支持运算符重载</li>
+<li>对于正则表达式的本地支持</li>
+<li>对xml和html的原生支持</li>
+<li>与Java无缝衔接</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>可以参考Groovy官网上的方式，利用SDK来安装Groovy。</p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="Helloword"><a href="#Helloword" class="headerlink" title="Helloword"></a>Helloword</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//类似Java的方式</span>
+<span class="token keyword">class</span> <span class="token class-name">HelloWorld</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//Using a simple printn statement to print output to console.</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>'hello world<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//如果用Groovy脚本的方式：</span>
+    println <span class="token string">'hello world'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>xml<span class="token operator">.</span>MarkupBuilder
+<span class="token keyword">def</span> xml <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MarkupBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>默认情况下，Groovy在代码中包括了一些库，不需要显示的导入。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">java<span class="token operator">.</span>lang<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+java<span class="token operator">.</span>util<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+java<span class="token operator">.</span>io<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+java<span class="token operator">.</span>net<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+
+groovy<span class="token operator">.</span>lang<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+groovy<span class="token operator">.</span>util<span class="token operator">.</span><span class="token operator">*</span><span class="token punctuation">;</span>
+
+java<span class="token operator">.</span>math<span class="token operator">.</span>BigInteger<span class="token punctuation">;</span>
+java<span class="token operator">.</span>math<span class="token operator">.</span>BigDecimal<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Groovy语句"><a href="#Groovy语句" class="headerlink" title="Groovy语句"></a>Groovy语句</h2><p>语句可以是一个关键字，一个标识符，常量，字符串文字或者是符号</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>参考Java的就可以</p>
+<h2 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h2><p>Groovy可以不用写分号一行就是一条语句</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>Groovy声明变量的方式是利用def 关键字。标识符以字母，美元或者下划线开头。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> employee
+<span class="token keyword">def</span> student
+<span class="token keyword">def</span> conter
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><p>浮点数，整数，字符和字符串</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> i <span class="token operator">=</span> <span class="token number">12</span>
+<span class="token keyword">def</span> j <span class="token operator">=</span> <span class="token number">12.5</span>
+<span class="token keyword">def</span> a <span class="token operator">=</span> <span class="token string">'a'</span>
+<span class="token keyword">def</span> s1 <span class="token operator">=</span> <span class="token string">"aaa"</span>
+<span class="token keyword">def</span> s2 <span class="token operator">=</span> <span class="token string">'aaaaaaa'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="内置数据类型"><a href="#内置数据类型" class="headerlink" title="内置数据类型"></a>内置数据类型</h2><ul>
+<li>byte </li>
+<li>short </li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>char</li>
+<li>boolean</li>
+<li>String</li>
+</ul>
+<h2 id="数字类（Number）"><a href="#数字类（Number）" class="headerlink" title="数字类（Number）"></a>数字类（Number）</h2><ul>
+<li>Byte</li>
+<li>Short</li>
+<li>Integer</li>
+<li>Long</li>
+<li>Float</li>
+<li>Double</li>
+<li>BigInteger</li>
+<li>BIgDecimal</li>
+</ul>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>变量的声明有两种：</p>
+<p>一种是类似Java的方式声明，一种是利用def关键字，变量的类型在赋值的时候去确定。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">String a <span class="token operator">=</span> <span class="token string">"hello"</span>
+<span class="token keyword">def</span> a <span class="token operator">=</span> <span class="token string">'hello'</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token keyword">def</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token function">println</span><span class="token punctuation">(</span>a<span class="token operator">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"1112234"</span><span class="token punctuation">)</span>
+<span class="token function">println</span><span class="token punctuation">(</span>a<span class="token operator">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>//利用def的方式，变量的类型还可以随时动态的切换</p>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><ul>
+<li>算术运算符</li>
+<li>关系运算符</li>
+<li>逻辑运算符</li>
+<li>位运算符</li>
+<li>赋值运算符</li>
+</ul>
+<p>主要介绍一下Groovy比Java多出的一些特性</p>
+<p><strong>范围运算符</strong></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> range <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">..</span><span class="token number">5</span>
+<span class="token function">println</span><span class="token punctuation">(</span>range<span class="token operator">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token function">println</span><span class="token punctuation">(</span>range<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>输出</strong></p>
+<pre class="line-numbers language-tex"><code class="language-tex">class groovy.lang.IntRange
+[0, 1, 2, 3, 4, 5]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">while</span><span class="token punctuation">(</span>condition<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//execution</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//excution</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//for in</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>var <span class="token keyword">in</span> range<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//for 语句也可以用于循环访问map,将输出一个键值</span>
+<span class="token keyword">def</span> e <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">:</span><span class="token number">31</span><span class="token punctuation">,</span><span class="token string">"c"</span><span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token string">"d"</span><span class="token punctuation">:</span><span class="token number">32</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>a <span class="token keyword">in</span> e<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>终止内层循环</p>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>当执行continue语句时，控制立即传递到最近的封闭循环的测试条件，以确定循环是否应该继续。对于该特定循环迭代，循环体中的所有后续语句都将被忽略。</p>
+<h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><h3 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a>if-else</h3><h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>Groovy用def关键字定方法。方法可以接受任意数量参数，可不用显示定义类型。可以添加修饰符，默认的是public的。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">methodName</span><span class="token punctuation">(</span>parm1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> param3<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//code </span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>可以添加任意多个参数，并且可以指定默认参数，但是默认参数必须定义在参数列表的末尾。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">someMethod</span><span class="token punctuation">(</span>param1<span class="token punctuation">,</span> param2<span class="token operator">.</span> param3 <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//method code </span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">add</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> w <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">+</span> y <span class="token operator">+</span> z <span class="token operator">+</span> w<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+s <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的代码，默认的返回最后一行表达式的值。</p>
+<p>但是为了避免歧义：我们可以通过这种方式来进行：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token keyword">int</span> <span class="token function">add</span><span class="token punctuation">(</span>x <span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//定义返回值类型。</span>
+    x <span class="token operator">+</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//or</span>
+<span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//通过以上两种方式可以明确这个方法是否有返回值，这样避免歧义。</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="文件I-O"><a href="#文件I-O" class="headerlink" title="文件I/O"></a>文件I/O</h1><p>Groovy在使用IO时提供了许多辅助方法。Groovy提供了更简单的类来为文件提供以下功能：</p>
+<ul>
+<li>读取文件</li>
+<li>写入文件</li>
+<li>遍历文件树</li>
+<li>读取和写入数据对象到文件</li>
+</ul>
+<p>也可以使用java.io.*下面的所有标准Java类</p>
+<h2 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span><span class="token operator">.</span>eachLine <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    line <span class="token operator">-></span> println line
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>如果要将文件的整个内容作为字符串获取，可以使用文件类的text属性。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+println fi<span class="token operator">.</span>text
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>或者使用Java提供的<code>InputStream</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+InputStream it <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>fi<span class="token punctuation">)</span>
+it<span class="token operator">.</span>eachLine <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+fi<span class="token operator">.</span>withWriter <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it<span class="token operator">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Job : computer engineer"</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println fi<span class="token operator">.</span>text
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以追加的形式写入文件：</p>
+<pre class="line-numbers language-java"><code class="language-java">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+OutputStream stream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span>fi<span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+stream<span class="token punctuation">.</span>withWriter <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"age:27"</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+stream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+fi<span class="token punctuation">.</span>eachLine <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="获取文件大小"><a href="#获取文件大小" class="headerlink" title="获取文件大小"></a>获取文件大小</h2><pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+println fi<span class="token operator">.</span>absolutePath
+println fi<span class="token operator">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="测试文件是否是目录"><a href="#测试文件是否是目录" class="headerlink" title="测试文件是否是目录"></a>测试文件是否是目录</h2><pre class="line-numbers language-groovy"><code class="language-groovy">println fi<span class="token operator">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+println fi<span class="token operator">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="创建与删除目录"><a href="#创建与删除目录" class="headerlink" title="创建与删除目录"></a>创建与删除目录</h2><pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/dirtest/"</span><span class="token punctuation">)</span>
+fi<span class="token operator">.</span><span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+fi<span class="token operator">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/hefuduo.profile"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> src <span class="token operator">=</span> fi
+<span class="token keyword">def</span> dst <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>fi<span class="token operator">.</span>absolutePath<span class="token punctuation">)</span>
+dst <span class="token operator">&lt;&lt;</span> src<span class="token operator">.</span>text
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="获取目录中的所有内容"><a href="#获取目录中的所有内容" class="headerlink" title="获取目录中的所有内容"></a>获取目录中的所有内容</h2><pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> files <span class="token operator">=</span> fi<span class="token operator">.</span><span class="token function">listFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+println files<span class="token operator">.</span>length
+files<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it<span class="token operator">.</span>name
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果要递归的显示目录与子目录中的所有文件，则可以使用File了<code>eachFileRecurse</code>函数。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">File fi <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"/Users/hefuduo/"</span><span class="token punctuation">)</span>
+fi<span class="token operator">.</span>eachFileRecurse <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    file <span class="token operator">-></span>
+        println file<span class="token operator">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy-可选"><a href="#Groovy-可选" class="headerlink" title="Groovy 可选"></a>Groovy 可选</h1><p>Groovy是个动态类型语言，相对Java的强类型语言，Groovy在编写代码时候，可以灵活的提供类型或不是类型。</p>
+<h1 id="Groovy内部数据"><a href="#Groovy内部数据" class="headerlink" title="Groovy内部数据"></a>Groovy内部数据</h1><h2 id="Groovy数字"><a href="#Groovy数字" class="headerlink" title="Groovy数字"></a>Groovy数字</h2><p>在Groovy中，数字实际上标识为对象，他们都是类<code>Integer</code>的一个实例。</p>
+<p>Groovy支持整数和浮点数</p>
+<pre class="line-numbers language-java"><code class="language-java">Integer x <span class="token operator">=</span> <span class="token number">5</span>
+Float y <span class="token operator">=</span> <span class="token number">1.25</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">,</span> z <span class="token operator">=</span> <span class="token number">0</span>
+z <span class="token operator">=</span> x <span class="token operator">+</span> y
+println z
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="Groovy字符串"><a href="#Groovy字符串" class="headerlink" title="Groovy字符串"></a>Groovy字符串</h2><p>Groovy提供了多种表示String字面量的方法。 Groovy中的字符串可以用单引号（’），双引号（“）或三引号（”“”）括起来。此外，由三重引号括起来的Groovy字符串可以跨越多行。</p>
+<h3 id="字符串索引"><a href="#字符串索引" class="headerlink" title="字符串索引"></a>字符串索引</h3><pre class="line-numbers language-groovy"><code class="language-groovy">String sample <span class="token operator">=</span> <span class="token string">"Hello Groovy"</span>
+println sample<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>
+println sample<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+println sample<span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">..</span><span class="token number">2</span><span class="token punctuation">]</span>
+println sample<span class="token punctuation">[</span><span class="token number">4</span><span class="token operator">..</span><span class="token number">2</span><span class="token punctuation">]</span>
+println sample<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Groovy范围"><a href="#Groovy范围" class="headerlink" title="Groovy范围"></a>Groovy范围</h2><p>范围是指定值序列的速记。范围由序列中的第一个和最后一个值表示，Range可以是包含或排除。包含范围包括从第一个到最后一个的所有值，而独占范围包括除最后一个之外的所有值。这里有一些范例文字的例子 - </p>
+<ul>
+<li>1..10 - 包含范围的示例</li>
+<li>1 .. &lt;10 - 独占范围的示例</li>
+<li>‘a’..’x’ - 范围也可以由字符组成</li>
+<li>10..1 - 范围也可以按降序排列</li>
+<li>‘x’..’a’ - 范围也可以由字符组成并按降序排列。</li>
+</ul>
+<h2 id="Groovy列表"><a href="#Groovy列表" class="headerlink" title="Groovy列表"></a>Groovy列表</h2><p>列表是用于存储数据项集合的结构。在Groovy中，List保存了一系列对象引用。List中的对象引用占据序列中的位置，并通过整数索引来区分。列表文字表示为一系列用逗号分隔并用方括号括起来的对象。</p>
+<p>要处理列表中的数据，我们必须能够访问各个元素。 Groovy列表使用索引操作符[]索引。列表索引从零开始，这指的是第一个元素。</p>
+<p>以下是一些列表的示例 - </p>
+<ul>
+<li>[11，12，13，14] - 整数值列表</li>
+<li>[‘Angular’，’Groovy’，’Java’] - 字符串列表</li>
+<li>[1，2，[3，4]，5] - 嵌套列表</li>
+<li>[‘Groovy’，21，2.11] - 异构的对象引用列表</li>
+<li>[] - 一个空列表</li>
+</ul>
+<h2 id="Groovy映射"><a href="#Groovy映射" class="headerlink" title="Groovy映射"></a>Groovy映射</h2><p>映射（也称为关联数组，字典，表和散列）是对象引用的无序集合。Map集合中的元素由键值访问。 Map中使用的键可以是任何类。当我们插入到Map集合中时，需要两个值：键和值。</p>
+<p>以下是一些映射的例子 - </p>
+<ul>
+<li>[‘TopicName’：’Lists’，’TopicName’：’Maps’] - 具有TopicName作为键的键值对的集合及其相应的值。</li>
+<li>[：] - 空映射。</li>
+</ul>
+<p>在本章中，我们将讨论Groovy中可用的映射方法。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> aMap <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'TopicName'</span><span class="token punctuation">:</span><span class="token string">'Lists'</span><span class="token punctuation">,</span><span class="token string">'TopicName2'</span><span class="token punctuation">:</span><span class="token string">'Maps'</span><span class="token punctuation">]</span>
+aMap<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    key<span class="token punctuation">,</span>value <span class="token operator">-></span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"key = $key"</span> <span class="token operator">+</span> <span class="token string">"value = $value"</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy正则表达式"><a href="#Groovy正则表达式" class="headerlink" title="Groovy正则表达式"></a>Groovy正则表达式</h1><p>正则表达式是用于在文本中查找子字符串的模式。 Groovy使用〜“regex”表达式本地支持正则表达式。引号中包含的文本表示用于比较的表达式。</p>
+<p>例如，我们可以创建一个正则表达式对象，如下所示 - </p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> regex <span class="token operator">=</span> <span class="token operator">~</span><span class="token string">'Groovy'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当Groovy运算符=〜在if和while语句（见第8章）中作为谓词（返回布尔值的表达式）出现时，左侧的String操作数与右侧的正则表达式操作数匹配。因此，以下每个都传递值true。</p>
+<p>当定义正则表达式时，可以使用以下特殊字符</p>
+<ul>
+<li>有两个特殊的位置字符用于表示一行的开始和结束：caret（∧）和美元符号（$）。</li>
+<li>正则表达式也可以包括量词。加号（+）表示一次或多次，应用于表达式的前一个元素。星号（*）用于表示零个或多个出现。问号（？）表示零或一次。</li>
+<li>元字符{和}用于匹配前一个字符的特定数量的实例。</li>
+<li>在正则表达式中，句点符号（。）可以表示任何字符。这被描述为通配符。</li>
+<li>正则表达式可以包括字符类。一组字符可以作为简单的字符序列，包含在元字符[和]中，如[aeiou]中。对于字母或数字范围，可以使用[a-z]或[a-mA-M]中的短划线分隔符。字符类的补码由方括号内的前导插入符号表示，如[∧a-z]中所示，并表示除指定的字符以外的所有字符。</li>
+</ul>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token string">'Groovy'</span> <span class="token operator">=~</span> <span class="token string">'Groovy'</span> 
+<span class="token string">'Groovy'</span> <span class="token operator">=~</span> <span class="token string">'oo'</span> 
+<span class="token string">'Groovy'</span> <span class="token operator">==~</span> <span class="token string">'Groovy'</span> 
+<span class="token string">'Groovy'</span> <span class="token operator">==~</span> <span class="token string">'oo'</span> 
+<span class="token string">'Groovy'</span> <span class="token operator">=~</span> <span class="token string">'∧G'</span> 
+‘Groovy<span class="token string">' =~ '</span>G<span class="token punctuation">$</span>' 
+‘Groovy<span class="token string">' =~ '</span>Gro<span class="token operator">*</span>vy<span class="token string">' '</span>Groovy<span class="token string">' =~ '</span>Gro<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token number">2</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>vy'
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> regex <span class="token operator">=</span> <span class="token operator">~</span><span class="token string">'groovy'</span>
+<span class="token function">println</span> <span class="token punctuation">(</span><span class="token string">"groovy"</span><span class="token operator">.</span><span class="token function">matches</span><span class="token punctuation">(</span>regex<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><pre class="line-numbers language-Groovy"><code class="language-Groovy">class Empire&#123;
+    private String name //必须制定getter和setter，因为是private的
+    int age //提供默认的getter 和setter
+    Empire(String name,int age)&#123;
+        this.name = name
+        this.age = age
+    &#125;
+    def getName()&#123;
+        return name
+    &#125;
+&#125;
+
+Empire empire = new Empire("China",5000)
+println empire.getName() //属性getter
+println empire.name  //属性
+println empire.age
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="继承-amp-扩展"><a href="#继承-amp-扩展" class="headerlink" title="继承&amp;扩展"></a>继承&amp;扩展</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">interface</span> <span class="token class-name">FLY</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> <span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name
+    <span class="token keyword">private</span> String category
+
+    <span class="token function">Animal</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> String category<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>name <span class="token operator">=</span> name
+        <span class="token keyword">this</span><span class="token operator">.</span>category <span class="token operator">=</span> category
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    String <span class="token function">getCategory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> category
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>name <span class="token operator">=</span> name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">void</span> <span class="token function">setCategory</span><span class="token punctuation">(</span>String category<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>category <span class="token operator">=</span> category
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Dove</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token keyword">implements</span> <span class="token class-name">FLY</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    
+    
+    <span class="token function">Dove</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> String category<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> category<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">def</span> <span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println <span class="token string">"I believe i can fly"</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+Dove d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dove</span><span class="token punctuation">(</span><span class="token string">"Dove"</span><span class="token punctuation">,</span><span class="token string">"Bird"</span><span class="token punctuation">)</span>
+println d<span class="token operator">.</span>name
+println d<span class="token operator">.</span>category 
+d<span class="token operator">.</span><span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+Dove f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dove</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span>
+f<span class="token operator">.</span>name <span class="token operator">=</span> <span class="token string">"lala"</span>
+f<span class="token operator">.</span>category <span class="token operator">=</span> <span class="token string">"prettyBird"</span>
+println f<span class="token operator">.</span>name
+println f<span class="token operator">.</span>category
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>下面是一个外部和内部类的例子。在下面的例子中，我们做了以下事情 - </p>
+<ul>
+<li>创建一个名为Outer的类，它将是我们的外部类。</li>
+<li>在Outer类中定义名为name的字符串。</li>
+<li>在我们的外类中创建一个内部或嵌套类。</li>
+<li>请注意，在内部类中，我们可以访问在Outer类中定义的名称实例成员。</li>
+</ul>
+<blockquote>
+<p>其实Groovy中的内部类和Java中的是一样的</p>
+</blockquote>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>同上</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ABTest</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">abstract</span> <span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AB</span> <span class="token keyword">extends</span> <span class="token class-name">ABTest</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口定义了类需要遵守的契约。接口仅定义需要实现的方法的列表，但是不定义方法实现。需要使用interface关键字声明接口。接口仅定义方法签名。接口的方法总是公开的。在接口中使用受保护或私有方法是一个错误。</p>
+<h1 id="Groovy-泛型"><a href="#Groovy-泛型" class="headerlink" title="Groovy 泛型"></a>Groovy 泛型</h1><p>可以参考Java的泛型，他们是一样的。（因为Groovy也是基于JVM）</p>
+<h1 id="Groovy特征"><a href="#Groovy特征" class="headerlink" title="Groovy特征"></a>Groovy特征</h1><p>特征是语言的结构构造，允许 - </p>
+<ul>
+<li>行为的组成。</li>
+<li>接口的运行时实现。</li>
+<li>与静态类型检查/编译的兼容性</li>
+</ul>
+<p>它们可以被看作是承载默认实现和状态的接口。使用trait关键字定义trait。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">
+<span class="token keyword">trait</span> <span class="token class-name">SwimmingAbility</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> <span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println <span class="token string">"$&amp;#123;this.class&amp;#125; is swimming"</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">trait</span> <span class="token class-name">FlyingAbility</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> <span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println <span class="token string">"$&amp;#123;this.class&amp;#125; is flying"</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">interface</span> <span class="token class-name">Eat</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> <span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Duck</span> <span class="token keyword">implements</span> <span class="token class-name">SwimmingAbility</span> <span class="token punctuation">,</span>FlyingAbility<span class="token punctuation">,</span>Eat<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">def</span> <span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+Duck d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Duck</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+d<span class="token operator">.</span><span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+d<span class="token operator">.</span><span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">trait</span> <span class="token class-name">Name</span> <span class="token keyword">implements</span> <span class="token class-name">FlyingAbility</span><span class="token punctuation">,</span> SwimmingAbility<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String name
+    <span class="token keyword">abstract</span> <span class="token keyword">def</span> <span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Name</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String name
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">def</span> <span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println Name__name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//1.解决钻石问题（多重继承引发的歧义问题），同时能够实现多重继承的好处</span>
+<span class="token comment" spellcheck="true">//2.对trait的理解就是嵌入实现类中，而不是继承的那种上下文的关系</span>
+Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+p<span class="token operator">.</span>Name__name <span class="token operator">=</span> <span class="token string">"hefuduo"</span>
+p<span class="token operator">.</span>name <span class="token operator">=</span> <span class="token string">"LeoHe"</span>
+p<span class="token operator">.</span><span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+p<span class="token operator">.</span><span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">foo</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    str<span class="token operator">?.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token function">foo</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>##实现接口</p>
+<p>Traits可以实现接口，在这种情况下，使用implements关键字声明接口。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>特征可以定义属性。下面给出了具有属性的trait的示例。</p>
+<p>在以下示例中，integer类型的Marks1是一个属性。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      Student st <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      st<span class="token operator">.</span>StudentID <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        
+      <span class="token function">println</span><span class="token punctuation">(</span>st<span class="token operator">.</span><span class="token function">DisplayMarks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">println</span><span class="token punctuation">(</span>st<span class="token operator">.</span><span class="token function">DisplayTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    
+   <span class="token keyword">interface</span> <span class="token class-name">Total</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">void</span> <span class="token function">DisplayTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    
+   <span class="token keyword">trait</span> <span class="token class-name">Marks</span> <span class="token keyword">implements</span> <span class="token class-name">Total</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span> Marks1<span class="token punctuation">;</span>
+        
+      <span class="token keyword">void</span> <span class="token function">DisplayMarks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         <span class="token keyword">this</span><span class="token operator">.</span>Marks1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+         <span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">.</span>Marks1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        
+      <span class="token keyword">void</span> <span class="token function">DisplayTotal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+         <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Display Total"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    
+   <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token keyword">implements</span> <span class="token class-name">Marks</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">int</span> StudentID 
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="行为的构成"><a href="#行为的构成" class="headerlink" title="行为的构成"></a>行为的构成</h2><p>特征可以用于以受控的方式实现多重继承，避免钻石问题。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">trait</span> <span class="token class-name">Name</span> <span class="token keyword">implements</span> <span class="token class-name">FlyingAbility</span><span class="token punctuation">,</span> SwimmingAbility<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String name
+    <span class="token keyword">abstract</span> <span class="token keyword">def</span> <span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Name</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String name
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">def</span> <span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println Name__name
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//1.解决钻石问题（多重继承引发的歧义问题），同时能够实现多重继承的好处</span>
+<span class="token comment" spellcheck="true">//2.对trait的理解就是嵌入实现类中，而不是继承的那种上下文的关系</span>
+Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+p<span class="token operator">.</span>Name__name <span class="token operator">=</span> <span class="token string">"hefuduo"</span>
+p<span class="token operator">.</span>name <span class="token operator">=</span> <span class="token string">"LeoHe"</span>
+p<span class="token operator">.</span><span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+p<span class="token operator">.</span><span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy闭包"><a href="#Groovy闭包" class="headerlink" title="Groovy闭包"></a>Groovy闭包</h1><p>闭包是一个短的匿名代码块。它通常跨越几行代码。一个方法甚至可以将代码块作为参数。它们是匿名的。</p>
+<p>下面是一个简单闭包的例子，它是什么样子。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> close <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println <span class="token string">"hello groovy"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+close<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包中的形式参数"><a href="#闭包中的形式参数" class="headerlink" title="闭包中的形式参数"></a>闭包中的形式参数</h2><p>闭包也可以包含形式参数，以使它们更有用，就像Groovy中的方法一样。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> closure <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    suffix <span class="token operator">-></span> 
+    println <span class="token string">"hello $suffix"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//如果不写参数suffix，默认的提供一个叫it的参数</span>
+
+closure<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包和变量"><a href="#闭包和变量" class="headerlink" title="闭包和变量"></a>闭包和变量</h2><p>更正式地，闭包可以在定义闭包时引用变量。以下是如何实现这一点的示例。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> closure <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    param <span class="token operator">-></span> 
+        println param
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">def</span> <span class="token function">fin</span><span class="token punctuation">(</span>String logan<span class="token punctuation">,</span>Closure s<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    s<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span>logan<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token function">fin</span><span class="token punctuation">(</span><span class="token string">"hefuduo"</span><span class="token punctuation">,</span>closure<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="集合和字符串中的闭包"><a href="#集合和字符串中的闭包" class="headerlink" title="集合和字符串中的闭包"></a>集合和字符串中的闭包</h2><p>几个List，Map和String方法接受一个闭包作为参数。让我们看看在这些数据类型中如何使用闭包的例子。</p>
+<h3 id="使用闭包和列表"><a href="#使用闭包和列表" class="headerlink" title="使用闭包和列表"></a>使用闭包和列表</h3><p>以下示例显示如何使用闭包与列表。在下面的例子中，我们首先定义一个简单的值列表。列表集合类型然后定义一个名为.each的函数。此函数将闭包作为参数，并将闭包应用于列表的每个元素</p>
+<h3 id="使用映射闭包"><a href="#使用映射闭包" class="headerlink" title="使用映射闭包"></a>使用映射闭包</h3><p>以下示例显示了如何使用闭包。在下面的例子中，我们首先定义一个简单的关键值项Map。然后，映射集合类型定义一个名为.each的函数。此函数将闭包作为参数，并将闭包应用于映射的每个键值对。</p>
+<h1 id="Groovy注解"><a href="#Groovy注解" class="headerlink" title="Groovy注解"></a>Groovy注解</h1><p>注释是元数据的形式，其中它们提供关于不是程序本身的一部分的程序的数据。注释对它们注释的代码的操作没有直接影响。</p>
+<p>注释主要用于以下原因 - </p>
+<ul>
+<li><strong>编译器信息</strong> -编译器可以使用注释来检测错误或抑制警告。</li>
+<li><strong>编译时和部署时处理</strong> -软件工具可以处理注释信息以生成代码，XML文件等。</li>
+<li><strong>运行时处理</strong> -一些注释可以在运行时检查。</li>
+</ul>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><pre class="line-numbers language-groovy"><code class="language-groovy">@<span class="token keyword">interface</span> 
+<span class="token class-name">Simple</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String <span class="token function">str1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">"hi"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">enum</span> DayOfWeek<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>Mon<span class="token punctuation">,</span> Tue<span class="token punctuation">,</span> Wed<span class="token punctuation">,</span> Thu<span class="token punctuation">,</span> Sat<span class="token punctuation">,</span> Sun<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+@<span class="token keyword">interface</span> <span class="token class-name">Scheduled</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    DayOfWeek <span class="token function">dayOfWeek</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h2><pre class="line-numbers language-groovy"><code class="language-groovy">@<span class="token keyword">interface</span> 
+<span class="token class-name">Simple</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Simple</span>
+Class <span class="token class-name">User</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="注释成员值"><a href="#注释成员值" class="headerlink" title="注释成员值"></a>注释成员值</h2><p>使用注释时，需要至少设置所有没有默认值的成员。下面给出一个例子。当定义后使用注释示例时，需要为其分配一个值。</p>
+<h2 id="关闭注释参数"><a href="#关闭注释参数" class="headerlink" title="关闭注释参数"></a>关闭注释参数</h2><p>Groovy中注释的一个很好的特性是，你也可以使用闭包作为注释值。因此，注释可以与各种各样的表达式一起使用。</p>
+<p>下面给出一个例子。注释Onlyif是基于类值创建的。然后注释应用于两个方法，它们基于数字变量的值向结果变量发布不同的消息。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">@<span class="token keyword">interface</span> <span class="token class-name">OnlyIf</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   Class <span class="token class-name">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+
+<span class="token annotation punctuation">@OnlyIf</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> number<span class="token operator">&lt;=</span><span class="token number">6</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> 
+<span class="token keyword">void</span> <span class="token function">Version6</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   result <span class="token operator">&lt;&lt;</span> <span class="token string">'Number greater than 6'</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+
+<span class="token annotation punctuation">@OnlyIf</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> number<span class="token operator">>=</span><span class="token number">6</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> 
+<span class="token keyword">void</span> <span class="token function">Version7</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   result <span class="token operator">&lt;&lt;</span> <span class="token string">'Number greater than 6'</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="元注释"><a href="#元注释" class="headerlink" title="元注释"></a>元注释</h2><p>这是groovy中注释的一个非常有用的功能。有时可能有一个方法的多个注释，如下所示。有时这可能变得麻烦有多个注释。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token annotation punctuation">@Procedure</span> 
+<span class="token annotation punctuation">@Master</span> <span class="token keyword">class</span> 
+<span class="token class-name">MyMasterProcedure</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在这种情况下，您可以定义一个元注释，它将多个注释集中在一起，并将元注释应用于该方法。所以对于上面的例子，你可以使用AnnotationCollector来定义注释的集合。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>transform<span class="token operator">.</span>AnnotationCollector
+  
+<span class="token annotation punctuation">@Procedure</span> 
+<span class="token annotation punctuation">@Master</span> 
+<span class="token annotation punctuation">@AnnotationCollector</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一旦完成，您可以应用以下元注释器到该方法 - </p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>transform<span class="token operator">.</span>AnnotationCollector
+  
+<span class="token annotation punctuation">@Procedure</span> 
+<span class="token annotation punctuation">@Master</span> 
+<span class="token annotation punctuation">@AnnotationCollector</span>
+  
+<span class="token annotation punctuation">@MasterProcedure</span> 
+<span class="token keyword">class</span> <span class="token class-name">MyMasterProcedure</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy-XML"><a href="#Groovy-XML" class="headerlink" title="Groovy XML"></a>Groovy XML</h1><h2 id="XML-生成"><a href="#XML-生成" class="headerlink" title="XML 生成"></a>XML 生成</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>xml<span class="token operator">.</span>MarkupBuilder
+
+<span class="token keyword">def</span> mB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MarkupBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// Compose the builder</span>
+mB<span class="token operator">.</span><span class="token function">collection</span><span class="token punctuation">(</span>shelf<span class="token punctuation">:</span> <span class="token string">'New Arrivals'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">movie</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token string">'Enemy Behind'</span><span class="token punctuation">)</span>
+    <span class="token function">type</span><span class="token punctuation">(</span><span class="token string">'War, Thriller'</span><span class="token punctuation">)</span>
+    <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'DVD'</span><span class="token punctuation">)</span>
+    <span class="token function">year</span><span class="token punctuation">(</span><span class="token string">'2003'</span><span class="token punctuation">)</span>
+    <span class="token function">rating</span><span class="token punctuation">(</span><span class="token string">'PG'</span><span class="token punctuation">)</span>
+    <span class="token function">stars</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token function">description</span><span class="token punctuation">(</span><span class="token string">'Talk about a US-Japan war'</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+mB<span class="token operator">.</span><span class="token function">Html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">header</span><span class="token punctuation">(</span>ref <span class="token punctuation">:</span> <span class="token string">"www.baidu.com"</span><span class="token punctuation">)</span>
+    body<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token function">h1</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="XML解析"><a href="#XML解析" class="headerlink" title="XML解析"></a>XML解析</h2><p>Groovy XmlParser类使用一个简单的模型来将XML文档解析为Node实例的树。每个节点都有XML元素的名称，元素的属性和对任何子节点的引用。这个模型足够用于大多数简单的XML处理。</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>collection</span> <span class="token attr-name">shelf</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>New Arrivals<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>movie</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Enemy Behind<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>War, Thriller<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>format</span><span class="token punctuation">></span></span>DVD<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>format</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>2003<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rating</span><span class="token punctuation">></span></span>PG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rating</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stars</span><span class="token punctuation">></span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>stars</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>Talk about a US-Japan war<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>movie</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>movie</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Transformers<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>Anime, Science Fiction<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>format</span><span class="token punctuation">></span></span>DVD<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>format</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>1989<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rating</span><span class="token punctuation">></span></span>R<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rating</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stars</span><span class="token punctuation">></span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>stars</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>A schientific fiction<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>movie</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>movie</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Trigun<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>Anime, Action<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>format</span><span class="token punctuation">></span></span>DVD<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>format</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>1986<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rating</span><span class="token punctuation">></span></span>PG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rating</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stars</span><span class="token punctuation">></span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>stars</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>Vash the Stam pede!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>movie</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>movie</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ishtar<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>Comedy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>format</span><span class="token punctuation">></span></span>VHS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>format</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>1987<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rating</span><span class="token punctuation">></span></span>PG<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rating</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>stars</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>stars</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>description</span><span class="token punctuation">></span></span>Viewable boredom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>movie</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>collection</span><span class="token punctuation">></span></span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>解析代码</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> parser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XmlParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> doc <span class="token operator">=</span> parser<span class="token operator">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">"assets/movies.xml"</span><span class="token punctuation">)</span>
+doc<span class="token operator">.</span>movie<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    bk <span class="token operator">-></span>
+        print <span class="token string">"Movie Name : "</span>
+        println <span class="token string">"$&amp;#123;bk['@title']&amp;#125;"</span>
+        print <span class="token string">"Movie Type : "</span>
+        println <span class="token string">"$&amp;#123;bk.type[0].text()&amp;#125;"</span>
+        print <span class="token string">"Movie Format : "</span>
+        println <span class="token string">"$&amp;#123;bk.format[0].text()&amp;#125;"</span>
+        print <span class="token string">"Movie year : "</span>
+        println <span class="token string">"$&amp;#123;bk.year[0].text()&amp;#125;"</span>
+        print <span class="token string">"Rating : "</span>
+        println <span class="token string">"$&amp;#123;bk.rating[0].text()&amp;#125;"</span>
+        print <span class="token string">"Starts : "</span>
+        println <span class="token string">"$&amp;#123;bk.stars[0].text()&amp;#125;"</span>
+        print <span class="token string">"Description : "</span>
+        println <span class="token string">"$&amp;#123;bk.description[0].text()&amp;#125;"</span>
+        println <span class="token string">"============================="</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>重要的事情需要注意上面的代码。</p>
+<ul>
+<li>正在形成类XmlParser的对象，以便它可以用于解析XML文档。</li>
+<li>解析器被给定XML文件的位置。</li>
+<li>对于每个电影元素，我们使用闭包浏览每个子节点并显示相关信息。</li>
+</ul>
+<p>对于movie元素本身，我们使用@符号显示附加到movie元素的title属性。</p>
+<h1 id="Groovy-JMX"><a href="#Groovy-JMX" class="headerlink" title="Groovy JMX"></a>Groovy JMX</h1><p>JMX 用于监控与Java虚拟机环境有任何关系的所有应用程序。</p>
+<h2 id="监视JVM"><a href="#监视JVM" class="headerlink" title="监视JVM"></a>监视JVM</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> java<span class="token operator">.</span>lang<span class="token operator">.</span>management<span class="token operator">.</span><span class="token operator">*</span>
+
+<span class="token keyword">def</span> os <span class="token operator">=</span> ManagementFactory<span class="token operator">.</span>operatingSystemMXBean
+println <span class="token string">"""OPERATING SYSTEM: 
+    OS architecture = $os.arch 
+    OS name = $os.name 
+    OS version = $os.version 
+    OS processors = $os.availableProcessors 
+"""</span>
+
+<span class="token keyword">def</span> rt <span class="token operator">=</span> ManagementFactory<span class="token operator">.</span>runtimeMXBean
+println <span class="token string">"""RUNTIME: 
+       Runtime name = $rt.name 
+       Runtime spec name = $rt.specName 
+       Runtime vendor = $rt.specVendor 
+       Runtime spec version = $rt.specVersion 
+       Runtime management spec version = $rt.managementSpecVersion 
+   """</span>
+
+<span class="token keyword">def</span> mem <span class="token operator">=</span> ManagementFactory<span class="token operator">.</span>memoryMXBean
+<span class="token keyword">def</span> heapUsage <span class="token operator">=</span> mem<span class="token operator">.</span>heapMemoryUsage
+<span class="token keyword">def</span> nonHeapUsage <span class="token operator">=</span> mem<span class="token operator">.</span>nonHeapMemoryUsage
+
+println <span class="token string">"""MEMORY: 
+   HEAP STORAGE: 
+          Memory committed = $heapUsage.committed 
+          Memory init = $heapUsage.init 
+          Memory max = $heapUsage.max 
+          Memory used = $heapUsage.used NON-HEAP STORAGE: 
+          Non-heap memory committed = $nonHeapUsage.committed 
+          Non-heap memory init = $nonHeapUsage.init 
+          Non-heap memory max = $nonHeapUsage.max 
+          Non-heap memory used = $nonHeapUsage.used 
+   """</span>
+
+println <span class="token string">"GARBAGE COLLECTION:"</span>
+ManagementFactory<span class="token operator">.</span>garbageCollectorMXBeans<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> gc <span class="token operator">-></span>
+    println <span class="token string">"    name = $gc.name"</span>
+    println <span class="token string">"        collection count = $gc.collectionCount"</span>
+    println <span class="token string">"        collection time = $gc.collectionTime"</span>
+    String<span class="token punctuation">[</span><span class="token punctuation">]</span> mpoolNames <span class="token operator">=</span>   gc<span class="token operator">.</span>memoryPoolNames
+
+    mpoolNames<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        mpoolName <span class="token operator">-></span> println <span class="token string">"        mpool name = $mpoolName"</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Groovy-JSON"><a href="#Groovy-JSON" class="headerlink" title="Groovy JSON"></a>Groovy JSON</h2><h2 id="JSON功能"><a href="#JSON功能" class="headerlink" title="JSON功能"></a>JSON功能</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JsonSlurper</td>
+<td>JsonSlurper是一个将JSON文本或阅读器内容解析为Groovy数据的类结构，例如地图，列表和原始类型，如整数，双精度，布尔和字符串。</td>
+</tr>
+<tr>
+<td>JsonOutput</td>
+<td>此方法负责将Groovy对象序列化为JSON字符串。</td>
+</tr>
+</tbody></table>
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>json<span class="token operator">.</span>JsonSlurper
+
+<span class="token keyword">def</span> slurper <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsonSlurper</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> obj <span class="token operator">=</span> slurper<span class="token operator">.</span><span class="token function">parseText</span><span class="token punctuation">(</span><span class="token string">'&amp;#123;"name":"John","id":"1"&amp;#125;'</span><span class="token punctuation">)</span>
+println obj<span class="token operator">.</span>name
+println obj<span class="token operator">.</span>id
+
+<span class="token keyword">def</span> lst <span class="token operator">=</span> slurper<span class="token operator">.</span><span class="token function">parseText</span><span class="token punctuation">(</span><span class="token string">'&amp;#123;"List" : [2,3,4,5]&amp;#125;'</span><span class="token punctuation">)</span>
+lst<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    key<span class="token punctuation">,</span> value <span class="token operator">-></span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"$key = $value"</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>json<span class="token operator">.</span>JsonOutput
+
+<span class="token keyword">def</span> jsonOuter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsonOutput</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+map<span class="token operator">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span><span class="token string">"hefuduo"</span><span class="token punctuation">)</span>
+map<span class="token operator">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span><span class="token number">27</span><span class="token punctuation">)</span>
+map<span class="token operator">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"ss"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">Car</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+String json <span class="token operator">=</span> jsonOuter<span class="token operator">.</span><span class="token function">toJson</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span>
+
+println json
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy-DLS"><a href="#Groovy-DLS" class="headerlink" title="Groovy DLS"></a>Groovy DLS</h1><p>Groovy允许在顶层语句的方法调用的参数周围省略括号。这被称为“命令链”功能。这个扩展的工作原理是允许一个人链接这种无括号的方法调用，在参数周围不需要括号，也不需要链接调用之间的点。</p>
+<p>如果一个调用被执行为bcd，这将实际上等价于a（b）.c（d）。</p>
+<p>DSL或域特定语言旨在简化以Groovy编写的代码，使得它对于普通用户变得容易理解。以下示例显示了具有域特定语言的确切含义。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">class</span> <span class="token class-name">EmailDSL</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String toText
+    String fromText
+    String body
+    
+    <span class="token keyword">def</span> <span class="token keyword">static</span> <span class="token function">make</span><span class="token punctuation">(</span>Closure closure<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        EmailDSL dsl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EmailDSL</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        closure<span class="token operator">.</span>delegate <span class="token operator">=</span> dsl
+        closure<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">def</span> <span class="token function">to</span><span class="token punctuation">(</span>String toText<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>toText <span class="token operator">=</span> toText
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">def</span> <span class="token function">from</span><span class="token punctuation">(</span>String fromText<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>fromText <span class="token operator">=</span> fromText
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">def</span> <span class="token function">body</span><span class="token punctuation">(</span>String bodyText<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token operator">.</span>body <span class="token operator">=</span> bodyText
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> send<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>send<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            println <span class="token string">"From $fromText To $toText : $body"</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+EmailDSL<span class="token operator">.</span>make <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    to <span class="token string">"James"</span>
+    from <span class="token string">"Leo"</span>
+    body <span class="token string">"How is everything going on"</span>
+    send <span class="token boolean">true</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用接受闭包的静态方法。这是一个很麻烦的方式来实现DSL。</li>
+<li>在电子邮件示例中，类EmailDsl具有make方法。它创建一个实例，并将闭包中的所有调用委派给实例。这是一种机制，其中“to”和“from”节结束了EmailDsl类中的执行方法。</li>
+<li>一旦to（）方法被调用，我们将文本存储在实例中以便以后格式化。</li>
+<li>我们现在可以使用易于为最终用户理解的简单语言调用EmailDSL方法。</li>
+</ul>
+<h1 id="Groovy-模板引擎"><a href="#Groovy-模板引擎" class="headerlink" title="Groovy 模板引擎"></a>Groovy 模板引擎</h1><h2 id="字符串中的简单模板"><a href="#字符串中的简单模板" class="headerlink" title="字符串中的简单模板"></a>字符串中的简单模板</h2><p>如果你采用下面的简单例子，我们首先定义一个名称变量来保存字符串“Groovy”。在println语句中，我们使用$符号来定义可以插入值的参数或模板。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> name <span class="token operator">=</span> <span class="token string">"Groovy"</span> 
+println <span class="token string">"This Tutorial is about $&amp;#123;name&amp;#125;"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果上面的代码在groovy中执行，将显示以下输出。输出清楚地显示$名称被由def语句分配的值替换</p>
+<h2 id="简单模板引擎"><a href="#简单模板引擎" class="headerlink" title="简单模板引擎"></a>简单模板引擎</h2><p>以下是SimpleTemplateEngine的示例，它允许您在模板中使用类似于JSP的scriptlet和EL表达式，以生成参数化文本。模板引擎允许绑定参数列表及其值，以便可以在具有定义的占位符的字符串中替换它们。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> text <span class="token operator">=</span>'This Tutorial focuses on <span class="token punctuation">$</span>TutorialName<span class="token operator">.</span> In <span class="token keyword">this</span> tutorial you will learn 
+
+about <span class="token punctuation">$</span>Topic'  
+
+<span class="token keyword">def</span> binding <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"TutorialName"</span><span class="token punctuation">:</span><span class="token string">"Groovy"</span><span class="token punctuation">,</span> <span class="token string">"Topic"</span><span class="token punctuation">:</span><span class="token string">"Templates"</span><span class="token punctuation">]</span>  
+<span class="token keyword">def</span> engine <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">groovy<span class="token punctuation">.</span>text<span class="token punctuation">.</span>SimpleTemplateEngine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token keyword">def</span> template <span class="token operator">=</span> engine<span class="token operator">.</span><span class="token function">createTemplate</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token operator">.</span><span class="token function">make</span><span class="token punctuation">(</span>binding<span class="token punctuation">)</span> 
+
+println template
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果上面的代码在groovy中执行，将显示以下输出。</p>
+<p>现在让我们使用XML文件的模板功能。作为第一步，让我们将下面的代码添加到一个名为Student.template的文件中。在以下文件中，您将注意到，我们尚未添加元素的实际值，而是添加占位符。所以$ name，$ is和$ subject都被放置为占位符，需要在运行时替换。</p>
+<pre><code>&lt;Student&gt; 
+   &lt;name&gt;$&#123;name&#125;&lt;/name&gt; 
+   &lt;ID&gt;$&#123;id&#125;&lt;/ID&gt; 
+   &lt;subject&gt;$&#123;subject&#125;&lt;/subject&gt; 
+&lt;/Student&gt;
+</code></pre>
+<p>现在，让我们添加我们的Groovy脚本代码来添加功能，可以使用实际值替换上面的模板。应该注意以下事项关于以下代码。</p>
+<ul>
+<li>占位符到实际值的映射通过绑定和SimpleTemplateEngine完成。绑定是一个映射，占位符作为键，替换值作为值。</li>
+</ul>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">import</span> groovy<span class="token operator">.</span>text<span class="token operator">.</span><span class="token operator">*</span> 
+<span class="token keyword">import</span> java<span class="token operator">.</span>io<span class="token operator">.</span><span class="token operator">*</span> 
+
+<span class="token keyword">def</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:/Student.template"</span><span class="token punctuation">)</span> 
+<span class="token keyword">def</span> binding <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'name'</span> <span class="token punctuation">:</span> <span class="token string">'Joe'</span><span class="token punctuation">,</span> <span class="token string">'id'</span> <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'subject'</span> <span class="token punctuation">:</span> <span class="token string">'Physics'</span><span class="token punctuation">]</span>
+                  
+<span class="token keyword">def</span> engine <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleTemplateEngine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token keyword">def</span> template <span class="token operator">=</span> engine<span class="token operator">.</span><span class="token function">createTemplate</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span> 
+<span class="token keyword">def</span> writable <span class="token operator">=</span> template<span class="token operator">.</span><span class="token function">make</span><span class="token punctuation">(</span>binding<span class="token punctuation">)</span> 
+
+println writable
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果上面的代码在groovy中执行，将显示以下输出。从输出中可以看出，在相关占位符中成功替换了值。</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Student</span><span class="token punctuation">></span></span> 
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>Joe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span> 
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ID</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ID</span><span class="token punctuation">></span></span> 
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>subject</span><span class="token punctuation">></span></span>Physics<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>subject</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Student</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="Groovy-元对象编程"><a href="#Groovy-元对象编程" class="headerlink" title="Groovy 元对象编程"></a>Groovy 元对象编程</h1><p>元对象编程或MOP可以用于动态调用方法，并且可以即时创建类和方法。</p>
+<p>那么这是什么意思呢？让我们考虑一个叫Student的类，它是一个没有成员变量或方法的空类。假设你必须在这个类上调用以下语句。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">Def myStudent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+myStudent<span class="token operator">.</span>Name <span class="token operator">=</span> ”Joe”<span class="token punctuation">;</span> 
+myStudent<span class="token operator">.</span><span class="token function">Display</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>现在在元对象编程中，即使类没有成员变量Name或方法Display（），上面的代码仍然可以工作。</p>
+<p>这如何工作？那么，为了这个工作，一个人必须实现GroovyInterceptable接口挂钩到Groovy的执行过程。以下是该接口的可用方法。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">Public <span class="token keyword">interface</span> <span class="token class-name">GroovyInterceptable</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+   Public object <span class="token function">invokeMethod</span><span class="token punctuation">(</span>String methodName<span class="token punctuation">,</span> Object args<span class="token punctuation">)</span> 
+   Public object <span class="token function">getproperty</span><span class="token punctuation">(</span>String propertyName<span class="token punctuation">)</span> 
+   Public object <span class="token function">setProperty</span><span class="token punctuation">(</span>String propertyName<span class="token punctuation">,</span> Object newValue<span class="token punctuation">)</span> 
+   Public MetaClass <span class="token function">getMetaClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+   Public <span class="token keyword">void</span> <span class="token function">setMetaClass</span><span class="token punctuation">(</span>MetaClass metaClass<span class="token punctuation">)</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所以在上面的接口描述中，假设你必须实现invokeMethod（），它会被调用的每个方法，要么存在或不存在。</p>
+<h2 id="缺失属性"><a href="#缺失属性" class="headerlink" title="缺失属性"></a>缺失属性</h2><p>所以，让我们看一个例子，我们如何为缺失的属性实现元对象编程。以下键应该注意以下代码。</p>
+<ul>
+<li>类Student没有定义名为Name或ID的成员变量。</li>
+<li>类Student实现GroovyInterceptable接口。</li>
+<li>有一个称为dynamicProps的参数，将用于保存即时创建的成员变量的值。</li>
+<li>方法getproperty和setproperty已被实现以在运行时获取和设置类的属性的值。</li>
+</ul>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+   <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      Student mst <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      mst<span class="token operator">.</span>Name <span class="token operator">=</span> <span class="token string">"Joe"</span><span class="token punctuation">;</span>
+      mst<span class="token operator">.</span>ID <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        
+      <span class="token function">println</span><span class="token punctuation">(</span>mst<span class="token operator">.</span>Name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">println</span><span class="token punctuation">(</span>mst<span class="token operator">.</span>ID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token keyword">implements</span> <span class="token class-name">GroovyInterceptable</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+   <span class="token keyword">protected</span> dynamicProps<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    
+   <span class="token keyword">void</span> <span class="token function">setProperty</span><span class="token punctuation">(</span>String pName<span class="token punctuation">,</span>val<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      dynamicProps<span class="token punctuation">[</span>pName<span class="token punctuation">]</span> <span class="token operator">=</span> val
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+   
+   <span class="token keyword">def</span> <span class="token function">getProperty</span><span class="token punctuation">(</span>String pName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      dynamicProps<span class="token punctuation">[</span>pName<span class="token punctuation">]</span>
+   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下代码的输出将是 - </p>
+<pre><code>Joe 
+1
+</code></pre>
+<h2 id="缺失方法"><a href="#缺失方法" class="headerlink" title="缺失方法"></a>缺失方法</h2><p>所以，让我们看一个例子，我们如何为缺失的属性实现元对象编程。以下键应该注意下面的代码 - </p>
+<ul>
+<li>类学生现在实现invokeMethod方法，它被调用，而不管该方法是否存在。</li>
+</ul>
+<pre><code>class Example &#123;
+   static void main(String[] args) &#123;
+      Student mst = new Student();
+      mst.Name = &quot;Joe&quot;;
+      mst.ID = 1;
+        
+      println(mst.Name);
+      println(mst.ID);
+      mst.AddMarks();
+   &#125; 
+&#125;
+ 
+class Student implements GroovyInterceptable &#123;
+   protected dynamicProps = [:]  
+    
+   void setProperty(String pName, val) &#123;
+      dynamicProps[pName] = val
+   &#125; 
+   
+   def getProperty(String pName) &#123;
+      dynamicProps[pName]
+   &#125;
+   
+   def invokeMethod(String name, Object args) &#123;
+      return &quot;called invokeMethod $name $args&quot;
+   &#125;
+&#125;
+</code></pre>
+<p>以下代码的输出如下所示。请注意，即使方法Display不存在，也没有缺少方法异常的错误。</p>
+<pre><code>Joe 
+1 
+</code></pre>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/08/22/2017-08-22-groovy面向对象与泛型-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/06/27/2017-06-27-Java泛型拓展-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-08-03 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/编程语言/">编程语言<span>7</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2022 Leo He
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

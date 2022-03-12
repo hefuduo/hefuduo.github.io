@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Java泛型的拓展 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Java泛型的拓展"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Java泛型的拓展</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Java泛型拓展"><a href="#Java泛型拓展" class="headerlink" title="Java泛型拓展"></a>Java泛型拓展</h1><h2 id="基础知识之协变与逆变"><a href="#基础知识之协变与逆变" class="headerlink" title="基础知识之协变与逆变"></a>基础知识之协变与逆变</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// public final class Integer extends Number  </span>
+Number num <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+List<span class="token operator">&lt;</span>Number<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+ArrayList<span class="token operator">&lt;</span>Number<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//type mismatch 这两个根本就不是一个类型 </span>
+  
+List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//error  </span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>为什么<code>Number</code>的对象可以由<code>Integer</code>实例化，而<code>ArrayList&lt;Number&gt;</code>的对象却不能由<code>ArrayList&lt;Integer&gt;</code>实例化？<code>List</code>中的<code>&lt;? extends Number&gt;</code>声明其元素是<code>Number</code>或<code>Number的派生类</code>，为什么不能<code>add Integer</code>?为了解决这些问题，需要了解Java中的逆变和协变以及泛型中通配符用法。</p>
+<p>​       Java中<code>String</code>类型是继承自<code>Object</code>的，姑且记做<code>String ≦ Object</code>，表示String是Object的子类型，String的对象可以赋给Object的对象。而Object的数组类型Object[]，理解成是由Object构造出来的一种新的类型,可以认为是一种构造类型，记f(Object)，那么可以这么来描述协变和逆变：</p>
+<p>​       <code>当A ≦ B时,如果有f(A) ≦ f(B),那么f叫做协变；</code></p>
+<p>​       <code>当A ≦ B时,如果有f(B) ≦ f(A),那么f叫做逆变；</code></p>
+<p>​       <code>如果上面两种关系都不成立则叫做不可变。</code></p>
+<p> JAVA中泛型是不变的，可有时需要实现逆变与协变，怎么办呢？这时就需要通配符<code>?</code>。</p>
+<span id="more"></span>
+
+<h3 id="协变"><a href="#协变" class="headerlink" title="协变"></a>协变</h3><p><code>&lt;? extends Number&gt;</code>实现了Java中的协变</p>
+<pre class="line-numbers language-java"><code class="language-java">List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  ·
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>&lt;? extends Number&gt;</code>表示通配符<code>?</code>的上界为<code>Number</code>，即“<code>? extends Number</code>”可以代表<code>Number</code>或其子类，但代表不了<code>Number</code>的父类（如<code>Object</code>），因为通配符的上界是<code>Number</code>。</p>
+<p>于是有<code>? extends Number ≦ Number</code>，则<code>List&lt;? extends Number&gt; ≦ List&lt; Number &gt;</code>。那么就有：</p>
+<pre class="line-numbers language-java"><code class="language-java">List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list001 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> list002 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Float<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p> 但是这里不能向<code>list001、list002</code>添加除<code>null</code>以外的任意对象。可以这样理解一下，<code>List&lt;Integer&gt;</code>可以添加<code>Interger</code>及其子类，<code>List&lt;Float&gt;</code>可以添加<code>Float</code>及其子类，<code>List&lt;Integer&gt;、List&lt;Float&gt;</code>都是<code>List&lt;? extends Animal&gt;</code>的子类型，如果能将<code>Float</code>的子类添加到<code>List&lt;? extends Animal&gt;</code>中，就说明<code>Float</code>的子类也是可以添加到<code>List&lt;Integer&gt;</code>中的，显然是不可行。故java为了保护其类型一致，禁止向<code>List&lt;? extends Number&gt;</code>添加任意对象，不过却可以添加<code>null</code>。</p>
+<h3 id="逆变"><a href="#逆变" class="headerlink" title="逆变"></a>逆变</h3><p> <code> &lt;? super&gt;</code>实现了泛型的逆变，比如：</p>
+<pre class="line-numbers language-java"><code class="language-java">List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Number<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p> <code>? super Number</code> 则表示通配符<code>?</code>的下界为<code>Number</code>。为了保护类型的一致性，因为<code>？ super Number</code>可以是<code>Object</code>或其他<code>Number</code>的父类，因无法确定其类型，也就不能往<code>List&lt;? super Number &gt;</code>添加<code>Number</code>的任意父类对象。但是可以向<code>List&lt;? super Number&gt;添加Number</code>及其子类。</p>
+<pre class="line-numbers language-java"><code class="language-java">List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Number<span class="token operator">></span> list001 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> Number<span class="token operator">></span> list002 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+list001<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+list002<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="PECS"><a href="#PECS" class="headerlink" title="PECS"></a>PECS</h3><blockquote>
+<p>现在问题来了：究竟什么时候用extends什么时候用super呢？《Effective Java》给出了答案：</p>
+</blockquote>
+<p>PECS: producer-extends, consumer-super. </p>
+<p>PECS指“Producer Extends，Consumer Super”。换句话说，如果参数化类型表示一个生产者，就使用<code>&lt;? extends T&gt;</code>；如果它表示一个消费者，就使用<code>&lt;? super T&gt;</code>。</p>
+<p>比如一个Stack API</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+    <span class="token keyword">public</span> <span class="token function">Stack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span><span class="token operator">:</span>  
+    <span class="token keyword">public</span> E <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要实现<code>pushAll(Iterable&lt;E&gt; src)</code>方法，将src的元素逐一入栈：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pushAll</span><span class="token punctuation">(</span>Iterable<span class="token operator">&lt;</span>E<span class="token operator">></span> src<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+    <span class="token keyword">for</span><span class="token punctuation">(</span>E e <span class="token operator">:</span> src<span class="token punctuation">)</span>  
+        <span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>  
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>​       假设有一个实例化<code>Stack&lt;Number&gt;</code>的对象<code>stack</code>，<code>src</code>有<code>Iterable&lt;Integer&gt;</code>与 <code>Iterable&lt;Float&gt;</code>；在调用<code>pushAll</code>方法时会发生<code>type mismatch</code>错误，因为Java中泛型是不可变的，<code>Iterable&lt;Integer&gt;</code>与<code> Iterable&lt;Float&gt;</code>都不是<code>Iterable&lt;Number&gt;</code>的子类型。因此，应改为</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// Wildcard type for parameter that serves as an E producer  </span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pushAll</span><span class="token punctuation">(</span>Iterable<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> src<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span>E e <span class="token operator">:</span> src<span class="token punctuation">)</span>  
+        <span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>要实现<code>popAll(Collection&lt;E&gt; dst)</code>方法，将<code>Stack</code>中的元素依次取出<code>add</code>到<code>dst</code>中，如果不用通配符实现:</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// popAll method without wildcard type - deficient!  </span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">popAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span>E<span class="token operator">></span> dst<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+        dst<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  同样地，假设有一个实例化<code>Stack&lt;Number&gt;</code>的对象<code>stack</code>，<code>dst</code>为<code>Collection&lt;Object&gt;</code>；调用popAll方法是会发生<code>type mismatch</code>错误，因为<code>Collection&lt;Object&gt;</code>不是<code>Collection&lt;Number&gt;</code>的子类型。因而，应改为：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">popAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> E<span class="token operator">></span> dst<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    dst<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>pop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>   在上述例子中，在调用<code>pushAll</code>方法时生产了<code>E 实例（produces E instances）</code>，在调用<code>popAll</code>方法时<code>dst</code>消费了<code>E 实例（consumes E instances）</code>。<code>Naftalin与Wadler将PECS称为Get and Put Principle</code>。</p>
+<p>  java.util.Collections的copy方法(JDK1.7)完美地诠释了PECS：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> dest<span class="token punctuation">,</span> List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">T</span><span class="token operator">></span> src<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> srcSize <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>srcSize <span class="token operator">></span> dest<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IndexOutOfBoundsException</span><span class="token punctuation">(</span><span class="token string">"Source does not fit in dest"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>srcSize <span class="token operator">&lt;</span> COPY_THRESHOLD <span class="token operator">||</span>  
+        <span class="token punctuation">(</span>src <span class="token keyword">instanceof</span> <span class="token class-name">RandomAccess</span> <span class="token operator">&amp;&amp;</span> dest <span class="token keyword">instanceof</span> <span class="token class-name">RandomAccess</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>srcSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>  
+            dest<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> src<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+        ListIterator<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">super</span> T<span class="token operator">></span> di<span class="token operator">=</span>dest<span class="token punctuation">.</span><span class="token function">listIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        ListIterator<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">T</span><span class="token operator">></span> si<span class="token operator">=</span>src<span class="token punctuation">.</span><span class="token function">listIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>srcSize<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>  
+            di<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            di<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>si<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="通配符的副作用"><a href="#通配符的副作用" class="headerlink" title="通配符的副作用"></a>通配符的副作用</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//以盘子为例</span>
+<span class="token keyword">class</span> <span class="token class-name">plate</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> T item<span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token function">Plate</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    item <span class="token operator">=</span> t<span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    item <span class="token operator">=</span> t<span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> item<span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Fruit</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Apple</span> <span class="token keyword">extends</span> <span class="token class-name">Apple</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//上界&lt;? enteds T>只能取，不能存。</span>
+<span class="token comment" spellcheck="true">//code block</span>
+Plate<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Fruit</span><span class="token operator">></span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">plate</span><span class="token operator">&lt;</span>Apple<span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Apple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//不能存储任何元素；</span>
+p<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Fruit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Apple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">//读取出来的东西只能放在Fruit或者是它的基类里。</span>
+Fruit f <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object f1 <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Apple af <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ERROR;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>//其实锅都在编译器中：</p>
+<p>原因是编译器只知道容器内是Fruit或者它的派生类，但具体是什么类型不知道。可能是Fruit？可能是Apple？也可能是Banana，RedApple，GreenApple？编译器在看到后面用Plate赋值以后，盘子里没有被标上有“苹果”。而是标上一个占位符：CAP#1，来表示捕获一个Fruit或Fruit的子类，具体是什么类不知道，代号CAP#1。然后无论是想往里插入Apple或者Meat或者Fruit编译器都不知道能不能和这个CAP#1匹配，所以就都不允许。</p>
+<p>所以通配符<code>&lt;?&gt;</code>和类型参数的区别就在于，对编译器来说所有的<code>T</code>都代表同一种类型。比如下面这个泛型方法里，三个T都指代同一个类型，要么都是String，要么都是Integer。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> List<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">fill</span><span class="token punctuation">(</span>T<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>但通配符<code>&lt;?&gt;</code>没有这种约束，<code>Plate&lt;?&gt;</code>单纯的就表示：盘子里放了一个东西，是什么我不知道。</p>
+<p>所以题主问题里的错误就在这里，<code>Plate&lt;？ extends Fruit&gt;</code>里什么都放不进去。</p>
+<p> 下界<code>&lt;? super T&gt;</code>不影响往里存，但往外取只能放在Object对象里</p>
+<p>使用下界&lt;? super Fruit&gt;会使从盘子里取东西的get( )方法部分失效，只能存放到Object对象里。set( )方法正常.</p>
+<pre class="line-numbers language-java"><code class="language-java">p<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Plate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Fruit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//存入元素正常</span>
+p<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Fruit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Apple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//读取出来的东西只![KjDLw](../../../Desktop/KjDLw.png)能存放在Object类里。</span>
+Apple newFruit3<span class="token operator">=</span>p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//Error</span>
+Fruit newFruit1<span class="token operator">=</span>p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//Error</span>
+Object newFruit2<span class="token operator">=</span>p<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为下界规定了元素的最小粒度的下限，实际上是放松了容器元素的类型控制。既然元素是Fruit的基类，那往里存粒度比Fruit小的都可以。但往外读取元素就费劲了，只有所有类的基类Object对象才能装下。但这样的话，元素的类型信息就全部丢失。</p>
+<p>总结 PECS原则：</p>
+<p>最后看一下什么是PECS（Producer Extends Consumer Super）原则，已经很好理解了：</p>
+<ul>
+<li><strong>频繁往外读取内容的，适合用上界Extends。</strong></li>
+<li><strong>经常往里插入的，适合用下界Super。</strong></li>
+</ul>
+<p>The principles behind this in Computer Science is named after</p>
+<ul>
+<li>Covariance - ? extends MyClass,</li>
+<li>Contravariance - ? super MyClass and</li>
+<li>Invariance/non-Variance - MyClass</li>
+</ul>
+<p>The picture below should explain the concept.</p>
+<p><img src="../../../Desktop/KjDLw.png" alt="KjDLw"></p>
+<p>​                （图片来源 <a target="_blank" rel="noopener" href="https://stackoverflow.com/users/2707792/andrey-tyukin%EF%BC%89">https://stackoverflow.com/users/2707792/andrey-tyukin）</a></p>
+<p>TODO :好好理解一下PECS 原则？到底什么时候是生产，什么时候是消费。生产了什么与消费了什么？</p>
+<h2 id="参考内容："><a href="#参考内容：" class="headerlink" title="参考内容："></a>参考内容：</h2><p>[1] <a target="_blank" rel="noopener" href="http://www.cnblogs.com/drizzlewithwind/p/6100164.html%EF%BC%9B">http://www.cnblogs.com/drizzlewithwind/p/6100164.html；</a></p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/08/03/2017-08-02-Groovy简明教程-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/04/24/2017-04-24-伪随机数与安全性-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-06-27 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/编程语言/">编程语言<span>7</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Java/">Java<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2022 Leo He
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Groovy之闭包 | LeoHe&#39;s Space</title>
+  <meta name="author" content="Leo He">
+  
+  <meta name="description" content="声明不息，学习不止">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Groovy之闭包"/>
+  <meta property="og:site_name" content="LeoHe&#39;s Space"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70812759-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cb5448498d7169c668b07c2b255d62c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">LeoHe&#39;s Space</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class=""></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class=""></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class=""></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class=""></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class=""></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Groovy之闭包</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>[TOC]</p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>闭包是一种可执行的代码块的方法，闭包也是对象，可以想方法一样传递参数。由于闭包是代码块，因此也可以在需要时执行。定义闭包的时候可以使用一个或者多个参数。闭包可以访问属性信息，意味着可以访问并修其作用于内的所有变量值。</p>
+<h2 id="闭包-1"><a href="#闭包-1" class="headerlink" title="闭包"></a>闭包</h2><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> greeting <span class="token operator">=</span> <span class="token string">'hello'</span>
+<span class="token keyword">def</span> clos <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    param <span class="token operator">-></span>
+        println <span class="token string">"$greeting $param"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+clos<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
+
+greeting <span class="token operator">=</span> <span class="token string">'welcome'</span>
+clos<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'world'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">demo</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> greeting <span class="token operator">=</span> <span class="token string">'Bonjour'</span><span class="token comment" spellcheck="true">//this will not affect closure</span>
+    clos<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'ken'</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token function">demo</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//output welcome ken</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以上代码说明，只有闭包被定义且存在，而不是在被调用时，可以访问其状态值。</p>
+<p> 闭包也常用在集合中。使用闭包可以更高效的遍历元素。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token number">1</span><span class="token operator">.</span><span class="token function">upto</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it 
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//或者你也可以这么写</span>
+<span class="token number">1</span><span class="token operator">.</span><span class="token function">upto</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//阶乘</span>
+<span class="token keyword">def</span> fac <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token number">1</span><span class="token operator">.</span><span class="token function">upto</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    num <span class="token operator">-></span>
+        fac <span class="token operator">*=</span> num
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token string">"Factorical : $fac"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包与集合和字符串"><a href="#闭包与集合和字符串" class="headerlink" title="闭包与集合和字符串"></a>闭包与集合和字符串</h2><p>常用each方法来遍历。</p>
+<p><code>find()返回第一个满足条件的元素，findAll()返回所有满足条件的元素</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+list<span class="token operator">.</span>findAll <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it <span class="token operator">></span> <span class="token number">5</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    println it
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>any() and every()</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> anyEle <span class="token operator">=</span> list<span class="token operator">.</span>any <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it <span class="token operator">></span> <span class="token number">5</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println anyEle <span class="token comment" spellcheck="true">//true</span>
+
+<span class="token keyword">def</span> everyEle <span class="token operator">=</span> list<span class="token operator">.</span>every <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it <span class="token operator">></span> <span class="token number">5</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println everyEle  <span class="token comment" spellcheck="true">//false</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>collect() and inject</code></p>
+<p>collect用来遍历集合并且返回一个集合</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">
+<span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true">//collect 返回一个由closure转换后的集合</span>
+<span class="token keyword">def</span> newlist <span class="token operator">=</span> list<span class="token operator">.</span>collect <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    it <span class="token operator">*</span> it
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println newlist
+
+<span class="token comment" spellcheck="true">//collect 的高级范例</span>
+<span class="token keyword">def</span> doubles <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    item <span class="token operator">-></span>
+        <span class="token number">2</span> <span class="token operator">*</span> item
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> triples <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    item <span class="token operator">-></span>
+        <span class="token number">3</span> <span class="token operator">*</span> item
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> isEven <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    item <span class="token operator">-></span> 
+        item<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">def</span> <span class="token function">map</span><span class="token punctuation">(</span>clos<span class="token punctuation">,</span>list<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> list<span class="token operator">.</span><span class="token function">collect</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>inject用来遍历集合，首先将需要传递的值和集合项目传递给必报，此时其传递的值将作为处理结果，然后再和下一个集合项目一起传递给闭包，以此类推</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> factorial <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+        <span class="token operator">.</span><span class="token function">inject</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    previous<span class="token punctuation">,</span> element <span class="token operator">-></span>
+        previous <span class="token operator">*</span> element
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println factorial
+<span class="token comment" spellcheck="true">//=====</span>
+<span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+factorial <span class="token operator">=</span> list<span class="token operator">.</span><span class="token function">inject</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    prviouse<span class="token punctuation">,</span> element <span class="token operator">-></span>
+        prviouse <span class="token operator">*</span> element
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println factorial
+<span class="token comment" spellcheck="true">//=====</span>
+<span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> closure <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    previous<span class="token punctuation">,</span> element <span class="token operator">-></span>
+        previous <span class="token operator">*</span> element
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> factorial <span class="token operator">=</span> list<span class="token operator">.</span><span class="token function">inject</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>closure<span class="token punctuation">)</span>
+println factorial
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包的其他特性"><a href="#闭包的其他特性" class="headerlink" title="闭包的其他特性"></a>闭包的其他特性</h2><p>由于闭包也是一个对象，因此它可以作为方法的参数，同时也可以作为另一个闭包的参数。</p>
+<h3 id="作为方法的参数"><a href="#作为方法的参数" class="headerlink" title="作为方法的参数"></a>作为方法的参数</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">filter</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> predict<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> list<span class="token operator">.</span><span class="token function">findAll</span><span class="token punctuation">(</span>predict<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> isEven <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> isOdd <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token function">isEven</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> table <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> evens <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>table<span class="token punctuation">,</span>isEven<span class="token punctuation">)</span>
+println evens
+
+<span class="token keyword">def</span> odds <span class="token operator">=</span> <span class="token function">filter</span><span class="token punctuation">(</span>table<span class="token punctuation">,</span>isOdd<span class="token punctuation">)</span>
+println odds
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="作为另一个闭包的参数"><a href="#作为另一个闭包的参数" class="headerlink" title="作为另一个闭包的参数"></a>作为另一个闭包的参数</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> takewhile <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    predicate<span class="token punctuation">,</span> list <span class="token operator">-></span>
+        <span class="token keyword">def</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>element <span class="token keyword">in</span> list<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">predicate</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                result <span class="token operator">&lt;&lt;</span> element
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> result
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> isEven <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> isOdd <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token function">isEven</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> table1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> table2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> evens <span class="token operator">=</span> takewhile<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span>isEven<span class="token punctuation">,</span>table1<span class="token punctuation">)</span>
+println evens
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="作为返回值"><a href="#作为返回值" class="headerlink" title="作为返回值"></a>作为返回值</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        y<span class="token operator">-></span>
+            <span class="token keyword">return</span> x <span class="token operator">*</span> y
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> twice <span class="token operator">=</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+println <span class="token function">twice</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="嵌套闭包"><a href="#嵌套闭包" class="headerlink" title="嵌套闭包"></a>嵌套闭包</h3><h4 id="选择排序算法的实现"><a href="#选择排序算法的实现" class="headerlink" title="选择排序算法的实现"></a>选择排序算法的实现</h4><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> selection <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    list <span class="token operator">-></span>
+  <span class="token comment" spellcheck="true">//交换两个位置的数</span>
+        <span class="token keyword">def</span> swap <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            sList<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q <span class="token operator">-></span>
+                <span class="token keyword">def</span> temp <span class="token operator">=</span> sList<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+                sList<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> sList<span class="token punctuation">[</span>q<span class="token punctuation">]</span>
+                sList<span class="token punctuation">[</span>q<span class="token punctuation">]</span> <span class="token operator">=</span> temp
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//找出最小数位置</span>
+        <span class="token keyword">def</span> minimumPosition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            pList<span class="token punctuation">,</span> from <span class="token operator">-></span>
+                <span class="token keyword">def</span> mPos <span class="token operator">=</span> from
+                <span class="token keyword">def</span> nextFrom <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> from
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token keyword">in</span> nextFrom<span class="token operator">..&lt;</span>pList<span class="token operator">.</span>size<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>pList<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> pList<span class="token punctuation">[</span>mPos<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                        mPos <span class="token operator">=</span> j
+                    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> mPos
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">def</span> size <span class="token operator">=</span> list<span class="token operator">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>k <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..&lt;</span>size<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">def</span> minPos <span class="token operator">=</span> <span class="token function">minimumPosition</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> minPos<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> table <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">]</span>
+<span class="token keyword">def</span> sorted <span class="token operator">=</span> <span class="token function">selection</span><span class="token punctuation">(</span>table<span class="token punctuation">)</span>
+println sorted
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="关于闭包的更多信息"><a href="#关于闭包的更多信息" class="headerlink" title="关于闭包的更多信息"></a>关于闭包的更多信息</h1><h2 id="闭包和不确定性"><a href="#闭包和不确定性" class="headerlink" title="闭包和不确定性"></a>闭包和不确定性</h2><p>先看一个例子，闭包在实参列表外部。如果方法的最后一个参数是闭包，那么可以将它从实参列表中删除，并放在气候的括号后面。</p>
+<p><code>demo(closure) 变为 demo closure</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> greeting <span class="token operator">=</span> <span class="token string">'Hello'</span>
+<span class="token keyword">def</span> clo <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    param <span class="token operator">-></span>
+        println <span class="token string">"$greeting $param"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> <span class="token function">demo</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> greeting <span class="token operator">=</span> <span class="token string">'Bonjour'</span>
+    clos<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'Ken'</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//demo()clo error null point exception,解释见后。</span>
+ 
+demo clo
+
+<span class="token function">demo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    param <span class="token operator">-></span>
+        println <span class="token string">"welcome $param"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>假设<code>clos</code>是一个闭包变量，<code>&#123;...&#125;</code>是一个闭包体。假设<code>x</code>和<code>y</code>是两个随意设置的值，则查看如下不同的方法调用语句：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">...</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">...</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>clos<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span>clos <span class="token comment" spellcheck="true">//error no such method</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第二行代码把闭包体直接放在调用参数的后面。第四行代码说明，同样的做法也许不适用闭包变量。Groovy解释器无法忍冬clos标识符是该方法的调用的一部分，因此Groovy解释器就会报错，说明找不到只有具有两个参数的method方法。</p>
+<p>如果method标识具有一个参数的方法：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">method</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token punctuation">...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>则clos是个闭包变量，{…}是闭包体，如下调用语句</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token function">method</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">...</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">...</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//ok</span>
+method<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token punctuation">...</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//ok    </span>
+<span class="token function">method</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span>clos   <span class="token comment" spellcheck="true">//error null point exception </span>
+method clos    <span class="token comment" spellcheck="true">//ok</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第五行代码中，调用方法时不适用任何实参，在该方法体中，形参将被初始化为null，在这个方法中使用闭包变量将会导致系统错误。</p>
+<h2 id="闭包和方法"><a href="#闭包和方法" class="headerlink" title="闭包和方法"></a>闭包和方法</h2><p>对于如下两个结构</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> mDouble <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    n <span class="token operator">-></span>
+          <span class="token keyword">return</span> <span class="token number">2</span><span class="token operator">*</span>n
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> <span class="token function">mDouble</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">2</span><span class="token operator">*</span>n
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>前者是一个闭包定义，后者是一个方法定义。注意，任何闭包引用肯定有固定的作用域。不能出现同名的闭包变量，但是可以出现同名方法（方法重载）</p>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>像方法一样，闭包也可以被分配带默认值的参数。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> greeting <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    msg<span class="token punctuation">,</span> name <span class="token operator">=</span> <span class="token string">"leo"</span> <span class="token operator">-></span>
+        println <span class="token string">"$msg $name"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token function">greeting</span><span class="token punctuation">(</span><span class="token string">"hello "</span><span class="token punctuation">)</span>
+<span class="token function">greeting</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token string">"julia"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包和作用域"><a href="#闭包和作用域" class="headerlink" title="闭包和作用域"></a>闭包和作用域</h2><p>上面讲到的局部闭包实现的选择性排序算法。下面讲一个使用冒泡算法排序。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> bubbleSort <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    list <span class="token operator">-></span>
+        <span class="token keyword">def</span> swap <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            sList<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q <span class="token operator">-></span>
+                <span class="token keyword">def</span> temp
+                temp <span class="token operator">=</span> sList<span class="token punctuation">[</span>q<span class="token punctuation">]</span>
+                sList<span class="token punctuation">[</span>q<span class="token punctuation">]</span> <span class="token operator">=</span> sList<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+                sList<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> temp
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">def</span> size <span class="token operator">=</span> list<span class="token operator">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">def</span> sortedPosition <span class="token operator">=</span> <span class="token number">0</span>
+
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>sortedPosition <span class="token operator">&lt;</span> size<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token keyword">in</span> <span class="token number">1</span><span class="token operator">..&lt;</span><span class="token punctuation">(</span>size <span class="token operator">-</span> sortedPosition<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">&lt;</span> list<span class="token punctuation">[</span>index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    <span class="token function">swap</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> index<span class="token punctuation">,</span> index <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+            sortedPosition <span class="token operator">++</span> 
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token number">54</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">]</span>
+<span class="token function">bubbleSort</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+println list
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>需要注意的是，闭包只能由语句组成，这意味着闭包中不能有方法定义，因此局部闭包swap不能使用方法定义来替代。</p>
+<h2 id="递归闭包"><a href="#递归闭包" class="headerlink" title="递归闭包"></a>递归闭包</h2><p>用递归的方法求<code>n!</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> factorial <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    n <span class="token operator">-></span>
+        <span class="token keyword">return</span> n <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> n <span class="token operator">*</span> <span class="token function">call</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="状态类型"><a href="#状态类型" class="headerlink" title="状态类型"></a>状态类型</h2><p>可以使用参数和返回值的动态类型来定义闭包。这个特性使得闭包更加通用。</p>
+<h3 id="闭包的动态类型"><a href="#闭包的动态类型" class="headerlink" title="闭包的动态类型"></a>闭包的动态类型</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> times <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> times <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token function">times</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
+println <span class="token function">times</span><span class="token punctuation">(</span><span class="token number">3.2</span><span class="token punctuation">,</span><span class="token number">4.15</span><span class="token punctuation">)</span>
+println <span class="token function">times</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在调用时，才确定x和y的类型</p>
+<pre class="line-numbers language-console"><code class="language-console">12
+13.280
+hellohellohellohello
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="静态指定参数类型的闭包"><a href="#静态指定参数类型的闭包" class="headerlink" title="静态指定参数类型的闭包"></a>静态指定参数类型的闭包</h3><pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> times <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    Number x<span class="token punctuation">,</span> Number y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种方式就限定了闭包的参数类型，不能是Number及其子类意外的其他类型。</p>
+<h2 id="有关实参的约定"><a href="#有关实参的约定" class="headerlink" title="有关实参的约定"></a>有关实参的约定</h2><p>在调用闭包时，实参的数量必须严格匹配闭包定义时的形参数量。否则，Groovy解释器就会报错，指示参数不正确。</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> clos <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token operator">-></span>
+   <span class="token string">"clos($a$b$c)"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token function">clos</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//ok</span>
+<span class="token function">clos</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//error</span>
+<span class="token function">clos</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//error</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="闭包、集合、范围"><a href="#闭包、集合、范围" class="headerlink" title="闭包、集合、范围"></a>闭包、集合、范围</h2><p>列表、映射、和范围等类型提供很多实用闭包作为参数的方法，这有利于迭代处理集合或者范围中的每个元素，并执行指定的任务。</p>
+<p>迭代器方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>any*</td>
+<td></td>
+</tr>
+<tr>
+<td>collect*</td>
+<td></td>
+</tr>
+<tr>
+<td>collect*</td>
+<td></td>
+</tr>
+<tr>
+<td>each*</td>
+<td></td>
+</tr>
+<tr>
+<td>every*</td>
+<td></td>
+</tr>
+<tr>
+<td>find*</td>
+<td></td>
+</tr>
+<tr>
+<td>findAll*</td>
+<td></td>
+</tr>
+<tr>
+<td>findIndexOf*</td>
+<td></td>
+</tr>
+<tr>
+<td>inject*</td>
+<td></td>
+</tr>
+<tr>
+<td>reverseEach*</td>
+<td></td>
+</tr>
+<tr>
+<td>sort*</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Return-语句"><a href="#Return-语句" class="headerlink" title="Return 语句"></a>Return 语句</h2><p>我们先看一个代码范例：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">isMemberA</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> list<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> size <span class="token operator">=</span> list<span class="token operator">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..&lt;</span>size<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">==</span> item<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> <span class="token function">isMemberB</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> list<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    list<span class="token operator">.</span>each <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> item<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">def</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">]</span>
+
+println <span class="token function">isMemberA</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span>numbers<span class="token punctuation">)</span>
+println <span class="token function">isMemberA</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">,</span>numbers<span class="token punctuation">)</span>
+
+println <span class="token function">isMemberB</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">,</span>numbers<span class="token punctuation">)</span>
+println <span class="token function">isMemberB</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">,</span>numbers<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//这个有问题</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出为：</p>
+<pre class="line-numbers language-console"><code class="language-console">false
+true
+false
+false
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>显然，Groovy方式的返回是有问题的。这个是为什么呢？</p>
+<p>在我们的范例中，作为实参的闭包包含一个return语句。闭包返回true，就会导致while循环继续处理列表中的下一个项目。</p>
+<p>可以看一下<code>each</code>的实现方式</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T<span class="token operator">></span> Iterator<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token function">each</span><span class="token punctuation">(</span>Iterator<span class="token operator">&lt;</span>T<span class="token operator">></span> self<span class="token punctuation">,</span> <span class="token annotation punctuation">@ClosureParams</span><span class="token punctuation">(</span>FirstGenericType<span class="token operator">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> Closure closure<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>self<span class="token operator">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            Object arg <span class="token operator">=</span> self<span class="token operator">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            closure<span class="token operator">.</span><span class="token function">call</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> self<span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到return是指返回的<code>closure.call()</code>但是外层循环还是在的，并不能直接终止循环，因此最终所有的数都会跑一边，这个是一个比较需要注意的地方，在使用<code>each</code>进行迭代的时候一定要注意哦！</p>
+<h1 id="高级闭包"><a href="#高级闭包" class="headerlink" title="高级闭包"></a>高级闭包</h1><blockquote>
+<p>假设某家超时使用特殊的商品价格来吸引新客户，以及维护已经有的客户。在一周内，也许早餐谷类视频的价格优惠1/3；在另一周内，优惠政策可能变化，化妆品销售按照买一送一的方式进行销售。在这种优惠政策经常变化的环境中，需要某种灵活的方式来定义这些“业务规则”，并且能够灵活的修改和调整。</p>
+<p>此处的思路来源<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20428688">多范式编程</a>方式，这是Groovy的一个非常重要的特性。借助更高级的函数，函数编程范式综合了多台、组合以及计算模式。</p>
+</blockquote>
+<h2 id="简单闭包"><a href="#简单闭包" class="headerlink" title="简单闭包"></a>简单闭包</h2><p>以前，把闭包描述为一个代码块。闭包实现参数化更加有价值，可以被引用，可以被当做参数传入方法，以及可以与call消息一起被调用。</p>
+<p>范例：计算两个数值参数的乘积</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token string">"multiply(3,4) = $&amp;#123;multiply(3,4)&amp;#125;"</span>
+println <span class="token string">"multiply(3.4,5.6) = $&amp;#123;multiply(3.4,5.6)&amp;#125;"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于闭包可以引用对象的状态。</p>
+<p>范例：作用域和闭包</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> multiplier <span class="token operator">=</span> <span class="token number">2</span> 
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span> 
+        <span class="token keyword">return</span> x <span class="token operator">*</span> multiplier
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println <span class="token string">"multiply(3) = $&amp;#123;multiply(3)&amp;#125;"</span>
+println <span class="token string">"multiply(5.6) = $&amp;#123;multiply(5.6)&amp;#125;"</span>
+
+multiplier <span class="token operator">=</span> <span class="token number">3</span>
+
+println <span class="token string">"multiply(3) = $&amp;#123;multiply(3)&amp;#125;"</span>
+println <span class="token string">"multiply(5.6) = $&amp;#123;multiply(5.6)&amp;#125;"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在闭包定义范围内的变量可以从闭包代码内访问。</p>
+<p>闭包是可以将另一个闭包返回的，类似一个二阶的函数</p>
+<p>范例：闭包返回值</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> add <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">+</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> subtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> divide <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">/</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> arithmetic <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    arith <span class="token operator">-></span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>arith<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token string">'ADD'</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> add
+            <span class="token keyword">case</span> <span class="token string">'SUBTRACT'</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> subtract
+            <span class="token keyword">case</span> <span class="token string">'MULTIPLY'</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> multiply
+            <span class="token keyword">case</span> <span class="token string">'DIVIDE'</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> divide
+            <span class="token keyword">default</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> add
+        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> addOperation <span class="token operator">=</span> <span class="token function">arithmetic</span><span class="token punctuation">(</span><span class="token string">'ADD'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> mulOperation <span class="token operator">=</span> <span class="token function">arithmetic</span><span class="token punctuation">(</span><span class="token string">'MULTIPLY'</span><span class="token punctuation">)</span>
+
+println <span class="token string">"addOperation(3,4) = $&amp;#123;addOperation(3,4)&amp;#125;"</span>
+println <span class="token string">"mulOperation(3,4) = $&amp;#123;mulOperation(3,4)&amp;#125;"</span>
+println <span class="token function">arithmetic</span><span class="token punctuation">(</span><span class="token string">'DIVIDE'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="部分应用"><a href="#部分应用" class="headerlink" title="部分应用"></a>部分应用</h2><p>在上面的范例2中，multiply闭包计算一个参数和内部变量multiplier的乘积。现在，如果把multiplier作为闭包的参数，这个闭包返回multiply闭包，后者计算自己的参数与multiplier的成绩，这就是闭包部分应用的范例。</p>
+<p>范例：partial applicaiton</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> tripple <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> quadroup <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> twelve <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
+println <span class="token function">tripple</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+println <span class="token function">quadroup</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+println <span class="token function">twelve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>**注意：表达式<code>multiply.curry(3)</code>**表示把参数乘以3的闭包。然后，被返回的闭包使用一个参数进行调用。在数学家Haskell Curry之后，闭包的部分应用被称为修正。闭包<code>triple</code>的定义如下：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> triple <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    y <span class="token operator">-></span>
+          <span class="token keyword">return</span> <span class="token number">3</span> <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中，第一个参数被删除，所有出现第一个参数的地方使用数字3来替代。</p>
+<p>加法和惩罚被称为可交换操作。这意味着<code>A+B = B+A and A*B = B*A</code>。但是减法和除法是不可交换的操作。我们可以事件类似于multiply的闭包。</p>
+<p>范例：实现可交换操作</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> rSubtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    y<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">def</span> lSubtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token keyword">def</span> subtract10 <span class="token operator">=</span> rSubtract<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> subractFrom20 <span class="token operator">=</span> lSubtract<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+
+println <span class="token function">subtract10</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span>
+println <span class="token function">subractFrom20</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>关于修正闭包的一个重点是：<code>curry</code>方法的实参数量绝对不能超过该必报所需的实参实际数量。比如该闭包有有三个参数，则调用curry方法时，可以使用零个，一个，两个，或者三个实参。</p>
+<p>部分应用可以被认为是一种简化形式，是个复杂任务可以被分解为多个子任务。</p>
+<h2 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h2><p>结构化顺序的一种组织方式是顺序执行多个任务。通常而言，每部分任务被分别设计和实现。在此，也许认为，一个闭包标识需要执行的某个简单任务。适用组合概念进行任务合并，可以非常容易构造出复杂的任务。并且，借助不同的祝贺方式，可以较快的创建超时所需要的新任务，本文开篇所述案例。</p>
+<p>范例：闭包组合</p>
+<p>范例演示了composition闭包，这个闭包有两个参数f和g，两个参数代表闭包，把闭包g应用到x比如<code>g(x)</code>，把闭包f应用到处理结果比如<code>(fg(x))</code></p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> composition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        println <span class="token string">"f:$&amp;#123;f.class&amp;#125; g: $&amp;#123;g.class&amp;#125; x: $&amp;#123;x.class&amp;#125;"</span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> composition2 <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> triple <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> quadroup <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> twelveTimes <span class="token operator">=</span> composition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>triple<span class="token punctuation">,</span> quadroup<span class="token punctuation">)</span>
+<span class="token keyword">def</span> multiplyCompo <span class="token operator">=</span> composition2<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>triple<span class="token punctuation">,</span>quadroup<span class="token punctuation">)</span>
+
+println <span class="token string">"twelveTimes(12) = $&amp;#123;twelveTimes(12)&amp;#125;"</span> <span class="token comment" spellcheck="true">//(3*(4 * 12)) = 144</span>
+println <span class="token string">"multiplyCompo(12) = $&amp;#123;multiplyCompo(12)&amp;#125;"</span> <span class="token comment" spellcheck="true">// 3*12 * 4*12 = 1728</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>闭包<code>triple</code>有一个参数，并把这个参数与3相乘。闭包<code>twelveTimes</code>是闭包<code>tripe和quadroup</code>的组合。结果是，闭包<code>twelveTimes</code>把参数乘以4，然后把乘法结果与3相乘。</p>
+<p>范例：组合与集合</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> composition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> triple <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> quadroup <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> twelveTimes <span class="token operator">=</span> composition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>triple<span class="token punctuation">,</span>quadroup<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> table <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">.</span>collect<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    element <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">twelveTimes</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println <span class="token string">"tabl = $table "</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="计算模式"><a href="#计算模式" class="headerlink" title="计算模式"></a>计算模式</h2><blockquote>
+<p>介绍一种机制，是的闭包包含一种计算模式。</p>
+</blockquote>
+<p>范例是对列表中的每个元素按照某中形式进行转换。这种转换通常被命名为<code>map</code>。</p>
+<p>范例：映射</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//map closure</span>
+<span class="token keyword">def</span> map <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    clos<span class="token punctuation">,</span> list <span class="token operator">-></span>
+        <span class="token keyword">return</span> list<span class="token operator">.</span><span class="token function">collect</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//composition closure</span>
+<span class="token keyword">def</span> compositon <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f <span class="token punctuation">,</span>g <span class="token punctuation">,</span>x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> triple <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> quadroup <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> tripleAll <span class="token operator">=</span> map<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>triple<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> table <span class="token operator">=</span> <span class="token function">tripleAll</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+println table
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>分析：</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//实际的trpleAll将是一个CurryedClosure</span>
+<span class="token comment" spellcheck="true">//quadroup的结构</span>
+quadroup <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    list <span class="token operator">-></span> 
+          <span class="token keyword">return</span> list<span class="token operator">.</span>collect<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+              element <span class="token operator">-></span>
+                  <span class="token keyword">return</span> <span class="token number">3</span> <span class="token operator">*</span> element 
+          <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>关于映射的一个等级模式是，如果把闭包（比如f）映射到列表x，然后把闭包（比如g）应用到前一个闭包的处理结果。那么上述过程就等价于把g和f的组合应用到这个列表x。</p>
+<p>范例：处理等价关系</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//map closure</span>
+<span class="token keyword">def</span> map <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    clos<span class="token punctuation">,</span> list <span class="token operator">-></span>
+        <span class="token keyword">return</span> list<span class="token operator">.</span><span class="token function">collect</span><span class="token punctuation">(</span>clos<span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//composition closure</span>
+<span class="token keyword">def</span> compositon <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> multiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> triple <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> quadroup <span class="token operator">=</span> multiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> composeMapMap <span class="token operator">=</span> compositon<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>map<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>triple<span class="token punctuation">)</span><span class="token punctuation">,</span> map<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>quadroup<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> table <span class="token operator">=</span> <span class="token function">composeMapMap</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// each element * 4 * 3</span>
+
+println table
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="业务规则"><a href="#业务规则" class="headerlink" title="业务规则"></a>业务规则</h2><blockquote>
+<p>现在我们考虑如何计算一个Book的净价，在计算过程要考虑到上品折扣和政府税金，比如增值税。</p>
+</blockquote>
+<p>关于业务规则的实际实现</p>
+<p>范例：净价计算</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">class</span> <span class="token class-name">Book</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> name
+    <span class="token keyword">def</span> author
+    <span class="token keyword">def</span> price
+    <span class="token keyword">def</span> category
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> bk <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token string">'Groovy'</span><span class="token punctuation">,</span> author<span class="token punctuation">:</span> <span class="token string">'KenB'</span><span class="token punctuation">,</span> price<span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> category<span class="token punctuation">:</span> <span class="token string">'CompSci'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 参数列表初始化</span>
+
+<span class="token keyword">def</span> discountRate <span class="token operator">=</span> <span class="token number">0.1</span>
+<span class="token keyword">def</span> taxRate <span class="token operator">=</span> <span class="token number">0.17</span>
+
+<span class="token keyword">def</span> rMultiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    y <span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> lMultiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> composition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span>g<span class="token punctuation">,</span>x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> calDiscounteedPrice <span class="token operator">=</span> rMultiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>discountRate<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calTax <span class="token operator">=</span> rMultiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> taxRate<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calcNetPrice <span class="token operator">=</span> composition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>calTax<span class="token punctuation">,</span>calDiscounteedPrice<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> netPrice <span class="token operator">=</span> <span class="token function">calcNetPrice</span><span class="token punctuation">(</span>bk<span class="token operator">.</span>price<span class="token punctuation">)</span>
+
+println <span class="token string">"netPrice = $&amp;#123;netPrice&amp;#125;"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>范例：有上限折扣</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">class</span> <span class="token class-name">Book</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">def</span> name
+    <span class="token keyword">def</span> author
+    <span class="token keyword">def</span> price
+    <span class="token keyword">def</span> category
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> bk <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token string">'Groovy'</span><span class="token punctuation">,</span> author<span class="token punctuation">:</span> <span class="token string">'KenB'</span><span class="token punctuation">,</span> price<span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span> category<span class="token punctuation">:</span> <span class="token string">'CompSci'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> discountRate <span class="token operator">=</span> <span class="token number">0.1</span>
+<span class="token keyword">def</span> taxRate <span class="token operator">=</span> <span class="token number">0.17</span>
+<span class="token keyword">def</span> maxDiscount <span class="token operator">=</span> <span class="token number">3</span>
+
+<span class="token keyword">def</span> rMultiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    y<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> lMultiply <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> subtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> rSubtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    y<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> lSubtract <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">-</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> min <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">&lt;</span> y <span class="token operator">?</span> x <span class="token punctuation">:</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> id <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x <span class="token operator">-></span>
+        <span class="token keyword">return</span> x
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> composition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> bComposition <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    h<span class="token punctuation">,</span> f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token keyword">def</span> calcDiscount <span class="token operator">=</span> rMultiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>discountRate<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calcActuralDiscount <span class="token operator">=</span> bComposition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>min<span class="token punctuation">,</span> calcDiscount<span class="token punctuation">,</span> id<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calcDiscountedPrice <span class="token operator">=</span> bComposition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>subtract<span class="token punctuation">,</span> id<span class="token punctuation">,</span> calcActuralDiscount<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calcTax <span class="token operator">=</span> rMultiply<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> taxRate<span class="token punctuation">)</span>
+<span class="token keyword">def</span> calcNetPrice <span class="token operator">=</span> composition<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>calcTax<span class="token punctuation">,</span>calcDiscountedPrice<span class="token punctuation">)</span>
+
+println <span class="token string">"bk.price : $bk.price"</span>
+
+<span class="token keyword">def</span> netPrice <span class="token operator">=</span> <span class="token function">calcNetPrice</span><span class="token punctuation">(</span>bk<span class="token operator">.</span>price<span class="token punctuation">)</span>
+
+println <span class="token string">"netprice = $netPrice"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>以上范例开发了大量非常有价值的闭包，可以非常灵活的合并使用。因此，有必要把这些闭包都打包到一个类中去，这样更加容易引入到应用程序。</p>
+<pre class="line-numbers language-groovyy"><code class="language-groovyy">abstract class Functor &#123;
+    public static Closure bAdd = &#123;
+        x, y -> return x + y
+    &#125;
+
+    public static Closure rAdd = &#123;
+        y, x -> return x + y
+    &#125;
+    
+    public static Closure bSubtract = &#123;
+        x , y -> return x - y
+    &#125;
+    //blabla
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个类包含了算数的闭包。</p>
+<h2 id="闭包与协程"><a href="#闭包与协程" class="headerlink" title="闭包与协程"></a>闭包与协程</h2><p>调用一个函数或方法会在程序的执行序列创建一个新的作用域.我们会在一个入口点进入函数.在方法完成之后,回到调用者的作用域.</p>
+<p>协程(Coroutine)则支持多个入口点,每个入口点都是上次挂起调用的位置.我们可以进入一个函数,执行部分代码,挂起,在回到调用者的上下文或作用域内执行一些代码.之后我们可以在挂起的地方恢复该函数的执行.</p>
+<p>写成对于实现某些特殊的逻辑或算法非常方便,比如用着生产者-消费者问题中.生产者会接受一些输入,对输入做一些厨师处理,通知消费者拿走处理过的值并做进一步计算,并输出或存出结果.消费者处理它那部分工作,完成之后通知生产者以获取更多输入.</p>
+<p>在Java中,<code>wait() and notify()</code>与多线程借个使用,可以实现协程.闭包会让人产生”协程是在一个线程中执行”的感觉or错觉.</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token keyword">def</span> <span class="token function">iterate</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> closure<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token number">1</span><span class="token operator">.</span><span class="token function">upto</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        println <span class="token string">"In iterate with value $&amp;#123;it&amp;#125;"</span>
+        <span class="token function">closure</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+println <span class="token string">"Calling iterate"</span>
+total <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    total <span class="token operator">+=</span> it
+    println <span class="token string">"In closure total so far is $&amp;#123;total&amp;#125;"</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+println <span class="token string">"Done"</span>
+<span class="token comment" spellcheck="true">/**
+每次调用闭包,我们都会从上一次调用中回复total的值.  //可是我并没有从例子中看出什么是协程????
+*/</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>协程不是进程或线程，其执行过程更类似于子例程，或者说不带返回值的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/4127405">函数调用</a>。 协程还是比较复杂,嗯后续在研究研究.</p>
+<h2 id="闭包委托"><a href="#闭包委托" class="headerlink" title="闭包委托"></a>闭包委托</h2><p>Groovy的闭包支持方法委托,而且提供了方法分派能力.</p>
+<p><code>this,owner and delegate</code>是闭包的三个属性,用于确定有那个对象处理闭包内的方法调用,一般而言,<code>delegate 会被设置为 owner</code>,但是对其进行修改,可以有非常好的元编程能力.</p>
+<p>利用闭包委托,可以更好的写出DSL,将在DSL好好的讲述本内容.</p>
+<h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><p>有关函数式编程，可参考阮一峰老师的博客，在这里引用阮一峰老师的博客，特此注明，并非常感谢老师能够出一片教程给大家科普一下。</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html">函数式编程入门教程–阮一峰</a></p>
+<p>ps:自己的一些理解</p>
+<p>对于函数式编程中的柯里化，对应高中数学的只是，其实就是函数的一个组合。为了组合函数，需要将多个多参数函数转换成单参数函数。</p>
+<p>举个🌰：<br>$$<br>z = x + y<br>$$</p>
+<p>$$<br>z = x * y<br>$$</p>
+<p>如果我想得到一个复合函数使得2-&gt;映射到8，计算过程为<code>2 * 3 + 2</code></p>
+<p>那么我怎么得到这个函数呢？定义这个映射为f<br>$$<br>f(x) = x * 3  +  2<br>$$<br>那么在程序中我们怎么体现呢</p>
+<pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//这里的函数都是以闭包形式表示的准确来说这不是一个"方法",而是一个闭包的对象</span>
+<span class="token comment" spellcheck="true">//首先我们需要一个加法函数，这个加法函数是一个广义的</span>
+<span class="token keyword">def</span> add <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">+</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//然后我们需要一个乘法函数,同样是一个广义的</span>
+<span class="token keyword">def</span> multiple <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">-></span>
+        <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//然后我们定义一个组合,这个组合是嵌套函数,两个映射f,g和一个自变量x</span>
+<span class="token keyword">def</span> compose <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    f<span class="token punctuation">,</span> g<span class="token punctuation">,</span> x <span class="token operator">-></span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//add.curry(2)  :  y = 2 + z</span>
+<span class="token comment" spellcheck="true">//multiple.curry(2)  : z = 3 * x 注:这里只是为了方便,变量名并不代表带入关系</span>
+<span class="token comment" spellcheck="true">//compose.curry(add2,multiple3) = : z = 2 + (3 * x)</span>
+<span class="token keyword">def</span> add2 <span class="token operator">=</span> add<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> multiple3 <span class="token operator">=</span> multiple<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> addAndMultiple <span class="token operator">=</span> compose<span class="token operator">.</span><span class="token function">curry</span><span class="token punctuation">(</span>add2<span class="token punctuation">,</span>multiple3<span class="token punctuation">)</span>
+println <span class="token function">addAndMultiple</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"287314570e232c0e401f","clientSecret":"bb261daec807b4f3dd21e7161f4fbbc7f1a546ab","repo":"hefuduo.github.io","owner":"hefuduo","admin":"hefuduo"};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/08/28/2017-08-28-Groovy与元编程-2017/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/08/22/2017-08-22-groovy面向对象与泛型-2017/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-08-22 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/编程语言/">编程语言<span>7</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Groovy/">Groovy<span>5</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2022 Leo He
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
+     <br> Theme by <a target="_blank" rel="noopener" href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
